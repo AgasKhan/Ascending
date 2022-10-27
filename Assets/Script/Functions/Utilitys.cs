@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class Utilitys
+{
+    static public float AngleOffAroundAxis(Vector3 v, Vector3 forward, Vector3 axis, bool clockwise = true)
+    {
+        Vector3 right;
+        if (clockwise)
+        {
+            right = Vector3.Cross(forward, axis);
+            forward = Vector3.Cross(axis, right);
+        }
+        else
+        {
+            right = Vector3.Cross(axis, forward);
+            forward = Vector3.Cross(right, axis);
+        }
+        return Mathf.Atan2(Vector3.Dot(v, right), Vector3.Dot(v, forward)) * Mathf.Rad2Deg;
+    }
+
+
+    static public float DeltaAngle(Vector3 dir, out float angle, Vector3 from, Vector3 axis, Quaternion MyRot)
+    {
+
+        angle = AngleOffAroundAxis(from, dir, axis);
+
+        angle = angle < 0 ? 360 + angle : angle;
+
+        float rest = 0;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (axis[i] != 0)
+                rest = MyRot.eulerAngles[i];
+        }
+
+        return Mathf.Abs(angle - rest);
+    }
+
+    /// <summary>
+    /// Compara la direccion ingresada con el forward del objeto, y devuelve su angulo en el eje Y
+    /// </summary>
+    /// <param name="dir">direccion a comparar</param>
+    /// <param name="angle">flotante donde deveolvera el angulo de rotacion</param>
+    /// <returns>retorna la diferencia absoluta entre el angulo y rotacion del objeto (sirve para calcular el cono)</returns>
+    static public float DeltaAngleY(Vector3 dir, out float angle, Quaternion MyRot)
+    {
+        return DeltaAngle(dir, out angle, Vector3.forward, Vector3.up, MyRot);
+    }
+
+}
+
+
+
+
+

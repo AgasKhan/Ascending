@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4326772611908460687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4326772611908460684}
+  - component: {fileID: 4326772611908460685}
+  m_Layer: 0
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4326772611908460684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4326772611908460687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4326772611908460685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4326772611908460687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9115a5e9638412e488d1e0b41e0b2373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eneabled: 0
+  powerObjects:
+  - classType: Utilitys
+    poolNumber: 10
+    prefabReference:
+    - {fileID: 4415753222827290869, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
+    pool: []
+  - classType: Fire
+    poolNumber: 5
+    prefabReference:
+    - {fileID: 1111643712395732125, guid: c0286afc0b48846429e2544dde9d4ba5, type: 3}
+    pool: []
+  - classType: Toxine
+    poolNumber: 5
+    prefabReference:
+    - {fileID: 4796155192279286098, guid: cc1373fd61803d049a78f794f84a7c64, type: 3}
+    - {fileID: 1945262805003162363, guid: e53bcbf533e75a140be62024c80496c2, type: 3}
+    pool: []
+  - classType: Teleport
+    poolNumber: 5
+    prefabReference:
+    - {fileID: 2885703347959441886, guid: e64e3cf1afbdcf24bbcf1e1e327a22c0, type: 3}
+    pool: []
+  - classType: Stun
+    poolNumber: 5
+    prefabReference:
+    - {fileID: 4381182819131234993, guid: 04baba220feacd143856f7d3ef60ce75, type: 3}
+    pool: []
+  - classType: Vortex
+    poolNumber: 5
+    prefabReference:
+    - {fileID: 591225757626922568, guid: 82518b43b2609db4093be6f185261ffe, type: 3}
+    pool: []

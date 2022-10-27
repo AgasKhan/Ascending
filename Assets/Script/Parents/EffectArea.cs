@@ -1,0 +1,130 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class EffectArea : MyScripts
+{
+
+    [System.Serializable]
+    public class Affected
+    {
+        public GameObject go;
+        public Character affected;
+        public Rigidbody absordedRB;
+        string strTimer;
+
+        public void ChckandSubsHealth(float damage)
+        {
+            if (affected.MyCooldowns[strTimer].Chck())
+            {
+                affected.health.Substract(damage);
+                affected.MyCooldowns[strTimer].Reset();
+            }
+        }
+
+        ~Affected()
+        {
+            this.affected.RemoveCooldown(strTimer);
+        }
+
+        public Affected(GameObject affected, string s,float time=0)
+        {
+
+            strTimer = s;
+
+            go = affected;
+            absordedRB = affected.GetComponent<Rigidbody>();
+
+
+            if(affected.TryGetComponent(out this.affected))
+                this.affected.AddCooldown(strTimer, time);
+
+
+        }
+    }
+
+    public float coolDown;
+    public float toDestroy;
+    public float dmg;
+
+
+    [SerializeField]
+    protected List<Affected> affected = new List<Affected>();
+    protected Timer toDeactivate;
+
+    string strTimer = "areaEffect-";
+
+    protected void ChckAddAffected(GameObject g)
+    {
+        bool check = true;
+
+
+        Debug.Log(g.name + " ha sido detectado");
+
+        for (int i = 0; i < affected.Count; i++)
+        {
+            if (affected[i].go == g)
+            {
+                check = false;
+            }
+                
+        }
+
+        if (check && g.CompareTags(Tag.rb))
+        {
+            AddAffected(g);
+            Debug.Log(g.name + " ha sido atrapado en el vortice");
+        }
+    }
+
+    protected void AddAffected(GameObject g, float n=0)
+    {
+        affected.Add(new Affected(g, strTimer, n));
+    }
+
+
+        private void OnEnable()
+    {
+        toDeactivate.Reset();
+    }
+
+    private void OnDisable()
+    {
+        /*
+        for (int i = 0; i < affected.Count; i++)
+        {
+            affected[i].affected.RemoveCooldown(strTimer);
+        }*/
+
+        affected.Clear();
+    }
+
+
+    protected override void MyAwake()
+    {
+        toDeactivate = Timers.Create(toDestroy);
+
+        strTimer += GetType().FullName;
+
+    }
+
+
+    protected override void MyUpdate()
+    {
+        if (toDeactivate.Chck())
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    protected override void MyStart()
+    {
+        //throw new System.NotImplementedException();
+    }
+
+
+    protected override void MyFixedUpdate()
+    {
+        //throw new System.NotImplementedException();
+    }
+}
