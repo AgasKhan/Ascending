@@ -88,10 +88,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675bbc8a767821446affb058753fd54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 3919127826687303846}
+  col: {fileID: 3919127825588026070}
   pressedTime: 1
   DisplayText: Dagger
   diseable: 0
+  distanceDetection: 50
   me: {fileID: 0}
 --- !u!1 &3919127826687303864
 GameObject:

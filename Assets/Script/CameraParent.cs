@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class CameraParent : MonoBehaviour
 {
     /// <summary>
     /// Jugador
@@ -240,10 +240,6 @@ public class CameraMovement : MonoBehaviour
 
                 float distance = 50 * raycastHit.distance / _rayDetection;
 
-                Collider[] col = Physics.OverlapSphere(hitPoint, distance, _layerMask);
-
-                Collider interact = null;
-
                 character.scopedPoint = hitPoint;
 
                 character.scoped = raycastHit.collider;
@@ -251,7 +247,10 @@ public class CameraMovement : MonoBehaviour
                 
                 sphere.transform.position = hitPoint;
                 sphere.transform.localScale = Vector3.one * distance;
-               
+
+                Collider[] col = Physics.OverlapSphere(hitPoint, distance, _layerMask);
+
+                Collider interact = null;
 
                 foreach (Collider item in col)
                 {

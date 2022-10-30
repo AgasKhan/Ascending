@@ -6,7 +6,7 @@ public class Player_Character : Character
 {
     public Float_KnifeElements floatElements;
     public Attack_KnifeElements atackElements;
-    public CameraMovement cameraScript;
+    public CameraParent cameraScript;
 
     public Dagger_Proyectile dagger;
 
@@ -26,6 +26,9 @@ public class Player_Character : Character
 
     public void Take()
     {
+        if (dagger == null)
+            return;
+
         dagger.MoveRb.kinematic = false;
 
         if (dagger.gameObject.transform.parent != null && dagger.gameObject.transform.parent != floatElements.transform)
@@ -38,12 +41,16 @@ public class Player_Character : Character
 
         }
         dagger.gameObject.transform.parent = floatElements.transform;
+
+        interactuable.diseable = true;
     }
 
     public void Interact()
     {
+        /*
         if(interactuable!=null)
             interactuable.Activate();
+        */
     }
 
     #region unity Functions
@@ -108,24 +115,34 @@ public class Player_Character : Character
 
         if (interactuable != null && !interactuable.diseable)
         {
-
-            if ((pressed = Controllers.active.TimePressed()) > interactuable.pressedTime)
+            if((pressed = Controllers.active.TimePressed())>0 && pressed< interactuable.pressedTime)
             {
-                if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
+                if (!animator.CheckAnimations(1,"Take_dagger", "Interact"))
                 {
-                    interactuable.Activate();
-                    animator.Take();
+                    if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
+                    {
+                        animator.Take(interactuable.pressedTime);
+                    }
+                    else
+                        animator.Interact(interactuable.pressedTime);
                 }
-                else
-                    animator.Interact();
+                
+            }
+            else if (pressed > interactuable.pressedTime)
+            {
 
-                interactuable.diseable = true;
+                interactuable.Activate();
 
-                Controllers.active.TimePressed(false);
+                
 
             }
             
+            
             InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / interactuable.pressedTime);
+
+
+            if(pressed==0)
+                animator.Cancel();
 
             /*
             TextCanvas.Messages msg = TextCanvas.SrchMessages("boton");
@@ -138,6 +155,7 @@ public class Player_Character : Character
         else
         {
             InteractiveObj.instance.CloseInfo();
+            animator.Cancel();
         }
 
         if (interactuable == null || Controllers.active.TimePressed() > interactuable.pressedTime)

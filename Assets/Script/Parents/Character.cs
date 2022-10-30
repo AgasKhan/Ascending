@@ -380,20 +380,21 @@ abstract public class Character : MyScripts
     /// version privada, contiene todo el algoritmo que se ejecuta cuando se agrega un poder
     /// </summary>
     /// <param name="powerStatic"></param>
-    void AddPower(Powers_FatherPwDbff powerStatic)
+    void AddPower(Powers_FatherPwDbff powerStatic, int i =0)
     {
         powerStatic.chrAffected.Add(this);
         powerStatic.On(this);
-        power.Add(powerStatic);
-        SpritesManager.RefreshUI();
+        
+        power.Insert(i, powerStatic);
 
+        SpritesManager.RefreshUI();
     }
 
     /// <summary>
     /// Agregua un poder al character
     /// </summary>
     /// <param name="type">Tipo del poder a agregar</param>
-    public void AddPower(System.Type type)
+    public void AddPower(System.Type type, int i = 0)
     {
         if (type != null)
         {
@@ -401,7 +402,7 @@ abstract public class Character : MyScripts
             {
                 if (powerStatic.GetType() == type)
                 {
-                    AddPower(powerStatic);
+                    AddPower(powerStatic, i);
                 }
             }
         }
@@ -411,35 +412,36 @@ abstract public class Character : MyScripts
     /// Agregua un poder al character
     /// </summary>
     /// <typeparam name="T">Nombre del sript que es un poder</typeparam>
-    public void AddPower<T>() where T : Powers_FatherPwDbff
+    public void AddPower<T>(int i = 0) where T : Powers_FatherPwDbff
     {
         foreach (Powers_FatherPwDbff powerStatic in Powers_FatherPwDbff.powers)
         {
             if (powerStatic is T)
             {
-                AddPower(powerStatic);
+                AddPower(powerStatic,i);
             }
         }
     }
 
     /// <summary>
-    /// Remplaza el poder actual
+    /// Remplaza el primer poder
     /// </summary>
     /// <typeparam name="T">El poder que se va a agregar</typeparam>
-    public void ReplacePower(System.Type type)
+    public void ReplaceFirstPower(System.Type type)
     {
-        RemovePower(actualPower);
-        AddPower(type);
+        RemovePower(0);
+        AddPower(type,0);
     }
 
+ 
     /// <summary>
     /// Remplaza el poder actual
     /// </summary>
     /// <typeparam name="T">El poder que se va a agregar</typeparam>
-    public void ReplacePower<T>() where T : Powers_FatherPwDbff
+    public void ReplaceFirstPower<T>() where T : Powers_FatherPwDbff
     {
-        RemovePower(actualPower);
-        AddPower<T>();
+        RemovePower(0);
+        AddPower<T>(0);
     }
 
     /// <summary>

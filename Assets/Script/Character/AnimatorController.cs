@@ -46,17 +46,50 @@ public class AnimatorController : MonoBehaviour
     {
         animator.SetTrigger("Attack");
     }
-    public void Interact()
-    {
-        animator.SetTrigger("Interact");
-    }
+
     public void Power()
     {
         animator.SetTrigger("Power");
     }
-    public void Take()
+
+    public void Cancel()
     {
-        animator.SetTrigger("Take");
+        animator.ResetTrigger("Take");
+        animator.ResetTrigger("Interact");
+
+        if (CheckAnimations(1, "Take_dagger", "Interact"))
+        {
+            animator.SetTrigger("Cancel");
+        }
+        else
+            animator.ResetTrigger("Cancel");
+
+    }
+
+    void SetMultiply(string s, float t, bool invert)
+    {
+        foreach (var item in animator.runtimeAnimatorController.animationClips)
+        {
+            if (item.name == s)
+            {
+                float aux = (invert ? item.length - item.events[0].time : item.events[0].time);
+                Multiply((aux)/t);
+                print("largo: " + aux + "\n"+"tiempo :"+ t + "\ntotal: "+ ((aux)/t));
+            }
+        }    
+    }
+
+    public void Take(float time)
+    {
+        SetMultiply("Take_dagger", time, true);
+
+        animator.SetTrigger("Take");      
+    }
+    public void Interact(float time)
+    {
+        SetMultiply("Interact", time, false);
+
+        animator.SetTrigger("Interact");
     }
 
     public void ResetJump()
@@ -115,6 +148,11 @@ public class AnimatorController : MonoBehaviour
     {
         animator.SetFloat("localZ", v.z);
         animator.SetFloat("localX", v.x);
+    }
+
+    public void Multiply(float m)
+    {
+        animator.SetFloat("Multiply", m);
     }
 
     public void ModelDeath()

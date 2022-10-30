@@ -26,8 +26,7 @@ public class Float_KnifeElements : KnifeElements
 
             if(type != null)
             {
-                if(type.Length==1)
-                    character.ReplacePower(type[0]);
+                character.ReplaceFirstPower(type[0]);
                 /*else
                 {
                     for (int ii = 0; ii < type.Length; ii++)

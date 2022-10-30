@@ -6,6 +6,8 @@ public class Dagger_Proyectile : Proyectile
 {
     public List<System.Type> powerSteal;
 
+    Interactuable_LogicActive interact;
+
     Collider[] colliders;
 
     /// <summary>
@@ -17,6 +19,7 @@ public class Dagger_Proyectile : Proyectile
         {
             colliders[0].enabled = !value;
             colliders[1].enabled = !value;
+            interact.diseable = value;
         }
     }
 
@@ -35,12 +38,14 @@ public class Dagger_Proyectile : Proyectile
         {
             colliders[0].enabled = value;
             colliders[1].enabled = !value;
+            interact.diseable = value;
         }
     }
 
     private void Start()
     {
         colliders = GetComponentsInChildren<Collider>();
+        interact = GetComponentInChildren<Interactuable_LogicActive>();
         powerSteal = new List<System.Type>();
     }
 
