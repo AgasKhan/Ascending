@@ -4391,8 +4391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84846d2f73e85f54ab3c3c71d34f43ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelMenu: {fileID: 0}
-  MyMenuManager: {fileID: 0}
+  Destination: {fileID: 0}
 --- !u!64 &537432791
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10648,6 +10647,7 @@ GameObject:
   - component: {fileID: 1157687238}
   - component: {fileID: 3590005943083826528}
   - component: {fileID: 6246050487434764466}
+  - component: {fileID: 1157687239}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10684,6 +10684,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4e1a4a56a682442bf0815e50d4cd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1157687239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157687236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffe76d0659c16f4da76495235137710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  librearyTag:
+    pictionaries: []
 --- !u!4 &1165702096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 295604393766045580, guid: f2b151f75358a134da14225d45c5ff71, type: 3}
@@ -14507,6 +14521,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   sphere: {fileID: 1249452156}
   hitPoint: {x: 0, y: 0, z: 0}
+  offSetPos: {x: 0, y: 0, z: 0}
   offSet: {x: 2, y: 1, z: -4}
   offSetZoom: {x: 0, y: 0, z: 0}
   offSetFix: {x: 0, y: 0, z: 0}
