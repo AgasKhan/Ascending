@@ -71,8 +71,18 @@ public class Controllers : MonoBehaviour
             }
         }
 
+
+        public void SetAll(bool b)
+        {
+            pressed = b;
+            down = b;
+            up = b;
+        }
+
+
+
         /// <summary>
-        /// setea si se comenzara a conttar el tiempo presionado
+        /// setea si se comenzara a contar el tiempo presionado
         /// </summary>
         /// <param name="startTime">si comienza o termina</param>
         /// <returns>Devuelve el tiempo contado</returns>
@@ -118,6 +128,17 @@ public class Controllers : MonoBehaviour
     {
         set
         {
+            if (value == false)
+            {
+                foreach (Key item in _keys)
+                {
+                    item.SetAll(false);
+                }
+
+                dir = Vector2.zero;
+                cameraInput = Vector2.zero;
+
+            }
             _instance.enabled = value;
         }
 
@@ -134,7 +155,8 @@ public class Controllers : MonoBehaviour
     }
     void Update()
     {
-        cameraInput = new Vector2( Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        cameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -143,7 +165,7 @@ public class Controllers : MonoBehaviour
         foreach (Key item in _keys)
         {
             item.MyUpdate();
-            txt += item._timePressed+"\n";
+            txt += item._timePressed + "\n";
         }
     }
     #endregion
