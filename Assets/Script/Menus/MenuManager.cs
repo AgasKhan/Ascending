@@ -38,6 +38,12 @@ public class MenuManager : MonoBehaviour
                     });
                 }
             }
+
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+            _inGame = true;
+        else
+            _inGame = false;
+
     }
 
     void Update()
@@ -120,7 +126,10 @@ public class MenuManager : MonoBehaviour
         // if(level != null)
         //Application.loadedLevelName
 
-        Controllers.eneable = false;
+        if (_inGame)
+            Controllers.eneable = false;
+
+
         refSceneChanger.Load(level);
     }
 
