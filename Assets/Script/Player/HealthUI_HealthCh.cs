@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class HealthUI_HealthCh : HealthCh_LogicActive
 {
+
+    float hpPercentage = 1;
+
     void RefreshHealth()
     {
-        Sliders.SrchSlider("Health").CurrValue(GameManager.player.health.HpPercentage());
+        Sliders.SrchSlider("Health").CurrValue(hpPercentage);
     }
 
     private void Start()
@@ -17,6 +20,9 @@ public class HealthUI_HealthCh : HealthCh_LogicActive
     public override void Activate(params float[] floatParms)
     {
         base.Activate(floatParms);
+
+        hpPercentage = floatParms[floatParms.Length - 1];
+
         RefreshHealth();
     }
 }

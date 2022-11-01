@@ -300,6 +300,12 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         //inicializo los poderes del enemigo
         foreach (Powers_FatherPwDbff item in power)
         {
+            if (item == null)
+            {
+                Debug.LogWarning("Tiene el poder vacio el enemigo: " + name);
+                break;
+            }
+
             item.chrAffected.Add(this);
             item.On(this);
         }

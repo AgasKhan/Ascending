@@ -42,7 +42,8 @@ public class Player_Character : Character
         }
         dagger.gameObject.transform.parent = floatElements.transform;
 
-        interactuable.diseable = true;
+
+        //interactuable.diseable = true;
     }
 
     public void Interact()
@@ -57,7 +58,7 @@ public class Player_Character : Character
 
     protected override void MyAwake()
     {
-        GameManager.player = this;
+        
     }
 
     protected override void MyStart()

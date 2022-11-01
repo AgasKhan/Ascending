@@ -1158,7 +1158,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1113874793}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -3224,7 +3224,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1113874793}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -11900,7 +11900,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1397477420}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -12142,7 +12142,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1113874793}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -12576,7 +12576,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1397477420}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -13816,7 +13816,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1113874793}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -14155,6 +14155,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1113874793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3746685850999191182, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+  m_PrefabInstance: {fileID: 5392585506242595367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb0b59b82d692a4789a97c2337c5072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1122931744
 GameObject:
   m_ObjectHideFlags: 0
@@ -15346,7 +15357,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1397477420}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -17381,7 +17392,7 @@ MonoBehaviour:
     pictionaries: []
   powerObjectSpawn: []
   power:
-  - {fileID: 0}
+  - {fileID: 1113874793}
   actualPower: 0
   damage: 10
   jumpStrength: 50
@@ -17556,6 +17567,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386827289}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1397477420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1431243750628530604, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+  m_PrefabInstance: {fileID: 5392585506242595367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a029030971af154ca1ac8c4a30572e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1451431136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25648,6 +25670,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 6376573854257592151, guid: f7a5e6504acd7ac428245b8be3ae2b33, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376573854257592157, guid: f7a5e6504acd7ac428245b8be3ae2b33, type: 3}
+      propertyPath: sliders.Array.data[0].amount
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7a5e6504acd7ac428245b8be3ae2b33, type: 3}
 --- !u!43 &1941903682
@@ -29055,6 +29085,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5392585504841649068, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: eneabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5392585505252732386, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -29102,6 +29136,10 @@ PrefabInstance:
     - target: {fileID: 5392585505252732387, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5392585505252732387, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
@@ -29155,6 +29193,10 @@ PrefabInstance:
     - target: {fileID: 8202150891239359137, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202150891239359137, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8202150891239359146, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: cameraScript

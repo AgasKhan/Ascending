@@ -45,6 +45,9 @@ public static class Extensions
         return Tags.ChckOne(g, t);
     }
 
-
+    static public GameObject[] FindWithTags(this GameObject g, params string[] t)
+    {
+        return Tags.Find(t);
+    }
 
 }

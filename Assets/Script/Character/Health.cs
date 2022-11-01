@@ -68,7 +68,7 @@ public class Health : MonoBehaviour
 
             _enf.Reset();
 
-            damageLogic.Activate(damage,hp);
+            damageLogic.Activate(damage, hp, HpPercentage());
         }
     }
 

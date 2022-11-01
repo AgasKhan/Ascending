@@ -25,6 +25,26 @@ namespace Internal
             return aux;
         }
 
+        static public GameObject[] Find(params string[] t)
+        {
+
+            List<GameObject> resultados = new List<GameObject>();
+
+            foreach (var strSearch in t)
+            {
+                if(resultados.Count==0)
+                    resultados = inst.librearyTag[strSearch];
+                else
+                    foreach (var item in inst.librearyTag[strSearch])
+                    {
+                        if (!resultados.Contains(item))
+                            resultados.Remove(item);
+                    }
+            }
+
+            return resultados.ToArray();
+        }
+
         static public void AddTags(GameObject g, params Tag[] t)
         {
            
