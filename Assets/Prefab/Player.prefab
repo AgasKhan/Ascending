@@ -298,11 +298,13 @@ MonoBehaviour:
   extraJumps: 0
   coyoteTime:
     _totalTime: 0.3
-    _currentTime: 0.5
+    _currentTime: -0.0067698695
   floatElements: {fileID: 8202150890860376913}
   atackElements: {fileID: 8202150891830918423}
   cameraScript: {fileID: 0}
   dagger: {fileID: 0}
+  timeInteractMultiply: 1
+  UnlockAtrackt: 0
 --- !u!1 &8202150891830918408
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +352,16 @@ MonoBehaviour:
   character: {fileID: 8202150891239359146}
   Other: {fileID: 8202150890860376913}
   distance: {x: 1, y: 1, z: 0}
+  UnlockHitScan: 0
+  maxPressedTime: 5
+  relationXtime: 1
+  chargePercentage: 0
+  knife:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1001 &8202150890550170439
 PrefabInstance:
   m_ObjectHideFlags: 0

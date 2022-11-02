@@ -176,12 +176,12 @@ public class MoveRb : FatherMoves
     /// Aplica un impulso y cambia la capa de colision
     /// </summary>
     /// <param name="dir">vector direccion</param>
-    public void Dash(Vector3 dir)
+    public void Dash(Vector3 dir, float multiply =1)
     {
-        Move(dir, _dashImpulse);
+        Move(dir, _dashImpulse * multiply);
 
         //if(layerDash!=null && layerDash != "")
-            gameObject.layer = LayerMask.NameToLayer(layerDash);
+        gameObject.layer = LayerMask.NameToLayer(layerDash);
         dash = true;
     }
 
@@ -190,12 +190,12 @@ public class MoveRb : FatherMoves
     /// Aplica un impulso y cambia la capa de colision
     /// </summary>
     /// <param name="dir">vector direccion</param>
-    public void DashLocal(Vector3 dir)
+    public void DashLocal(Vector3 dir, float multiply = 1)
     {
-        MoveLocal(dir, _dashImpulse);
+        MoveLocal(dir, _dashImpulse*multiply);
 
         //if (layerDash != null && layerDash != "")
-            gameObject.layer = LayerMask.NameToLayer(layerDash);
+        gameObject.layer = LayerMask.NameToLayer(layerDash);
 
         dash = true;
     }

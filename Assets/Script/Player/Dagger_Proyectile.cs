@@ -6,6 +6,8 @@ public class Dagger_Proyectile : Proyectile
 {
     public List<System.Type> powerSteal;
 
+    public DaggerEffect daggerEffect;
+
     Interactuable_LogicActive interact;
 
     Collider[] colliders;
@@ -42,12 +44,19 @@ public class Dagger_Proyectile : Proyectile
         }
     }
 
+    public void SetLine(Vector3 p1, Vector3 p2)
+    {
+        daggerEffect.SetLine(p1, p2);
+        daggerEffect.enabled = true;
+    }
+
     private void Start()
     {
         colliders = GetComponentsInChildren<Collider>();
         interact = GetComponentInChildren<Interactuable_LogicActive>();
         powerSteal = new List<System.Type>();
-    }
+        daggerEffect = GetComponentInChildren<DaggerEffect>();
+    } 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,6 +80,8 @@ public class Dagger_Proyectile : Proyectile
             ((MoveRotAndGlueRb)MoveRb).AddGlue(other.transform);
 
             active = false;
+
+            
 
             Damage(other);
 

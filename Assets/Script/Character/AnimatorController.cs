@@ -29,7 +29,9 @@ public class AnimatorController : MonoBehaviour
 
     public void ANIM_EVENT(string name)
     {
+        print(this.name + " ejecuta " + name);
         functions[name]();
+        
     }
 
     #region animator functions

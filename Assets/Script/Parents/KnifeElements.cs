@@ -15,6 +15,7 @@ public class KnifeElements : MonoBehaviour
     [SerializeField]
     protected static List<Knifes> elements = new List<Knifes>();
 
+
     [System.Serializable]
     protected class Knifes
     {

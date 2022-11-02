@@ -10,6 +10,15 @@ public class Player_Character : Character
 
     public Dagger_Proyectile dagger;
 
+    public float timeInteractMultiply=1;
+
+    public bool UnlockAtrackt;
+
+    
+
+    float timePressed;
+
+    int _totalDaggers;
     bool _previusOnFloor;
     bool _sprint;
     public void AttackDist()
@@ -42,6 +51,8 @@ public class Player_Character : Character
         }
         dagger.gameObject.transform.parent = floatElements.transform;
 
+        if (dagger.owner == null)
+            _totalDaggers++;
 
         //interactuable.diseable = true;
     }
@@ -58,7 +69,7 @@ public class Player_Character : Character
 
     protected override void MyAwake()
     {
-        
+        GameManager.player = this;
     }
 
     protected override void MyStart()
@@ -116,30 +127,31 @@ public class Player_Character : Character
 
         if (interactuable != null && !interactuable.diseable)
         {
-            if((pressed = Controllers.active.TimePressed())>0 && pressed< interactuable.pressedTime)
+
+            timePressed = interactuable.pressedTime * 1/timeInteractMultiply;
+
+            if ((pressed = Controllers.active.TimePressed())>0 && pressed< interactuable.pressedTime)
             {
                 if (!animator.CheckAnimations(1,"Take_dagger", "Interact"))
                 {
                     if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
                     {
-                        animator.Take(interactuable.pressedTime);
+                        animator.Take(timePressed);
                     }
                     else
-                        animator.Interact(interactuable.pressedTime);
+                        animator.Interact(timePressed);
                 }
                 
             }
-            else if (pressed > interactuable.pressedTime)
+            else if (pressed > timePressed)
             {
 
                 interactuable.Activate();
 
-                
-
             }
             
             
-            InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / interactuable.pressedTime);
+            InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / timePressed);
 
 
             if(pressed==0)
@@ -159,7 +171,7 @@ public class Player_Character : Character
             animator.Cancel();
         }
 
-        if (interactuable == null || Controllers.active.TimePressed() > interactuable.pressedTime)
+        if (interactuable == null || Controllers.active.TimePressed() > timePressed)
         {
             Controllers.active.TimePressed(false);
         }
@@ -185,8 +197,35 @@ public class Player_Character : Character
         else
             _sprint = false;
 
-        if (Controllers.attack.down && Controllers.aim.pressed)
+        if (Controllers.attack.up && Controllers.aim.pressed)
             animator.Attack();
+
+
+        if(Controllers.attack.pressed)
+        {
+            if (Controllers.aim.pressed)
+                atackElements.ChargeAttack();
+
+            else if(UnlockAtrackt && Controllers.attack.TimePressed()> _totalDaggers)
+            {
+                foreach (var item in gameObject.FindWithTags("Dagger"))
+                {
+                    
+                    dagger = item.GetComponent<Dagger_Proyectile>();
+
+                    if(dagger.owner!=null)
+                    {
+                        Take();
+                    }
+                        
+                }
+
+                Controllers.attack.TimePressed(false);
+            }
+        }
+
+        
+
 
         if (Controllers.aim.up)
         {
@@ -198,7 +237,7 @@ public class Player_Character : Character
         if (Controllers.aim.down)
         {
             atackElements.PreAttack();
-            cameraScript.ZoomIn(Vector3.forward * 2);
+            cameraScript.ZoomIn(new Vector3(-cameraScript.offSet.x/2, 0, 2));
             animator.Aim(true);
         }
 
@@ -249,6 +288,17 @@ public class Player_Character : Character
 
 
         previousTransformY = transform.position.y;
+    }
+
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if(!focus)
+        {
+            atackElements.CancelAttack();
+            cameraScript.ZoomOut();
+            animator.Aim(false);
+        }
     }
     #endregion
 }

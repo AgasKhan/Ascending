@@ -5,12 +5,39 @@ using UnityEngine;
 public class Attack_KnifeElements : KnifeElements
 {
 
+    public bool UnlockHitScan = false;
+
+    public float maxPressedTime = 3;
+
+    public float relationXtime = 1;
+
+    public float chargePercentage;
+
+    [SerializeReference]
     Knifes knife;
+
+    float time=1;
+
+    public float ChargeAttack()
+    {
+        time += Time.deltaTime;
+
+        chargePercentage =  (time - 1) / maxPressedTime;
+
+        if (chargePercentage > 1)
+            chargePercentage = 1;
+
+        return chargePercentage;
+    }
 
     public void Attack()
     {
         if (knife == null)
             return;
+
+        float atackMultiply=1;
+
+        elements.Remove(knife);
 
         knife.reference.parent = null;
 
@@ -22,18 +49,34 @@ public class Attack_KnifeElements : KnifeElements
 
         //knife.movement.Move(character.scoped.point-knife.reference.position, knife.movement.maxSpeed * 10);
 
-        knife.movement.Dash(character.scopedPoint - knife.reference.position);
+        if(time-1 < maxPressedTime)
+            atackMultiply = 1 + relationXtime * time / 10;
+        else
+        {
+            if(UnlockHitScan)
+            {
+                knife.daggerScript.SetLine(character.scopedPoint,transform.position);
+                knife.movement.transform.position = (character.scopedPoint - (character.scopedPoint - knife.reference.position).normalized);
+            }
+            else
+                atackMultiply = 1 + maxPressedTime * relationXtime / 10;
+        }
 
-        elements.Remove(knife);
+
+        knife.movement.Dash(character.scopedPoint - knife.reference.position, atackMultiply);
+
+        time = 1;
 
         knife = null;
+
+        chargePercentage = 0;
 
         PreAttack();
     }
 
     public void PreAttack()
     {
-        if(elements.Count>0)
+        if (elements.Count > 0)
         {
             knife = elements[0];
             knife.reference.parent = transform;
@@ -53,11 +96,12 @@ public class Attack_KnifeElements : KnifeElements
     // Update is called once per frame
     void Update()
     {
+
         if(knife!=null)
         {
-            knife.reference.localPosition = Vector3.Slerp(transform.GetChild(0).localPosition, distance, Time.deltaTime);
 
-           
+            knife.reference.localPosition = Vector3.Slerp(knife.reference.localPosition, distance + Vector3.forward*2*(1-chargePercentage), Time.deltaTime);
+
             Vector3 rot = character.scopedPoint - knife.reference.position;
 
             knife.movement.RotateToDir(rot, new Vector3(90,0,0));

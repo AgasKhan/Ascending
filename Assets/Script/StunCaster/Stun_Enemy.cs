@@ -7,16 +7,18 @@ public class Stun_Enemy : Enemy_Character
     private void Awake()
     {
 
-        animator.functions.AddRange(
-           new Pictionary<string, AnimatorController.PrototypeFunc>[]
+        animator.functions.AddRange
+        (
+           new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
-
-                new Pictionary<string, AnimatorController.PrototypeFunc>("attackMelee", AttackMelee),
-                new Pictionary<string, AnimatorController.PrototypeFunc>("endAttackMelee", EndAttackMelee)
+               {"attackMelee", AttackMelee},
+               { "endAttackMelee", EndAttackMelee}
 
            }
+        );
 
-       );
+
+
     }
 
     protected override void MyUpdate()

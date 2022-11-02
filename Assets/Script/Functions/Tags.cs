@@ -25,38 +25,19 @@ namespace Internal
             return aux;
         }
 
-        static public GameObject[] Find(params string[] t)
+        static public GameObject[] Find(params Tag[] t)
         {
-
-            List<GameObject> resultados = new List<GameObject>();
-
-            foreach (var strSearch in t)
-            {
-                if(resultados.Count==0)
-                    resultados = inst.librearyTag[strSearch];
-                else
-                    foreach (var item in inst.librearyTag[strSearch])
-                    {
-                        if (!resultados.Contains(item))
-                            resultados.Remove(item);
-                    }
-            }
-
-            return resultados.ToArray();
+            return Find(ToStrings(t));
         }
 
         static public void AddTags(GameObject g, params Tag[] t)
         {
-           
-            AddTags(g, ToStrings(t));
-                      
+            AddTags(g, ToStrings(t));          
         }
 
         static public void RemoveTags(GameObject g, params Tag[] t)
         {
-           
             RemoveTags(g, ToStrings(t));
-            
         }
 
         static public bool ChckOne(GameObject g, params Tag[] t)
@@ -110,6 +91,25 @@ namespace Internal
             return true;
         }
 
+        static public GameObject[] Find(params string[] t)
+        {
+
+            List<GameObject> resultados = new List<GameObject>();
+
+            foreach (var strSearch in t)
+            {
+                if (resultados.Count == 0)
+                    resultados = inst.librearyTag[strSearch];
+                else
+                    foreach (var item in inst.librearyTag[strSearch])
+                    {
+                        if (!resultados.Contains(item))
+                            resultados.Remove(item);
+                    }
+            }
+
+            return resultados.ToArray();
+        }
         #endregion
 
         // Start is called before the first frame update

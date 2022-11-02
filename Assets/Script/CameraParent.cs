@@ -174,6 +174,7 @@ public class CameraParent : MonoBehaviour
     /// </summary>
     public bool Flip()
     {
+        offSetZoom = new Vector3(-offSetZoom.x, offSetZoom.y, offSetZoom.z); 
         OffSet(new Vector3(_offsetNormalize.x * -1, _offsetNormalize.y, _offsetNormalize.z) * _distance);
 
         return false;

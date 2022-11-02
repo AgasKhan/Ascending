@@ -8,15 +8,19 @@ public class GameManager : MonoBehaviour
 
     public static Player_Character player;
 
-    public List<TimeController> entitys = new List<TimeController>();
-
     static GameManager instance;
+
+    public List<TimeController> entitys = new List<TimeController>();
 
     public float delayStart;
 
     public int multiplyReverseCamera=1;
 
     public float maxLevelTimer;
+
+    public bool saveTimeP= false;
+
+    public float currentTime;
 
     public static bool saveTime
     {
@@ -30,10 +34,6 @@ public class GameManager : MonoBehaviour
             instance.saveTimeP = value;
         }
     }
-
-    public bool saveTimeP= false;
-
-    public float currentTime;
 
     public static float CurrentTime(float num = 0)
     {
@@ -114,6 +114,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentTime -= Time.realtimeSinceStartup;
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
     }
 
     public static IEnumerator ReverseAll(int velocity = 1)
