@@ -78,11 +78,11 @@ public class MoveTr : FatherMoves
 
     protected override void MyFixedUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void MyStart()
     {
-        throw new System.NotImplementedException();
+        
     }
 }
