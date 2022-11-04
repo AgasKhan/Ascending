@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player_Character : Character
 {
@@ -14,7 +15,7 @@ public class Player_Character : Character
 
     public bool UnlockAtrackt;
 
-    
+    Action interact;
 
     float timePressed;
 
@@ -130,7 +131,7 @@ public class Player_Character : Character
 
             timePressed = interactuable.pressedTime * 1/timeInteractMultiply;
 
-            if ((pressed = Controllers.active.TimePressed())>0 && pressed< interactuable.pressedTime)
+            if ((pressed = Controllers.active.TimePressed())>0 && pressed< timePressed)
             {
                 if (!animator.CheckAnimations(1,"Take_dagger", "Interact"))
                 {

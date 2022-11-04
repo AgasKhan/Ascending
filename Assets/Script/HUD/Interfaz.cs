@@ -6,20 +6,16 @@ using UnityEngine.UI;
 
 public class Interfaz : MonoBehaviour
 {
-            public  List<TextCompleto>  titulosC = new List<TextCompleto>();
+    public  List<TextCompleto>  titulosC = new List<TextCompleto>();
 
-            public  TextMeshProUGUI[]   titulos;
+    public  TextMeshProUGUI[]   titulos;
 
-            public  float               tiempoEntreLetrasPublic;
+    public  float               tiempoEntreLetrasPublic;
 
-            public  Image               Dialogo;
+    public  Image               Dialogo;
 
-                    float               widthDiag;
-                    float               heightDiag;
-
-    public Image vida;
-
-    static public Image health;
+            float               widthDiag;
+            float               heightDiag;
 
     static Interfaz instancia;
     TextCompleto tiempo;
@@ -31,8 +27,6 @@ public class Interfaz : MonoBehaviour
         
         titulosC.Clear();
 
-        health = vida;
-
         foreach (var item in titulos)
         {
             item.text = "";
@@ -41,8 +35,7 @@ public class Interfaz : MonoBehaviour
     }
     void Start()
     {
-        Time.timeScale = 1;
-        
+               
         //defino la propiedad de vida
         tiempo = TitleSrchByName("Tiempo");
         tiempo.fade = false;

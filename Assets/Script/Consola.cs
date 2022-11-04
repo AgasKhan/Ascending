@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Consola : MonoBehaviour
 {
+    [SerializeField]
+    string OpenConsoleCharacter;
 
     public TextMeshProUGUI salida;
     public GameObject canvas;
@@ -87,7 +89,7 @@ public class Consola : MonoBehaviour
             actualizar = true;
         }
 
-        if (Input.inputString=="|")
+        if (Input.inputString== OpenConsoleCharacter)
             canvas.SetActive(!canvas.activeSelf);
 
         if(canvas.activeSelf)
