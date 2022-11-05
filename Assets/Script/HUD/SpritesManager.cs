@@ -10,7 +10,7 @@ public class SpritesManager : MonoBehaviour
     public GameObject geografia;
 
     public Image[] siguiente = new Image[3];
-    public Image[] actual = new Image[3];
+    public Image actual;
     public Image[] anterior = new Image[3];
 
     /*
@@ -45,25 +45,25 @@ public class SpritesManager : MonoBehaviour
     //para un solo poder
     static public void RefreshUI()
     {
-        int countPower = GameManager.player.power.Count;
+        ///int countPower = GameManager.player.power.Count;
 
-        int id = GameManager.player.actualPower;
+        //int id = GameManager.player.actualPower;
 
-        Load(instance.actual, GameManager.player.power[id].art);
+        //Load(instance.actual, GameManager.player.power[0].ui);
+
+        instance.actual.sprite = GameManager.player.power[0].ui.GeneralIcon;
+
 
         instance.geografia.SetActive(true);
 
     }
 
-    static public void Load(Image[] arr, Powers_FatherPwDbff.Sprites sprites)
+    /*
+    static public void Load(Image arr, Powers_FatherPwDbff.UI ui)
     {
-        for (int i = 0; i < 3; i++)
-        {
-            arr[i].sprite = sprites.spriteImage[i];
-        }
-
+        arr.sprite = ui.GeneralIcon;
     }
-
+    */
     private void Awake()
     {
         instance = this;

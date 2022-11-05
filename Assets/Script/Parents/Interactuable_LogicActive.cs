@@ -12,6 +12,14 @@ public abstract class Interactuable_LogicActive : LogicActive
 
     Player_Character player;
 
+
+
+    public void RefreshUi(Vector3 pos, float perc)
+    {
+        InteractiveObj.instance.LoadInfo("E", pos, perc);
+        InteractiveObj.instance.subTittle.text=DisplayText;
+    }
+
     private void Start()
     {
         col = GetComponent<Collider>();
@@ -22,7 +30,9 @@ public abstract class Interactuable_LogicActive : LogicActive
     {
      
         if(!diseable)
-            col.enabled= (player.transform.position - transform.position).sqrMagnitude < (distanceDetection * distanceDetection);
+        {
+            col.enabled = (player.transform.position - transform.position).sqrMagnitude < (distanceDetection * distanceDetection);
+        }
 
     }
 

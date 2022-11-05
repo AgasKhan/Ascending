@@ -11,12 +11,20 @@ abstract public class Powers_FatherPwDbff : FatherPwDbff
     static public List<Powers_FatherPwDbff> powers;
 
     [System.Serializable]
-    public class Sprites
+    public struct UI
     {
-        public Sprite[] spriteImage = new Sprite[3];
+        public Sprite GeneralIcon;
+        public Sprite ActiveIcon;
+
+        [TextArea(3,6)]
+        public string generalText;
+
+        [TextArea(3, 6)]
+        public string activeText;
+
     }
 
-    public Sprites art;
+    public UI ui;
 
     /// <summary>
     /// Funcion que sera llamada cuando se lance la habilidad

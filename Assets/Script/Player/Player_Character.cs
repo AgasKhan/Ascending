@@ -152,7 +152,8 @@ public class Player_Character : Character
             }
             
             
-            InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / timePressed);
+            //InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / timePressed);
+            interactuable.RefreshUi(cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), (pressed / timePressed));
 
 
             if(pressed==0)

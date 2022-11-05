@@ -402,11 +402,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chrAffected: []
   _indexSpawnPool: -1
-  art:
-    spriteImage:
-    - {fileID: 21300000, guid: 26d599bffdba448418572a9e95a0f1c1, type: 3}
-    - {fileID: 21300000, guid: 5d2db0a9c22c770408e429ba869c5af6, type: 3}
-    - {fileID: 21300000, guid: db50996e0e43ab2489b055841167fd02, type: 3}
+  ui:
+    GeneralIcon: {fileID: 21300000, guid: 26d599bffdba448418572a9e95a0f1c1, type: 3}
+    ActiveIcon: {fileID: 21300000, guid: db50996e0e43ab2489b055841167fd02, type: 3}
+    generalText: 
+    activeText: 
   myShield: {x: 0, y: 0}
 --- !u!1001 &7939842617954637938
 PrefabInstance:

@@ -306,11 +306,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chrAffected: []
   _indexSpawnPool: -1
-  art:
-    spriteImage:
-    - {fileID: 21300000, guid: d4ce7013376fa824f8251cb7aaa6b544, type: 3}
-    - {fileID: 21300000, guid: 804fb701465b5a845a0939bf6cc91791, type: 3}
-    - {fileID: 21300000, guid: 2e3b2a50ac31bf543a32d4afc5d3b880, type: 3}
+  ui:
+    GeneralIcon: {fileID: 21300000, guid: d4ce7013376fa824f8251cb7aaa6b544, type: 3}
+    ActiveIcon: {fileID: 21300000, guid: 2e3b2a50ac31bf543a32d4afc5d3b880, type: 3}
+    generalText: 
+    activeText: 
 --- !u!1001 &7354820877802600976
 PrefabInstance:
   m_ObjectHideFlags: 0

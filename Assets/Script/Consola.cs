@@ -52,7 +52,7 @@ public class Consola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         if (DebugPrint.chk())
         {
