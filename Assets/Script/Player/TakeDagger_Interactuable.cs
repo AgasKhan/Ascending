@@ -18,6 +18,6 @@ public class TakeDagger_Interactuable : Interactuable_LogicActive
         GameManager.player.dagger = me;
         //diseable = true;
 
-        DebugPrint.Log("Se ha recogido la: " + name.RichText("color", "green"));
+        DebugPrint.Log("Se ha accionado la: " + name.RichText("color", "green"));
     }
 }

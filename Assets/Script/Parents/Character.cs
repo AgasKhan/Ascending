@@ -129,6 +129,32 @@ abstract public class Character : MyScripts
     {
         CoroutineMesh();
     }
+   
+    /// <summary>
+   /// setea todo lo necesario para la animacion
+   /// </summary>
+   /// <param name="v">vector de velocidad</param>
+   protected void RefreshAnims(Vector3 v)
+   {
+       animator.input = input;
+       animator.velocity = v;
+       animator.relation = (new Vector3(v.x,0,v.z).sqrMagnitude) / (maxSpeed * maxSpeed);
+
+       if (maxSpeed > movement.maxSpeed)
+           animator.relation *= 2;
+
+
+       animator.aceleration = movement.desAceleration;
+   }
+
+   /// <summary>
+   /// setea todo lo necesario para la animacion
+   /// </summary>
+   protected void RefreshAnims()
+   {
+       RefreshAnims(movement.velocity3D);
+   }
+     /*
 
     /// <summary>
     /// setea todo lo necesario para la animacion
@@ -144,7 +170,7 @@ abstract public class Character : MyScripts
        
 
         animator.aceleration = movement.desAceleration;
-    }
+    }*/
 
     #region mobility
 

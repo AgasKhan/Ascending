@@ -26,12 +26,9 @@ public abstract class Interactuable_LogicActive : LogicActive
 
     private void FixedUpdate()
     {
-     
         if(!diseable)
         {
             col.enabled = (player.transform.position - transform.position).sqrMagnitude < (distanceDetection * distanceDetection);
         }
-
     }
-
 }

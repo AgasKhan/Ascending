@@ -219,7 +219,6 @@ public class MoveRb : FatherMoves
         GameManager.AddTimeController(transform);
     }
 
-
     protected override void MyUpdate()
     {
         velocity3D = _myRigid.velocity;

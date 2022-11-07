@@ -504,7 +504,7 @@ MonoBehaviour:
   eneableDrag: 0
   _dashImpulse: 200
   _dragFactor: 0
-  _desAcelerationAxis: 10
+  desAcelerationAxis: 10
   glue: {fileID: 0}
 --- !u!114 &5980640367385784785
 MonoBehaviour:

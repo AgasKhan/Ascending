@@ -97,6 +97,8 @@ public class InteractiveObj : MonoBehaviour
         {
             item.CrossFadeAlpha(0, timeFadeOut, false);
         }
+
+        clock.fillAmount = 0;
     }
 
 

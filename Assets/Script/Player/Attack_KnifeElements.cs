@@ -100,7 +100,7 @@ public class Attack_KnifeElements : KnifeElements
         if(knife!=null)
         {
 
-            knife.reference.localPosition = Vector3.Slerp(knife.reference.localPosition, distance + Vector3.forward*2*(1-chargePercentage), Time.deltaTime);
+            knife.reference.localPosition = Vector3.Lerp(knife.reference.localPosition, distance + Vector3.forward*2*(1-chargePercentage), Time.deltaTime);
 
             Vector3 rot = character.scopedPoint - knife.reference.position;
 

@@ -226,7 +226,7 @@ MonoBehaviour:
   eneableDrag: 1
   _dashImpulse: 200
   _dragFactor: 0
-  _desAcelerationAxis: 5
+  desAcelerationAxis: 15
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0

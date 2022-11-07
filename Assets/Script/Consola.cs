@@ -58,7 +58,6 @@ public class Consola : MonoBehaviour
         {
             string aux;
             int number = 0;
-
             List<string> arrAux = new List<string>();
 
             if (texto[texto.Count - 1].Split('\n').Length < 199)

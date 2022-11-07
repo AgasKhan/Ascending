@@ -6,7 +6,7 @@ public class MoveAndRotRb : MoveRb
 {
 
     [SerializeField] 
-    float _desAcelerationAxis;
+    public float desAcelerationAxis;
 
     Quaternion _quaternion;
 
@@ -77,7 +77,7 @@ public class MoveAndRotRb : MoveRb
 
         if (_rotate && !isDisable && !dash)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, _quaternion, Time.deltaTime * _desAcelerationAxis);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _quaternion, Time.deltaTime * desAcelerationAxis);
             if (_quaternion.Equals(transform.rotation))
                 _rotate = false;
         }

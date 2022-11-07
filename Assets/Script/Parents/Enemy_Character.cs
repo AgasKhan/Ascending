@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Clase padre de los enemigos
@@ -77,8 +77,6 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     /// </summary>
     public float attackCooldown;
 
-    public GameObject attackCollider;
-
     public Timer deleySearch;
 
     [SerializeField]
@@ -96,6 +94,8 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     float _angle;
 
     Vector3 _lastPosition;
+
+    NavMeshAgent nav;
 
     #endregion
 
@@ -229,6 +229,11 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
         animator = GetComponentInChildren<AnimatorController>();
 
+        nav = GetComponent<NavMeshAgent>();
+
+        nav.speed = movement.maxSpeed;
+        nav.angularSpeed = movement.desAcelerationAxis;
+        nav.acceleration = movement.desAceleration;
         animator.AddFunction("offMesh", OffMesh);
 
         GameManager.AddEnemy(this);
@@ -268,7 +273,6 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         if (scoped != null)
             print("Enemy see: " + scoped.name);
         */
-
         scoped = null;
         scopedPoint = Vector3.zero;
     }

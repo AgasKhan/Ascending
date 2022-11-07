@@ -44,18 +44,14 @@ public class Player_Character : Character
         if (dagger.gameObject.transform.parent != null && dagger.gameObject.transform.parent != floatElements.transform)
         {
             print(dagger.gameObject.transform.parent.name);
-
-            //GameObject glue = dagger.gameObject.transform.parent.gameObject;
-
-            //StartCoroutine(DestroyRetarded(glue));
-
         }
         dagger.gameObject.transform.parent = floatElements.transform;
 
         if (dagger.owner == null)
             _totalDaggers++;
 
-        interactuable.diseable = true;
+        if(interactuable!=null)
+            interactuable.diseable = true;
     }
 
     public void Interact()
@@ -142,15 +138,11 @@ public class Player_Character : Character
                     else
                         animator.Interact(timePressed);
                 }
-                
             }
             else if (pressed > timePressed)
             {
-
                 interactuable.Activate();
-
             }
-            
             
             //InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / timePressed);
             interactuable.RefreshUi(cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), (pressed / timePressed));
@@ -185,7 +177,6 @@ public class Player_Character : Character
 
                 animator.Jump();
             }
-
             else if (!_sprint && Controllers.dash.up && animator.CheckAnimations("Movement"))
             {
 
