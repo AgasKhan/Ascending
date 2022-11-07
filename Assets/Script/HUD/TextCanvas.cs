@@ -298,7 +298,6 @@ public class TextCanvas : MonoBehaviour
 
     private void Update()
     {
-        
 
         if (Input.GetKeyDown(KeyCode.H))
         {

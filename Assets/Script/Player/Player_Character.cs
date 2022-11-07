@@ -15,8 +15,6 @@ public class Player_Character : Character
 
     public bool UnlockAtrackt;
 
-    Action interact;
-
     float timePressed;
 
     int _totalDaggers;
@@ -144,19 +142,12 @@ public class Player_Character : Character
                 interactuable.Activate();
             }
             
-            //InteractiveObj.instance.LoadInfo("E", cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), pressed / timePressed);
+            
             interactuable.RefreshUi(cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), (pressed / timePressed));
 
 
             if(pressed==0)
                 animator.Cancel();
-
-            /*
-            TextCanvas.Messages msg = TextCanvas.SrchMessages("boton");
-            
-            if(msg.isActive)
-                TextCanvas.SrchMessages("boton").StartText(interactuable.DisplayText);
-            */
         }
 
         else

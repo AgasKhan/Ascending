@@ -9,7 +9,7 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
 {
     [SerializeField]
     List<Pictionary<K, V>> pictionaries;
-
+    
     public float count
     {
         get;

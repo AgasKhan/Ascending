@@ -10,6 +10,8 @@ using UnityEngine.Events;
 
 public class MenuManager : MonoBehaviour
 {
+    static public MenuManager instance;
+
     public GameObject[] subMenus;
     public Button[] levelButtons;
     public string firstLevel;
@@ -23,9 +25,9 @@ public class MenuManager : MonoBehaviour
 
 
     //para los eventos
-    private Pictionarys<string, Action> eventListVoid = new Pictionarys<string, Action>();
-    private Pictionarys<string, Action<float>> eventListFloat = new Pictionarys<string, Action<float>>();
-    private Pictionarys<string, Action<string>> eventListString = new Pictionarys<string, Action<string>>();
+    public Pictionarys<string, Action> eventListVoid = new Pictionarys<string, Action>();
+    public Pictionarys<string, Action<float>> eventListFloat = new Pictionarys<string, Action<float>>();
+    public Pictionarys<string, Action<string>> eventListString = new Pictionarys<string, Action<string>>();
 
 
     private void Start()
@@ -111,14 +113,12 @@ public class MenuManager : MonoBehaviour
 
     public void GoToPreviousSubMenu()
     {
-
         if (_currentMemu > 0)
         {
             subMenus[_currentMemu].SetActive(false);
             _currentMemu--;
             subMenus[_currentMemu].SetActive(true);
         }
-
     }
 
     public void ChangeOptions(int index)
@@ -163,8 +163,14 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    public void FuncVoid() { }
-    public void FuncString(string s) { }
-    public void FuncFloat(float f) { }
+   
+
+    /*
+    public void Event(Button b)
+    {
+        b.onClick.RemoveAllListeners();
+        b.onClick.AddListener(() => { eventListVoid[b.name](); });
+        eventListVoid[b.name]();
+    }*/
 
 }
