@@ -98,9 +98,12 @@ public static class Extensions
 
     #region string
 
-    static public string RichText(this string s, string tag, string valor)
+    static public string RichText(this string s, string tag, string valor="")
     {
-        return "<"+tag+"="+valor+">"+s+"</"+tag+">" ;
+        if(valor!="")
+            return "<"+tag+"="+valor+">"+s+"</"+tag+">" ;
+        else
+            return "<" + tag + ">" + s + "</" + tag + ">";
     }
 
     #endregion

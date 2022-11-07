@@ -30,9 +30,10 @@ public class MenuManager : MonoBehaviour
     public Pictionarys<string, Action<string>> eventListString = new Pictionarys<string, Action<string>>();
 
 
-    private void Start()
+    private void Awake()
     {
-        
+        instance = this;
+
         if (levelButtons != null)
             for (int i = 0; i < levelButtons.Length; i++)
             {
@@ -161,16 +162,5 @@ public class MenuManager : MonoBehaviour
 
         refSceneChanger.Load(level);
     }
-
-
-   
-
-    /*
-    public void Event(Button b)
-    {
-        b.onClick.RemoveAllListeners();
-        b.onClick.AddListener(() => { eventListVoid[b.name](); });
-        eventListVoid[b.name]();
-    }*/
 
 }

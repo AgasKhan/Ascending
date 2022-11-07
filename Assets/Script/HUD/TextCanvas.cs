@@ -303,7 +303,7 @@ public class TextCanvas : MonoBehaviour
         {
             //ShowText(bool setLoad, params string[] s)
 
-            SrchMessages("Lucas").ShowText(false,"MISION " + " NO ".RichText("color", "red") + "FRACASADA");
+            SrchMessages("Lucas").ShowText(false,"MISION " + " NO ".RichText("b").RichText("color", "red") + "FRACASADA");
         }
 
         if (Input.GetKeyDown(KeyCode.J))

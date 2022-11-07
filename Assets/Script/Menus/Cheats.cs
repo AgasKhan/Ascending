@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Cheats : MonoBehaviour
 {
-
-
     Vector3 previusHealth;
 
     Player_Character player;
 
+    MenuManager menu;
+
     void Start()
     {
         player = GameManager.player;
+
+        menu = MenuManager.instance;
+
+        menu.eventListVoid.AddRange( new Pictionarys<string, System.Action>()
+        {
+
+            {"infinite", InfiniteHelth},
+            {"toxine", player.ReplaceFirstPower<Toxine_Powers>},
+            {"stun", player.ReplaceFirstPower<Stun_Powers>},
+            {"vortex", player.ReplaceFirstPower<Vortex_Powers>},
+            {"teleport", player.ReplaceFirstPower<Teleport_Powers>}
+
+        });
+
+        menu.eventListFloat.Add("interact", Interact);
     }
 
     void InfiniteHelth()
@@ -35,24 +50,6 @@ public class Cheats : MonoBehaviour
     {
         player.timeInteractMultiply = f;
     }
-    void Toxine()
-    {
-        player.ReplaceFirstPower<Toxine_Powers>();
-    }
 
-    void Stun()
-    {
-        player.ReplaceFirstPower<Stun_Powers>();
-    }
-
-    void TP()
-    {
-        player.ReplaceFirstPower<Teleport_Powers>();
-    }
-
-    void Vortex()
-    {
-        player.ReplaceFirstPower<Vortex_Powers>();
-    }
-
+   
 }

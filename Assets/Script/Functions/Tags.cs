@@ -52,10 +52,16 @@ namespace Internal
 
         static public void AddTags(GameObject g, params string[] t)
         {
+            
             foreach (var item in t)
             {
-                if (!inst.librearyTag[item].Contains(g))
-                    inst.librearyTag[item].Add(g);
+                if (inst.librearyTag.ContainsKey(item))
+                {
+                    if (!inst.librearyTag[item].Contains(g))
+                        inst.librearyTag[item].Add(g);
+                }
+                else
+                    inst.librearyTag.Add(item, new List<GameObject> { g } );
             }
         }
 
@@ -81,10 +87,9 @@ namespace Internal
 
         static public bool ChckAll(GameObject g, params string[] t)
         {
-
             foreach (var item in t)
             {
-                if (!inst.librearyTag[item].Contains(g))
+                if (!inst.librearyTag.ContainsKey(item) || !inst.librearyTag[item].Contains(g))
                     return false;
             }
 

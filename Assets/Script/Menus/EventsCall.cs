@@ -10,16 +10,25 @@ public class EventsCall : MonoBehaviour
 
     public void Event(GameObject g)
     {
+        if (g.CompareTags("Configurado"))
+            return;
+
+        print("configurando: " + g.name);
+
+        g.AddTags("Configurado");
+
         if (g.TryGetComponent(out Button b))
         {
-            b.onClick.RemoveAllListeners();
+            print("configurado boton");
+            b.onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             b.onClick.AddListener(() => { menu.eventListVoid[g.name](); });
             menu.eventListVoid[g.name]();
             return;
         }
         else if (g.TryGetComponent(out Slider s))
         {
-            s.onValueChanged.RemoveAllListeners();
+            print("configurado slider");
+            //s.onValueChanged.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             s.onValueChanged.AddListener((float f) => { menu.eventListFloat[g.name](f); });
             menu.eventListFloat[g.name](s.value);
             return;

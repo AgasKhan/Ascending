@@ -6,10 +6,14 @@ public class Configuration : MonoBehaviour
 {
     Player_Character player;
 
+    MenuManager menu;
     // Start is called before the first frame update
     void Start()
     {
         player = GameManager.player;
+        menu = MenuManager.instance;
+
+        menu.eventListFloat.Add("sens", CameraSpeed);
 
     }
 
