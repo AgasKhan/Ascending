@@ -53,7 +53,6 @@ public class SpritesManager : MonoBehaviour
 
         instance.actual.sprite = GameManager.player.power[0].ui.GeneralIcon;
 
-
         instance.geografia.SetActive(true);
 
     }

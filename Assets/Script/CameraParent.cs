@@ -77,7 +77,7 @@ public class CameraParent : MonoBehaviour
     float _sensibilityRelationVelocity;
 
     [Range(1, 100)]
-    public float _sensibility;
+    float _sensibility;
 
     [SerializeField]
     float _rayDetection;
@@ -178,6 +178,13 @@ public class CameraParent : MonoBehaviour
         OffSet(new Vector3(_offsetNormalize.x * -1, _offsetNormalize.y, _offsetNormalize.z) * _distance);
 
         return false;
+    }
+
+    public void Speed(float f, float m=-1)
+    {
+        _sensibility = f;
+        if (m > 0)
+            _sensibilityRelationVelocity = m;
     }
 
     #endregion

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using UnityEngine.Events;
+
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,10 +20,17 @@ public class MenuManager : MonoBehaviour
     //private string  _currentSubMemu= "GeneralOptionsButton";
     private bool _optionMenuActive = false;
     private bool _inGame = true;
-    
+
+
+    //para los eventos
+    private Pictionarys<string, Action> eventListVoid = new Pictionarys<string, Action>();
+    private Pictionarys<string, Action<float>> eventListFloat = new Pictionarys<string, Action<float>>();
+    private Pictionarys<string, Action<string>> eventListString = new Pictionarys<string, Action<string>>();
+
 
     private void Start()
     {
+        
         if (levelButtons != null)
             for (int i = 0; i < levelButtons.Length; i++)
             {
@@ -44,6 +54,25 @@ public class MenuManager : MonoBehaviour
         else
             _inGame = false;
 
+        foreach (var item in GetComponentsInChildren<Button>(true))
+        {
+            DebugPrint.Log("Nombre del boton: " + item.name.RichText("color", "green"));
+
+            for (int i = 0; i < item.onClick.GetPersistentEventCount(); i++)
+            {
+                DebugPrint.Log("\tmetodo: " + item.onClick.GetPersistentMethodName(i).RichText("color", "yellow"));
+            }
+        }
+
+        foreach (var item in GetComponentsInChildren<Slider>(true))
+        {
+            DebugPrint.Log("Nombre del Slider: " + item.name.RichText("color", "green"));
+
+            for (int i = 0; i < item.onValueChanged.GetPersistentEventCount(); i++)
+            {
+                DebugPrint.Log("\tmetodo: " + item.onValueChanged.GetPersistentMethodName(i).RichText("color", "yellow"));
+            }
+        }
     }
 
     void Update()
@@ -132,5 +161,10 @@ public class MenuManager : MonoBehaviour
 
         refSceneChanger.Load(level);
     }
+
+
+    public void FuncVoid() { }
+    public void FuncString(string s) { }
+    public void FuncFloat(float f) { }
 
 }

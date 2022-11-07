@@ -50,7 +50,7 @@ public class InteractiveObj : MonoBehaviour
 
    public void LoadInfo(float value)
     {
-        print(value);
+        
         if (value == 0 && clock.fillAmount != 0)
         {
             buttonScript.enabled = true;
