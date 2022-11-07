@@ -76,8 +76,10 @@ public class CameraParent : MonoBehaviour
     [SerializeField]
     float _sensibilityRelationVelocity;
 
+    [SerializeField]
     [Range(1, 100)]
     float _sensibility;
+
 
     [SerializeField]
     float _rayDetection;

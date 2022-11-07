@@ -16,5 +16,8 @@ public class TakeDagger_Interactuable : Interactuable_LogicActive
     public override void Activate()
     {
         GameManager.player.dagger = me;
+        //diseable = true;
+
+        DebugPrint.Log("Se ha recogido la: " + name.RichText("color", "green"));
     }
 }

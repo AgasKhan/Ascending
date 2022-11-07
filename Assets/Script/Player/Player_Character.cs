@@ -55,7 +55,7 @@ public class Player_Character : Character
         if (dagger.owner == null)
             _totalDaggers++;
 
-        //interactuable.diseable = true;
+        interactuable.diseable = true;
     }
 
     public void Interact()

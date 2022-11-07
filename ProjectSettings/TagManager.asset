@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Interactuable
   - Shield
+  - Editable
   layers:
   - Default
   - TransparentFX

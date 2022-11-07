@@ -12,8 +12,6 @@ public abstract class Interactuable_LogicActive : LogicActive
 
     Player_Character player;
 
-
-
     public void RefreshUi(Vector3 pos, float perc)
     {
         InteractiveObj.instance.LoadInfo("E", pos, perc);
