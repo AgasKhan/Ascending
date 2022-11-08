@@ -39,10 +39,19 @@ public class Controllers : MonoBehaviour
         public bool pressed;
         public bool down;
         public bool up;
-        KeyCode key;
-        string strKey;
         public float _timePressed;
         bool _startTimePressed = false;
+
+        public KeyCode key
+        {
+            get;
+            private set;
+        }
+        public string strKey
+        {
+            get;
+            private set;
+        }
 
         #endregion
 

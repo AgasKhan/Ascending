@@ -208,7 +208,7 @@ public class CameraParent : MonoBehaviour
 
         cam = GetComponentInChildren<Camera>();
 
-        StartCoroutine(CameraPan());
+        //StartCoroutine(CameraPan());
 
         GameManager.AddTimeController(cam.transform);
 
@@ -229,7 +229,7 @@ public class CameraParent : MonoBehaviour
             _eulerAngles=Vector3.Lerp(_eulerAngles, _axis, Time.deltaTime * (_sensibility * _sensibilityRelationVelocity));
         }
             
-        if (Controllers.eneable && (transform.GetChild(0).localPosition + offSetFix) != (offSet + offSetZoom))
+        if ((transform.GetChild(0).localPosition + offSetFix) != (offSet + offSetZoom))
         {
 
             offSetPos = Vector3.Lerp(offSetPos, (offSet + offSetZoom), Time.deltaTime * _linearVelocity);
@@ -318,34 +318,7 @@ public class CameraParent : MonoBehaviour
     }
     #endregion
 
-    IEnumerator CameraPan()
-    {
-        Timer myTimer = Timers.Create(1);
-        
-        while (!myTimer.Chck())
-        {
-            yield return null;
-        }
-        
 
-        float linearAux = _linearVelocity;
-
-        _linearVelocity = 0.3f;
-
-        while(cam.transform.localRotation!=Quaternion.identity && Mathf.Abs((cam.transform.localPosition-offSet).sqrMagnitude)>1)
-        {
-            transform.GetChild(0).localPosition = Vector3.Lerp(transform.GetChild(0).localPosition + offSetFix, offSet + offSetZoom, Time.deltaTime * _linearVelocity) - offSetFix;
-            offSetPos = transform.GetChild(0).localPosition;
-            cam.transform.localRotation = Quaternion.Slerp(cam.transform.localRotation, Quaternion.identity, Time.deltaTime);
-            yield return null;
-        }
-
-        _linearVelocity = linearAux;
-
-        Timers.Destroy(myTimer);
-
-        Controllers.eneable = true;
-    }
 }
 
 
