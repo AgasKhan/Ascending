@@ -1036,6 +1036,7 @@ GameObject:
   - component: {fileID: 6376573854257592157}
   - component: {fileID: 1914279070}
   - component: {fileID: 1914279078}
+  - component: {fileID: 182342452957000062}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1235,6 +1236,18 @@ MonoBehaviour:
   buttonScript: {fileID: 1696480203}
   timeFadeIn: 0.1
   timeFadeOut: 0.025
+--- !u!114 &182342452957000062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376573854257592151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07f5387072d0da4da11e8aa282231b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6376573854344279443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09b56fc6113480f4a9d08e4c8de98c0c, type: 3}
+--- !u!224 &7451531903715323193 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6685898238257875230, guid: 09b56fc6113480f4a9d08e4c8de98c0c, type: 3}
+  m_PrefabInstance: {fileID: 4296502005636293671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7482826239454309578 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6663193428510181613, guid: 09b56fc6113480f4a9d08e4c8de98c0c, type: 3}
@@ -2374,11 +2392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7451531903715323193 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6685898238257875230, guid: 09b56fc6113480f4a9d08e4c8de98c0c, type: 3}
-  m_PrefabInstance: {fileID: 4296502005636293671}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6091282987880524300
 PrefabInstance:
   m_ObjectHideFlags: 0
