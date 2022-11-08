@@ -194,9 +194,8 @@ public class CameraParent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = new Color(1,0,0,0.1f);
         Gizmos.DrawSphere(pos, rad);
-
     }
 
     private void Start()
