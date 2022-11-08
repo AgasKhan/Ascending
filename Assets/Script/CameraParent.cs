@@ -15,11 +15,6 @@ public class CameraParent : MonoBehaviour
     public Camera cam;
 
     /// <summary>
-    /// objeto para la referencia visual se eliminara desp
-    /// </summary>
-    public GameObject sphere;
-
-    /// <summary>
     /// vector posicion que guarda donde colisiono el raycast de la camara
     /// </summary>
     public Vector3 hitPoint;
@@ -89,6 +84,10 @@ public class CameraParent : MonoBehaviour
 
     [SerializeField]
     LayerMask _layerMaskCameraNotPass;
+
+    Vector3 pos;
+
+    float rad;
 
     #region funciones
     /// <summary>
@@ -193,6 +192,13 @@ public class CameraParent : MonoBehaviour
 
     #region funciones de unity
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(pos, rad);
+
+    }
+
     private void Start()
     {
         //offSet = transform.GetChild(0).position - character.transform.position;
@@ -254,9 +260,8 @@ public class CameraParent : MonoBehaviour
 
                 character.scoped = raycastHit.collider;
 
-                
-                sphere.transform.position = hitPoint;
-                sphere.transform.localScale = Vector3.one * distance;
+                pos = hitPoint;
+                rad =  distance;
 
                 Collider[] col = Physics.OverlapSphere(hitPoint, distance, _layerMask);
 

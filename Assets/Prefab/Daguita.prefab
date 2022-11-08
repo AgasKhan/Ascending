@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDisable: 0
-  maxSpeed: 5
+  maxSpeed: 50
   desAceleration: 5
   layerDash: 
   eneableDrag: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   MoveRb: {fileID: 210393525682972558}
-  daggerEffect: {fileID: 0}
+  daggerEffect: {fileID: 4136943718571885878}
 --- !u!1001 &6588912429797445487
 PrefabInstance:
   m_ObjectHideFlags: 0

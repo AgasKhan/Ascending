@@ -34,7 +34,7 @@ public class Cheats : MonoBehaviour
     {
         var aux = player.health.GetAll();
 
-        if (aux.AproxMagnitude() >= 1000)
+        if (aux.AproxMagnitude() < 1000)
         {
             previusHealth = player.health.GetAll();
 
