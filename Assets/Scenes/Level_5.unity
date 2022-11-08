@@ -13405,6 +13405,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330744085852858014, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: m_ShowToolkit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330744085852858014, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 1139488892}
+    - target: {fileID: 330744085852858014, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330744085852858014, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: stopNaNPropagation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 330744085852858014, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621226279001525215, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: patrol.patrol.Array.size
       value: 3
@@ -13472,6 +13496,10 @@ PrefabInstance:
     - target: {fileID: 8958183947798185783, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: m_Name
       value: CameraParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958183949486469469, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 4096
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
@@ -14260,6 +14288,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8957355627732407540, guid: bbef6caca7aedcb4abdda12665d3a3d1, type: 3}
   m_PrefabInstance: {fileID: 1112713725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1139488892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8734185080945552404, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+  m_PrefabInstance: {fileID: 1072974138}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1139952337
 PrefabInstance:
