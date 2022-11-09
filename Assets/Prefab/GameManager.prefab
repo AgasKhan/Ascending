@@ -197,6 +197,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5707178966906931399, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 769
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707178966906931399, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
       propertyPath: desAcelerationAxis
       value: 5
       objectReference: {fileID: 0}
@@ -218,6 +222,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
+    - target: {fileID: 1652326395236201545, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 769
+      objectReference: {fileID: 0}
     - target: {fileID: 1652326395236201545, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
       propertyPath: desAcelerationAxis
       value: 5
@@ -293,6 +301,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8520502753734391595, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 769
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520502753734391595, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
       propertyPath: desAcelerationAxis
       value: 5
       objectReference: {fileID: 0}
@@ -358,6 +370,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
+    - target: {fileID: 5707819108451781831, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 769
+      objectReference: {fileID: 0}
     - target: {fileID: 5707819108451781831, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
       propertyPath: desAcelerationAxis
       value: 5

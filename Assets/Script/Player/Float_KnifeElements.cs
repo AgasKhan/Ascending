@@ -71,6 +71,7 @@ public class Float_KnifeElements : KnifeElements
         {
             MoveRotAndGlueRb move = transform.GetChild(1).GetComponent<MoveRotAndGlueRb>();
 
+            move.kinematic = false;
             move.eneableDrag = true;
             move.Move(transform.position - transform.GetChild(1).position);
 
