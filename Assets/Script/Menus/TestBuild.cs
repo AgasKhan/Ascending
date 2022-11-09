@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class TestBuild : MonoBehaviour
 {
+    public MenuManager myMenuManager;
 
-    public SceneChanger sc;
-
-
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown("u"))
-        {
-            sc.Load("Level_2");
-        }
+        myMenuManager.OpenCloseMenu();
     }
 }

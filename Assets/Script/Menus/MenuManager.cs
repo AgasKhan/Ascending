@@ -87,6 +87,7 @@ public class MenuManager : MonoBehaviour
                 OpenCloseMenu();
             }
 
+            /*
             if (_optionMenuActive)
             {
                 if (Input.GetKeyDown("h"))
@@ -95,6 +96,8 @@ public class MenuManager : MonoBehaviour
                 if (Input.GetKeyDown("j"))
                     GoToNextSubMenu();
             }
+            */
+
 
             if (Controllers.locked.down)
                 Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
@@ -122,7 +125,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void ChangeOptions(int index)
+    public void ChangeSubMenu(int index)
     {
         if (index != _currentMemu)
         {
