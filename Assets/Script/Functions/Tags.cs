@@ -69,7 +69,7 @@ namespace Internal
         {
             foreach (var item in t)
             {
-                if (inst.librearyTag[item].Contains(g))
+                if (inst.librearyTag.ContainsKey(item) && inst.librearyTag[item].Contains(g))
                     inst.librearyTag[item].Remove(g);
             }
         }

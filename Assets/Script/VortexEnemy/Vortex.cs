@@ -16,12 +16,8 @@ public class Vortex : EffectArea
 
     private void OnTriggerStay (Collider other)
     {
-
         ChckAddAffected(other.gameObject);
-
-
     }
-
 
     protected override void MyFixedUpdate()
     {

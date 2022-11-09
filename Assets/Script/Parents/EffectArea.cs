@@ -11,13 +11,14 @@ public abstract class EffectArea : MyScripts
         public GameObject go;
         public Character affected;
         public Rigidbody absordedRB;
+        public Health health;
         string strTimer;
 
         public void ChckandSubsHealth(float damage)
         {
-            if (affected.MyCooldowns[strTimer].Chck())
+            if (affected.MyCooldowns[strTimer].Chck() && !go.CompareTags("Death"))
             {
-                affected.health.Substract(damage);
+                health.Substract(damage);
                 affected.MyCooldowns[strTimer].Reset();
             }
         }
@@ -35,11 +36,11 @@ public abstract class EffectArea : MyScripts
             go = affected;
             absordedRB = affected.GetComponent<Rigidbody>();
 
-
             if(affected.TryGetComponent(out this.affected))
+            {
                 this.affected.AddCooldown(strTimer, time);
-
-
+                health = this.affected.health;
+            }
         }
     }
 
@@ -56,6 +57,19 @@ public abstract class EffectArea : MyScripts
 
     protected void ChckAddAffected(GameObject g)
     {
+
+        if(g.CompareTags("Death"))
+        {
+            foreach (var item in affected)
+            {
+                if (item.go == g)
+                    affected.Remove(item);
+            }
+
+            return;
+        }
+
+
         bool check = true;
 
 
@@ -73,7 +87,7 @@ public abstract class EffectArea : MyScripts
         if (check && g.CompareTags(Tag.rb))
         {
             AddAffected(g);
-            Debug.Log(g.name + " ha sido atrapado en el vortice");
+            Debug.Log(g.name + " ha sido atrapado en " + name);
         }
     }
 
@@ -83,7 +97,7 @@ public abstract class EffectArea : MyScripts
     }
 
 
-        private void OnEnable()
+    private void OnEnable()
     {
         toDeactivate.Reset();
     }

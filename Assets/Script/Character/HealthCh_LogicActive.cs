@@ -30,30 +30,34 @@ public class HealthCh_LogicActive : LogicActive
 
     public override void Activate(params float[] floatParms)
     {
-            if (floatParms[0] > 0 && _anim!=null)
-                _anim.SetTrigger("Damage");
-            else if(floatParms[0] < 0 && _anim != null)
-                _anim.SetTrigger("Restore");
+        if (floatParms[0] > 0 && _anim!=null)
+            _anim.SetTrigger("Damage");
+        else if(floatParms[0] < 0 && _anim != null)
+            _anim.SetTrigger("Restore");
 
 
-            if (floatParms[1] <= 0 && !_animController.CheckAnimations("Charcter_Death"))
-            {
-                print(this.name + " ha muerto");
+        if (floatParms[1] <= 0 && !_animController.CheckAnimations("Charcter_Death"))
+        {
+            print(this.name + " ha muerto");
 
-                if (_anim != null)
-                    _anim.SetTrigger("Death");
+            gameObject.AddTags("Death");
 
-                if(_rb!=null)
-                    _rb.isKinematic = true;
+            if (_anim != null)
+                _anim.SetTrigger("Death");
 
-                for (int i = 0; i < _controlers.Length; i++)
-                    _controlers[i].enabled = false;
+            if(_rb!=null)
+                _rb.isKinematic = true;
 
-                for (int i = 0; i < _coll.Length; i++)
-                    _coll[i].enabled = false;
+            for (int i = 0; i < _controlers.Length; i++)
+                _controlers[i].enabled = false;
 
+            for (int i = 0; i < _coll.Length; i++)
+                _coll[i].enabled = false;
 
-
-            }        
+        }     
+        else
+        {
+            gameObject.RemoveTags("Death");
+        }
     }
 }
