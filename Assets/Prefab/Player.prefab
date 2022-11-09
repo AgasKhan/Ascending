@@ -234,7 +234,7 @@ MonoBehaviour:
   _volumeCheckFloor: 0.45
   _layerMask:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 769
 --- !u!114 &8202150891239359144
 MonoBehaviour:
   m_ObjectHideFlags: 0

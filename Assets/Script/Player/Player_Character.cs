@@ -20,6 +20,10 @@ public class Player_Character : Character
     int _totalDaggers;
     bool _previusOnFloor;
     bool _sprint;
+
+    Action inter;
+
+
     public void AttackDist()
     {
         Debug.Log("EL JUGADOR HA ATACADO");
@@ -34,6 +38,9 @@ public class Player_Character : Character
 
     public void Take()
     {
+        
+        interactuable?.Activate();
+
         if (dagger == null)
             return;
 
@@ -43,22 +50,23 @@ public class Player_Character : Character
         {
             print(dagger.gameObject.transform.parent.name);
         }
+
         dagger.gameObject.transform.parent = floatElements.transform;
 
         if (dagger.owner == null)
             _totalDaggers++;
 
-        if(interactuable!=null)
-            interactuable.diseable = true;
+        interactuable.diseable = true;
     }
 
     public void Interact()
     {
-        /*
-        if(interactuable!=null)
-            interactuable.Activate();
-        */
+
+        interactuable.Activate();
+        
     }
+
+    void flag() { }
 
     #region unity Functions
 
@@ -78,9 +86,9 @@ public class Player_Character : Character
            new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
                { "attack",AttackDist},
-               { "take",Take },
+               { "take",flag },
                {"power",ActivePower},
-               {"interact", Interact },
+               {"interact", flag },
                { "jump", Jump},
                { "dash", Dash },
                { "roll", Roll },
@@ -132,14 +140,19 @@ public class Player_Character : Character
                     if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
                     {
                         animator.Take(timePressed);
+                        inter = Take;
                     }
                     else
+                    {
                         animator.Interact(timePressed);
+                        inter = Interact;
+                    }
+                        
                 }
             }
             else if (pressed > timePressed)
             {
-                interactuable.Activate();
+                inter();
             }
             
             

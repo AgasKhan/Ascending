@@ -56,15 +56,21 @@ public class CameraStart : MoveAndRotTrToPatrol
 
         Timers.Destroy(myTimer);
         myTimer = null;
+        
     }
 
     IEnumerator CameraPan()
     {
         
-        while (transform.localRotation != cam.transform.localRotation && transform.position!= cam.transform.position)
+        while (Mathf.Abs((transform.localRotation.eulerAngles - cam.transform.localRotation.eulerAngles).sqrMagnitude)> 0.1  || Mathf.Abs((transform.position - cam.transform.position).sqrMagnitude)> 0.01)
         {
-            transform.position = Vector3.Lerp(transform.position , cam.transform.position, Time.deltaTime * ComeBackVelocity);
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, cam.transform.rotation, Time.deltaTime);
+            int mult = 1;
+
+            if (Mathf.Abs((transform.localRotation.eulerAngles - cam.transform.localRotation.eulerAngles).sqrMagnitude) < 4 || Mathf.Abs((transform.position - cam.transform.position).sqrMagnitude) < 4)
+                mult = 4;
+
+            transform.position = Vector3.Lerp(transform.position , cam.transform.position, Time.deltaTime * ComeBackVelocity*mult);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, cam.transform.rotation, Time.deltaTime* mult);
             yield return null;
         }
 

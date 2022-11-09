@@ -110,7 +110,9 @@ public class TextCanvas : MonoBehaviour
         {
             //if(s!=itemText.ToArray())
             {
-                textBox.text = "";
+                if(s[0]!= textBox.text)
+                    textBox.text = "";
+
                 itemText.Clear();
                 itemText.AddRange(s);
                 ShowText(setLoad);
@@ -164,7 +166,7 @@ public class TextCanvas : MonoBehaviour
             {
                 textBox.text = final;
                 timeInScreen.Reset();
-                return false;
+                
             }
             
             return true;
