@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8290446682347344125}
   - component: {fileID: -3475331897835109750}
   - component: {fileID: 4979721168871178402}
+  - component: {fileID: 5669478649757668144}
   m_Layer: 10
   m_Name: Enemy_Proyectile
   m_TagString: Untagged
@@ -147,3 +148,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   MoveRb: {fileID: -3475331897835109750}
+--- !u!114 &5669478649757668144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415753222827290869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []

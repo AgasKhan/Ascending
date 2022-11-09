@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6481158622204739314}
   - component: {fileID: 6481158622204739313}
   - component: {fileID: 6481158622204739312}
+  - component: {fileID: 7857651105562848816}
   m_Layer: 0
   m_Name: Interactuable ejemplo
   m_TagString: Interactuable
@@ -131,3 +132,17 @@ MonoBehaviour:
   distanceDetection: 3
   remote:
   - {fileID: 6481158622204739313}
+--- !u!114 &7857651105562848816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481158622204739311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []

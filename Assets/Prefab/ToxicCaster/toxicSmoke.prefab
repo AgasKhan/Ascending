@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3474695816692414178}
   - component: {fileID: 7916958285581992279}
   - component: {fileID: 528892068294491089}
+  - component: {fileID: -8738098984709585151}
   m_Layer: 11
   m_Name: toxicSmoke
   m_TagString: Untagged
@@ -62,6 +63,20 @@ MonoBehaviour:
   toDestroy: 6
   dmg: 2.5
   affected: []
+--- !u!114 &-8738098984709585151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945262805003162363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1 &2140440107660484637
 GameObject:
   m_ObjectHideFlags: 0

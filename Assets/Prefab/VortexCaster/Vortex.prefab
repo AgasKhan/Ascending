@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 591225757626922571}
   - component: {fileID: 591225757626922570}
   - component: {fileID: 591225757626922569}
+  - component: {fileID: 2983029434430871294}
   m_Layer: 11
   m_Name: Vortex
   m_TagString: Untagged
@@ -114,3 +115,17 @@ MonoBehaviour:
   affected: []
   _myScale: 0
   force: 65
+--- !u!114 &2983029434430871294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591225757626922568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []

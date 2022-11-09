@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1154414416302329813}
   - component: {fileID: 3964794863873392580}
+  - component: {fileID: 1017074613892371649}
   m_Layer: 0
   m_Name: TpManager
   m_TagString: Untagged
@@ -52,6 +53,20 @@ MonoBehaviour:
     generalText: 
     activeText: 
   LayerName: ObjectsAndCharacterNoCollision
+--- !u!114 &1017074613892371649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800845990222398605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1 &6189983968164755287
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,6 +85,7 @@ GameObject:
   - component: {fileID: 8151943226712521660}
   - component: {fileID: 240895612663548236}
   - component: {fileID: 6540944138226449917}
+  - component: {fileID: 7432377409863948890}
   m_Layer: 9
   m_Name: Enemigo Tp Variant
   m_TagString: Untagged
@@ -316,6 +332,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7432377409863948890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189983968164755287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1001 &7069256251896085052
 PrefabInstance:
   m_ObjectHideFlags: 0

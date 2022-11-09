@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8520502753734391765}
   - component: {fileID: 8520502753734391764}
   - component: {fileID: 2722160777819842120}
+  - component: {fileID: 3036884342335349741}
   m_Layer: 9
   m_Name: Enemigo Vortex Variant
   m_TagString: Untagged
@@ -262,6 +263,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3036884342335349741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520502753734391766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1 &8520502754086293962
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +288,7 @@ GameObject:
   - component: {fileID: 8520502754086293963}
   - component: {fileID: 8520502754086293961}
   - component: {fileID: 8520502754086293960}
+  - component: {fileID: 1597261450050165942}
   m_Layer: 0
   m_Name: VortexManager
   m_TagString: Untagged
@@ -332,6 +348,20 @@ MonoBehaviour:
     ActiveIcon: {fileID: 0}
     generalText: 
     activeText: 
+--- !u!114 &1597261450050165942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520502754086293962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1001 &8520502752015399751
 PrefabInstance:
   m_ObjectHideFlags: 0

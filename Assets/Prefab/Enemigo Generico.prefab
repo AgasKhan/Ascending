@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8701450158687315190}
   - component: {fileID: 7030881146060813680}
   - component: {fileID: 5103632766413215629}
+  - component: {fileID: 2403320903544335772}
   m_Layer: 0
   m_Name: Enemigo Generico
   m_TagString: Enemy
@@ -135,7 +136,7 @@ MonoBehaviour:
   eneableDrag: 1
   _dashImpulse: 0
   _dragFactor: 0
-  _desAcelerationAxis: 10
+  desAcelerationAxis: 0
   glue: {fileID: 0}
   mesh: {fileID: 0}
   lastFloorDistance: 0
@@ -175,3 +176,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controlers:
   - {fileID: 0}
+--- !u!114 &2403320903544335772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067562092115647334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []

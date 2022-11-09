@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8152714996615020476}
   - component: {fileID: 4734593708350399628}
   - component: {fileID: 9217525468133407273}
+  - component: {fileID: 360247976302025286}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant
   m_TagString: Untagged
@@ -262,6 +263,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &360247976302025286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188785550669362007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1 &7354820876959816209
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +288,7 @@ GameObject:
   - component: {fileID: 7354820876959816208}
   - component: {fileID: 7354820876959816210}
   - component: {fileID: 7354820876959816211}
+  - component: {fileID: 8640046072266232227}
   m_Layer: 0
   m_Name: ToxicManager
   m_TagString: Untagged
@@ -333,6 +349,20 @@ MonoBehaviour:
     ActiveIcon: {fileID: 21300000, guid: 2e3b2a50ac31bf543a32d4afc5d3b880, type: 3}
     generalText: 
     activeText: 
+--- !u!114 &8640046072266232227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7354820876959816209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1001 &7354820877802600976
 PrefabInstance:
   m_ObjectHideFlags: 0

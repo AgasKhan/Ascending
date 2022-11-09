@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 130739732486910055}
   - component: {fileID: 130739732486910054}
   - component: {fileID: 130739732486910048}
+  - component: {fileID: 4425430575653850864}
   m_Layer: 0
   m_Name: Diana ejemplo
   m_TagString: Untagged
@@ -139,3 +140,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4425430575653850864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130739732486910057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []

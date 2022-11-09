@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 3919127826687303847}
   - component: {fileID: 210393525682972558}
   - component: {fileID: 5980640367385784785}
+  - component: {fileID: -1875851172777224119}
   m_Layer: 0
   m_Name: Daguita
   m_TagString: Dagger
@@ -521,6 +522,20 @@ MonoBehaviour:
   owner: {fileID: 0}
   MoveRb: {fileID: 210393525682972558}
   daggerEffect: {fileID: 4136943718571885878}
+--- !u!114 &-1875851172777224119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919127826687303864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1001 &6588912429797445487
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2953308293734745906}
   - component: {fileID: 7939842618597047097}
   - component: {fileID: 6000038451714288472}
+  - component: {fileID: 3692953459488300441}
   m_Layer: 9
   m_Name: Enemigo Stun Variant
   m_TagString: Untagged
@@ -138,7 +139,7 @@ MonoBehaviour:
   eneableDrag: 1
   _dashImpulse: 0
   _dragFactor: 0
-  _desAcelerationAxis: 10
+  desAcelerationAxis: 0
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
@@ -233,7 +234,6 @@ MonoBehaviour:
   minimalDistancePlayer: 0
   waitMetalGear: 7.74
   attackCooldown: 7
-  attackCollider: {fileID: 0}
   deleySearch:
     _totalTime: 0
     _currentTime: 0
@@ -263,6 +263,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3692953459488300441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881292164675210201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1 &7939842618333871688
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +288,7 @@ GameObject:
   - component: {fileID: 7939842618333871691}
   - component: {fileID: 7939842618333871685}
   - component: {fileID: 7939842618333871690}
+  - component: {fileID: 1547860458996292138}
   m_Layer: 0
   m_Name: StunManager
   m_TagString: Untagged
@@ -335,6 +350,20 @@ MonoBehaviour:
     generalText: 
     activeText: 
   myShield: {x: 0, y: 0}
+--- !u!114 &1547860458996292138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939842618333871688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries: []
 --- !u!1001 &7939842617954637938
 PrefabInstance:
   m_ObjectHideFlags: 0
