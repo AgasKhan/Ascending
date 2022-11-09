@@ -98,9 +98,8 @@ public class MenuManager : MonoBehaviour
             }
             */
 
-
             if (Controllers.locked.down)
-                Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
+                Controllers.MouseLock();
         }
         
     }

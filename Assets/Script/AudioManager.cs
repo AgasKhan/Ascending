@@ -5,13 +5,19 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 
-
-    AudioLink[] audios;
+    static public AudioManager instance;
+    
+    public Pictionarys<string, AudioLink> audios = new Pictionarys<string, AudioLink>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        instance = this;
+
+        foreach (var item in collection)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -24,9 +30,9 @@ public class AudioManager : MonoBehaviour
 
 
 [System.Serializable]
-class AudioLink
+public class AudioLink
 {
-    AudioClip clip;
-    AudioSource source;
+    public AudioClip clip;
 
+    public AudioSource source;
 }

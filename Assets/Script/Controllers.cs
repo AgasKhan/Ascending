@@ -157,11 +157,18 @@ public class Controllers : MonoBehaviour
         }
     }
 
+    public static void MouseLock()
+    {
+        Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
     #region unity functions
+    
     private void Awake()
     {
         _instance = this;
     }
+
     void Update()
     {
 
