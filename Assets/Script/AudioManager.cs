@@ -1,24 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
-{
-
-    static public AudioManager instance;
-    
+{    
     public Pictionarys<string, AudioLink> audios = new Pictionarys<string, AudioLink>();
+
+    public void Play(string name)
+    {
+        audios[name].source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        audios[name].source.Stop();
+    }
+
+    public void Pause(string name)
+    {
+        audios[name].source.Pause();
+    }
 
     // Start is called before the first frame update
     void Awake()
-    {
-        instance = this;
-
-        foreach (var item in collection)
+    { 
+        foreach (var item in audios)
         {
-
+            item.value.source = gameObject.AddComponent<AudioSource>();
+            item.value.source.outputAudioMixerGroup = item.value.mixer;
+            item.value.source.clip = item.value.clip;
+            item.value.source.volume = item.value.volume;
+            item.value.source.pitch = item.value.pitch;
+            item.value.source.loop = item.value.loop;
         }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -28,11 +45,15 @@ public class AudioManager : MonoBehaviour
 }
 
 
-
 [System.Serializable]
-public class AudioLink
+public struct AudioLink
 {
+    public AudioMixerGroup mixer;
     public AudioClip clip;
+    public float volume;
+    public float pitch;
+    public bool loop;
 
+    [HideInInspector]
     public AudioSource source;
 }
