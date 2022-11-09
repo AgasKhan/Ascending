@@ -22,6 +22,9 @@ public class SceneChanger : MonoBehaviour
     {
         StartCoroutine(LoadSc(scn));
         Time.timeScale = 1;
+
+        //Controllers.MouseLock();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

@@ -1004,7 +1004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6566298115164392709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6683,7 +6683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7583923402905234985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6869,7 +6869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6845014568180066528
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11314,7 +11314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8239874484894426104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12222,7 +12222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3259685055234325907, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3259685055234325907, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12230,7 +12230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3259685055234325907, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3962705573850006763, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_Pivot.x
@@ -12318,7 +12318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4209178210704969648, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4209178210704969648, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12330,7 +12330,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_Value
-      value: 0.082
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
+      propertyPath: m_MinValue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState

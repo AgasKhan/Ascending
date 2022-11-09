@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
     public GameObject gamePausedMenu;
     public SceneChanger refSceneChanger;
 
+
     private int _currentMemu = 0;
     //private string  _currentSubMemu= "GeneralOptionsButton";
     private bool _optionMenuActive = false;
@@ -38,7 +39,7 @@ public class MenuManager : MonoBehaviour
             for (int i = 0; i < levelButtons.Length; i++)
             {
                 int number = i + 1;
-                TMP_Text aux = levelButtons[i].GetComponentInChildren<TMP_Text>();
+                TextMeshProUGUI aux = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
                 
                 if (aux != null)
                 {
@@ -53,9 +54,17 @@ public class MenuManager : MonoBehaviour
             }
 
         if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
             _inGame = true;
+        }
+            
         else
+        {
             _inGame = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+            
+
 
         foreach (var item in GetComponentsInChildren<Button>(true))
         {
@@ -139,6 +148,8 @@ public class MenuManager : MonoBehaviour
         gamePausedMenu.SetActive(!gamePausedMenu.activeSelf);
         Debug.Log(gamePausedMenu.activeSelf);
         Time.timeScale = System.Convert.ToInt32(!gamePausedMenu.activeSelf);
+
+        Cursor.lockState = (gamePausedMenu.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void StartGame()

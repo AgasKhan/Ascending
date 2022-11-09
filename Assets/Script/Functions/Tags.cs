@@ -127,11 +127,11 @@ namespace Internal
                 librearyTag.Add(((Tag)item).ToString(), new List<GameObject>());
             }
 
-            foreach (var item in UnityEditorInternal.InternalEditorUtility.tags)
+            /*foreach (var item in UnityEditorInternal.InternalEditorUtility.tags)
             {
                 if (item != "Untagged")
                     librearyTag.Add(item, new List<GameObject>());
-            }
+            }*/
 
             foreach (var item in FindObjectsOfType(typeof(GameObject)))
             {
