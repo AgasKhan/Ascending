@@ -35,11 +35,9 @@ public class MoveTr : FatherMoves
             _velocityInput = (direction.normalized * magnitude);
     }
 
-    protected override void MyAwake()
-    {
-        GameManager.AddTimeController(transform);
-        _velocityInput = Vector3.zero;
-    }
+
+
+    
 
     /// <summary>
     /// Funcion que ejecuta el movimiento en si
@@ -70,19 +68,24 @@ public class MoveTr : FatherMoves
 
         Move(dist, maxSpeed * (relation));
     }
+    protected override void Config()
+    {
 
-    protected override void MyUpdate()
+        MyAwakes += MyAwake;
+
+        MyUpdates += MyUpdate;
+
+    }
+    void MyAwake()
+    {
+        GameManager.AddTimeController(transform);
+        _velocityInput = Vector3.zero;
+    }
+
+    void MyUpdate()
     {
         MoveOn();
     }
 
-    protected override void MyFixedUpdate()
-    {
-        
-    }
 
-    protected override void MyStart()
-    {
-        
-    }
 }

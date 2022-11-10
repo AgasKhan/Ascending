@@ -23,9 +23,15 @@ public class MoveRotAndGlueRb : MoveAndRotRb
         transform.SetParent(glue.transform);
     }
 
-    protected override void MyAwake()
+    protected override void Config()
     {
-        base.MyAwake();
+        base.Config();
+
+        MyAwakes += MyAwake;
+    }
+
+    void MyAwake()
+    {
 
         glue = new GameObject("Glue " + name);
 

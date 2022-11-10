@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class Stun_Enemy : Enemy_Character
 {
-    private void Awake()
+
+    protected override void Config()
+    {
+        base.Config();
+
+        MyAwakes += MyAwake;
+
+        MyUpdates += MyUpdate;
+
+    }
+
+    
+    void MyAwake()
     {
 
         animator.functions.AddRange
@@ -17,11 +29,9 @@ public class Stun_Enemy : Enemy_Character
            }
         );
 
-
-
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
         
         if (playerDetF && attackDelay.Chck())
@@ -35,6 +45,6 @@ public class Stun_Enemy : Enemy_Character
             //ActivePower();
         }
 
-        base.MyUpdate();
+      
     }
 }

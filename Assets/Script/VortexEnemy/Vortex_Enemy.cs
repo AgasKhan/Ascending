@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Vortex_Enemy : Enemy_Character
 {
-    protected override void MyAwake()
-    {
-        base.MyAwake();
 
+    protected override void Config()
+    {
+        base.Config();
+
+        MyAwakes += MyAwake;
+
+        MyUpdates += MyUpdate;
+
+    }
+
+    void MyAwake()
+    {
         animator.functions.AddRange
         (
            new Pictionarys<string, AnimatorController.PrototypeFunc>
@@ -18,9 +27,8 @@ public class Vortex_Enemy : Enemy_Character
         );
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
-        base.MyUpdate();
 
         if (playerDetF && attackDelay.Chck())
         {

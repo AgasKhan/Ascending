@@ -218,17 +218,20 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
     #region unity functions
 
-    protected override void MyStart()
+    protected override void Config()
+    {
+        base.Config();
+
+        MyStarts += MyStart;
+        MyUpdates += MyUpdate;
+        MyFixedUpdates += MyFixedUpdate;
+    }
+
+    void MyStart()
     {
         StartCoroutine(PostAwake());
 
         patrol.Start(this);
-
-        movement = GetComponent<Movement>();
-        health = GetComponent<Health>();
-
-        animator = GetComponentInChildren<AnimatorController>();
-
         nav = GetComponent<NavMeshAgent>();
 
         nav.speed = movement.maxSpeed;
@@ -237,16 +240,12 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         animator.AddFunction("offMesh", OffMesh);
 
         GameManager.AddEnemy(this);
-
-        base.MyStart();
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
         if (player == null)
             return;
-
-        RefreshAnims();
 
         if (deleySearch.Chck())
             _direction = patrol.Distance();
@@ -277,17 +276,12 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         scopedPoint = Vector3.zero;
     }
 
-    protected override void MyFixedUpdate()
+    void MyFixedUpdate()
     {
         if (player == null)
             return;
 
         movement.MoveLocal(input);
-    }
-
-    protected override void MyAwake()
-    {
-
     }
 
     IEnumerator PostAwake()

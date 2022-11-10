@@ -19,19 +19,26 @@ public class MoveTrToPatrol : MoveTr, IPatrolReturn
         return patrol;
     }
 
-    protected override void MyAwake()
+    protected override void Config()
     {
-        base.MyAwake();
+        base.Config();
 
+        MyAwakes += MyAwake;
+        
+        MyUpdates += MyUpdate;
+        
+    }
+
+    void MyAwake()
+    {
+        
         patrol.Start(this);
 
         desactivateDesaceleration = true;
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
-        base.MyUpdate();
-
         patrol.MinimalChck(_distance);
 
         MoveTo(patrol.Distance());

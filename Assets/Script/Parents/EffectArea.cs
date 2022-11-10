@@ -114,7 +114,16 @@ public abstract class EffectArea : MyScripts
     }
 
 
-    protected override void MyAwake()
+    protected override void Config()
+    {
+
+        MyAwakes += MyAwake;
+       
+        MyUpdates += MyUpdate;
+
+    }
+
+     void MyAwake()
     {
         toDeactivate = Timers.Create(toDestroy);
 
@@ -123,22 +132,11 @@ public abstract class EffectArea : MyScripts
     }
 
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
         if (toDeactivate.Chck())
         {
             gameObject.SetActive(false);
         }
-    }
-
-    protected override void MyStart()
-    {
-        //throw new System.NotImplementedException();
-    }
-
-
-    protected override void MyFixedUpdate()
-    {
-        //throw new System.NotImplementedException();
     }
 }

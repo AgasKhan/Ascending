@@ -1,36 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class MyScripts : MonoBehaviour
 {
-
+    /*
     abstract protected void MyAwake();
     abstract protected void MyStart();
     abstract protected void MyUpdate();
     abstract protected void MyFixedUpdate();
+    */
 
-    void Awake()
+    protected event Action MyAwakes;
+    protected event Action MyStarts;
+    protected event Action MyUpdates;
+    protected event Action MyFixedUpdates;
+
+
+    protected abstract void Config();
+
+    internal void Awake()
     {
-        MyAwake();
+        Config();
+
+        MyAwakes.Invoke();
     }
 
     // Update is called once per frame
-    void Update()
+    internal void Update()
     {
-        MyUpdate();
+        MyUpdates?.Invoke();
     }
 
-    void FixedUpdate()
+    internal void FixedUpdate()
     {
-        MyFixedUpdate();
+        MyFixedUpdates?.Invoke();
     }
 
-    private void Start()
+    internal void Start()
     {
-        MyStart();
+        MyStarts?.Invoke();
     }
-
 
 }
 

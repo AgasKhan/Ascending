@@ -30,10 +30,14 @@ public class MoveAndRotTr : MoveTr
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_angle), Time.deltaTime * rotVelocity);
     }
 
-    protected override void MyUpdate()
+    protected override void Config()
     {
-        base.MyUpdate();
+        base.Config();
+        MyUpdates += MyUpdate;
+    }
 
+    void MyUpdate()
+    {
         RotateOn();
     }
 }

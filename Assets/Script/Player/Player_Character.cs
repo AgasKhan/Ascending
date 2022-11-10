@@ -61,25 +61,31 @@ public class Player_Character : Character
 
     public void Interact()
     {
-
         interactuable.Activate();
-        
     }
 
     void flag() { }
 
     #region unity Functions
 
-    protected override void MyAwake()
+    protected override void Config()
+    {
+        base.Config();
+
+        MyAwakes += MyAwake;
+        MyStarts += MyStart;
+        MyUpdates += MyUpdate;
+        MyFixedUpdates += MyFixedUpdate;
+    }
+
+    void MyAwake()
     {
         GameManager.player = this;
     }
 
-    protected override void MyStart()
+    
+    void MyStart()
     {
-        movement = GetComponent<Movement>();
-        health = GetComponent<Health>();
-        animator = GetComponentInChildren<AnimatorController>();
         coll = GetComponent<CapsuleCollider>();
 
         animator.functions.AddRange(
@@ -96,17 +102,13 @@ public class Player_Character : Character
            });
 
         maxSpeed = movement.maxSpeed;
-
-        base.MyStart();
+ 
     }
-
-    protected override void MyUpdate()
+    void MyUpdate()
     {
         float pressed = 0;
 
         input = new Vector3(Controllers.dir.x, 0, Controllers.dir.y);
-
-        RefreshAnims();
 
         if (movement.isOnFloor)
         {
@@ -221,9 +223,6 @@ public class Player_Character : Character
             }
         }
 
-        
-
-
         if (Controllers.aim.up)
         {
             atackElements.CancelAttack();
@@ -249,7 +248,8 @@ public class Player_Character : Character
         scoped = null;
     }
 
-    protected override void MyFixedUpdate()
+    
+    void MyFixedUpdate()
     {
         animator.FloorDistance(movement.lastFloorDistance);            
 
@@ -286,7 +286,6 @@ public class Player_Character : Character
 
         previousTransformY = transform.position.y;
     }
-
 
     private void OnApplicationFocus(bool focus)
     {

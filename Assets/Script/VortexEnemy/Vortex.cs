@@ -7,10 +7,18 @@ public class Vortex : EffectArea
 
     public float _myScale;
     public int force;
-
-    protected override void MyAwake()
+    protected override void Config()
     {
-        base.MyAwake();
+        base.Config();
+
+        MyAwakes += MyAwake;
+
+        MyFixedUpdates += MyFixedUpdate;
+    }
+
+    void MyAwake()
+    {
+
         _myScale = transform.lossyScale.x;
     }
 
@@ -19,9 +27,9 @@ public class Vortex : EffectArea
         ChckAddAffected(other.gameObject);
     }
 
-    protected override void MyFixedUpdate()
+    void MyFixedUpdate()
     {
-        base.MyFixedUpdate();
+
 
         for (int i = affected.Count - 1; i >= 0; i--)
         {

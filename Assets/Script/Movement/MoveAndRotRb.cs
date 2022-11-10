@@ -64,17 +64,23 @@ public class MoveAndRotRb : MoveRb
         _rotate = true;
     }
 
-    protected override void MyAwake()
+    protected override void Config()
     {
-        base.MyAwake();
+        base.Config();
 
+        MyAwakes += MyAwake;
+       
+        MyUpdates += MyUpdate;
+       
+    }
+
+    void MyAwake()
+    {
         _quaternion = transform.rotation;
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
-        base.MyUpdate();
-
         if (_rotate && !isDisable && !dash)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, _quaternion, Time.deltaTime * desAcelerationAxis);

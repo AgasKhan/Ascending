@@ -208,7 +208,7 @@ public class MoveRb : FatherMoves
     #endregion
 
 
-    protected override void MyAwake()
+    void MyAwake()
     {
         _myRigid = GetComponent<Rigidbody>();
 
@@ -219,7 +219,7 @@ public class MoveRb : FatherMoves
         GameManager.AddTimeController(transform);
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
         velocity3D = _myRigid.velocity;
 
@@ -234,7 +234,7 @@ public class MoveRb : FatherMoves
 
     }
 
-    protected override void MyFixedUpdate()
+    void MyFixedUpdate()
     {
         if (_myRigid.useGravity)
             velocity2D = new Vector3(_myRigid.velocity.x, 0, _myRigid.velocity.z);
@@ -267,8 +267,16 @@ public class MoveRb : FatherMoves
         _move = false;
     }
 
-    protected override void MyStart()
+    void MyStart()
     {
         gameObject.AddTags(Tag.rb);
+    }
+
+    protected override void Config()
+    {
+        MyAwakes += MyAwake;
+        MyStarts += MyStart;
+        MyUpdates += MyUpdate;
+        MyFixedUpdates += MyFixedUpdate;
     }
 }

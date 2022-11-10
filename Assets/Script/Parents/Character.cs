@@ -21,6 +21,11 @@ abstract public class Character : MyScripts
     public Movement movement;
 
     /// <summary>
+    /// referencia del audiomanager
+    /// </summary>
+    public AudioManager audioM;
+
+    /// <summary>
     /// collider de mi objeto
     /// </summary>
     public CapsuleCollider coll;
@@ -522,10 +527,54 @@ abstract public class Character : MyScripts
         }
     }
     #endregion
+    /*
+    #region Sonido
+    public abstract void AttackSound();
 
-    protected override void MyStart()
+    public abstract void AuxiliarSound();
+
+    public abstract void DeathSound();
+
+    public abstract void WoRSoundLeft();
+
+    public abstract void WoRSoundRight();
+    #endregion
+    */
+
+    protected override void Config()
+    {
+        MyAwakes += MyAwake;
+        MyStarts += MyStart;
+        MyUpdates += MyUpdate;
+    }
+
+    void MyAwake()
+    {
+        movement = GetComponent<Movement>();
+        health = GetComponent<Health>();
+        animator = GetComponentInChildren<AnimatorController>();
+        audioM = GetComponent<AudioManager>();   
+    }
+
+    void MyStart()
     {
         gameObject.AddTags(Tag.character);
+
+        /*
+        animator.functions.AddRange(new Pictionarys<string, AnimatorController.PrototypeFunc>
+           {
+               { "WoRLeft",WoRSoundLeft},
+               { "WoRRight",WoRSoundRight },
+               {"AttackSound",AttackSound},
+               {"AuxiliarSound", AuxiliarSound },
+               { "DeathSound", DeathSound}
+           });
+        */
+    }
+
+    void MyUpdate()
+    {
+        RefreshAnims();
     }
 
     IEnumerator CoroutineMesh()

@@ -29,9 +29,17 @@ public class MoveAndRotTrToPatrol : MoveAndRotTr, IPatrolReturn
         return patrol;
     }
 
-    protected override void MyAwake()
+    protected override void Config()
     {
-        base.MyAwake();
+        base.Config();
+
+        MyAwakes += MyAwake;
+      
+        MyUpdates += MyUpdate;
+    }
+
+    void MyAwake()
+    {
 
         patrol.Start(this);
 
@@ -42,7 +50,7 @@ public class MoveAndRotTrToPatrol : MoveAndRotTr, IPatrolReturn
         nextDist = actualDist;
     }
 
-    protected override void MyUpdate()
+    protected virtual void MyUpdate()
     {
         
         if(patrol.MinimalChck(_distance, false))
@@ -69,8 +77,6 @@ public class MoveAndRotTrToPatrol : MoveAndRotTr, IPatrolReturn
         actualDist = patrol.Distance();
 
         MoveTo(actualDist);
-
-        base.MyUpdate();
 
     }
 }

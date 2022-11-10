@@ -79,10 +79,18 @@ public class Movement : MoveRotAndGlueRb
         return lastFloorDistance;
     }
 
-    protected override void MyAwake()
-    {
-        base.MyAwake();
 
+    protected override void Config()
+    {
+        base.Config();
+
+        MyAwakes += MyAwake;
+     
+        MyFixedUpdates += MyFixedUpdate;
+    }
+
+    void MyAwake()
+    {
         _cubeDetect = new GameObject("Detect floor");
 
         _cubeDetect.transform.SetPositionAndRotation(transform.position + Vector3.down, Quaternion.identity);
@@ -90,8 +98,6 @@ public class Movement : MoveRotAndGlueRb
         _cubeDetect.transform.localScale = new Vector3(_volumeCheckFloor, 0.1f, _volumeCheckFloor);
 
         MeshCollider boxCollider = _cubeDetect.AddComponent<MeshCollider>();
-
-        
 
         _cubeDetect.layer = 2;//ignore raycast
 
@@ -105,7 +111,7 @@ public class Movement : MoveRotAndGlueRb
 
     }
 
-    protected override void MyFixedUpdate()
+     void MyFixedUpdate()
     {
         if (transform.position.y < -10)
             transform.position = Vector3.one;
@@ -121,9 +127,7 @@ public class Movement : MoveRotAndGlueRb
             FloorDistance();
         }
 
-        base.MyFixedUpdate();
-
-    }
+     }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -139,8 +143,6 @@ public class Movement : MoveRotAndGlueRb
 
         isOnFloor = true;
     }
-
-
 
     private void OnTriggerExit(Collider other)
     {

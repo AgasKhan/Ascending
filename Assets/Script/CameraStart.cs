@@ -13,12 +13,17 @@ public class CameraStart : MoveAndRotTrToPatrol
 
     bool paneo = false;
 
-    
-    protected override void MyAwake()
+
+    protected override void Config()
+    {
+        base.Config();
+
+        MyAwakes += MyAwake;
+    }
+
+    void MyAwake()
     {
         cam = Camera.main;
-
-        base.MyAwake();
 
         transform.position = patrol.patrol[0].position;
         transform.rotation = patrol.patrol[0].rotation;
@@ -33,15 +38,12 @@ public class CameraStart : MoveAndRotTrToPatrol
             TextCanvas.SrchMessages("Lucas").ShowText(false, "Presiona " + " saltar ".RichText("b").RichText("color", "green") + "para saltear");
             base.MyUpdate();
         }
-            
-
 
         if(Input.GetButtonDown(Controllers.jump.strKey))
         {
             paneo = true;
             StartCoroutine(CameraPan());
         }
-            
         
     }
 

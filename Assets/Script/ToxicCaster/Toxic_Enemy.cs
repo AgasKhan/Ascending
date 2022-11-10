@@ -5,9 +5,19 @@ using UnityEngine;
 public class Toxic_Enemy : Enemy_Character
 {
 
-    protected override void MyAwake()
+    protected override void Config()
     {
-        base.MyAwake();
+        base.Config();
+
+        MyAwakes += MyAwake;
+        
+        MyUpdates += MyUpdate;
+        
+    }
+
+    void MyAwake()
+    {
+        
 
         animator.functions.AddRange
         (
@@ -20,7 +30,8 @@ public class Toxic_Enemy : Enemy_Character
         );
     }
 
-    protected override void MyUpdate()
+    
+    void MyUpdate()
     {
         
         if (playerDetF && attackDelay.Chck())
@@ -34,6 +45,6 @@ public class Toxic_Enemy : Enemy_Character
         else if (powerObjectSpawn.Count == 0 && !animator.CheckAnimations("power"))
             animator.Power();
 
-        base.MyUpdate();
-    }
+        
+     }
 }
