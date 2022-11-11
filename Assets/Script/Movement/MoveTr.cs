@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MoveTr : FatherMoves
 {
-
     /// <summary>
     /// desactiva la desaceleracion automatica
     /// </summary>
@@ -34,10 +33,6 @@ public class MoveTr : FatherMoves
         if(!isDisable)
             _velocityInput = (direction.normalized * magnitude);
     }
-
-
-
-    
 
     /// <summary>
     /// Funcion que ejecuta el movimiento en si
@@ -68,14 +63,14 @@ public class MoveTr : FatherMoves
 
         Move(dist, maxSpeed * (relation));
     }
+
     protected override void Config()
     {
-
         MyAwakes += MyAwake;
 
         MyUpdates += MyUpdate;
-
     }
+
     void MyAwake()
     {
         GameManager.AddTimeController(transform);
@@ -86,6 +81,5 @@ public class MoveTr : FatherMoves
     {
         MoveOn();
     }
-
 
 }

@@ -50,10 +50,10 @@ public class MoveAndRotTrToPatrol : MoveAndRotTr, IPatrolReturn
         nextDist = actualDist;
     }
 
-    protected virtual void MyUpdate()
+    void MyUpdate()
     {
-        
-        if(patrol.MinimalChck(_distance, false))
+
+        if (patrol.MinimalChck(_distance, false))
         { 
             nextDist = patrol.Distance(patrol.NextPoint(out bool b));
         }

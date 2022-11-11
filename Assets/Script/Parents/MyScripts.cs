@@ -12,10 +12,10 @@ public abstract class MyScripts : MonoBehaviour
     abstract protected void MyFixedUpdate();
     */
 
-    protected event Action MyAwakes;
-    protected event Action MyStarts;
-    protected event Action MyUpdates;
-    protected event Action MyFixedUpdates;
+    protected Action MyAwakes;
+    protected Action MyStarts;
+    protected Action MyUpdates;
+    protected Action MyFixedUpdates;
 
 
     protected abstract void Config();

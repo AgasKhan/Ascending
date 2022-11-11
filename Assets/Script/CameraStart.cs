@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CameraStart : MoveAndRotTrToPatrol
 {
@@ -11,7 +12,7 @@ public class CameraStart : MoveAndRotTrToPatrol
 
     Camera cam;
 
-    bool paneo = false;
+    Action auxUpdate;
 
 
     protected override void Config()
@@ -19,6 +20,10 @@ public class CameraStart : MoveAndRotTrToPatrol
         base.Config();
 
         MyAwakes += MyAwake;
+
+        auxUpdate = MyUpdates + MyUpdate;
+
+        MyUpdates = null;
     }
 
     void MyAwake()
@@ -28,23 +33,24 @@ public class CameraStart : MoveAndRotTrToPatrol
         transform.position = patrol.patrol[0].position;
         transform.rotation = patrol.patrol[0].rotation;
 
+        print("me estoy ejecutando");
+
         StartCoroutine(Wait());
     }
 
-    protected override void MyUpdate()
+    void MyUpdate()
     {
-        if(myTimer==null && !paneo)
+        if(myTimer==null)
         {
             TextCanvas.SrchMessages("Lucas").ShowText(false, "Presiona " + " saltar ".RichText("b").RichText("color", "green") + "para saltear");
-            base.MyUpdate();
+
         }
 
         if(Input.GetButtonDown(Controllers.jump.strKey))
         {
-            paneo = true;
             StartCoroutine(CameraPan());
         }
-        
+
     }
 
     IEnumerator Wait()
@@ -58,12 +64,15 @@ public class CameraStart : MoveAndRotTrToPatrol
 
         Timers.Destroy(myTimer);
         myTimer = null;
-        
+        MyUpdates = auxUpdate;
+
     }
 
     IEnumerator CameraPan()
     {
-        
+
+        MyUpdates = null;
+
         while (Mathf.Abs((transform.localRotation.eulerAngles - cam.transform.localRotation.eulerAngles).sqrMagnitude)> 0.1  || Mathf.Abs((transform.position - cam.transform.position).sqrMagnitude)> 0.01)
         {
             int mult = 1;
