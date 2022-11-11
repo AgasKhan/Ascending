@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.50157547, g: 0.27016097, b: 0.21001157, a: 1}
+  m_IndirectSpecularColor: {r: 0.50176036, g: 0.27028432, b: 0.21009636, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1961,6 +1961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 234192156}
   movement: {fileID: 234192157}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -5007,6 +5008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 324833668}
   movement: {fileID: 324833669}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -5582,6 +5584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 336573437}
   movement: {fileID: 336573438}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -11726,7 +11729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 228492509192974427, guid: 49584e5253f1f004d9f032f537979629, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49584e5253f1f004d9f032f537979629, type: 3}
@@ -13308,6 +13311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 880067102}
   movement: {fileID: 880067103}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -15774,6 +15778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1220386290}
   movement: {fileID: 1220386291}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -16382,6 +16387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1227179320}
   movement: {fileID: 1227179321}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -27507,6 +27513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2013210795}
   movement: {fileID: 2013210796}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -28936,6 +28943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2114209999}
   movement: {fileID: 2114210000}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -30663,6 +30671,10 @@ PrefabInstance:
     - target: {fileID: 8202150891239359137, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202150891239359146, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
+      propertyPath: extraJumps
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8202150891239359146, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: cameraScript
