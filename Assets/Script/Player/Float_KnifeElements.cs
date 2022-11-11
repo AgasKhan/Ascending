@@ -67,21 +67,24 @@ public class Float_KnifeElements : KnifeElements
             elements[i].reference.localPosition = Vector3.Slerp(elements[i].reference.localPosition, elements[i].position, Time.deltaTime);
         }
 
-        if(transform.childCount>1)
+        
+        for (int i = 1; i < transform.childCount; i++)
         {
-            MoveRotAndGlueRb move = transform.GetChild(1).GetComponent<MoveRotAndGlueRb>();
+            MoveRotAndGlueRb move = transform.GetChild(i).GetComponent<MoveRotAndGlueRb>();
 
             move.kinematic = false;
             move.eneableDrag = true;
-            move.Move(transform.position - transform.GetChild(1).position);
+            move.Move(transform.position - transform.GetChild(i).position);
 
-            if((transform.position - transform.GetChild(1).position).sqrMagnitude<= (distance*2).sqrMagnitude)
+            if ((transform.position - transform.GetChild(i).position).sqrMagnitude <= (distance * 2).sqrMagnitude)
             {
                 //meto la daga en rotacion (hija de float elements)
-                transform.GetChild(1).parent = transform.GetChild(0);
+                transform.GetChild(i).parent = transform.GetChild(0);
                 move.eneableDrag = false;
             }
         }
+            
+        
     }
 }
 
