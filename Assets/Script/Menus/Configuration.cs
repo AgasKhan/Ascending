@@ -17,7 +17,7 @@ public class Configuration : MonoBehaviour
 
     }
 
-    void CameraSpeed(float f)
+    void CameraSpeed(GameObject g,float f)
     {
         player.cameraScript.Speed(f);
     }

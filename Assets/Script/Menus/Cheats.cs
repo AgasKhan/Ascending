@@ -16,21 +16,21 @@ public class Cheats : MonoBehaviour
 
         menu = MenuManager.instance;
 
-        menu.eventListVoid.AddRange( new Pictionarys<string, System.Action>()
+        menu.eventListVoid.AddRange( new Pictionarys<string, System.Action<GameObject>>()
         {
 
             {"infinite", InfiniteHelth},
-            {"toxine", player.ReplaceFirstPower<Toxine_Powers>},
-            {"stun", player.ReplaceFirstPower<Stun_Powers>},
-            {"vortex", player.ReplaceFirstPower<Vortex_Powers>},
-            {"teleport", player.ReplaceFirstPower<Teleport_Powers>}
+            {"toxine", Toxine},
+            {"stun", Stun},
+            {"vortex", Vortex},
+            {"teleport", Teleport}
 
         });
 
         menu.eventListFloat.Add("interact", Interact);
     }
 
-    void InfiniteHelth()
+    void InfiniteHelth(GameObject g)
     {
         var aux = player.health.GetAll();
 
@@ -44,12 +44,46 @@ public class Cheats : MonoBehaviour
         {
             player.health.SetAll(previusHealth);
         }
+
+        ChangeText(g);
     }
 
-    void Interact(float f)
+    void Interact(GameObject g, float f)
     {
         player.timeInteractMultiply = f;
     }
 
-   
+    void Toxine(GameObject g)
+    {
+ 
+        player.ReplaceFirstPower<Toxine_Powers>();
+    }
+
+    void Stun(GameObject g)
+    {
+
+        player.ReplaceFirstPower<Stun_Powers>();
+    }
+
+    void Vortex(GameObject g)
+    {
+
+        player.ReplaceFirstPower<Vortex_Powers>();
+    }
+
+    void Teleport(GameObject g)
+    {
+
+        player.ReplaceFirstPower<Teleport_Powers>();
+    }
+
+    void ChangeText(GameObject g)
+    {
+        TMPro.TextMeshProUGUI text = g.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+        text.text = (text.text == "Activate") ? "Deactivate" : "Activate";
+
+    }
+
+
 }

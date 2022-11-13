@@ -26,9 +26,9 @@ public class MenuManager : MonoBehaviour
 
 
     //para los eventos
-    public Pictionarys<string, Action> eventListVoid = new Pictionarys<string, Action>();
-    public Pictionarys<string, Action<float>> eventListFloat = new Pictionarys<string, Action<float>>();
-    public Pictionarys<string, Action<string>> eventListString = new Pictionarys<string, Action<string>>();
+    public Pictionarys<string, Action<GameObject>> eventListVoid = new Pictionarys<string, Action<GameObject>>();
+    public Pictionarys<string, Action<GameObject, float>> eventListFloat = new Pictionarys<string, Action<GameObject, float>>();
+    public Pictionarys<string, Action<GameObject, string>> eventListString = new Pictionarys<string, Action<GameObject, string>>();
 
 
     private void Awake()

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.Events;
+using TMPro;
 
 public class EventsCall : MonoBehaviour
 {
@@ -10,27 +12,30 @@ public class EventsCall : MonoBehaviour
 
     public void Event(GameObject g)
     {
-        if (g.CompareTags("Configurado"))
-            return;
-
         print("configurando: " + g.name);
 
-        g.AddTags("Configurado");
+        TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
 
         if (g.TryGetComponent(out Button b))
         {
             print("configurado boton");
-            b.onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            b.onClick.AddListener(() => { menu.eventListVoid[g.name](); });
-            menu.eventListVoid[g.name]();
+            //b.onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
+
+            UnityEventTools.RemovePersistentListener(b.onClick, 0);
+            b.onClick.AddListener(() => { 
+                menu.eventListVoid[g.name](g);
+            });
+            menu.eventListVoid[g.name](g);
             return;
         }
         else if (g.TryGetComponent(out Slider s))
         {
             print("configurado slider");
             //s.onValueChanged.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            s.onValueChanged.AddListener((float f) => { menu.eventListFloat[g.name](f); });
-            menu.eventListFloat[g.name](s.value);
+
+            UnityEventTools.RemovePersistentListener(b.onClick, 0);
+            s.onValueChanged.AddListener((float f) => { menu.eventListFloat[g.name](g,f); });
+            menu.eventListFloat[g.name](g,s.value);
             return;
         }
 
