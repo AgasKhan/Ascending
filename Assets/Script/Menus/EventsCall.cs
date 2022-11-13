@@ -33,7 +33,7 @@ public class EventsCall : MonoBehaviour
             print("configurado slider");
             //s.onValueChanged.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
 
-            UnityEventTools.RemovePersistentListener(b.onClick, 0);
+            UnityEventTools.RemovePersistentListener(s.onValueChanged, 0);
             s.onValueChanged.AddListener((float f) => { menu.eventListFloat[g.name](g,f); });
             menu.eventListFloat[g.name](g,s.value);
             return;
