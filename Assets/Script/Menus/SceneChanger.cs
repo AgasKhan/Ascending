@@ -6,6 +6,8 @@ using TMPro;
 
 public class SceneChanger : MonoBehaviour
 {
+    public Animator transition;
+    
     public void QuitGame()
     {
         Application.Quit();
@@ -16,7 +18,6 @@ public class SceneChanger : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 
     public void Load(string scn)
     {
@@ -32,6 +33,8 @@ public class SceneChanger : MonoBehaviour
     IEnumerator LoadSc(string sceneName)
     {
         //loadscene = true;
+
+        transition.SetTrigger("Start");
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
         while (!async.isDone)

@@ -45,7 +45,19 @@ public class CSVReader : MonoBehaviour
             myTestPlayerList.player[i].damage = int.Parse(data[4 * (i + 1) + 2]);
             myTestPlayerList.player[i].defense = int.Parse(data[4 * (i + 1) + 3]);
         }
+
+
     }
 
-
 }
+
+public interface IBDComunication
+{
+    string ObjToJson();
+
+    void JsonToObj(string Json);
+}
+
+
+
+

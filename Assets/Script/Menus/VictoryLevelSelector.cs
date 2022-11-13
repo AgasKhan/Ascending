@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class VictoryLevelSelector : MonoBehaviour
 {
-    public MenuManager refMenuManager;
+    MenuManager _refMenuManager;
     public GameObject refSelectLevelMenu;
     public GameObject refMenuInGame;
+
+    private void Start()
+    {
+        _refMenuManager = MenuManager.instance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +20,7 @@ public class VictoryLevelSelector : MonoBehaviour
         refMenuInGame.SetActive(false);
         refSelectLevelMenu.SetActive(true);
 
-        refMenuManager.OpenCloseMenu();
+        _refMenuManager.OpenCloseMenu();
     }
 
 }

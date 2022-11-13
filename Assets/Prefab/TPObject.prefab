@@ -163,6 +163,6 @@ MonoBehaviour:
   maxSpeed: 0
   desAceleration: 0
   layerDash: 
-  eneableDrag: 0
+  eneableDrag: 1
   _dashImpulse: 0
   _dragFactor: 0
