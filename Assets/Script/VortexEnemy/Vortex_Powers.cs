@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Vortex_Powers : Powers_FatherPwDbff
 {
-    float _attackCooldown;
+
+    Pictionarys<Character, float> originalSpeed = new Pictionarys<Character, float>();
 
     public override void Activate(Character me)
     {
@@ -13,12 +14,21 @@ public class Vortex_Powers : Powers_FatherPwDbff
 
     public override void On(Character me)
     {
-        _attackCooldown = me.damage;
-        me.damage -= 1;
+
+        if (!originalSpeed.ContainsKey(me))
+        {
+            originalSpeed.Add(me, me.movement.maxSpeed);
+            me.movement.maxSpeed *= 1.5f;
+        }
+            
+        me.AddDebuffToAplicate<Vortex_Debuff>();
+        
     }
 
     public override void Off(Character me)
     {
-        me.damage = _attackCooldown;
+        me.movement.maxSpeed = originalSpeed[me];
+        originalSpeed.Remove(me);
+        me.RemoveDebuffToAplicate<Vortex_Debuff>();
     }
 }

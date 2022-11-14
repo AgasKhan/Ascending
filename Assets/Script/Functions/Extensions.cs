@@ -97,7 +97,10 @@ public static class Extensions
     /// <returns></returns>
     static public float AproxMagnitude(this Vector2 v)
     {
-        return (v.x > v.y ? v.x : v.y);
+        var n1 = Mathf.Abs(v.x);
+        var n2 = Mathf.Abs(v.y);
+
+        return n1 > n2 ? n1 : n2;
     }
 
     /// <summary>
@@ -108,7 +111,9 @@ public static class Extensions
     /// <returns></returns>
     static public float AproxMagnitude(this Vector3 v)
     {
-        return (AproxMagnitude(v.Vect3To2()) > v.z ? AproxMagnitude(v.Vect3To2()) : v.z);
+        var n1 = Mathf.Abs(v.z);
+
+        return (AproxMagnitude(v.Vect3To2()) > n1 ? AproxMagnitude(v.Vect3To2()) : n1);
     }
 
     /// <summary>

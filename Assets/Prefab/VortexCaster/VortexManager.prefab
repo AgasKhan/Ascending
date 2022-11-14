@@ -328,7 +328,7 @@ MonoBehaviour:
   _indexSpawnPool: -1
   dbffTimer: 5
   dbffTimerName: vortexTimer
-  particlesName: {fileID: 0}
+  particlesName: {fileID: 3084482091828597660, guid: ba9f0c11ab7c21a45b5ea43fd9e855e6, type: 3}
   particles: {x: 0, y: 0}
 --- !u!114 &8520502754086293960
 MonoBehaviour:

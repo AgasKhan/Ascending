@@ -124,6 +124,7 @@ public class Player_Character : Character
                 animator.ResetOnFloor();
             }
         }
+        
         _previusOnFloor = movement.isOnFloor;
 
         if (Controllers.cameraInput.sqrMagnitude > 0)
@@ -238,7 +239,7 @@ public class Player_Character : Character
             animator.Aim(true);
         }
 
-        if (Controllers.power.down)
+        if (Controllers.power.down && power.Count>0)
         {
             animator.Power();
 
@@ -269,7 +270,7 @@ public class Player_Character : Character
 
         if (input.sqrMagnitude > 0)
         {
-            if (_sprint)
+            if (_sprint && movement.isOnFloor)
             {
                 movement.maxSpeed = maxSpeed;
             }

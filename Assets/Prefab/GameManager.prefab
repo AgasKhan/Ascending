@@ -211,6 +211,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3964794863873392580, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
+      propertyPath: ui.generalText
+      value: 'Active: Teleport
+
+        Buff: Dash ignore enemies
+
+        Debuff:
+        Dash damage enemies'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
 --- !u!4 &3808997158721104317 stripped
@@ -287,6 +296,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
+    - target: {fileID: 8520502754086293960, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
+      propertyPath: ui.generalText
+      value: 'Active: Vortex
+
+        Buff: more velocity
+
+        Debuff:  reduce
+        velocity'
+      objectReference: {fileID: 0}
     - target: {fileID: 8520502754086293962, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
       propertyPath: m_Name
       value: VortexManager

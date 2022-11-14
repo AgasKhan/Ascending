@@ -5,17 +5,23 @@ using UnityEngine;
 public class Vortex_Debuff : Debuff_FatherPwDbff
 {
 
+    Pictionarys<Character, float> originalSpeed = new Pictionarys<Character, float>();
+
     protected override void Aplicate(Character a)
     {
         on_Update = MyUpdate;
 
         DeAplicate = MyDeaplicate;
 
+        if (!originalSpeed.ContainsKey(a))
+            originalSpeed.Add(a, a.movement.maxSpeed);
+
+        a.movement.maxSpeed *= 0.5f;
     }
 
     void MyUpdate(Character a)
     {
-        print(a.name + " esta en el vortice");
+        print(a.name + " esta relentizado");
 
         if (a.MyCooldowns[dbffTimerName].Chck())
         {
@@ -23,9 +29,10 @@ public class Vortex_Debuff : Debuff_FatherPwDbff
         }
     }
 
-    void MyDeaplicate(Character b)
+    void MyDeaplicate(Character a)
     {
-        
+        a.movement.maxSpeed = originalSpeed[a];
+        originalSpeed.Remove(a);
     }
 
 }
