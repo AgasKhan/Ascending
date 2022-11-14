@@ -73,16 +73,23 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
 
     public override string ToString()
     {
+        return ToString("=");
+    }
 
-        string salida="";
+
+    public string ToString(string s)
+    {
+        string salida = "";
 
         foreach (var item in pictionaries)
         {
-            salida += item.key + "=" + item.value + "\n";
+            salida += item.key + s + item.value + "\n";
         }
 
         return salida;
     }
+
+
     public IEnumerator<Pictionary<K, V>> GetEnumerator()
     {
         return pictionaries.GetEnumerator();
