@@ -17,8 +17,8 @@ public class Vortex_Powers : Powers_FatherPwDbff
 
         if (!originalSpeed.ContainsKey(me))
         {
-            originalSpeed.Add(me, me.movement.maxSpeed);
-            me.movement.maxSpeed *= 1.5f;
+            originalSpeed.Add(me, me.maxSpeed);
+            me.maxSpeed *= 1.5f;
         }
             
         me.AddDebuffToAplicate<Vortex_Debuff>();
@@ -27,7 +27,7 @@ public class Vortex_Powers : Powers_FatherPwDbff
 
     public override void Off(Character me)
     {
-        me.movement.maxSpeed = originalSpeed[me];
+        me.maxSpeed = originalSpeed[me];
         originalSpeed.Remove(me);
         me.RemoveDebuffToAplicate<Vortex_Debuff>();
     }

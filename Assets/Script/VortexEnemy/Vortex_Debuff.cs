@@ -14,9 +14,9 @@ public class Vortex_Debuff : Debuff_FatherPwDbff
         DeAplicate = MyDeaplicate;
 
         if (!originalSpeed.ContainsKey(a))
-            originalSpeed.Add(a, a.movement.maxSpeed);
+            originalSpeed.Add(a, a.maxSpeed);
 
-        a.movement.maxSpeed *= 0.5f;
+        a.maxSpeed *= 0.5f;
     }
 
     void MyUpdate(Character a)
@@ -31,7 +31,7 @@ public class Vortex_Debuff : Debuff_FatherPwDbff
 
     void MyDeaplicate(Character a)
     {
-        a.movement.maxSpeed = originalSpeed[a];
+        a.maxSpeed = originalSpeed[a];
         originalSpeed.Remove(a);
     }
 

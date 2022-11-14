@@ -107,14 +107,14 @@ abstract public class Character : MyScripts
     public int extraJumps;
 
     /// <summary>
+    /// se usa de forma auxiliar para guardar la velocidad maxima original
+    /// </summary>
+    public float maxSpeed;
+
+    /// <summary>
     /// guarda la anterior posicion en y
     /// </summary>
     protected float previousTransformY;
-
-    /// <summary>
-    /// se usa de forma auxiliar para guardar la velocidad maxima original
-    /// </summary>
-    protected float maxSpeed;
 
     /// <summary>
     /// El tiempo que espera antes de anular el salto
