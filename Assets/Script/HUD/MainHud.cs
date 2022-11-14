@@ -44,7 +44,7 @@ public class MainHud : MonoBehaviour
         }
 
         StartCoroutine(posStart());
-        
+
     }
 
     IEnumerator posStart()

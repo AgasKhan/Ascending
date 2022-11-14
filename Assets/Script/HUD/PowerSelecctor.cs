@@ -20,20 +20,24 @@ public class PowerSelecctor : MonoBehaviour
         powerSlctrPos = v;
     }
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+        powerSlctrPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Animator.StringToHash("Deactive"))
+        {
+            transform.position = Vector3.Lerp(transform.position, powerSlctrPos, velocity * Time.deltaTime);
 
-        transform.position = Vector3.Lerp(transform.position, powerSlctrPos, velocity * Time.deltaTime);
 
-        
-        if ((transform.position - powerSlctrPos).sqrMagnitude < 0.1f)
-            enabled = false;
+            if ((transform.position - powerSlctrPos).sqrMagnitude < 0.1f)
+                enabled = false;
+        }
+            
         
     }
 }

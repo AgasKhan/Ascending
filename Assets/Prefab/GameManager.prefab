@@ -141,6 +141,7 @@ MonoBehaviour:
     poolNumber: 5
     prefabReference:
     - {fileID: 591225757626922568, guid: 82518b43b2609db4093be6f185261ffe, type: 3}
+    - {fileID: 3084482091828597660, guid: ba9f0c11ab7c21a45b5ea43fd9e855e6, type: 3}
     pool: []
 --- !u!114 &-387250342658785765
 MonoBehaviour:
@@ -367,6 +368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
+    - target: {fileID: 4734593708350399628, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
+      propertyPath: coyoteTime._currentTime
+      value: -0.004165473
+      objectReference: {fileID: 0}
     - target: {fileID: 7354820876959816208, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
       propertyPath: m_RootOrder
       value: 1

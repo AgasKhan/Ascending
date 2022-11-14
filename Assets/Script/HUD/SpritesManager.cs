@@ -34,13 +34,16 @@ public class SpritesManager : MonoBehaviour
         }
 
         instance.powerList.SetActive(true);
+        instance.powerSelector.gameObject.SetActive(true);
     }
 
     static public void ChangePowerSelector()
     {
-        instance.powerSelector.PowerSlctrPos(instance.power[GameManager.player.actualPower * 2 + 1].transform.position);
-        instance.powerSelector.enabled = true;
         AnimPowerSelector("New");
+        instance.powerSelector.enabled = true;
+        instance.powerSelector.PowerSlctrPos(instance.power[GameManager.player.actualPower * 2 + 1].transform.position);
+        
+        
     }
 
     static public void AnimPowerSelector(string anim)
@@ -128,6 +131,6 @@ public class SpritesManager : MonoBehaviour
 
         //ChangePowerSelector();
 
-        instance.powerSelector.PowerSlctrPos(Vector3.right* 1160 + Vector3.up * 125);
+        //powerSelector.PowerSlctrPos(Vector3.right* 1160 + Vector3.up * 125);
     }
 }
