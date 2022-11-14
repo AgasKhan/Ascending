@@ -52,8 +52,6 @@ public class Consola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (DebugPrint.chk())
         {
             string aux;
@@ -68,16 +66,14 @@ public class Consola : MonoBehaviour
 
             arrAux.AddRange( DebugPrint.PrintSalida().Split('\n'));
             
-            for (int i = 0; i < (arrAux.Count/200 + 1); i++)
+            for (int i = 0; i <= (arrAux.Count/200); i++)
             {
                 aux = "";
 
-                do
+                for (number = 0; number < arrAux.Count && number % 200 != 0 ; number++)
                 {
-                    aux += "\n"+arrAux[number];
-                    number++;
+                    aux += "\n" + arrAux[number];
                 }
-                while (number<arrAux.Count && number%200!=0);
 
                 aux += "\n\n<color=grey>--------Cambio de frame--------</color>\n\n";
 

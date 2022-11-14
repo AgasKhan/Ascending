@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public static class Utilitys
 {
     static public float AngleOffAroundAxis(Vector3 v, Vector3 forward, Vector3 axis, bool clockwise = true)
@@ -50,6 +50,18 @@ public static class Utilitys
         return DeltaAngle(dir, out angle, Vector3.forward, Vector3.up, MyRot);
     }
 
+
+
+    #region interfaz
+
+
+    static public IEnumerable<T> FindObjsWithInterface<T>()
+    {
+        return GameObject.FindObjectsOfType<MonoBehaviour>().OfType<T>();
+    }
+
+
+    #endregion
 }
 
 

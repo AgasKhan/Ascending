@@ -247,6 +247,9 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         if (player == null)
             return;
 
+        scoped = null;
+        scopedPoint = Vector3.zero;
+
         if (deleySearch.Chck())
             _direction = patrol.Distance();
         else
@@ -272,8 +275,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         if (scoped != null)
             print("Enemy see: " + scoped.name);
         */
-        scoped = null;
-        scopedPoint = Vector3.zero;
+
     }
 
     void MyFixedUpdate()

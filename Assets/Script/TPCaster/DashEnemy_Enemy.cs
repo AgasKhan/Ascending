@@ -5,7 +5,7 @@ using UnityEngine;
 public class DashEnemy_Enemy : Enemy_Character
 {
 
-    [SerializeField] private float _flashDistance;
+    //[SerializeField] private float _flashDistance;
 
     protected override void Config()
     {
@@ -31,7 +31,7 @@ public class DashEnemy_Enemy : Enemy_Character
 
     void MyUpdate()
     {
-        if (playerDetF && attackDelay.Chck() && (scopedPoint-transform.position).sqrMagnitude <= 25)
+        if (attackDelay.Chck() && (scopedPoint-transform.position).sqrMagnitude <= 25 && scoped.gameObject.CompareOneTags("Player", "Traspasable"))
         {
             attackDelay.Reset();
             movement.DashLocal(Vector3.forward);            

@@ -159,23 +159,7 @@ abstract public class Character : MyScripts
    {
        RefreshAnims(movement.velocity3D);
    }
-     /*
 
-    /// <summary>
-    /// setea todo lo necesario para la animacion
-    /// </summary>
-    protected void RefreshAnims()
-    {
-        animator.input = input;
-        animator.velocity = movement.velocity3D;
-        animator.relation = movement.velocity2D.sqrMagnitude/(maxSpeed*maxSpeed);
-       
-        if (maxSpeed > movement.maxSpeed)
-            animator.relation *= 2;
-       
-
-        animator.aceleration = movement.desAceleration;
-    }*/
 
     #region mobility
 
@@ -418,7 +402,7 @@ abstract public class Character : MyScripts
         
         power.Insert(i, powerStatic);
 
-        SpritesManager.RefreshUI();
+        MainHud.RefreshUI();
     }
 
     /// <summary>

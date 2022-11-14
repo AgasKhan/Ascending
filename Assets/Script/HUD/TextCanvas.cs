@@ -79,7 +79,7 @@ public class TextCanvas : MonoBehaviour
         {
             isActive = true;
 
-            //textBox.CrossFadeAlpha(0, 0, false);
+            textBox.CrossFadeAlpha(1, 0, false);
 
             //textBox.alpha = 0;
 

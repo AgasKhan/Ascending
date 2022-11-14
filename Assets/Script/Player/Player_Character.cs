@@ -28,6 +28,7 @@ public class Player_Character : Character
     {
         Debug.Log("EL JUGADOR HA ATACADO");
         atackElements.Attack();
+        MainHud.RemoveAllBuffs();
     }
 
     public void Flip()
@@ -238,7 +239,12 @@ public class Player_Character : Character
         }
 
         if (Controllers.power.down)
+        {
             animator.Power();
+
+            MainHud.AddBuff();
+        }
+            
 
         if (Controllers.flip.down)
         {

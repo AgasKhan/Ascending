@@ -64,7 +64,8 @@ public class Float_KnifeElements : KnifeElements
 
         for (int i = 0; i < elements.Count; i++)
         {
-            elements[i].reference.localPosition = Vector3.Slerp(elements[i].reference.localPosition, elements[i].position, Time.deltaTime);
+            //antiguamente un slerp
+            elements[i].reference.localPosition = Vector3.Lerp(elements[i].reference.localPosition, elements[i].position, Time.deltaTime);
         }
 
         

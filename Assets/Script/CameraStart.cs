@@ -33,8 +33,6 @@ public class CameraStart : MoveAndRotTrToPatrol
         transform.position = patrol.patrol[0].position;
         transform.rotation = patrol.patrol[0].rotation;
 
-        print("me estoy ejecutando");
-
         StartCoroutine(Wait());
     }
 

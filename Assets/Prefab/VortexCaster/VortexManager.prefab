@@ -139,7 +139,7 @@ MonoBehaviour:
   eneableDrag: 1
   _dashImpulse: 0
   _dragFactor: 0
-  desAcelerationAxis: 0
+  desAcelerationAxis: 5
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 0}
   movement: {fileID: 0}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -213,7 +214,7 @@ MonoBehaviour:
   extraJumps: 0
   coyoteTime:
     _totalTime: 2
-    _currentTime: 2
+    _currentTime: -0.004900165
   player: {fileID: 0}
   proyectile: {fileID: 4979721168871178402, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
   attackDelay:
@@ -248,7 +249,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8520502753734391766}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5000076
   m_Speed: 3.5
@@ -303,7 +304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8520502754086293962}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 113.97, y: 0, z: 44.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -344,10 +345,10 @@ MonoBehaviour:
   chrAffected: []
   _indexSpawnPool: -1
   ui:
-    GeneralIcon: {fileID: 0}
-    ActiveIcon: {fileID: 0}
-    generalText: 
-    activeText: 
+    GeneralIcon: {fileID: 21300000, guid: f29690972386f5d4ea01a94d7459af7e, type: 3}
+    ActiveIcon: {fileID: 21300000, guid: 21638c72125abae488f9cef260970b28, type: 3}
+    generalText: "Buff:\nDebuff: \nActive: Vortex"
+    activeText: 'Next Atack: Create a <color=purple> vortex </color>'
 --- !u!114 &1597261450050165942
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -139,7 +139,7 @@ MonoBehaviour:
   eneableDrag: 1
   _dashImpulse: 0
   _dragFactor: 0
-  desAcelerationAxis: 0
+  desAcelerationAxis: 5
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6225462098685877569}
   movement: {fileID: 5707819108451781831}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -248,7 +249,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188785550669362007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5000076
   m_Speed: 3.5
@@ -303,7 +304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7354820876959816209}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 132, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -347,8 +348,13 @@ MonoBehaviour:
   ui:
     GeneralIcon: {fileID: 21300000, guid: d4ce7013376fa824f8251cb7aaa6b544, type: 3}
     ActiveIcon: {fileID: 21300000, guid: 2e3b2a50ac31bf543a32d4afc5d3b880, type: 3}
-    generalText: 
-    activeText: 
+    generalText: 'Active: Toxic smoke
+
+      Buff: More Jump Strenght
+
+      Debuff:
+      Toxic damage'
+    activeText: 'Next attack: Create <color=green> Toxic Smoke </color>'
 --- !u!114 &8640046072266232227
 MonoBehaviour:
   m_ObjectHideFlags: 0

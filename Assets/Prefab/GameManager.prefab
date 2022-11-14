@@ -211,18 +211,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5707178966906931399, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
-      propertyPath: _layerMask.m_Bits
-      value: 769
-      objectReference: {fileID: 0}
-    - target: {fileID: 5707178966906931399, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
-      propertyPath: desAcelerationAxis
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6540944138226449917, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70310c42913ba4840ba84c1822befc7a, type: 3}
 --- !u!4 &3808997158721104317 stripped
@@ -237,18 +225,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
-    - target: {fileID: 1652326395236201545, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
-      propertyPath: _layerMask.m_Bits
-      value: 769
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652326395236201545, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
-      propertyPath: desAcelerationAxis
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6000038451714288472, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7939842618333871688, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
       propertyPath: m_Name
       value: StunManager
@@ -311,18 +287,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
-    - target: {fileID: 2722160777819842120, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8520502753734391595, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
-      propertyPath: _layerMask.m_Bits
-      value: 769
-      objectReference: {fileID: 0}
-    - target: {fileID: 8520502753734391595, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
-      propertyPath: desAcelerationAxis
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8520502754086293962, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
       propertyPath: m_Name
       value: VortexManager
@@ -385,14 +349,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
-    - target: {fileID: 5707819108451781831, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
-      propertyPath: _layerMask.m_Bits
-      value: 769
-      objectReference: {fileID: 0}
-    - target: {fileID: 5707819108451781831, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
-      propertyPath: desAcelerationAxis
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7354820876959816208, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -440,10 +396,6 @@ PrefabInstance:
     - target: {fileID: 7354820876959816209, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
       propertyPath: m_Name
       value: ToxicManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9217525468133407273, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77059d6ae731084fae196dd75c9dda7, type: 3}

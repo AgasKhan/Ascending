@@ -13,5 +13,6 @@ public enum Tag
     Player,
     GameController,
     Shield,
-    Editable
+    Editable,
+    Traspasable
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Internal;
 
+
 public static class Extensions
 {
 
@@ -17,12 +18,19 @@ public static class Extensions
     {
         Tags.RemoveTags(g, t);
     }
-
+    
+    /// <summary>
+    /// Debuelve true en caso de que todas las tags coincidan
+    /// </summary>
     static public bool CompareTags(this GameObject g, params Tag[] t)
     {
         return Tags.ChckAll(g, t);
     }
 
+
+    /// <summary>
+    /// devuelve true en caso de que una tag coincida
+    /// </summary>
     static public bool CompareOneTags(this GameObject g, params Tag[] t)
     {
         return Tags.ChckOne(g, t);
@@ -44,16 +52,34 @@ public static class Extensions
         Tags.RemoveTags(g, t);
     }
 
+    /// <summary>
+    /// Debuelve true en caso de que todas las tags coincidan
+    /// </summary>
+    /// <param name="g"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
     static public bool CompareTags(this GameObject g, params string[] t)
     {
         return Tags.ChckAll(g, t);
     }
 
+    /// <summary>
+    /// devuelve true en caso de que una tag coincida
+    /// </summary>
+    /// <param name="g"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
     static public bool CompareOneTags(this GameObject g, params string[] t)
     {
         return Tags.ChckOne(g, t);
     }
 
+    /// <summary>
+    /// buscar todos los objetos con dichas tags
+    /// </summary>
+    /// <param name="g"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
     static public GameObject[] FindWithTags(this GameObject g, params string[] t)
     {
         return Tags.Find(t);

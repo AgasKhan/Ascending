@@ -7,64 +7,127 @@ public class SpritesManager : MonoBehaviour
 {
     static public SpritesManager instance;
 
-    public GameObject geografia;
+    public PowerSelecctor powerSelector;
 
-    public Image[] siguiente = new Image[3];
-    public Image actual;
-    public Image[] anterior = new Image[3];
+    public GameObject powerList;
 
-    /*
-    //Para cuando tengamos mas de un poder
-    static public void RefreshUI()
-    {
-        int countPower = GameManager.player.power.Count;
+    public GameObject debuffList;
 
-        int id = GameManager.player.actualPower;
+    public GameObject buffList;
 
-        Load(instance.actual, GameManager.player.power[id].art);
+    public List<Image> power;
 
-        if (id == 0)
-        {
-            Load(instance.siguiente, GameManager.player.power[id + 1].art);
-            Load(instance.anterior, GameManager.player.power[countPower - 1].art);
-        }
-        else if (id == countPower - 1)
-        {
-            Load(instance.siguiente, GameManager.player.power[0].art);
-            Load(instance.anterior, GameManager.player.power[id - 1].art);
-        }
-        else
-        {
-            Load(instance.siguiente, GameManager.player.power[id + 1].art);
-            Load(instance.anterior, GameManager.player.power[id - 1].art);
-        }
+    public List<Image> debuff;
 
-    }
-    */
+    public List<Image> buff;
+
+    int iDebuff;
+
+    int iBuff;
 
     //para un solo poder
-    static public void RefreshUI()
+    static public void RefreshPower()
     {
-        ///int countPower = GameManager.player.power.Count;
+        for (int i = 0; i < GameManager.player.power.Count; i++)
+        {
+            instance.power[i * 2 + 1].sprite = GameManager.player.power[i].ui.GeneralIcon;
+        }
 
-        //int id = GameManager.player.actualPower;
-
-        //Load(instance.actual, GameManager.player.power[0].ui);
-
-        instance.actual.sprite = GameManager.player.power[0].ui.GeneralIcon;
-
-        instance.geografia.SetActive(true);
-
+        instance.powerList.SetActive(true);
     }
 
-    /*
-    static public void Load(Image arr, Powers_FatherPwDbff.UI ui)
+    static public void ChangePowerSelector()
     {
-        arr.sprite = ui.GeneralIcon;
+        instance.powerSelector.PowerSlctrPos(instance.power[GameManager.player.actualPower * 2 + 1].transform.position);
+        instance.powerSelector.enabled = true;
+        AnimPowerSelector("New");
     }
-    */
+
+    static public void AnimPowerSelector(string anim)
+    {
+        instance.powerSelector.Animation(anim);
+    }
+
+    static public void AddDebuff(Sprite sprite)
+    {
+        foreach (var item in instance.debuff)
+        {
+            if (item.sprite == sprite)
+            {
+                return;
+            }
+        }
+
+        instance.iDebuff++;
+        instance.debuff[instance.iDebuff].sprite = sprite;
+
+        instance.debuff[instance.iDebuff].CrossFadeAlpha(1,0.3f,false);
+    }
+
+    static public void RemoveDebuff(Sprite sprite)
+    {
+        instance.iDebuff--;
+
+        foreach (var item in instance.debuff)
+        {
+            if(item.sprite==sprite)
+            {
+                item.CrossFadeAlpha(0, 0, false);
+                item.transform.GetChild(0).SetAsLastSibling();
+                return;
+            }
+        }
+    }
+
+    static public int AddBuff()
+    {
+        foreach (var item in instance.buff)
+        {
+            if (item.sprite == GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon)
+            {
+                return-1;
+            }
+        }
+
+        instance.buff[instance.iBuff].sprite = GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon;
+        instance.buff[instance.iBuff].CrossFadeColor(Color.white, 0.3f, true, false);
+        instance.buff[instance.iBuff].CrossFadeAlpha(1, 0.3f, false);
+        instance.iBuff++;
+        return instance.iBuff-1;
+    }
+
+    static public void RemoveAllBuffs()
+    {
+        instance.iBuff=0;
+        foreach (var item in instance.buff)
+        {
+            item.sprite = null; 
+            item.CrossFadeColor(Color.black, 0.3f, true, false);
+            item.CrossFadeAlpha(0,0.3f,false);
+            
+        }
+    }
+
     private void Awake()
     {
         instance = this;
+
+        power.AddRange(powerList.GetComponentsInChildren<Image>());
+
+        debuff.AddRange(debuffList.GetComponentsInChildren<Image>());
+
+        buff.AddRange(buffList.GetComponentsInChildren<Image>());
+
+        iDebuff = 0;
+        iBuff = 0;
+
+        for (int i = 1; i < 1; i++)
+        {
+            powerList.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        //ChangePowerSelector();
+
+        instance.powerSelector.PowerSlctrPos(Vector3.right* 1160 + Vector3.up * 125);
     }
 }

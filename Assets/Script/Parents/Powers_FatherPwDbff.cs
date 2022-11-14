@@ -16,6 +16,7 @@ abstract public class Powers_FatherPwDbff : FatherPwDbff
         public Sprite GeneralIcon;
         public Sprite ActiveIcon;
 
+
         [TextArea(3,6)]
         public string generalText;
 

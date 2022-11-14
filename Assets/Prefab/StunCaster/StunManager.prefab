@@ -139,7 +139,7 @@ MonoBehaviour:
   eneableDrag: 1
   _dashImpulse: 0
   _dragFactor: 0
-  desAcelerationAxis: 0
+  desAcelerationAxis: 5
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1134143966555334095}
   movement: {fileID: 1652326395236201545}
+  audioM: {fileID: 0}
   coll: {fileID: 0}
   scoped: {fileID: 0}
   interactuable: {fileID: 0}
@@ -213,7 +214,7 @@ MonoBehaviour:
   extraJumps: 0
   coyoteTime:
     _totalTime: 2
-    _currentTime: 2
+    _currentTime: -0.004900165
   player: {fileID: 0}
   proyectile: {fileID: 0}
   attackDelay:
@@ -248,7 +249,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881292164675210201}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5000076
   m_Speed: 3.5
@@ -303,7 +304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7939842618333871688}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 132, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -347,7 +348,11 @@ MonoBehaviour:
   ui:
     GeneralIcon: {fileID: 21300000, guid: 26d599bffdba448418572a9e95a0f1c1, type: 3}
     ActiveIcon: {fileID: 21300000, guid: db50996e0e43ab2489b055841167fd02, type: 3}
-    generalText: 
+    generalText: 'Active:
+
+      Debuff: stun enemies
+
+      Buff: more damage'
     activeText: 
   myShield: {x: 0, y: 0}
 --- !u!114 &1547860458996292138
