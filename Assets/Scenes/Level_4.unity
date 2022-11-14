@@ -3391,6 +3391,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8202150891239359159, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
+      propertyPath: damageLogic
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202150891239359159, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
+      propertyPath: cooldownDamage
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
 --- !u!850595691 &646123855
@@ -5952,7 +5960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3669662326337994550, guid: c0704024b8a360f48b34232b40316964, type: 3}
       propertyPath: DisplayText
-      value: 
+      value: Dagger
       objectReference: {fileID: 0}
     - target: {fileID: 3919127825588026070, guid: c0704024b8a360f48b34232b40316964, type: 3}
       propertyPath: m_Radius
@@ -8061,7 +8069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3669662326337994550, guid: c0704024b8a360f48b34232b40316964, type: 3}
       propertyPath: DisplayText
-      value: 
+      value: Dagger
       objectReference: {fileID: 0}
     - target: {fileID: 3919127825588026088, guid: c0704024b8a360f48b34232b40316964, type: 3}
       propertyPath: m_TagString
@@ -11786,7 +11794,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-168318
+  m_Name: pb_Mesh-5968
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13672,6 +13680,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2108580468}
+    - target: {fileID: 3491720673542268028, guid: d526bf40f608dca4e9668e506d586311, type: 3}
+      propertyPath: m_TagString
+      value: Traspasable
+      objectReference: {fileID: 0}
     - target: {fileID: 3491720673772001937, guid: d526bf40f608dca4e9668e506d586311, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -13814,6 +13826,10 @@ PrefabInstance:
     - target: {fileID: 6481158622204739311, guid: 3e807d93cef4d7448b94959d608988d4, type: 3}
       propertyPath: m_Name
       value: Interactuable ejemplo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481158622204739312, guid: 3e807d93cef4d7448b94959d608988d4, type: 3}
+      propertyPath: DisplayText
+      value: Cubo timido
       objectReference: {fileID: 0}
     - target: {fileID: 6481158622204739317, guid: 3e807d93cef4d7448b94959d608988d4, type: 3}
       propertyPath: m_RootOrder
