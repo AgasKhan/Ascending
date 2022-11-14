@@ -91,10 +91,11 @@ public class MenuManager : MonoBehaviour
     {
         if(_inGame)
         {
-            if (Input.GetKeyDown("p"))
+            if (Input.GetKeyDown("p") || Input.GetKeyDown(KeyCode.Escape))
             {
                 OpenCloseMenu();
             }
+
 
             /*
             if (_optionMenuActive)

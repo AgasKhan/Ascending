@@ -65,6 +65,11 @@ public class Player_Character : Character
         interactuable.Activate();
     }
 
+    public override void OffMesh()
+    {
+        MenuManager.instance.OpenCloseMenu();
+    }
+
     void flag() { }
 
     #region unity Functions

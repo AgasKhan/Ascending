@@ -23,9 +23,6 @@ public class HealthUI_HealthCh : HealthCh_LogicActive
 
         hpPercentage = floatParms[floatParms.Length - 1];
 
-        if (hpPercentage <= 0)
-            MenuManager.instance.OpenCloseMenu();
-
         RefreshHealth();
     }
 }

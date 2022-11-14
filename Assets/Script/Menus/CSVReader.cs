@@ -11,7 +11,6 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
     public Pictionarys<string, string> myPictionary = new Pictionarys<string, string>();
 
     public static CSVReader instance;
-   
 
     public static Pictionarys<string, string> BD
     {
@@ -52,6 +51,14 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
 
         SaveInPictionary("Scene_1_Dialogue_4","Test");
 
+
+        /*
+         Guardar partida
+
+        PlayerPrefs.SetString("File", "DDDDDDD");
+        print(PlayerPrefs.GetString("File"));
+        
+         */
     }
 
     void ReadCSV()
