@@ -8966,7 +8966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8db0aa094ac4848b1ee240564aceae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAssetData: {fileID: 4900000, guid: 20a68349735d8c641a2ccc2201b5106f, type: 3}
+  textAssetData: {fileID: 4900000, guid: 9635386699f257b46a3ab0d0a77aa3d4, type: 3}
   myTestPlayerList:
     player: []
 --- !u!4 &1315528585
