@@ -109,12 +109,12 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     {
         //Proyectile proyScript = Instantiate(proyectile, transform.position + transform.forward, transform.rotation);
 
-        GameObject aux = PoolObjects.SpawnPoolObject(0, proyectile.name, transform.position + transform.forward, transform.rotation);
+        GameObject aux = PoolObjects.SpawnPoolObject(0, proyectile.name, transform.position + transform.forward, Quaternion.identity);
 
         Proyectile proyScript = aux.GetComponent<Proyectile>();
 
         proyScript.owner = this;
-        proyScript.MoveRb.MoveLocal(Vector3.forward, 10 * proyScript.MoveRb.maxSpeed);
+        proyScript.MoveRb.Move((player.transform.position - transform.position));
 
         GameManager.DeActivateRetarded(aux, 3);
     }

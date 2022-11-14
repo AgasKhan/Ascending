@@ -17,12 +17,14 @@ public class ToxicSmoke : EffectArea
                 check = false;
 
                 affected[i].ChckandSubsHealth(dmg);
+                return;
             }       
         }
 
         if (check && other.gameObject.CompareOneTags(Tag.life))
         {
             AddAffected(other.gameObject, coolDown);
+            affected[affected.Count - 1].ChckandSubsHealth(dmg);
         }         
     }
     

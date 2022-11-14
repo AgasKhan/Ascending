@@ -263,10 +263,6 @@ public class TextCanvas : MonoBehaviour
             textBox.text = "";
             itemText = new List<string>();
         }
-     
-
-       
-
     }
 
     public TextManager[] text;

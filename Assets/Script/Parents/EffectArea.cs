@@ -63,15 +63,12 @@ public abstract class EffectArea : MyScripts
             foreach (var item in affected)
             {
                 if (item.go == g)
+                {
                     affected.Remove(item);
+                    return;
+                }
             }
-
-            return;
         }
-
-
-        bool check = true;
-
 
         Debug.Log(g.name + " ha sido detectado");
 
@@ -79,15 +76,15 @@ public abstract class EffectArea : MyScripts
         {
             if (affected[i].go == g)
             {
-                check = false;
+                return;
             }
                 
         }
 
-        if (check && g.CompareTags(Tag.rb))
+        if (g.CompareTags(Tag.rb))
         {
             AddAffected(g);
-            Debug.Log(g.name + " ha sido atrapado en " + name);
+            Debug.Log(g.name + " ha sido agregado en " + name);
         }
     }
 
@@ -127,7 +124,7 @@ public abstract class EffectArea : MyScripts
     {
         toDeactivate = Timers.Create(toDestroy);
 
-        strTimer += GetType().FullName;
+        strTimer += GetType().FullName+"-"+GetInstanceID();
 
     }
 

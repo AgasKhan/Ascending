@@ -14,10 +14,9 @@ public class Enemy_Proyectile : Proyectile
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         Active(other);
     }
-    
 
 }
