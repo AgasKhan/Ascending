@@ -8969,7 +8969,7 @@ MonoBehaviour:
   textAssetData: {fileID: 4900000, guid: 9635386699f257b46a3ab0d0a77aa3d4, type: 3}
   myPictionary:
     pictionaries: []
-  dataCSV: []
+  maximumGames: 3
 --- !u!4 &1315528585
 Transform:
   m_ObjectHideFlags: 0

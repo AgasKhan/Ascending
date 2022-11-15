@@ -4,13 +4,18 @@ using UnityEngine;
 using System;
 using System.IO;
 
-public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
+public class CSVReader : MonoBehaviour
 {
+    /// <summary>
+    /// El archivo CSV que se manejara
+    /// </summary>
     public TextAsset textAssetData;
     
     public Pictionarys<string, string> myPictionary = new Pictionarys<string, string>();
 
     public static CSVReader instance;
+
+    public int maximumGames;
 
     public static Pictionarys<string, string> BD
     {
@@ -24,7 +29,7 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
         }
     }
 
-    public string[] dataCSV;
+    
 
     //[System.Serializable]
     public class TestPlayer
@@ -47,74 +52,89 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
     {
         instance = this;
         
-        ReadCSV();
+        ReadCSV(textAssetData);
 
-        SaveInPictionary("Scene_1_Dialogue_4","Test");
+        SaveInPictionary("Scene_1_Dialogue_1","TestNumberOne");
+        SaveInPictionary("Scene_1_Dialogue_2", "TestNumberTwo");
+        SaveInPictionary("Scene_1_Dialogue_3", "TestNumberThree");
+        SaveInPictionary("Scene_1_Dialogue_4", "TestNumberFour");
+
+        WriteCSV(textAssetData, myPictionary);
 
 
-        /*
-         Guardar partida
+        for (int i = 0; i < maximumGames; i++)
+        {
+            PlayerPrefs.SetString("GameSlot_" + i.ToString() , "");
+        }
 
-        PlayerPrefs.SetString("File", "DDDDDDD");
-        print(PlayerPrefs.GetString("File"));
-        
-         */
+        SaveProgress(0, myPictionary);
+
+        print(LoadProgress(0));
+
     }
 
-    void ReadCSV()
+    void SaveProgress(int indexSlot, Pictionarys<string, string> myChanges)
     {
+        if (indexSlot >= 0 && indexSlot < maximumGames)
+            PlayerPrefs.SetString("GameSlot_" + indexSlot, myChanges.ToString());
+        else
+            print("There is not a game slot whit that index");
+    }
 
-        char[] delimitator = { '\n' };
-        dataCSV = ReadString(textAssetData.name + ".csv").Split(delimitator); 
-        int tableSize = dataCSV.Length -1 ; 
-        
-        for (int i = 0; i < tableSize; i++)
+    string LoadProgress(int indexSlot)
+    {
+        if (indexSlot >= 0 && indexSlot < maximumGames)
+            return PlayerPrefs.GetString("GameSlot_" + indexSlot);
+        else
+        {
+            print("There is not a game slot whit that index");
+            return null;
+        }
+    }
+
+
+    #region TextManagment
+    void ReadCSV(TextAsset myCSVFile)
+    {
+        string[] dataCSV;
+
+        dataCSV = ReadString(myCSVFile.name + ".csv").Split('\n');
+      
+        for (int i = 0 ; i < dataCSV.Length - 1 ; i++)
         {
             string[] reglonCSV= dataCSV[i].Split(';');
 
             myPictionary.Add(reglonCSV[0], reglonCSV[1]);
         }
 
-        print(myPictionary);
-        
     }
 
-    void WriteCSV()
+    void WriteCSV(TextAsset myCSVFile, Pictionarys<string, string> myChanges)
     {
-        textAssetData = new TextAsset ("AAA ; BBB");
-
-        //textAssetData
+        WriteString(myCSVFile.name + ".csv", myChanges.ToString(";"));
     }
 
-
-    void test()
+    static void WriteString(string file, string data)
     {
-        string json = JsonUtility.ToJson(new Pictionarys<string, float>() {
+        string path = "Assets/Resources/" + file;
 
-
-            {"id1", 1.5f},
-            {"id2" , 20.3f}
-
-        });
-
-        print(json);
-
-        Pictionarys<string, float> pic = JsonUtility.FromJson<Pictionarys<string, float>>(json);
-
-        print(pic);
+        StreamWriter writer = new StreamWriter(path, false);
+        writer.Write(data);
+        writer.Close();
     }
 
-    public string ObjToJson()
+    static string ReadString(string file)
     {
-        //CSVReader.SaveInPictionary<GameObject>()
-        
-        return null;
-    }
+        string aux;
+        string path = "Assets/Resources/" + file;
 
-    public void JsonToObj (string json)
-    {
-        //CSVReader.LoadFromPictionary<GameObject>(json);
+        StreamReader reader = new StreamReader(path);
+        aux = (reader.ReadToEnd());
+        reader.Close();
+
+        return aux;
     }
+    #endregion
 
     #region SaveAndLoadJson
 
@@ -124,7 +144,7 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
     /// <param name="data"></param>
-    public static void SaveInPictionary <T> (string id, T data) where T : MonoBehaviour
+    public static void SaveInPictionary<T>(string id, T data) where T : MonoBehaviour
     {
         string json = JsonUtility.ToJson(data);
 
@@ -135,7 +155,7 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
     }
 
 
-    public static void SaveInPictionary (string id, object data)
+    public static void SaveInPictionary(string id, object data)
     {
         string json = data.ToString();
 
@@ -167,36 +187,6 @@ public class CSVReader : MonoBehaviour, IBDSave, IBDLoad
     }
 
     #endregion
-
-
-    static void WriteString(string file, string data)
-    {
-        string path = "Assets/Resources/" + file;
-        //Write some text to the test.txt file
-        StreamWriter writer = new StreamWriter(path, false);
-        writer.Write(data);
-        writer.Close();
-
-    }
-
-    static string ReadString(string file)
-    {
-        string aux;
-
-        string path = "Assets/Resources/" + file;
-        //Read the text from directly from the test.txt file
-        StreamReader reader = new StreamReader(path);
-        aux = (reader.ReadToEnd());
-        reader.Close();
-
-        return aux;
-    }
-
-    private void OnDestroy()
-    {
-        WriteString(textAssetData.name + ".csv" , myPictionary.ToString(";"));
-    }
-
 
 }
 
