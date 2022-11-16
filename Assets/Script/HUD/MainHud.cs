@@ -175,10 +175,6 @@ public class MainHud : MonoBehaviour
 
         buff.AddRange(buffList.GetComponentsInChildren<Icon>());
 
-        dagger.textManager.timeInScreen.Stop();
-
-        DaggerText(0,0);
-
         iDebuff = 0;
         iBuff = 0;
 
@@ -196,6 +192,13 @@ public class MainHud : MonoBehaviour
 
         StartCoroutine(posStart());
 
+    }
+
+
+    private void Start()
+    {
+        DaggerText(0, 0);
+        dagger.textManager.timeInScreen.Stop();
     }
 
     IEnumerator posStart()
