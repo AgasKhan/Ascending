@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
-using UnityEngine.Events;
 
 
 public class MenuManager : MonoBehaviour
@@ -19,19 +18,15 @@ public class MenuManager : MonoBehaviour
     public GameObject gamePausedMenu;
     public SceneChanger refSceneChanger;
 
-
     private int _currentMemuPrincipal = 0;
     private int _currentMemu = 0;
     //private string  _currentSubMemu= "GeneralOptionsButton";
-    private bool _optionMenuActive = false;
     private bool _inGame = true;
-
 
     //para los eventos
     public Pictionarys<string, Action<GameObject>> eventListVoid = new Pictionarys<string, Action<GameObject>>();
     public Pictionarys<string, Action<GameObject, float>> eventListFloat = new Pictionarys<string, Action<GameObject, float>>();
     public Pictionarys<string, Action<GameObject, string>> eventListString = new Pictionarys<string, Action<GameObject, string>>();
-
 
     private void Awake()
     {
@@ -67,7 +62,7 @@ public class MenuManager : MonoBehaviour
         }
             
 
-
+        /*
         foreach (var item in GetComponentsInChildren<Button>(true))
         {
             DebugPrint.Log("Nombre del boton: " + item.name.RichText("color", "green"));
@@ -86,7 +81,8 @@ public class MenuManager : MonoBehaviour
             {
                 DebugPrint.Log("\tmetodo: " + item.onValueChanged.GetPersistentMethodName(i).RichText("color", "yellow"));
             }
-        }
+        }*/
+
     }
 
     void Update()
