@@ -41,8 +41,8 @@ public class SpritesManager : MonoBehaviour
     {
         AnimPowerSelector("New");
         instance.powerSelector.enabled = true;
-        instance.powerSelector.PowerSlctrPos(instance.power[GameManager.player.actualPower * 2 + 1].transform.position);
-        
+
+        instance.StartCoroutine(instance.RetardedTim());
         
     }
 
@@ -132,5 +132,11 @@ public class SpritesManager : MonoBehaviour
         //ChangePowerSelector();
 
         //powerSelector.PowerSlctrPos(Vector3.right* 1160 + Vector3.up * 125);
+    }
+
+    IEnumerator RetardedTim()
+    {
+        yield return null;
+        instance.powerSelector.PowerSlctrPos(instance.power[GameManager.player.actualPower * 2 + 1].transform.position);
     }
 }
