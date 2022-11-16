@@ -13637,7 +13637,7 @@ PrefabInstance:
     - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: refSelectLevelMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1862545624}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
 --- !u!4 &1031420607 stripped
@@ -24997,6 +24997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cc2b80b9ebdd914f826b294024e0a00, type: 3}
+--- !u!1 &1862545624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5719405799196789944, guid: 2cc2b80b9ebdd914f826b294024e0a00, type: 3}
+  m_PrefabInstance: {fileID: 1862545623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1862551800
 PrefabInstance:
   m_ObjectHideFlags: 0

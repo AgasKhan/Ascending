@@ -6,7 +6,6 @@ public class VictoryLevelSelector : MonoBehaviour
 {
     MenuManager _refMenuManager;
     public GameObject refSelectLevelMenu;
-    public GameObject refMenuInGame;
 
     private void Start()
     {
@@ -17,7 +16,9 @@ public class VictoryLevelSelector : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
             return;
-        refMenuInGame.SetActive(false);
+        
+        _refMenuManager.gameObject.SetActive(true);
+
         refSelectLevelMenu.SetActive(true);
 
         _refMenuManager.OpenCloseMenu();

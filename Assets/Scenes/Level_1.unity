@@ -15958,7 +15958,7 @@ PrefabInstance:
     - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: refSelectLevelMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1847213855}
     - target: {fileID: 6046430200450196986, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -15985,25 +15985,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: TPObject
       objectReference: {fileID: 0}
-    - target: {fileID: 2839136542836756727, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3183326990525385293, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
       propertyPath: m_RootOrder
       value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183326990525385293, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183326990525385293, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183326990525385293, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3183326990525385293, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16043,10 +16027,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3183326990525385293, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3748432439419647518, guid: 1433810a7ac9c6f4889fd82054f068b2, type: 3}
-      propertyPath: isDisable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -23012,6 +22992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2432c4691a553a4886cbc9d4ea2ac0a, type: 3}
+--- !u!1 &1847213855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5719405799196789944, guid: 2cc2b80b9ebdd914f826b294024e0a00, type: 3}
+  m_PrefabInstance: {fileID: 921082818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1857422272
 PrefabInstance:
   m_ObjectHideFlags: 0
