@@ -8,6 +8,9 @@ using UnityEngine.AI;
 abstract public class Enemy_Character : Character, IPatrolReturn
 {
     #region attributes
+    [Space]
+    [Header("Enemys propertys")]
+    [Space]
 
     /// <summary>
     /// Contiene una referencia del jugador
@@ -20,14 +23,11 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     public Proyectile proyectile;
 
     /// <summary>
-    /// timer por defecto para el deley del ataque
-    /// </summary>
-    public Timer attackDelay;
-
-    /// <summary>
     /// referencia de la patrulla
     /// </summary>
     public Patrol patrol;
+
+    [Header("Detection")]
 
     /// <summary>
     /// Funcion que permite saber si el jugador fue detectado por el enemigo 
@@ -61,26 +61,42 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     public float coneOfVision;
 
     /// <summary>
-    /// distancia minima a la cual se va a acercar al objetivo
+    /// Layer de deteccion
     /// </summary>
-    [Range(0, 50)]
-    public float minimalDistancePlayer;
+    [SerializeField]
+    LayerMask layerMask;
 
     /// <summary>
     /// tiempo de espera para volver a su patrulla
     /// </summary>
     [Range(1, 20)]
     public float waitMetalGear;
+    
+    /// <summary>
+    /// Timer para la espera antes de volver a su ruta
+    /// </summary>
+    public Timer deleySearch;
+
+    [Header("Atack")]
 
     /// <summary>
     /// tiempo de enfriamiento para el siguiente ataque
     /// </summary>
     public float attackCooldown;
 
-    public Timer deleySearch;
+    /// <summary>
+    /// timer por defecto para el deley del ataque
+    /// </summary>
+    public Timer attackDelay;
 
-    [SerializeField]
-    LayerMask layerMask;
+
+    [Header("Movimiento")] 
+
+    /// <summary>
+    /// distancia minima a la cual se va a acercar al objetivo
+    /// </summary>
+    [Range(0, 50)]
+    public float minimalDistancePlayer;
 
     float _minimalDistancePatrol = 4;
 

@@ -282,22 +282,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 0}
   movement: {fileID: 0}
-  coll: {fileID: 0}
-  scoped: {fileID: 0}
-  interactuable: {fileID: 0}
-  scopedPoint: {x: 0, y: 0, z: 0}
+  audioM: {fileID: 0}
   animator: {fileID: 0}
-  input: {x: 0, y: 0, z: 0}
+  scoped: {fileID: 0}
+  scopedPoint: {x: 0, y: 0, z: 0}
+  interactuable: {fileID: 0}
   MyCooldowns:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
   powerObjectSpawn: []
+  damage: 10
   power: []
   actualPower: 0
-  damage: 10
+  input: {x: 0, y: 0, z: 0}
   jumpStrength: 75
   extraJumps: 0
+  maxSpeed: 0
   coyoteTime:
     _totalTime: 0.3
     _currentTime: -0.0067698695
@@ -381,7 +382,7 @@ MonoBehaviour:
   journeyTime: 200
   character: {fileID: 8202150891239359146}
   Other: {fileID: 8202150890860376913}
-  distance: {x: 1, y: 1, z: 0}
+  distance: {x: 0.5, y: 1, z: 0}
   UnlockHitScan: 0
   maxPressedTime: 5
   relationXtime: 1

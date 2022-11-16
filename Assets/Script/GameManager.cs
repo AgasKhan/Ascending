@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        TextCanvas.SrchMessages("debug").ShowText(false, (Mathf.Round(1/Time.unscaledDeltaTime)).ToString() + " Fps");
+
         if (!saveTime)
             return;
          

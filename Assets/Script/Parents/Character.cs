@@ -10,6 +10,9 @@ using UnityEngine;
 [RequireComponent(typeof(HealthCh_LogicActive))]
 abstract public class Character : MyScripts
 {
+    [Header("Common propertys")]
+    [Space]
+
     /// <summary>
     /// referencia a la vida del character
     /// </summary>
@@ -20,15 +23,19 @@ abstract public class Character : MyScripts
     /// </summary>
     public Movement movement;
 
+    [Header("aaarte")]
+
     /// <summary>
     /// referencia del audiomanager
     /// </summary>
     public AudioManager audioM;
 
     /// <summary>
-    /// collider de mi objeto
+    /// referencia del animControler
     /// </summary>
-    public CapsuleCollider coll;
+    public AnimatorController animator;
+
+    [Header("apuntado")]
 
     /// <summary>
     /// Objeto al que se esta apuntando
@@ -36,24 +43,16 @@ abstract public class Character : MyScripts
     public Collider scoped;
 
     /// <summary>
-    /// caracteristicas del objeto al que se apunta en caso de ser interactuable
-    /// </summary>
-    public Interactuable_LogicActive interactuable;
-
-    /// <summary>
     /// Coordenda a la que colisiona el raycast de la vision
     /// </summary>
     public Vector3 scopedPoint;
 
     /// <summary>
-    /// referencia del animControler
+    /// caracteristicas del objeto al que se apunta en caso de ser interactuable
     /// </summary>
-    public AnimatorController animator;
+    public Interactuable_LogicActive interactuable;
 
-    /// <summary>
-    /// Vector que representa las teclas de direccion presionadas
-    /// </summary>
-    public Vector3 input;
+    [Header("Referencias internas")]
 
     /// <summary>
     /// Referencia de todos los timers asociados al character
@@ -74,11 +73,13 @@ abstract public class Character : MyScripts
     /// </summary>
     public List<Vector2Int> powerObjectSpawn = new List<Vector2Int>();
 
+
+    [Header("Poderes")]
+
     /// <summary>
-    /// Debuff que se aplicara al atacar
+    /// Danio que realizara el personaje
     /// </summary>
-    [SerializeField]
-    public List<System.Type> debuffToAplicate = new List<System.Type>();
+    public float damage;
 
     /// <summary>
     /// Lista de poderes que posee el character
@@ -92,9 +93,18 @@ abstract public class Character : MyScripts
     public int actualPower;
 
     /// <summary>
-    /// Danio que realizara el personaje
+    /// Debuff que se aplicara al atacar
     /// </summary>
-    public float damage;
+    [SerializeField]
+    public List<System.Type> debuffToAplicate = new List<System.Type>();
+
+
+    [Header("Movimiento")]
+
+    /// <summary>
+    /// Vector que representa las teclas de direccion presionadas
+    /// </summary>
+    public Vector3 input;
 
     /// <summary>
     /// el impulso que gana para saltar

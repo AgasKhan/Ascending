@@ -50,6 +50,9 @@ public class CSVReader : MonoBehaviour
 
     void Awake()
     {
+        if(instance!=null)
+            return;
+
         instance = this;
         
         ReadCSV(textAssetData);
@@ -70,6 +73,8 @@ public class CSVReader : MonoBehaviour
         SaveProgress(0, myPictionary);
 
         print(LoadProgress(0));
+
+        DontDestroyOnLoad(this);
 
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor;
 using Internal;
 
 [System.Serializable]
@@ -45,7 +46,6 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         {
             return pictionaries[StringIndex(e)].value;
         }
-
         set
         {
             pictionaries[StringIndex(e)].value = value;
@@ -63,7 +63,6 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         {
             return pictionaries[SearchIndex(k)].value;
         }
-
         set
         {
             pictionaries[SearchIndex(k)].value = value;
@@ -76,7 +75,6 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         return ToString("=");
     }
 
-
     public string ToString(string s)
     {
         string salida = "";
@@ -85,7 +83,6 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         {
             salida += item.key + s + item.value + "\n";
         }
-
         return salida;
     }
 
@@ -120,7 +117,6 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
                 return i;
             }
         }
-
         return -1;
     }
 
@@ -133,33 +129,25 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
                 return true;
             }
         }
-
         return false;
     }
 
-    public void AddRange(Pictionary<K, V>[] pic)
+    public void AddRange(IEnumerable<Pictionary<K, V>> pic)
     {
         pictionaries.AddRange(pic);
-        count += pic.Length;
-    }
+        int aux = 0;
+        foreach (var item in pic)
+        {
+            aux++;
+        }
 
-    public void AddRange(List<Pictionary<K, V>> pic)
-    {
-        pictionaries.AddRange(pic);
-        count += pic.Count;
-    }
-
-    public void AddRange(Pictionarys<K, V> pic)
-    {
-        pictionaries.AddRange(pic);
-        count += pic.count;
+        count += aux;
     }
 
     public void Add(K key, V value)
     {
         if (ContainsKey(key))
             return;
-
         pictionaries.Add(new Pictionary<K, V>(key, value));
         count++;
     }
@@ -209,6 +197,7 @@ namespace Internal
     [System.Serializable]
     public class Pictionary<K, V>
     {
+        
         public K key;
         public V value;
 
@@ -220,5 +209,16 @@ namespace Internal
         }
 
     }
+
+    /*
+
+    [CustomPropertyDrawer(typeof(Pictionary<string, GameObject>))]
+    [CustomPropertyDrawer(typeof(Pictionary<string, AudioLink>))]
+    public class Editor : PropertyDrawer
+    {
+
+    }
+
+    */
 
 }

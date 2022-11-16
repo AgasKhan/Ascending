@@ -65,7 +65,7 @@ public class Float_KnifeElements : KnifeElements
         for (int i = 0; i < elements.Count; i++)
         {
             //antiguamente un slerp
-            elements[i].reference.localPosition = Vector3.Lerp(elements[i].reference.localPosition, elements[i].position, Time.deltaTime);
+            elements[i].reference.localPosition = Vector3.Slerp(elements[i].reference.localPosition, elements[i].position, Time.deltaTime*2);
         }
 
         
@@ -81,7 +81,6 @@ public class Float_KnifeElements : KnifeElements
             {
                 //meto la daga en rotacion (hija de float elements)
                 transform.GetChild(i).parent = transform.GetChild(0);
-                move.eneableDrag = false;
             }
         }
             

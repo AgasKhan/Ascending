@@ -30,10 +30,10 @@ public class Attack_KnifeElements : KnifeElements
         return chargePercentage;
     }
 
-    public void Attack()
+    public bool Attack()
     {
         if (knife == null)
-            return;
+            return false;
 
         float atackMultiply=1;
 
@@ -72,6 +72,8 @@ public class Attack_KnifeElements : KnifeElements
         chargePercentage = 0;
 
         PreAttack();
+
+        return true;
     }
 
     public void PreAttack()

@@ -23,6 +23,7 @@ public class Cheats : MonoBehaviour
             {"toxine", Toxine},
             {"stun", Stun},
             {"vortex", Vortex},
+            {"atracction", UnlockAtracction},
             {"teleport", Teleport}
 
         });
@@ -51,6 +52,12 @@ public class Cheats : MonoBehaviour
     void Interact(GameObject g, float f)
     {
         player.timeInteractMultiply = f;
+    }
+
+    void UnlockAtracction(GameObject g)
+    {
+        player.UnlockAtrackt = !player.UnlockAtrackt;
+        ChangeText(g, player.UnlockAtrackt);
     }
 
     void Toxine(GameObject g)
@@ -82,6 +89,14 @@ public class Cheats : MonoBehaviour
         TMPro.TextMeshProUGUI text = g.GetComponentInChildren<TMPro.TextMeshProUGUI>();
 
         text.text = (text.text == "Activate") ? "Deactivate" : "Activate";
+
+    }
+
+    void ChangeText(GameObject g, bool active)
+    {
+        TMPro.TextMeshProUGUI text = g.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+        text.text = active ? "Deactivate" : "Activate";
 
     }
 

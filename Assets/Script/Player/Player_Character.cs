@@ -5,6 +5,9 @@ using System;
 
 public class Player_Character : Character
 {
+    [Space]
+    [Header("Player propertys")]
+    [Space]
     public Float_KnifeElements floatElements;
     public Attack_KnifeElements atackElements;
     public CameraParent cameraScript;
@@ -17,18 +20,21 @@ public class Player_Character : Character
 
     float timePressed;
 
+    int _actualDaggers;
     int _totalDaggers;
     bool _previusOnFloor;
     bool _sprint;
 
     Action inter;
 
-
     public void AttackDist()
     {
         Debug.Log("EL JUGADOR HA ATACADO");
-        atackElements.Attack();
+        if(atackElements.Attack())
+            _actualDaggers--;
+
         MainHud.RemoveAllBuffs();
+        MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
 
     public void Flip()
@@ -39,9 +45,6 @@ public class Player_Character : Character
 
     public void Take()
     {
-        
-        interactuable?.Activate();
-
         if (dagger == null)
             return;
 
@@ -57,8 +60,15 @@ public class Player_Character : Character
         if (dagger.owner == null)
             _totalDaggers++;
 
-        interactuable.diseable = true;
+        if(interactuable)
+            interactuable.diseable = true;
+
+        _actualDaggers++;
+
+        MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
+
+   
 
     public void Interact()
     {
@@ -92,8 +102,6 @@ public class Player_Character : Character
     
     void MyStart()
     {
-        coll = GetComponent<CapsuleCollider>();
-
         animator.functions.AddRange(
            new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
@@ -149,7 +157,9 @@ public class Player_Character : Character
                     if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
                     {
                         animator.Take(timePressed);
-                        inter = Take;
+                        inter = Interact;
+                        inter += Take;
+                        
                     }
                     else
                     {
@@ -203,7 +213,7 @@ public class Player_Character : Character
         else
             _sprint = false;
 
-        if (Controllers.attack.up && Controllers.aim.pressed)
+        if (Controllers.attack.up && Controllers.aim.pressed && _actualDaggers > 0)
             animator.Attack();
 
 
@@ -212,22 +222,33 @@ public class Player_Character : Character
             if (Controllers.aim.pressed)
                 atackElements.ChargeAttack();
 
-            else if(UnlockAtrackt && Controllers.attack.TimePressed()> _totalDaggers)
+            else if(UnlockAtrackt && _actualDaggers < _totalDaggers)
             {
-                foreach (var item in gameObject.FindWithTags("Dagger"))
+                if(Controllers.attack.TimePressed() > _totalDaggers)
                 {
-                    
-                    dagger = item.GetComponent<Dagger_Proyectile>();
-
-                    if(dagger.owner!=null)
+                    foreach (var item in gameObject.FindWithTags("Dagger"))
                     {
-                        Take();
-                    }
-                        
-                }
 
-                Controllers.attack.TimePressed(false);
+                        dagger = item.GetComponent<Dagger_Proyectile>();
+
+                        if (dagger.owner != null)
+                        {
+                            Take();
+                        }
+                    }
+
+                    Controllers.attack.TimePressed(false);
+                }
+                else
+                {
+                    MainHud.DaggerPower(Controllers.attack.TimePressed() / _totalDaggers);
+                }
+                
             }
+        }
+        else if (UnlockAtrackt)
+        {
+            MainHud.DaggerPower(0);
         }
 
         if (Controllers.aim.up)

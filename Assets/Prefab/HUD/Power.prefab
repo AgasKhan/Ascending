@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8060015577398047494}
+  - component: {fileID: 6963947255202320479}
   m_Layer: 5
   m_Name: Power
   m_TagString: Untagged
@@ -188,6 +189,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6963947255202320479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566209890128505654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d79ef9022d43154c90e16c87bb5b33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  back: {fileID: 6767390053537841037}
+  front: {fileID: 858153337079730789}
+  textManager:
+    name: 
+    _id: 0
+    itemText: []
+    isActive: 0
+    textBox: {fileID: 5276644559736325192}
+    timeInScreen:
+      id: 0
+    letters:
+      id: 0
+    inScreen: 1
+    btwLetters: 0.01
+    endFadeOut: 1
+    startFadeIn: 1
+    final: 
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &9146737204617957708
 GameObject:
   m_ObjectHideFlags: 0
