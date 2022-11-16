@@ -5,8 +5,6 @@ using UnityEngine;
 public class VictoryLevelSelector : MonoBehaviour
 {
     MenuManager _refMenuManager;
-    public GameObject refSelectLevelMenu;
-
     private void Start()
     {
         _refMenuManager = MenuManager.instance;
@@ -16,12 +14,10 @@ public class VictoryLevelSelector : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
             return;
-        
-        _refMenuManager.gameObject.SetActive(true);
-
-        refSelectLevelMenu.SetActive(true);
 
         _refMenuManager.OpenCloseMenu();
+
+        _refMenuManager.ChangeMenu(3);        
     }
 
 }

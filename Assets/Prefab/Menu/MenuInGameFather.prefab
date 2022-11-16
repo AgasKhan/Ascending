@@ -3954,6 +3954,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a15ec041935004c95b8af182e54e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menus:
+  - {fileID: 8239874484894426105}
+  - {fileID: 8239874484421852667}
+  - {fileID: 7984830286232676427}
+  - {fileID: 5719405799196789944}
   subMenus:
   - {fileID: 8239874485056395531}
   - {fileID: 8239874483457598097}
@@ -7210,6 +7215,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3bef6a973889f45b22e237ee4fd7ea, type: 3}
+--- !u!1 &7984830286232676427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7975815686256121803, guid: ad3bef6a973889f45b22e237ee4fd7ea, type: 3}
+  m_PrefabInstance: {fileID: 27051065130434432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7984830286232676426 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7975815686256121802, guid: ad3bef6a973889f45b22e237ee4fd7ea, type: 3}
@@ -8929,7 +8939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState

@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
 {
     static public MenuManager instance;
 
+    public GameObject[] menus;
     public GameObject[] subMenus;
     public Button[] levelButtons;
     public string firstLevel;
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public SceneChanger refSceneChanger;
 
 
+    private int _currentMemuPrincipal = 0;
     private int _currentMemu = 0;
     //private string  _currentSubMemu= "GeneralOptionsButton";
     private bool _optionMenuActive = false;
@@ -133,6 +135,16 @@ public class MenuManager : MonoBehaviour
             subMenus[_currentMemu].SetActive(true);
         }
     }
+    public void ChangeMenu(int index)
+    {
+        if (index != _currentMemuPrincipal)
+        {
+            menus[_currentMemuPrincipal].SetActive(false);
+            menus[index].SetActive(true);
+            _currentMemuPrincipal = index;
+        }
+    }
+
 
     public void ChangeSubMenu(int index)
     {
