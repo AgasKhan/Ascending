@@ -208,6 +208,7 @@ abstract public class Character : MyScripts
     {
         if(animator.Dash())
         movement.Dash(animator.transform.forward);
+        movement.eneableDetectFloor = false;
         //coll.height = 1;
     }
 
@@ -216,7 +217,7 @@ abstract public class Character : MyScripts
     /// </summary>
     public void DashEnd()
     {
-        //coll.height = 2;
+        movement.eneableDetectFloor = true;
         animator.Dash(false);
         JumpEnd();
     }

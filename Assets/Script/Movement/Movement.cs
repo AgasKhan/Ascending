@@ -12,6 +12,17 @@ public class Movement : MoveRotAndGlueRb
     /// </summary>
     GameObject _cubeDetect;
 
+    public bool eneableDetectFloor
+    {
+        set
+        {
+            if (value)
+                _layerMask = _originalLayerMask;
+            else
+                _layerMask = _emptyLayerMask;   
+        }
+    }
+
     /// <summary>
     /// Ultima distancia calculada al invocar un isOnFloor
     /// </summary>
@@ -40,6 +51,10 @@ public class Movement : MoveRotAndGlueRb
     /// </summary>
     [SerializeField]
     LayerMask _layerMask;
+
+    LayerMask _originalLayerMask;
+
+    LayerMask _emptyLayerMask;
 
     public float FloorDistance()
     {
@@ -108,6 +123,8 @@ public class Movement : MoveRotAndGlueRb
         boxCollider.convex = true;
 
         boxCollider.isTrigger = true;
+
+        _originalLayerMask = _layerMask;
 
     }
 
