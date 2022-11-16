@@ -586,7 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6376573853284958913, guid: f7a5e6504acd7ac428245b8be3ae2b33, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6376573853284958913, guid: f7a5e6504acd7ac428245b8be3ae2b33, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10717,11 +10717,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6721399565121570471, guid: a44d63fea7982ee4eb2392a406175e35, type: 3}
   m_PrefabInstance: {fileID: 739714930}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &740272183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4411389017868105834, guid: 2cc2b80b9ebdd914f826b294024e0a00, type: 3}
-  m_PrefabInstance: {fileID: 1862545623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &745986798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811719111077074184, guid: 39140fcc9bcd0dd4cbc95bb6ca550129, type: 3}
@@ -13642,7 +13637,7 @@ PrefabInstance:
     - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: refSelectLevelMenu
       value: 
-      objectReference: {fileID: 740272183}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
 --- !u!4 &1031420607 stripped
@@ -18958,7 +18953,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 96f14e9d2383c3147b64bcf95d37babe, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96f14e9d2383c3147b64bcf95d37babe, type: 3}
       propertyPath: m_LocalScale.x
@@ -19098,31 +19093,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1415845503}
   movement: {fileID: 1415845504}
-  coll: {fileID: 0}
-  scoped: {fileID: 0}
-  interactuable: {fileID: 0}
-  scopedPoint: {x: 0, y: 0, z: 0}
+  audioM: {fileID: 0}
   animator: {fileID: 274036829}
-  input: {x: 0, y: 0, z: 0}
+  scoped: {fileID: 0}
+  scopedPoint: {x: 0, y: 0, z: 0}
+  interactuable: {fileID: 0}
   MyCooldowns:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
   powerObjectSpawn: []
+  damage: 10
   power:
   - {fileID: 1943189116}
   actualPower: 0
-  damage: 10
+  input: {x: 0, y: 0, z: 0}
   jumpStrength: 50
   extraJumps: 0
+  maxSpeed: 0
   coyoteTime:
     _totalTime: 2
     _currentTime: 2
   player: {fileID: 0}
   proyectile: {fileID: 4979721168871178402, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
-  attackDelay:
-    _totalTime: 0
-    _currentTime: 0
   patrol:
     reverse: 0
     iPatrulla: 0
@@ -19135,15 +19128,18 @@ MonoBehaviour:
   playerDetF: 0
   detectedRadio: 29.2
   coneOfVision: 90.5
-  minimalDistancePlayer: 9.8
-  waitMetalGear: 7.28
-  attackCooldown: 10
-  deleySearch:
-    _totalTime: 0
-    _currentTime: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 961
+  waitMetalGear: 7.28
+  deleySearch:
+    _totalTime: 0
+    _currentTime: 0
+  attackCooldown: 10
+  attackDelay:
+    _totalTime: 0
+    _currentTime: 0
+  minimalDistancePlayer: 9.8
   _minimalDistance: 2
 --- !u!114 &1415845502
 MonoBehaviour:
@@ -23501,31 +23497,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1790390920}
   movement: {fileID: 1790390921}
-  coll: {fileID: 0}
-  scoped: {fileID: 0}
-  interactuable: {fileID: 0}
-  scopedPoint: {x: 0, y: 0, z: 0}
+  audioM: {fileID: 0}
   animator: {fileID: 1217568875}
-  input: {x: 0, y: 0, z: 0}
+  scoped: {fileID: 0}
+  scopedPoint: {x: 0, y: 0, z: 0}
+  interactuable: {fileID: 0}
   MyCooldowns:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
   powerObjectSpawn: []
+  damage: 10
   power:
   - {fileID: 197755175}
   actualPower: 0
-  damage: 10
+  input: {x: 0, y: 0, z: 0}
   jumpStrength: 50
   extraJumps: 0
+  maxSpeed: 0
   coyoteTime:
     _totalTime: 2
     _currentTime: 2
   player: {fileID: 0}
   proyectile: {fileID: 0}
-  attackDelay:
-    _totalTime: 0
-    _currentTime: 0
   patrol:
     reverse: 0
     iPatrulla: 0
@@ -23538,17 +23532,19 @@ MonoBehaviour:
   playerDetF: 0
   detectedRadio: 20.4
   coneOfVision: 81.4
-  minimalDistancePlayer: 4
-  waitMetalGear: 6.41
-  attackCooldown: 2
-  deleySearch:
-    _totalTime: 0
-    _currentTime: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 4041
+  waitMetalGear: 6.41
+  deleySearch:
+    _totalTime: 0
+    _currentTime: 0
+  attackCooldown: 2
+  attackDelay:
+    _totalTime: 0
+    _currentTime: 0
+  minimalDistancePlayer: 4
   _minimalDistance: 2
-  _flashDistance: 5
 --- !u!114 &1790390919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23710,7 +23706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919127826687303843, guid: c0704024b8a360f48b34232b40316964, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3919127826687303843, guid: c0704024b8a360f48b34232b40316964, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26347,31 +26343,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1972425056}
   movement: {fileID: 1972425057}
-  coll: {fileID: 0}
-  scoped: {fileID: 0}
-  interactuable: {fileID: 0}
-  scopedPoint: {x: 0, y: 0, z: 0}
+  audioM: {fileID: 0}
   animator: {fileID: 874738797}
-  input: {x: 0, y: 0, z: 0}
+  scoped: {fileID: 0}
+  scopedPoint: {x: 0, y: 0, z: 0}
+  interactuable: {fileID: 0}
   MyCooldowns:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
   powerObjectSpawn: []
+  damage: 10
   power:
   - {fileID: 1943189116}
   actualPower: 0
-  damage: 10
+  input: {x: 0, y: 0, z: 0}
   jumpStrength: 50
   extraJumps: 0
+  maxSpeed: 0
   coyoteTime:
     _totalTime: 2
     _currentTime: 2
   player: {fileID: 0}
   proyectile: {fileID: 4979721168871178402, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
-  attackDelay:
-    _totalTime: 0
-    _currentTime: 0
   patrol:
     reverse: 0
     iPatrulla: 0
@@ -26384,15 +26378,18 @@ MonoBehaviour:
   playerDetF: 0
   detectedRadio: 29.2
   coneOfVision: 90.5
-  minimalDistancePlayer: 9.8
-  waitMetalGear: 7.28
-  attackCooldown: 10
-  deleySearch:
-    _totalTime: 0
-    _currentTime: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 961
+  waitMetalGear: 7.28
+  deleySearch:
+    _totalTime: 0
+    _currentTime: 0
+  attackCooldown: 10
+  attackDelay:
+    _totalTime: 0
+    _currentTime: 0
+  minimalDistancePlayer: 9.8
   _minimalDistance: 2
 --- !u!114 &1972425055
 MonoBehaviour:
@@ -28142,6 +28139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ambiente
       objectReference: {fileID: 0}
+    - target: {fileID: 5482123389547445512, guid: a2b4656cc96d8724a9fc6c688eb31594, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: eee222fb92724b3449a467b32d379161, type: 2}
     - target: {fileID: 5482123389547445513, guid: a2b4656cc96d8724a9fc6c688eb31594, type: 3}
       propertyPath: m_RootOrder
       value: 0
