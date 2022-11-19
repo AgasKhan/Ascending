@@ -47,7 +47,6 @@ public class Dagger_Proyectile : Proyectile
     public void SetLine(Vector3 p1, Vector3 p2)
     {
         daggerEffect.SetLine(p1, p2);
-        daggerEffect.enabled = true;
     }
 
     private void Start()
@@ -56,7 +55,7 @@ public class Dagger_Proyectile : Proyectile
         interact = GetComponentInChildren<Interactuable_LogicActive>();
         powerSteal = new List<System.Type>();
         daggerEffect = GetComponentInChildren<DaggerEffect>();
-    } 
+    }
 
     private void OnTriggerEnter(Collider other)
     {

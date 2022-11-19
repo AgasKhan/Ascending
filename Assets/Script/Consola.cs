@@ -15,6 +15,7 @@ public class Consola : MonoBehaviour
 
     public static Consola instancia;
 
+    [SerializeReference]
     List<string> texto;
 
     int pagina = 0;
@@ -22,19 +23,18 @@ public class Consola : MonoBehaviour
     bool actualizar = true;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DebugPrint.Error("");
         DebugPrint.Log("");
         DebugPrint.Warning("");
-
 
         if (instancia != null)
             Destroy(gameObject);
         else
             instancia = this;
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         texto = new List<string>();
 
@@ -65,20 +65,19 @@ public class Consola : MonoBehaviour
             }
 
             arrAux.AddRange( DebugPrint.PrintSalida().Split('\n'));
-            
+
+            aux = "";
+
             for (int i = 0; i <= (arrAux.Count/200); i++)
             {
-                aux = "";
-
-                for (number = 0; number < arrAux.Count && number % 200 != 0 ; number++)
+                for (number = 1; (number <= arrAux.Count && (number % 200) != 0) ; number++)
                 {
-                    aux += "\n" + arrAux[number];
+                    aux += "\n" + arrAux[number-1];
                 }
-
-                aux += "\n\n<color=grey>--------Cambio de frame--------</color>\n\n";
 
                 texto.Add(aux.Trim());
             }
+            texto[texto.Count-1] += "\n\n<color=grey>--------Cambio de frame--------</color>\n\n";
 
             pagina = texto.Count - 1;
             actualizar = true;

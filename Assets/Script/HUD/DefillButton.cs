@@ -12,7 +12,6 @@ public class DefillButton : MonoBehaviour
         if (img.fillAmount <= 0)
             this.enabled = false;
 
-         img.fillAmount -= amount;
-        
+        img.fillAmount -= amount;
     }
 }

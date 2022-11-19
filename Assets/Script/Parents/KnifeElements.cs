@@ -23,6 +23,9 @@ public class KnifeElements : MonoBehaviour
 
         public Dagger_Proyectile daggerScript;
 
+        /// <summary>
+        /// posicion a la que girara estando en orbita
+        /// </summary>
         public Vector3 position;
 
         public MoveRotAndGlueRb movement;

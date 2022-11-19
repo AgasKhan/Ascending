@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Timers : MonoBehaviour
 {
-
     static List<Timer> timersList = new List<Timer>();
+    static List<Routine> routines = new List<Routine>();
 
     /// <summary>
     /// Crea un timer que se almacena en una lista para restarlos de forma automatica
@@ -21,6 +22,20 @@ public class Timers : MonoBehaviour
     }
 
     /// <summary>
+    /// Crea una rutina que ejecutara una funcion al cabo de un tiempo
+    /// </summary>
+    /// <param name="totTime">el tiempo total a esperar</param>
+    /// <param name="action">la funcion que se ejecutara</param>
+    /// <param name="destroy">si se destruye luego de ejecutar la funcion</param>
+    /// <returns>retorna la rutina creada</returns>
+    public static Routine Create(float totTime, Action action, bool destroy=true)
+    {
+        Routine newTimer = new Routine(totTime, action, destroy);
+        routines.Add(newTimer);
+        return newTimer;
+    }
+
+    /// <summary>
     /// Destruye un timer de la lista
     /// </summary>
     /// <param name="timy">El timer que sera destruido</param>
@@ -29,11 +44,28 @@ public class Timers : MonoBehaviour
         timersList.Remove(timy);
     }
 
+    private void OnDestroy()
+    {
+        timersList.Clear();
+        routines.Clear();
+    }
+
     void Update()
     {
         for (int i = 0; i < timersList.Count; i++)
         {
             timersList[i].Substract(Time.deltaTime);
+        }
+
+        for (int i = routines.Count-1; i >= 0; i--)
+        {
+            routines[i].timer.Substract(Time.deltaTime);
+            if(!routines[i].finish && routines[i].execute)
+            {
+                routines[i].Execute();
+                if (routines[i].destroy)
+                    routines.RemoveAt(i);
+            }
         }
     }
 }
@@ -129,4 +161,46 @@ public class Timer
         Start();
         Set(totTim);
     }
+}
+
+
+[System.Serializable] 
+public struct Routine
+{
+    public Timer timer;
+    
+    public Action action;
+
+    public bool destroy;
+
+    public bool execute;
+    
+    public bool finish
+    {
+        get
+        {
+            return timer.Chck();
+        }
+    }
+
+    public void Restart()
+    {
+        timer.Reset();
+        execute = true;
+    }
+
+    public void Execute()
+    {
+        action();
+    }
+
+    public Routine(float timer, Action action, bool destroy = true)
+    {
+        this.timer = new Timer(timer);
+        this.action = action;
+        this.destroy = destroy;
+        execute = true;
+    }
+
+
 }

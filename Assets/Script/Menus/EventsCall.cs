@@ -12,32 +12,20 @@ public class EventsCall : MonoBehaviour
 
     public void Event(GameObject g)
     {
-        print("configurando: " + g.name);
-
-        TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
+        print("\tAccediendo: " + g.name);
 
         if (g.TryGetComponent(out Button b))
         {
-            print("configurado boton");
             b.onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            b.onClick.RemoveAllListeners();
-
-            //UnityEventTools.RemovePersistentListener(b.onClick, 0);
-            b.onClick.AddListener(() => { 
-                menu.eventListVoid[g.name](g);
-            });
-            menu.eventListVoid[g.name](g);
+            b.Event();
+            menu.eventListVoid[b.name](b.gameObject);
             return;
         }
         else if (g.TryGetComponent(out Slider s))
         {
-            print("configurado slider");
             s.onValueChanged.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
-            s.onValueChanged.RemoveAllListeners();
-
-            //UnityEventTools.RemovePersistentListener(s.onValueChanged, 0);
-            s.onValueChanged.AddListener((float f) => { menu.eventListFloat[g.name](g,f); });
-            menu.eventListFloat[g.name](g,s.value);
+            s.Event();
+            menu.eventListFloat[s.name](s.gameObject, s.value);
             return;
         }
 
@@ -47,4 +35,8 @@ public class EventsCall : MonoBehaviour
     {
         menu = MenuManager.instance;
     }
+
+
 }
+
+

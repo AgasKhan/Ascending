@@ -78,6 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 8597218537979649510}
+  off: 0.5
+  velocity: 7.5
 --- !u!120 &8597218537979649510
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -136,6 +138,15 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.09561718
+        inSlope: -0.077431895
+        outSlope: -0.077431895
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.23529416
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

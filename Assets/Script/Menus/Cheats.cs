@@ -10,7 +10,7 @@ public class Cheats : MonoBehaviour
 
     MenuManager menu;
 
-    void Start()
+    void Awake()
     {
         player = GameManager.player;
 

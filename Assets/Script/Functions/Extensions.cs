@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Internal;
 
 
@@ -135,6 +136,41 @@ public static class Extensions
             return "<"+tag+"="+valor+">"+s+"</"+tag+">" ;
         else
             return "<" + tag + ">" + s + "</" + tag + ">";
+    }
+
+    #endregion
+
+    #region eventos botones
+    public static void Event(this Button b)
+    {
+        var menu = MenuManager.instance;
+        
+
+        b.onClick.RemoveAllListeners();
+
+        //UnityEventTools.RemovePersistentListener(b.onClick, 0);
+        b.onClick.AddListener(() => {
+            menu.eventListVoid[b.name](b.gameObject);
+        });
+        //menu.eventListVoid[b.name](b.gameObject);
+
+        DebugPrint.Log("\tboton configurando");
+    }
+
+    public static void Event(this Slider s)
+    {
+        var menu = MenuManager.instance;
+        
+
+        s.onValueChanged.RemoveAllListeners();
+
+        //UnityEventTools.RemovePersistentListener(s.onValueChanged, 0);
+        s.onValueChanged.AddListener((float f) => { 
+            menu.eventListFloat[s.name](s.gameObject, f); 
+        });
+        //menu.eventListFloat[s.name](s.gameObject, s.value);
+
+        DebugPrint.Log("\tslider configurado");
     }
 
     #endregion

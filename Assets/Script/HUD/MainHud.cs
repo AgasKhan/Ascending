@@ -98,7 +98,7 @@ public class MainHud : MonoBehaviour
     {
         foreach (var item in instance.buff)
         {
-            if (item.front == GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon)
+            if (item.front.sprite == GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon)
             {
                 return -1;
             }
@@ -110,6 +110,9 @@ public class MainHud : MonoBehaviour
         instance.buff[instance.iBuff].CrossFadeColor(Color.white, 0.3f, true, false);
         instance.buff[instance.iBuff].CrossFadeAlpha(1, 0.3f, false);
         instance.iBuff++;
+        if (instance.buff.Count == instance.iBuff)
+            instance.iBuff = 0;
+
         return instance.iBuff - 1;
     }
 

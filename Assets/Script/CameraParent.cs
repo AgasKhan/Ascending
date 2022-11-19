@@ -188,6 +188,11 @@ public class CameraParent : MonoBehaviour
             _sensibilityRelationVelocity = m;
     }
 
+    public float Speed()
+    {
+        return _sensibility;
+    }
+
     #endregion
 
     #region funciones de unity

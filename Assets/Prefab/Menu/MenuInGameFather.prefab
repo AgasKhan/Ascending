@@ -678,7 +678,7 @@ MonoBehaviour:
   m_MinValue: 3
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 73
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3988,6 +3988,10 @@ MonoBehaviour:
     pictionaries: []
   eventListString:
     pictionaries: []
+  eventListSliderOn:
+    pictionaries: []
+  eventListButtoOn:
+    pictionaries: []
 --- !u!114 &6367339832481224349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4025,6 +4029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d13b37d6e888964695215e45f0d39c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: {fileID: 24300002, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
 --- !u!1 &8239874483457598097
 GameObject:
   m_ObjectHideFlags: 0
@@ -8939,7 +8944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405594812504817145, guid: 3314492fd93c20349a3a79307af89f19, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState

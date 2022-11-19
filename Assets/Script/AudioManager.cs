@@ -33,14 +33,8 @@ public class AudioManager : MonoBehaviour
             item.value.source.volume = item.value.volume;
             item.value.source.pitch = item.value.pitch;
             item.value.source.loop = item.value.loop;
+            item.value.source.playOnAwake = item.value.onAwake;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
 
@@ -56,6 +50,7 @@ public struct AudioLink
     [Range(-1, 3)]
     public float pitch;
     public bool loop;
+    public bool onAwake;
 
     [HideInInspector]
     public AudioSource source;

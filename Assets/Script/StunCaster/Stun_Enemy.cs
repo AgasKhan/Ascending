@@ -44,7 +44,5 @@ public class Stun_Enemy : Enemy_Character
 
             //ActivePower();
         }
-
-      
     }
 }
