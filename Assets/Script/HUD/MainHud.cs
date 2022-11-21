@@ -15,6 +15,8 @@ public class MainHud : MonoBehaviour
 
     public GameObject buffList;
 
+    public Image puntero;
+
     public Icon dagger;
 
     public List<Icon> power;
@@ -22,6 +24,14 @@ public class MainHud : MonoBehaviour
     public List<Icon> debuff;
 
     public List<Icon> buff;
+
+    public CanvasScaler canvas;
+
+    public Color cancelColor;
+
+    Color originalColor;
+
+    Routine punteroRoutine;
 
     int iDebuff;
 
@@ -31,6 +41,34 @@ public class MainHud : MonoBehaviour
 
     Timer tim;
 
+    static public Image Puntero()
+    {
+        return instance.puntero;
+    }
+
+    static public Vector2 Center()
+    {
+        return (instance.canvas.referenceResolution * (1/2f));
+    }
+
+    static public void PunteroPos()
+    {
+        instance.puntero.rectTransform.position = Center();
+        instance.puntero.color = instance.originalColor;
+    }
+
+    static public void PunteroPos(Vector3 vec)
+    {
+        instance.puntero.rectTransform.position = vec;
+        instance.puntero.color = instance.cancelColor;
+
+        if (instance.punteroRoutine == null || instance.punteroRoutine.finish)
+            instance.punteroRoutine = Timers.Create(0.1f, PunteroPos);
+        else
+            instance.punteroRoutine.Restart();
+
+
+    }
 
     static public void RefreshUI()
     {
@@ -172,6 +210,8 @@ public class MainHud : MonoBehaviour
 
         graphics = GetComponentsInChildren<Graphic>();
 
+        canvas = GetComponent<CanvasScaler>();
+
         power.AddRange(powerList.GetComponentsInChildren<Icon>());
 
         debuff.AddRange(debuffList.GetComponentsInChildren<Icon>());
@@ -200,6 +240,7 @@ public class MainHud : MonoBehaviour
 
     private void Start()
     {
+        originalColor = puntero.color;
         DaggerText(0, 0);
         dagger.textManager.timeInScreen.Stop();
     }

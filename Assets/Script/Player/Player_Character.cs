@@ -31,9 +31,10 @@ public class Player_Character : Character
     {
         Debug.Log("EL JUGADOR HA ATACADO");
         if(atackElements.Attack())
+        {
             _actualDaggers--;
-
-        MainHud.RemoveAllBuffs();
+            MainHud.RemoveAllBuffs();
+        }
         MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
 

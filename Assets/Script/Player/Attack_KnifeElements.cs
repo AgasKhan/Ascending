@@ -100,7 +100,7 @@ public class Attack_KnifeElements : KnifeElements
     {
 
         if(knife!=null)
-        {
+        { 
 
             knife.reference.localPosition = Vector3.Slerp(knife.reference.localPosition, distance + Vector3.forward*(1-chargePercentage), Time.deltaTime);
 
@@ -108,6 +108,17 @@ public class Attack_KnifeElements : KnifeElements
 
             knife.movement.RotateToDir(rot, new Vector3(90,0,0));
 
+            //Debug.DrawRay(knife.reference.position, character.scopedPoint - knife.reference.position, Color.white);
+            Ray ray = new Ray(knife.reference.position, character.scopedPoint - knife.reference.position);
+            RaycastHit raycastHit;
+
+            if(Physics.Raycast(ray , out raycastHit, float.PositiveInfinity, character.cameraScript.layerMask) && !raycastHit.collider.CompareTag("Player") && (Mathf.Abs(raycastHit.point.sqrMagnitude - character.scopedPoint.sqrMagnitude)> (0.05f*0.05f *raycastHit.distance)))
+            {
+                //knife.daggerScript.SetLine(knife.reference.position, raycastHit.point);
+                MainHud.PunteroPos(Camera.main.WorldToScreenPoint(raycastHit.point));
+            }
+            
+            
             //knife.reference.LookAt(character.cameraScript.hitPoint);
         }
 

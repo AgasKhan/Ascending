@@ -35,17 +35,18 @@ public class KnifeElements : MonoBehaviour
             reference = r;
             position = p;
 
-            movement = r.GetComponent<MoveRotAndGlueRb>();
+            reference.localScale = Vector3.one;
 
+            movement = r.GetComponent<MoveRotAndGlueRb>();
             movement.Rotate(Vector3.zero);
             movement.kinematic = true;
+            movement.eneableDrag = false;
 
             daggerScript = r.GetComponent<Dagger_Proyectile>();
-
             daggerScript.pause = true;
             daggerScript.owner = character;
 
-            movement.eneableDrag = false;
+            
 
             //daggerScript.transform.GetChild(0).GetComponent<Interactuable_LogicActive>().diseable = false;
         }

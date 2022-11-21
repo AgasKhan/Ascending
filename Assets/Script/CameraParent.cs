@@ -77,10 +77,10 @@ public class CameraParent : MonoBehaviour
 
 
     [SerializeField]
-    float _rayDetection;
+    public float rayDetection;
 
     [SerializeField]
-    LayerMask _layerMask;
+    public LayerMask layerMask;
 
     [SerializeField]
     LayerMask _layerMaskCameraNotPass;
@@ -203,7 +203,7 @@ public class CameraParent : MonoBehaviour
         Gizmos.DrawSphere(pos, rad);
     }
 
-    private void Start()
+    private void Awake()
     {
         //offSet = transform.GetChild(0).position - character.transform.position;
 
@@ -225,7 +225,6 @@ public class CameraParent : MonoBehaviour
 
     private void LateUpdate()
     {
-
         transform.position = character.transform.position;
 
         if (Quaternion.Euler(_axis) != transform.rotation)
@@ -236,29 +235,26 @@ public class CameraParent : MonoBehaviour
             
         if ((transform.GetChild(0).localPosition + offSetFix) != (offSet + offSetZoom))
         {
-
             offSetPos = Vector3.Lerp(offSetPos, (offSet + offSetZoom), Time.deltaTime * _linearVelocity);
 
             transform.GetChild(0).localPosition = offSetPos - offSetFix;
         }
-         
-               
+        
+        Vector3 camaraPos = new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2, 0);
 
-        Vector3 camaraPos = new Vector3(Camera.main.scaledPixelWidth / 2, Camera.main.scaledPixelHeight / 2, 0);
-
-        Ray ray = Camera.main.ScreenPointToRay(camaraPos);
+        Ray ray = cam.ScreenPointToRay(camaraPos);
 
         Debug.DrawRay(transform.GetChild(0).position, ray.direction, Color.red);
 
         RaycastHit raycastHit;
-        if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity, _layerMask))
+        if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity, layerMask))
         {
             hitPoint = raycastHit.point;
 
-            if (raycastHit.distance < _rayDetection)
+            if (raycastHit.distance < rayDetection)
             {
 
-                float distance = 50 * raycastHit.distance / _rayDetection;
+                float distance = 50 * raycastHit.distance / rayDetection;
 
                 character.scopedPoint = hitPoint;
 
@@ -267,7 +263,7 @@ public class CameraParent : MonoBehaviour
                 pos = hitPoint;
                 rad =  distance;
 
-                Collider[] col = Physics.OverlapSphere(hitPoint, distance, _layerMask);
+                Collider[] col = Physics.OverlapSphere(hitPoint, distance, layerMask);
 
                 Collider interact = null;
 
@@ -288,11 +284,11 @@ public class CameraParent : MonoBehaviour
             }
         }
 
-        ray = new Ray(character.transform.position,transform.rotation*(offSetPos*1.1f));
+        ray = new Ray(character.transform.position,transform.rotation*(offSetPos));
 
         Debug.DrawRay(character.transform.position, ray.direction, Color.white);
 
-        if (Physics.Raycast(ray, out raycastHit, _distance, _layerMaskCameraNotPass))
+        if (Physics.Raycast(ray, out raycastHit, offSetPos.magnitude*1.1f, _layerMaskCameraNotPass))
         {
             if ((raycastHit.point - transform.position).sqrMagnitude < _distance * _distance)
             {
@@ -305,10 +301,9 @@ public class CameraParent : MonoBehaviour
                 if(d < _distance / 1.5f)
                 {
                     Vector3 position = new Vector3(_offsetNormalize.x * -1, _offsetNormalize.y, _offsetNormalize.z) * _distance;
-                    
                     ray = new Ray(character.transform.position, transform.TransformDirection(position));
                     Debug.DrawRay(character.transform.position, ray.direction, Color.black);
-                    if (!Physics.Raycast(ray, out raycastHit, _distance, _layerMask))
+                    if (!Physics.Raycast(ray, out raycastHit, _distance, layerMask))
                     {
                         offSetFix = Vector3.zero;
                         character.Flip();

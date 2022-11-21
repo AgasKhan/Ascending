@@ -8,6 +8,8 @@ public class CameraStart : MoveAndRotTrToPatrol
     [SerializeField]
     float ComeBackVelocity;
 
+    CameraParent cameraParent;
+
     Timer myTimer;
 
     Camera cam;
@@ -21,6 +23,8 @@ public class CameraStart : MoveAndRotTrToPatrol
 
         MyAwakes += MyAwake;
 
+        MyStarts += MyStart;
+
         auxUpdate = MyUpdates + MyUpdate;
 
         MyUpdates = null;
@@ -30,10 +34,18 @@ public class CameraStart : MoveAndRotTrToPatrol
     {
         cam = Camera.main;
 
+        cameraParent = GetComponentInParent<CameraParent>();        
+
         transform.position = patrol.patrol[0].position;
         transform.rotation = patrol.patrol[0].rotation;
 
         StartCoroutine(Wait());
+    }
+
+    void MyStart()
+    {
+        cameraParent.enabled = false;
+        cam.gameObject.SetActive(false);
     }
 
     void MyUpdate()
@@ -70,6 +82,9 @@ public class CameraStart : MoveAndRotTrToPatrol
     {
 
         MyUpdates = null;
+
+        cam.gameObject.SetActive(true);
+        cameraParent.enabled = true;
 
         while (Mathf.Abs((transform.localRotation.eulerAngles - cam.transform.localRotation.eulerAngles).sqrMagnitude)> 0.1  || Mathf.Abs((transform.position - cam.transform.position).sqrMagnitude)> 0.01)
         {

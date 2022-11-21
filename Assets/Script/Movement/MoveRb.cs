@@ -205,6 +205,11 @@ public class MoveRb : FatherMoves
         _myRigid.velocity = new Vector3(_myRigid.velocity.x, 0, _myRigid.velocity.z);
     }
 
+    public void Stop()
+    {
+        _myRigid.velocity = Vector3.zero;
+    }
+
     #endregion
 
 

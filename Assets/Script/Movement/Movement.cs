@@ -12,6 +12,8 @@ public class Movement : MoveRotAndGlueRb
     /// </summary>
     GameObject _cubeDetect;
 
+    MeshCollider _boxCollider;
+
     public bool eneableDetectFloor
     {
         set
@@ -56,8 +58,31 @@ public class Movement : MoveRotAndGlueRb
 
     LayerMask _emptyLayerMask;
 
+    public void OnFloor(Collider other)
+    {
+        if (isOnFloor || other.isTrigger || Time.timeScale == 0)
+            return;
+
+        if (transform.parent == null || glue.transform.parent == null || (glue.transform.parent != null && other.name != glue.transform.parent.name))
+            AddGlue(other.transform);
+
+        lastFloorDistance = 0;
+
+        isOnFloor = true;
+    }
+
     public float FloorDistance()
     {
+        foreach (var item in Physics.OverlapSphere(_cubeDetect.transform.position, 0.1f))
+        {
+            if (!item.gameObject.CompareOneTags(Tag.Player, Tag.Interactuable) && item.name != "Detect floor")
+            {
+                OnFloor(item);
+                lastFloorDistance = 0;
+                return lastFloorDistance;
+            }
+        }
+
         //Creo un raycast que va para abajo
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit raycastHit;
@@ -112,17 +137,17 @@ public class Movement : MoveRotAndGlueRb
 
         _cubeDetect.transform.localScale = new Vector3(_volumeCheckFloor, 0.1f, _volumeCheckFloor);
 
-        MeshCollider boxCollider = _cubeDetect.AddComponent<MeshCollider>();
+        _boxCollider = _cubeDetect.AddComponent<MeshCollider>();
 
         _cubeDetect.layer = 2;//ignore raycast
 
         _cubeDetect.transform.parent = transform;
 
-        boxCollider.sharedMesh = mesh;
+        _boxCollider.sharedMesh = mesh;
 
-        boxCollider.convex = true;
+        _boxCollider.convex = true;
 
-        boxCollider.isTrigger = true;
+        _boxCollider.isTrigger = true;
 
         _originalLayerMask = _layerMask;
 
@@ -148,22 +173,18 @@ public class Movement : MoveRotAndGlueRb
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isOnFloor || other.isTrigger || Time.timeScale==0)
-            return;
-
-        if (transform.parent == null || glue.transform.parent == null || (glue.transform.parent != null && other.name != glue.transform.parent.name))
-            AddGlue(other.transform);
-
-        lastFloorDistance = 0;
-
-        //print(name + " sobre " + other.name);
-
-        isOnFloor = true;
+        OnFloor(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
         isOnFloor = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(_cubeDetect.transform.position, 0.1f);
     }
 
 }

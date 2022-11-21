@@ -60,10 +60,9 @@ public class Timers : MonoBehaviour
         for (int i = routines.Count-1; i >= 0; i--)
         {
             routines[i].timer.Substract(Time.deltaTime);
-            if(!routines[i].finish && routines[i].execute)
+            if(routines[i].finish && routines[i].execute)
             {
-                routines[i].Execute();
-                if (routines[i].destroy)
+                if (routines[i].Execute())
                     routines.RemoveAt(i);
             }
         }
@@ -165,7 +164,7 @@ public class Timer
 
 
 [System.Serializable] 
-public struct Routine
+public class Routine
 {
     public Timer timer;
     
@@ -189,9 +188,11 @@ public struct Routine
         execute = true;
     }
 
-    public void Execute()
+    public bool Execute()
     {
         action();
+        execute = false;
+        return destroy;
     }
 
     public Routine(float timer, Action action, bool destroy = true)

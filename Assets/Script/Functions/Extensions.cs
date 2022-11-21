@@ -126,6 +126,11 @@ public static class Extensions
     {
         return new Vector2(v.x,v.y);
     }
+
+    static public Vector3 Vec2to3(this Vector2 v, float z)
+    {
+        return new Vector3(v.x, v.y, z);
+    }
     #endregion
 
     #region string

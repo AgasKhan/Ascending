@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     public float currentTime;
 
+    int minFps=900, maxFps=0;
+
+    List<int> media = new List<int>();
+
     public static bool saveTime
     {
         get
@@ -61,9 +65,44 @@ public class GameManager : MonoBehaviour
         enemys.Add(enemy);
     }
 
-    private void Update()
+    public string FPS()
     {
-        TextCanvas.SrchMessages("debug").ShowText(false, (Mathf.Round(1/Time.unscaledDeltaTime)).ToString() + " Fps");
+        int fps = (int)(Mathf.Round(1 / Time.unscaledDeltaTime));
+        int promedio;
+        int suma = 0;
+
+        if (minFps > fps && fps>5)
+            minFps = fps;
+        else if (maxFps < fps)
+            maxFps = fps;
+
+        if (media.Count > 180)
+            media.RemoveAt(0);
+
+        media.Add(fps);
+
+        foreach (var item in media)
+        {
+            suma += item;
+        }
+
+        promedio = suma / media.Count;
+
+
+        string aux =  fps + "\tFps\t\t" +
+             "\n" +
+            maxFps + "\tmaximo\t" +
+            "\n" +
+            minFps + "\tminimo\t" +
+            "\n" +
+            promedio + "\tmedia\t\t";
+
+        return aux;
+    }
+
+    private void Update()
+    {      
+        TextCanvas.SrchMessages("debug").ShowText(false, FPS());
 
         if (!saveTime)
             return;
