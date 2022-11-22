@@ -15,12 +15,17 @@ public class MenuManager : MonoBehaviour
     public GameObject[] menus;
     public GameObject[] subMenus;
     public Button[] levelButtons;
+    public GameObject[] previews;
+    public Sprite[] previewImages;
+    public Image imageToChange;
     public string firstLevel;
     public GameObject gamePausedMenu;
     public SceneChanger refSceneChanger;
 
     private int _currentMemuPrincipal = 0;
     private int _currentMemu = 0;
+    private int _currentPreview = 0;
+    
     //private string  _currentSubMemu= "GeneralOptionsButton";
     private bool _inGame = true;
 
@@ -45,7 +50,7 @@ public class MenuManager : MonoBehaviour
 
                 if (aux != null)
                 {
-                    aux.text = number.ToString();
+                    aux.text = "Play Level  " + number.ToString();
 
                     levelButtons[i].onClick.RemoveAllListeners();
                     levelButtons[i].onClick.AddListener(() =>  //Funcion Lambda
@@ -210,6 +215,25 @@ public class MenuManager : MonoBehaviour
 
 
         refSceneChanger.Load(level);
+    }
+
+    public void CloseMainMenus()
+    {
+        menus[_currentMemuPrincipal].SetActive(false);
+        menus[0].SetActive(true);
+        _currentMemuPrincipal = 0;
+    }
+
+
+    public void ChangePreviews(int index)
+    {
+        if (index != _currentPreview)
+        {
+            previews[_currentPreview].SetActive(false);
+            previews[index].SetActive(true);
+            imageToChange.sprite = previewImages[index];
+            _currentPreview = index;
+        }
     }
 
 }
