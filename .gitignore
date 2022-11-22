@@ -73,4 +73,5 @@ crashlytics-build.properties
 
 
 # Que ignore todas las carpetas dentro de las scenas
+/[Aa]ssets/Scenes/*/*.*
 /[Aa]ssets/Scenes/*/*
