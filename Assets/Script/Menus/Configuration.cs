@@ -24,7 +24,7 @@ public class Configuration : MonoBehaviour
             {"sens", CameraSpeed},
             {"Master", ChangeVolumeLevel},
             {"Ambiental", ChangeVolumeLevel},
-            {"Effect", ChangeVolumeLevel}
+            {"Effects", ChangeVolumeLevel}
         });
 
         menu.eventListSliderOn.AddRange(new Pictionarys<string, System.Action<Slider>>()
@@ -32,7 +32,14 @@ public class Configuration : MonoBehaviour
             {"sens", CameraSpeed},
             {"Master", LoadVolumeLevel},
             {"Ambiental", LoadVolumeLevel},
-            {"Effect", LoadVolumeLevel}
+            {"Effects", LoadVolumeLevel}
+        });
+
+        menu.eventListVoid.AddRange(new Pictionarys<string, System.Action<GameObject>>()
+        {
+
+            {"Mute", Mute}
+
         });
     }
 
@@ -66,9 +73,48 @@ public class Configuration : MonoBehaviour
 
     void ChangeVolume(float volume, string name)
     {
+        if (volume == 0)
+            volume = 0.0001f;
         var value = Mathf.Log10(volume) * 20;
         group.audioMixer.SetFloat(name, value);
     }
 
+    void Mute(GameObject g)
+    {
+        //menu.eventListFloat["Master"](0.01f);
+        if(ChangeText(g))
+            ChangeVolume(1f, "Master");
+        else
+            ChangeVolume(0, "Master");
 
+    }
+
+    //////////////////////////////////
+    ///hacer herencia con configuration
+    ///
+    bool ChangeText(GameObject g)
+    {
+        TMPro.TextMeshProUGUI text = g.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+        //text.text = (text.text == "Activate") ? "Deactivate" : "Activate";
+
+        if((text.text == "Activate"))
+        {
+            text.text = "Deactivate";
+            return false;
+        }
+        else
+        {
+            text.text = "Activate";
+            return true;
+        }
+
+    }
+
+    void ChangeText(GameObject g, bool active)
+    {
+        TMPro.TextMeshProUGUI text = g.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+        text.text = active ? "Deactivate" : "Activate";
+    }
 }

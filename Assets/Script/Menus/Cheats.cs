@@ -84,6 +84,10 @@ public class Cheats : MonoBehaviour
         player.ReplaceFirstPower<Teleport_Powers>();
     }
 
+    //////////////////////////////////
+    ///hacer herencia con configuration
+    ///
+
     void ChangeText(GameObject g)
     {
         TMPro.TextMeshProUGUI text = g.GetComponentInChildren<TMPro.TextMeshProUGUI>();
