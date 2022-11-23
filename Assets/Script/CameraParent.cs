@@ -237,7 +237,8 @@ public class CameraParent : MonoBehaviour
         {
             offSetPos = Vector3.Lerp(offSetPos, (offSet + offSetZoom), Time.deltaTime * _linearVelocity);
 
-            transform.GetChild(0).localPosition = offSetPos - offSetFix;
+
+            transform.GetChild(0).localPosition = offSetPos - (offSetFix);
         }
         
         Vector3 camaraPos = new Vector3(cam.scaledPixelWidth / 2, cam.scaledPixelHeight / 2, 0);
@@ -296,8 +297,9 @@ public class CameraParent : MonoBehaviour
 
                 float proporcionalDistance = (1 - (cam.transform.localPosition.sqrMagnitude / (_distance * _distance)));
 
-                offSetFix = offSetPos.normalized*_distance - _offsetNormalize * (d- 0.5f) - Vector3.up*0.5f* proporcionalDistance;
+                offSetFix = offSetPos.normalized * _distance - _offsetNormalize * (d - 0.5f) - transform.InverseTransformVector(Vector3.up * proporcionalDistance);//- Vector3.up* proporcionalDistance;
                 
+                /*
                 if(d < _distance / 1.5f)
                 {
                     Vector3 position = new Vector3(_offsetNormalize.x * -1, _offsetNormalize.y, _offsetNormalize.z) * _distance;
@@ -309,6 +311,7 @@ public class CameraParent : MonoBehaviour
                         character.Flip();
                     }
                 }
+                */
             }
         }
         else

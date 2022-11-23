@@ -64,6 +64,20 @@ public class Float_KnifeElements : KnifeElements
                 move.Stop();
                 move.kinematic = true;
                 transform.GetChild(i).parent = transform.GetChild(0);
+                Timers.Create(0.1f, ()=> {
+
+                    bool chck = true;
+                    
+                    foreach (var item in elements)
+                    {
+                        if (item.reference == move.transform)
+                            chck = false;
+                    }
+
+                    if(chck && Other.transform.childCount>0 && Other.transform.GetChild(0) != move.transform)
+                        move.transform.localPosition = distance;
+
+                });
             }
         }
 

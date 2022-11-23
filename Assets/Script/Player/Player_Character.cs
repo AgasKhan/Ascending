@@ -51,12 +51,12 @@ public class Player_Character : Character
 
         dagger.MoveRb.kinematic = false;
 
-        if (dagger.gameObject.transform.parent != null && dagger.gameObject.transform.parent != floatElements.transform)
+        if (dagger.transform.parent != null && dagger.transform.parent != floatElements.transform)
         {
             print(dagger.gameObject.transform.parent.name);
         }
 
-        dagger.gameObject.transform.parent = floatElements.transform;
+        dagger.transform.parent = floatElements.transform;
 
         if (dagger.owner == null)
             _totalDaggers++;
@@ -65,6 +65,8 @@ public class Player_Character : Character
             interactuable.diseable = true;
 
         _actualDaggers++;
+        if (_actualDaggers > _totalDaggers)
+            _actualDaggers = _totalDaggers;
 
         MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
@@ -223,6 +225,7 @@ public class Player_Character : Character
             if (Controllers.aim.pressed)
                 atackElements.ChargeAttack();
 
+            //poder de atraer las dagas
             else if(UnlockAtrackt && _actualDaggers < _totalDaggers)
             {
                 if(Controllers.attack.TimePressed() > _totalDaggers)

@@ -382,7 +382,7 @@ MonoBehaviour:
   journeyTime: 200
   character: {fileID: 8202150891239359146}
   Other: {fileID: 8202150890860376913}
-  distance: {x: 0.5, y: 1, z: 0}
+  distance: {x: 0.5, y: 0.65, z: 0.6}
   UnlockHitScan: 0
   maxPressedTime: 5
   relationXtime: 1

@@ -351,7 +351,7 @@ MonoBehaviour:
   _linearVelocity: 6
   _sensibilityRelationVelocity: 0.8
   _sensibility: 10
-  rayDetection: 50
+  rayDetection: 100
   layerMask:
     serializedVersion: 2
     m_Bits: 993
