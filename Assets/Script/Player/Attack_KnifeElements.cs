@@ -112,7 +112,7 @@ public class Attack_KnifeElements : KnifeElements
             Ray ray = new Ray(knife.reference.position, character.scopedPoint - knife.reference.position);
             RaycastHit raycastHit;
 
-            if(Physics.Raycast(ray , out raycastHit, float.PositiveInfinity, character.cameraScript.layerMask) && !raycastHit.collider.CompareTag("Player") && (Mathf.Abs(raycastHit.point.sqrMagnitude - character.scopedPoint.sqrMagnitude)> (0.05f*0.05f *raycastHit.distance)))
+            if(Physics.Raycast(ray , out raycastHit, 10, character.cameraScript.layerMask) && !raycastHit.collider.CompareTag("Player") && (Mathf.Abs(raycastHit.point.sqrMagnitude - character.scopedPoint.sqrMagnitude)> (0.05f*0.05f *raycastHit.distance)))
             {
                 //knife.daggerScript.SetLine(knife.reference.position, raycastHit.point);
                 MainHud.PunteroPos(Camera.main.WorldToScreenPoint(raycastHit.point));
