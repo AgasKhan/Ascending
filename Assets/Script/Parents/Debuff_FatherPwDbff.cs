@@ -62,16 +62,28 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
 
             AddCooldown(dbffTimerName, dbffTimer ,p);
 
-            AddObjRef("Particle", instanceParticle, p);
+            AddObjRef(particlesName.name, instanceParticle, p);
 
             chrAffected.Add(p);
 
             Aplicate(p);
+
+ 
         }
         else
         {
             chrAffected[i].MyCooldowns[dbffTimerName].Reset();
         }
+
+        var part = chrAffected[i].MyObjReferences[particlesName.name].GetComponentInChildren<ParticleSystem>();
+
+        part.Stop();
+
+        Timers.Create(1, ()=> {
+            var partMain = part.main;
+            partMain.duration = (dbffTimer - partMain.startLifetime.constant / partMain.simulationSpeed) * partMain.simulationSpeed;
+            part.Play();
+        });
     }
 
     /// <summary>
@@ -137,6 +149,11 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
             instances = new List<Debuff_FatherPwDbff>();
 
         instances.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        instances.Clear();
     }
 
     private void Start()

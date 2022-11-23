@@ -18,8 +18,8 @@ public class Vortex : EffectArea
 
     void MyAwake()
     {
-
         _myScale = transform.lossyScale.x;
+
     }
 
     private void OnTriggerStay (Collider other)

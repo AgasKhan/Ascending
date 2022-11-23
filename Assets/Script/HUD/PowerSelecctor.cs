@@ -29,7 +29,7 @@ public class PowerSelecctor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).shortNameHash == Animator.StringToHash("Deactive"))
+        if(animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash("New"))
         {
             transform.position = Vector3.Lerp(transform.position, powerSlctrPos, velocity * Time.deltaTime);
 

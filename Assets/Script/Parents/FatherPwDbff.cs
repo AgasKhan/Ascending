@@ -146,4 +146,9 @@ abstract public class FatherPwDbff : MonoBehaviour
                 on_Update(chrAffected[i]);
             }
     }
+
+    private void OnDestroy()
+    {
+        keys.Clear();
+    }
 }

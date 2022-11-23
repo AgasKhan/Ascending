@@ -53,6 +53,8 @@ public abstract class EffectArea : MyScripts
     protected List<Affected> affected = new List<Affected>();
     protected Timer toDeactivate;
 
+    protected ParticleSystem particle;
+
     string strTimer = "areaEffect-";
 
     protected void ChckAddAffected(GameObject g)
@@ -97,6 +99,7 @@ public abstract class EffectArea : MyScripts
     private void OnEnable()
     {
         toDeactivate.Reset();
+        particle.Play();
     }
 
     private void OnDisable()
@@ -108,6 +111,8 @@ public abstract class EffectArea : MyScripts
         }*/
 
         affected.Clear();
+        particle.Stop();
+
     }
 
 
@@ -125,6 +130,14 @@ public abstract class EffectArea : MyScripts
         toDeactivate = Timers.Create(toDestroy);
 
         strTimer += GetType().FullName+"-"+GetInstanceID();
+
+        particle = GetComponentInChildren<ParticleSystem>();
+
+        particle.Stop();
+
+        var part = particle.main;
+
+        part.duration = (toDestroy- part.startLifetime.constant/ part.simulationSpeed) * part.simulationSpeed;
 
     }
 

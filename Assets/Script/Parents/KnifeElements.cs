@@ -13,7 +13,7 @@ public class KnifeElements : MonoBehaviour
     public Vector3 distance;
 
     [SerializeField]
-    protected static List<Knifes> elements = new List<Knifes>();
+    protected static List<Knifes> elements;
 
 
     [System.Serializable]
@@ -54,6 +54,7 @@ public class KnifeElements : MonoBehaviour
 
     private void Start()
     {
+        elements = new List<Knifes>();
         character = transform.parent.GetComponent<Player_Character>();
     }
 }
