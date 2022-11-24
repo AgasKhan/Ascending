@@ -43,13 +43,18 @@ public class Configuration : MonoBehaviour
         });
     }
 
-    void CameraSpeed(GameObject g,float f)
+    void CameraSpeed(GameObject g, float f)
     {
+        if (player == null)
+            return;
+
         player.cameraScript.Speed(f);
     }
 
     void CameraSpeed(Slider s)
     {
+        if (player == null)
+            return;
         s.value = player.cameraScript.Speed();
     }
 

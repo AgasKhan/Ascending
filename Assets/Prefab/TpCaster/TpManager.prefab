@@ -66,7 +66,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-    pictionaries: []
+    pictionaries:
+    - key: PoweredDagger
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 31c984c17dda42044a0971ed16361268, type: 3}
+        volume: 0.1
+        pitch: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &6189983968164755287
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,31 +272,28 @@ MonoBehaviour:
   health: {fileID: 6224131914311227713}
   movement: {fileID: 5707178966906931399}
   audioM: {fileID: 0}
-  coll: {fileID: 0}
-  scoped: {fileID: 0}
-  interactuable: {fileID: 0}
-  scopedPoint: {x: 0, y: 0, z: 0}
   animator: {fileID: 7069256250842545173}
-  input: {x: 0, y: 0, z: 0}
+  scoped: {fileID: 0}
+  scopedPoint: {x: 0, y: 0, z: 0}
+  interactuable: {fileID: 0}
   MyCooldowns:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
   powerObjectSpawn: []
+  damage: 10
   power:
   - {fileID: 3964794863873392580}
   actualPower: 0
-  damage: 10
+  input: {x: 0, y: 0, z: 0}
   jumpStrength: 50
   extraJumps: 0
+  maxSpeed: 0
   coyoteTime:
     _totalTime: 2
     _currentTime: -0.010872848
   player: {fileID: 0}
   proyectile: {fileID: 0}
-  attackDelay:
-    _totalTime: 0
-    _currentTime: 0
   patrol:
     reverse: 0
     iPatrulla: 0
@@ -300,15 +306,18 @@ MonoBehaviour:
   playerDetF: 0
   detectedRadio: 20.4
   coneOfVision: 81.4
-  minimalDistancePlayer: 4
-  waitMetalGear: 6.41
-  attackCooldown: 2
-  deleySearch:
-    _totalTime: 0
-    _currentTime: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 4041
+  waitMetalGear: 6.41
+  deleySearch:
+    _totalTime: 0
+    _currentTime: 0
+  attackCooldown: 2
+  attackDelay:
+    _totalTime: 0
+    _currentTime: 0
+  minimalDistancePlayer: 4
   _minimalDistance: 2
 --- !u!195 &6540944138226449917
 NavMeshAgent:

@@ -80,6 +80,7 @@ MonoBehaviour:
   line: {fileID: 8597218537979649510}
   off: 0.5
   velocity: 7.5
+  time: 0
 --- !u!120 &8597218537979649510
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -546,7 +547,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-    pictionaries: []
+    pictionaries:
+    - key: ImpactEnemy
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 0e5ab3a42585c114da29a3da9f61b2aa, type: 3}
+        volume: 0
+        pitch: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: ImpactWall
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 80c5b391509ae9442b30ea5e13def8f7, type: 3}
+        volume: 0
+        pitch: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: ImpactTpObject
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 80cfaa7358c7e9d46a228855ce6086a0, type: 3}
+        volume: 0
+        pitch: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1001 &6588912429797445487
 PrefabInstance:
   m_ObjectHideFlags: 0

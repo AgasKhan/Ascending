@@ -148,7 +148,10 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         Controllers.eneable = false;
-        player = (gameObject.FindWithTags("Player")[0]).GetComponent<Player_Character>();
+
+        var listPlayer = gameObject.FindWithTags("Player");
+        if (listPlayer.Length > 0)
+            player = listPlayer[0].GetComponent<Player_Character>();
     }
 
 
