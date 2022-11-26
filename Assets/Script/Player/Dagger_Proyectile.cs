@@ -8,6 +8,8 @@ public class Dagger_Proyectile : Proyectile
 
     public DaggerEffect daggerEffect;
 
+    public AudioManager audioM;
+
     Interactuable_LogicActive interact;
 
     Collider[] colliders;
@@ -55,6 +57,7 @@ public class Dagger_Proyectile : Proyectile
         interact = GetComponentInChildren<Interactuable_LogicActive>();
         powerSteal = new List<System.Type>();
         daggerEffect = GetComponentInChildren<DaggerEffect>();
+        audioM = GetComponent<AudioManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,6 +67,7 @@ public class Dagger_Proyectile : Proyectile
             Character aux;
             gameObject.transform.parent = other.transform;
             MoveRb.kinematic = true;
+            ImpactWallSound();
 
             if ((aux = other.gameObject.GetComponent<Character>()) != null)
             {
@@ -86,5 +90,19 @@ public class Dagger_Proyectile : Proyectile
 
             CasterObject();
         }
+    }
+
+
+    public void ImpactEnemySound()
+    {
+        audioM.Play("ImpactEnemy");
+    }
+    public void ImpactWallSound()
+    {
+        audioM.Play("ImpactWall");
+    }
+    public void ImpactTpSound()
+    {
+        audioM.Play("ImpactTpObject");
     }
 }

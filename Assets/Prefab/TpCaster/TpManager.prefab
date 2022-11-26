@@ -66,16 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-    pictionaries:
-    - key: PoweredDagger
-      value:
-        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 31c984c17dda42044a0971ed16361268, type: 3}
-        volume: 0.1
-        pitch: 0
-        loop: 0
-        onAwake: 0
-        source: {fileID: 0}
+    pictionaries: []
 --- !u!1 &6189983968164755287
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +345,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-    pictionaries: []
+    pictionaries:
+    - key: EnemyDash
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1001 &7069256251896085052
 PrefabInstance:
   m_ObjectHideFlags: 0

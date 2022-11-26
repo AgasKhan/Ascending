@@ -341,34 +341,28 @@ MonoBehaviour:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 21d52df9492f5f143888664bde4eabcd, type: 3}
         volume: 0.2
-        pitch: 0
+        pitch: 1
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
     - key: CallDagger
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 0a00202b11a3cc44193db220b9b17400, type: 3}
+        clip: {fileID: 8300000, guid: 1b297efe10352084e84dff7f6ff62608, type: 3}
         volume: 0.2
-        pitch: 0
+        pitch: 1
+        maxDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
     - key: Attack
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 2003a9f0a7b2bac4f90638a332c19fd7, type: 3}
+        clip: {fileID: 8300000, guid: 082ddaa2c82317e4f91997c99c01b437, type: 3}
         volume: 0.2
-        pitch: 0
-        loop: 0
-        onAwake: 0
-        source: {fileID: 0}
-    - key: Steps
-      value:
-        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 47cbfb3bde5e34a44b59055f564caaa7, type: 3}
-        volume: 0.2
-        pitch: 0
+        pitch: 1
+        maxDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -377,7 +371,98 @@ MonoBehaviour:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
         volume: 0.2
-        pitch: 0
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: ChargeDagger
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 5a10c935ff02a7740b0ef8feb4563fa0, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Dash
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 1e6d8650eade13348b5b531f40a307d6, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Defeat
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 68ed02f29b6da1c4abff01f4186b70f7, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Victory
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 201a672e48068cc438a2d8e0042da3f2, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: StepRight1
+      value:
+        mixer: {fileID: -8696892227603033050, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: a209b75416e8bb44eb2f2bd24172c605, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: StepRight2
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 90250d7b2772b994c9c73a6295414142, type: 3}
+        volume: 0
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: StepLeft1
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 1ab49ee5b603b1545bf1a64675800dcb, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: StepLeft2
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 36b41846ff874224d981599b18c22ad8, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Land
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 66389f9d9710241428b2b807a6cdf8b8, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}

@@ -4606,6 +4606,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -387250342658785765, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.mixer
+      value: 
+      objectReference: {fileID: -8696892227603033050, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+    - target: {fileID: -387250342658785765, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.onAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3817348925448142, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -158.19
@@ -4626,9 +4634,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 303.688
       objectReference: {fileID: 0}
+    - target: {fileID: 2452465430760586558, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452465430760586558, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[1].value.pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3048438701030696611, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081681019466560169, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].key
+      value: EnemyDash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.mixer
+      value: 
+      objectReference: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.maxDistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5209663062771025065, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_IsActive
@@ -4681,6 +4729,30 @@ PrefabInstance:
     - target: {fileID: 5392585505252732387, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].key
+      value: Power
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+    - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.mixer
+      value: 
+      objectReference: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+    - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: audios.pictionaries.Array.data[0].value.volume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8160019945717223739, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6935,7 +7007,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh215452
+  m_Name: pb_Mesh32368
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17036,6 +17108,7 @@ GameObject:
   - component: {fileID: 1382558116}
   - component: {fileID: 1382558115}
   - component: {fileID: 1382558114}
+  - component: {fileID: 1382558123}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (1)
   m_TagString: Untagged
@@ -17284,6 +17357,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382558112}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1382558123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382558112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &1384336854
 GameObject:
   m_ObjectHideFlags: 0
@@ -18523,6 +18620,7 @@ GameObject:
   - component: {fileID: 1501421817}
   - component: {fileID: 1501421816}
   - component: {fileID: 1501421815}
+  - component: {fileID: 1501421824}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (2)
   m_TagString: Untagged
@@ -18768,6 +18866,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501421813}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1501421824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501421813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1001 &1512416788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18835,7 +18957,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32700
+  m_Name: pb_Mesh379884
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20359,7 +20481,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1376038
+  m_Name: pb_Mesh-614626
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20889,7 +21011,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1371602
+  m_Name: pb_Mesh-610172
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

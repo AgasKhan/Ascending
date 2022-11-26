@@ -470,7 +470,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227736
+  m_Name: pb_Mesh67922
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1903,6 +1903,7 @@ GameObject:
   - component: {fileID: 234192155}
   - component: {fileID: 234192154}
   - component: {fileID: 234192153}
+  - component: {fileID: 234192162}
   m_Layer: 9
   m_Name: Enemigo Tp Variant (2)
   m_TagString: Untagged
@@ -2155,6 +2156,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234192151}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &234192162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234192151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: EnemyDash
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &251946118
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,7 +3762,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228170
+  m_Name: pb_Mesh68356
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4880,6 +4905,7 @@ GameObject:
   - component: {fileID: 324833667}
   - component: {fileID: 324833666}
   - component: {fileID: 324833665}
+  - component: {fileID: 324833674}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (5)
   m_TagString: Untagged
@@ -5125,6 +5151,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324833663}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &324833674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324833663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &335474752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5456,6 +5506,7 @@ GameObject:
   - component: {fileID: 336573436}
   - component: {fileID: 336573435}
   - component: {fileID: 336573434}
+  - component: {fileID: 336573443}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (3)
   m_TagString: Untagged
@@ -5701,6 +5752,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336573432}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &336573443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336573432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1001 &352078966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5764,7 +5839,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227806
+  m_Name: pb_Mesh67992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5928,7 +6003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227662
+  m_Name: pb_Mesh67848
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6092,7 +6167,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228260
+  m_Name: pb_Mesh68446
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6256,7 +6331,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228280
+  m_Name: pb_Mesh68466
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6420,7 +6495,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228158
+  m_Name: pb_Mesh68344
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6584,7 +6659,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228468
+  m_Name: pb_Mesh68656
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9123,7 +9198,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227688
+  m_Name: pb_Mesh67874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9630,7 +9705,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227912
+  m_Name: pb_Mesh68098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10221,7 +10296,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227840
+  m_Name: pb_Mesh68026
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10385,7 +10460,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227862
+  m_Name: pb_Mesh68048
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13812,6 +13887,7 @@ GameObject:
   - component: {fileID: 880067101}
   - component: {fileID: 880067100}
   - component: {fileID: 880067099}
+  - component: {fileID: 880067108}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (4)
   m_TagString: Untagged
@@ -14057,6 +14133,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880067097}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &880067108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880067097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!4 &883139196
 Transform:
   m_ObjectHideFlags: 0
@@ -14691,7 +14791,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227822
+  m_Name: pb_Mesh68008
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15168,7 +15268,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228216
+  m_Name: pb_Mesh68402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15514,7 +15614,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227590
+  m_Name: pb_Mesh67776
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16263,7 +16363,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228368
+  m_Name: pb_Mesh68556
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16606,6 +16706,7 @@ GameObject:
   - component: {fileID: 1220386289}
   - component: {fileID: 1220386288}
   - component: {fileID: 1220386287}
+  - component: {fileID: 1220386296}
   m_Layer: 9
   m_Name: Enemigo Tp Variant (1)
   m_TagString: Untagged
@@ -16852,6 +16953,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220386285}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1220386296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220386285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: EnemyDash
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!114 &1226345315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16901,6 +17026,7 @@ GameObject:
   - component: {fileID: 1227179319}
   - component: {fileID: 1227179318}
   - component: {fileID: 1227179317}
+  - component: {fileID: 1227179326}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (1)
   m_TagString: Untagged
@@ -17146,6 +17272,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227179315}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1227179326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227179315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1001 &1243379695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17765,7 +17915,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228230
+  m_Name: pb_Mesh68416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17929,7 +18079,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228122
+  m_Name: pb_Mesh68308
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18406,7 +18556,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-616720
+  m_Name: pb_Mesh-159740
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18628,7 +18778,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227570
+  m_Name: pb_Mesh67756
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18792,7 +18942,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228424
+  m_Name: pb_Mesh68612
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20675,7 +20825,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227976
+  m_Name: pb_Mesh68162
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20844,7 +20994,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227618
+  m_Name: pb_Mesh67804
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21423,7 +21573,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228244
+  m_Name: pb_Mesh68430
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21900,7 +22050,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227784
+  m_Name: pb_Mesh67970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22747,7 +22897,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228014
+  m_Name: pb_Mesh68200
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22911,7 +23061,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228106
+  m_Name: pb_Mesh68292
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26039,7 +26189,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227604
+  m_Name: pb_Mesh67790
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26203,7 +26353,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227702
+  m_Name: pb_Mesh67888
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27017,7 +27167,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227888
+  m_Name: pb_Mesh68074
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27181,7 +27331,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh227900
+  m_Name: pb_Mesh68086
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27350,7 +27500,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh228292
+  m_Name: pb_Mesh68478
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27637,6 +27787,7 @@ GameObject:
   - component: {fileID: 2013210794}
   - component: {fileID: 2013210793}
   - component: {fileID: 2013210792}
+  - component: {fileID: 2013210801}
   m_Layer: 9
   m_Name: Enemigo Toxico Variant (2)
   m_TagString: Untagged
@@ -27882,13 +28033,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013210790}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2013210801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013210790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!43 &2026196230
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-616818
+  m_Name: pb_Mesh-159838
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -29231,6 +29406,7 @@ GameObject:
   - component: {fileID: 2114209998}
   - component: {fileID: 2114209997}
   - component: {fileID: 2114209996}
+  - component: {fileID: 2114210005}
   m_Layer: 9
   m_Name: Enemigo Tp Variant (3)
   m_TagString: Untagged
@@ -29477,6 +29653,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114209994}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2114210005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114209994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: EnemyDash
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
+        volume: 0.2
+        pitch: 1
+        maxDistance: 10
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &401863623167006539
 GameObject:
   m_ObjectHideFlags: 0

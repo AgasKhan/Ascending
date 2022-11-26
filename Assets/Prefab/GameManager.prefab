@@ -82,6 +82,7 @@ MonoBehaviour:
   maxLevelTimer: 120
   saveTimeP: 0
   currentTime: 0
+  audioM: {fileID: 0}
 --- !u!114 &5392585505252732384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +157,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-    pictionaries: []
+    pictionaries:
+    - key: BackgroundMusic
+      value:
+        mixer: {fileID: -8696892227603033050, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 8f158b81ddf2a3c47a552f0a1ea4df36, type: 3}
+        volume: 0.2
+        pitch: 1
+        loop: 1
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1001 &2655166064048039528
 PrefabInstance:
   m_ObjectHideFlags: 0

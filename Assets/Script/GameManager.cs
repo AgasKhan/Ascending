@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public float currentTime;
 
+    public AudioManager audioM;
+
     int minFps=900, maxFps=0;
 
     List<int> media = new List<int>();
@@ -158,6 +160,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentTime -= Time.realtimeSinceStartup;
+        audioM = GetComponent<AudioManager>();
+        BackgroundMusic();
     }
 
     private void OnDestroy()
@@ -210,6 +214,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         go.SetActive(false);
     }
+
+    public void BackgroundMusic()
+    {
+        Debug.Log("Funciono Background Music");
+        audioM.Play("BackgroundMusic");
+    }
+
 }
 
 

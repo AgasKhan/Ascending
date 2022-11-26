@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
     public string firstLevel;
     public GameObject gamePausedMenu;
     public SceneChanger refSceneChanger;
+    public AudioManager audioM;
 
     private int _currentMemuPrincipal = 0;
     private int _currentMemu = 0;
@@ -96,6 +97,8 @@ public class MenuManager : MonoBehaviour
             }
         }
         */
+        audioM = GetComponent<AudioManager>();
+
         foreach (var item in GetComponentsInChildren<Slider>(true))
         {
             DebugPrint.Log("Nombre del Slider: " + item.name.RichText("color", "green"));
@@ -146,6 +149,7 @@ public class MenuManager : MonoBehaviour
 
     public void GoToNextSubMenu()
     {
+        ClickSound();
         if (_currentMemu < subMenus.Length - 1)
         {
             subMenus[_currentMemu].SetActive(false);
@@ -156,6 +160,7 @@ public class MenuManager : MonoBehaviour
 
     public void GoToPreviousSubMenu()
     {
+        ClickSound();
         if (_currentMemu > 0)
         {
             subMenus[_currentMemu].SetActive(false);
@@ -165,6 +170,7 @@ public class MenuManager : MonoBehaviour
     }
     public void ChangeMenu(int index)
     {
+        ClickSound();
         if (index != _currentMemuPrincipal)
         {
             menus[_currentMemuPrincipal].SetActive(false);
@@ -176,6 +182,7 @@ public class MenuManager : MonoBehaviour
 
     public void ChangeSubMenu(int index)
     {
+        ClickSound();
         if (index != _currentMemu)
         {
             subMenus[_currentMemu].SetActive(false);
@@ -195,6 +202,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        ClickAccept();
         refSceneChanger.Load(firstLevel);
     }
 
@@ -204,7 +212,7 @@ public class MenuManager : MonoBehaviour
         string level = "";
         if (aux!=null)
             level = "Level_" + aux.text;*/
-
+        ClickAccept();
         string level = "Level_" + number;
 
         // if(level != null)
@@ -219,6 +227,7 @@ public class MenuManager : MonoBehaviour
 
     public void CloseMainMenus()
     {
+        ClickSound();
         menus[_currentMemuPrincipal].SetActive(false);
         menus[0].SetActive(true);
         _currentMemuPrincipal = 0;
@@ -227,6 +236,7 @@ public class MenuManager : MonoBehaviour
 
     public void ChangePreviews(int index)
     {
+        ClickSound();
         if (index != _currentPreview)
         {
             previews[_currentPreview].SetActive(false);
@@ -236,4 +246,13 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void ClickSound()
+    {
+        audioM.Play("Click");
+    }
+
+    public void ClickAccept()
+    {
+        audioM.Play("ClickAccept");
+    }
 }

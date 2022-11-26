@@ -34,6 +34,7 @@ public class Player_Character : Character
         {
             _actualDaggers--;
             MainHud.RemoveAllBuffs();
+            AttackSound();
         }
         MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
@@ -68,6 +69,7 @@ public class Player_Character : Character
         if (_actualDaggers > _totalDaggers)
             _actualDaggers = _totalDaggers;
 
+        TakeSound();
         MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
 
@@ -80,10 +82,33 @@ public class Player_Character : Character
 
     public override void OffMesh()
     {
+        print("Moriste");
         MenuManager.instance.OpenCloseMenu();
+        DeathSound();
     }
 
     void flag() { }
+
+
+    void MyStart()
+    {
+        animator.functions.AddRange(
+           new Pictionarys<string, AnimatorController.PrototypeFunc>
+           {
+               { "attack",AttackDist },
+               { "take",flag },
+               { "power",ActivePower },
+               { "interact", flag },
+               { "jump", Jump },
+               { "dash", Dash },
+               { "roll", Roll },
+               { "offMesh", OffMesh },
+               { "land", LandSound }
+           });
+
+        maxSpeed = movement.maxSpeed;
+
+    }
 
     #region unity Functions
 
@@ -103,24 +128,7 @@ public class Player_Character : Character
     }
 
     
-    void MyStart()
-    {
-        animator.functions.AddRange(
-           new Pictionarys<string, AnimatorController.PrototypeFunc>
-           {
-               { "attack",AttackDist},
-               { "take",flag },
-               {"power",ActivePower},
-               {"interact", flag },
-               { "jump", Jump},
-               { "dash", Dash },
-               { "roll", Roll },
-               { "offMesh", OffMesh }
-           });
-
-        maxSpeed = movement.maxSpeed;
- 
-    }
+    
     void MyUpdate()
     {
         float pressed = 0;
@@ -334,4 +342,64 @@ public class Player_Character : Character
         }
     }
     #endregion
+
+    #region Sounds
+
+    public override void AttackSound()
+    {
+        audioM.Play("Attack");
+    }
+    public override void AuxiliarSound()
+    {
+        audioM.Play("Attack");
+    }
+    public override void DeathSound()
+    {
+        audioM.Play("Defeat");
+    }
+    public override void PowerSound()
+    {
+        audioM.Play("PoweredDagger");
+    }
+    public override void DashSound()
+    {
+        audioM.Play("Dash");
+    }
+    public void TakeSound()
+    {
+        audioM.Play("CallDagger");
+    }
+    public void ShieldSound()
+    {
+        audioM.Play("Shield");
+    }
+    public void LandSound()
+    {
+        audioM.Play("Land");
+    }
+    public void ChargeSound()
+    {
+        audioM.Play("ChargeDagger");
+    }
+
+    public override void WoRSoundLeft()
+    {
+        if (UnityEngine.Random.Range(0, 2) == 0)
+            audioM.Play("StepLeft1");
+        else
+            audioM.Play("StepLeft2");
+    }
+
+    public override void WoRSoundRight()
+    {
+        if (UnityEngine.Random.Range(0, 2) == 0)
+            audioM.Play("StepRight1");
+        else
+            audioM.Play("StepRight2");
+    }
+
+
+    #endregion
+
+
 }

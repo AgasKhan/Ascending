@@ -207,7 +207,11 @@ abstract public class Character : MyScripts
     public void Dash()
     {
         if(animator.Dash())
-        movement.Dash(animator.transform.forward);
+        {
+            movement.Dash(animator.transform.forward);
+            DashSound();
+        }
+           
         //movement.eneableDetectFloor = false;
         //coll.height = 1;
     }
@@ -380,7 +384,10 @@ abstract public class Character : MyScripts
     public void ActivePower()
     {
         if (power.Count > 0)
+        {
+            PowerSound();
             power[actualPower].Activate(this);
+        }
     }
 
     /// <summary>
@@ -522,7 +529,7 @@ abstract public class Character : MyScripts
         }
     }
     #endregion
-    /*
+    
     #region Sonido
     public abstract void AttackSound();
 
@@ -530,11 +537,28 @@ abstract public class Character : MyScripts
 
     public abstract void DeathSound();
 
-    public abstract void WoRSoundLeft();
+    public abstract void PowerSound();
 
-    public abstract void WoRSoundRight();
+    public abstract void DashSound();
+
+    public virtual void WoRSoundLeft()
+    {
+        if (UnityEngine.Random.Range(0, 2) == 0)
+            audioM.Play("StepLeft1");
+        else
+            audioM.Play("StepLeft2");
+    }
+    
+    public virtual void WoRSoundRight()
+    {
+        if (UnityEngine.Random.Range(0, 2) == 0)
+            audioM.Play("StepRight1");
+        else
+            audioM.Play("StepRight2");
+    }
+
     #endregion
-    */
+    
 
     protected override void Config()
     {
@@ -555,16 +579,16 @@ abstract public class Character : MyScripts
     {
         gameObject.AddTags(Tag.character);
 
-        /*
+        
         animator.functions.AddRange(new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
-               { "WoRLeft",WoRSoundLeft},
-               { "WoRRight",WoRSoundRight },
-               {"AttackSound",AttackSound},
-               {"AuxiliarSound", AuxiliarSound },
-               { "DeathSound", DeathSound}
+               //{ "WoRLeft",WoRSoundLeft},
+               //{ "WoRRight",WoRSoundRight},
+               {"AttackSound", AttackSound},
+               {"AuxiliarSound", AuxiliarSound},
+               {"DeathSound", DeathSound}
            });
-        */
+        
     }
 
     void MyUpdate()

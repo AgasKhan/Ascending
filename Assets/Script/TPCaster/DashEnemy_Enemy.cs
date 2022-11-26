@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DashEnemy_Enemy : Enemy_Character
 {
-
     //[SerializeField] private float _flashDistance;
 
     protected override void Config()
@@ -16,6 +15,23 @@ public class DashEnemy_Enemy : Enemy_Character
         MyUpdates += MyUpdate;
 
     }
+
+    public override void AttackSound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AuxiliarSound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeathSound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
 
     void MyAwake()
     {
@@ -36,5 +52,25 @@ public class DashEnemy_Enemy : Enemy_Character
             attackDelay.Reset();
             movement.DashLocal(Vector3.forward);            
         }
+    }
+
+    public override void PowerSound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DashSound()
+    {
+        audioM.Play("EnemyDash");
+    }
+
+    public override void WoRSoundLeft()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void WoRSoundRight()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 {    
     public Pictionarys<string, AudioLink> audios = new Pictionarys<string, AudioLink>();
 
+
     public void Play(string name)
     {
         audios[name].source.Play();
@@ -34,6 +35,7 @@ public class AudioManager : MonoBehaviour
             item.value.source.pitch = item.value.pitch;
             item.value.source.loop = item.value.loop;
             item.value.source.playOnAwake = item.value.onAwake;
+            item.value.source.maxDistance = item.value.maxDistance;
         }
     }
 }
@@ -49,8 +51,11 @@ public struct AudioLink
     public float volume;
     [Range(-1, 3)]
     public float pitch;
+    [Range(1, 100)]
+    public float maxDistance;
     public bool loop;
     public bool onAwake;
+
 
     [HideInInspector]
     public AudioSource source;

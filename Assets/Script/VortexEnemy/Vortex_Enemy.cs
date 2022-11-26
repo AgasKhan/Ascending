@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Vortex_Enemy : Enemy_Character
 {
+    
 
     protected override void Config()
     {
@@ -12,7 +13,21 @@ public class Vortex_Enemy : Enemy_Character
         MyAwakes += MyAwake;
 
         MyUpdates += MyUpdate;
+    }
 
+    public override void AttackSound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AuxiliarSound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DeathSound()
+    {
+        throw new System.NotImplementedException();
     }
 
     void MyAwake()
@@ -44,4 +59,23 @@ public class Vortex_Enemy : Enemy_Character
 
     }
 
+    public override void PowerSound()
+    {
+        
+    }
+
+    public override void DashSound()
+    {
+        
+    }
+
+    public override void WoRSoundLeft()
+    {
+       
+    }
+
+    public override void WoRSoundRight()
+    {
+       
+    }
 }
