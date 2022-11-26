@@ -146,9 +146,11 @@ public class Attack_KnifeElements : KnifeElements
             //knife.reference.LookAt(character.cameraScript.hitPoint);
         }
 
-        
-        lens.intensity.Override(Mathf.Lerp(lens.intensity.value, 50 * zoomDistorsion, Time.time/100));
-        zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, Time.time/200);
+
+        if (Mathf.Abs( Mathf.Abs(lens.intensity.value) - Mathf.Abs(zoomDistorsion * 50))<1f)
+            zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, Time.deltaTime * 10f/20);
+
+        lens.intensity.Override(Mathf.Lerp(lens.intensity.value, 50 * zoomDistorsion, Time.deltaTime*10));
 
 
     }
