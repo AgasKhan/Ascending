@@ -16,8 +16,9 @@ public class MoveRotAndGlueRb : MoveAndRotRb
     public void AddGlue(Transform t)
     {
         transform.SetParent(null);
-        //glue.transform.SetParent(null);
+        glue.transform.SetParent(null);
         glue.transform.localScale = Vector3.one;
+        transform.localScale = Vector3.one;
         glue.transform.SetPositionAndRotation(transform.position, t.rotation);
         glue.transform.SetParent(t.transform);
         transform.SetParent(glue.transform);

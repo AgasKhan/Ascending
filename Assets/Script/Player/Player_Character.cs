@@ -211,10 +211,10 @@ public class Player_Character : Character
 
                 animator.Jump();
             }
-            else if (!_sprint && Controllers.dash.up && animator.CheckAnimations("Movement"))
+            else if (!_sprint && Controllers.dash.up && animator.CheckAnimations("Movement", "standing idle", "Jump", "Jumping Up", "Asending"))
             {
 
-                animator.Jump();
+                //animator.Jump();
                 animator.Dash(true);
             }
         }
