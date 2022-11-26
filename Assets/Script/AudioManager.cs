@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
             item.value.source.loop = item.value.loop;
             item.value.source.playOnAwake = item.value.onAwake;
             item.value.source.maxDistance = item.value.maxDistance;
+            item.value.source.spatialBlend = item.value.spatialBlend;
         }
     }
 }
@@ -47,16 +48,26 @@ public struct AudioLink
     public AudioMixerGroup mixer;
     public AudioClip clip;
 
-    [Range(0,1)]
+    [Header("multiplicara el volumen")]
+    [Range(0, 1)]
     public float volume;
+
+    [Header("Velocidad de reproduccion del clip")]
     [Range(-1, 3)]
     public float pitch;
+
+    [Header("parte 3d")]
+    [Range(0, 1)]
+    public float spatialBlend;
     [Range(1, 100)]
     public float maxDistance;
+
+    [Header("configuracion")]
     public bool loop;
     public bool onAwake;
 
-
     [HideInInspector]
     public AudioSource source;
+
+    
 }
