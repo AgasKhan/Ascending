@@ -35,9 +35,9 @@ public class FadeBlack : MonoBehaviour
         
         if (m_Vignette.opacity.value <= 0)
         {
-            this.enabled = false;
             Timers.Destroy(tim);
             RuntimeUtilities.DestroyVolume(m_Volume, true, true);
+            this.enabled = false;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Attack_KnifeElements : KnifeElements
 {
@@ -13,8 +14,13 @@ public class Attack_KnifeElements : KnifeElements
 
     public float chargePercentage;
 
+    float zoomDistorsion;
+
     [SerializeReference]
     Knifes knife;
+
+    PostProcessVolume volume;
+    LensDistortion lens;
 
     float time=1;
 
@@ -24,8 +30,13 @@ public class Attack_KnifeElements : KnifeElements
 
         chargePercentage =  (time - 1) / maxPressedTime;
 
+        
+
         if (chargePercentage > 1)
             chargePercentage = 1;
+
+        if(chargePercentage!=0)
+            zoomDistorsion = chargePercentage;
 
         return chargePercentage;
     }
@@ -65,11 +76,13 @@ public class Attack_KnifeElements : KnifeElements
 
         knife.movement.Dash(character.scopedPoint - knife.reference.position, atackMultiply);
 
-        time = 1;
-
         knife = null;
 
+        time = 1;
+
         chargePercentage = 0;
+
+        zoomDistorsion = -1;
 
         PreAttack();
 
@@ -96,6 +109,15 @@ public class Attack_KnifeElements : KnifeElements
     }
 
     // Update is called once per frame
+
+    private void Awake()
+    {
+        lens = ScriptableObject.CreateInstance<LensDistortion>();
+        lens.enabled.Override(true);
+        lens.intensity.Override(0);
+        volume = PostProcessManager.instance.QuickVolume(12, 100f, lens);
+    }
+
     void Update()
     {
 
@@ -103,6 +125,8 @@ public class Attack_KnifeElements : KnifeElements
         { 
 
             knife.reference.localPosition = Vector3.Slerp(knife.reference.localPosition, distance + Vector3.forward*(1-chargePercentage), Time.deltaTime);
+
+            //lens.intensity.Override(50* chargePercentage);
 
             Vector3 rot = character.scopedPoint - knife.reference.position;
 
@@ -123,5 +147,9 @@ public class Attack_KnifeElements : KnifeElements
         }
 
         
+        lens.intensity.Override(Mathf.Lerp(lens.intensity.value, 50 * zoomDistorsion, Time.time/100));
+        zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, Time.time/200);
+
+
     }
 }
