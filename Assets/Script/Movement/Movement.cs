@@ -153,11 +153,13 @@ public class Movement : MoveRotAndGlueRb
 
     }
 
-     void MyFixedUpdate()
+    void MyFixedUpdate()
     {
+        if (dash)
+            return;
+
         if (transform.position.y < -10)
             transform.position = Vector3.one;
-        
 
         if (!isOnFloor)
         {
@@ -173,6 +175,9 @@ public class Movement : MoveRotAndGlueRb
 
     private void OnTriggerEnter(Collider other)
     {
+        if (dash)
+            return;
+
         OnFloor(other);
     }
 
