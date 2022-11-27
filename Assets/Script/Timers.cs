@@ -5,8 +5,11 @@ using System;
 
 public class Timers : MonoBehaviour
 {
-    static List<Timer> timersList = new List<Timer>();
-    static List<Routine> routines = new List<Routine>();
+    List<Timer> timersList;
+    List<Routine> routines;
+    List<CompleteRoutine> completeRoutines;
+
+    static Timers instance;
 
     /// <summary>
     /// Crea un timer que se almacena en una lista para restarlos de forma automatica
@@ -16,8 +19,9 @@ public class Timers : MonoBehaviour
     /// <returns>Devuelve la referencia del contador creado</returns>
     public static Timer Create(float totTime2 = 10, float m = 1)
     {
+
         Timer newTimer = new Timer(totTime2, m);
-        timersList.Add(newTimer);
+        instance.timersList.Add(newTimer);
         return newTimer;
     }
 
@@ -31,7 +35,14 @@ public class Timers : MonoBehaviour
     public static Routine Create(float totTime, Action action, bool destroy=true)
     {
         Routine newTimer = new Routine(totTime, action, destroy);
-        routines.Add(newTimer);
+        instance.routines.Add(newTimer);
+        return newTimer;
+    }
+
+    public static CompleteRoutine Create(float totTime, Action start, Action update, Action end, bool destroy = true)
+    {
+        CompleteRoutine newTimer = new CompleteRoutine(totTime, start, update, end, destroy);
+        instance.completeRoutines.Add(newTimer);
         return newTimer;
     }
 
@@ -41,13 +52,18 @@ public class Timers : MonoBehaviour
     /// <param name="timy">El timer que sera destruido</param>
     public static void Destroy(Timer timy)
     {
-        timersList.Remove(timy);
+        instance.timersList.Remove(timy);
     }
 
-    private void OnDestroy()
+
+    private void Awake()
     {
-        timersList.Clear();
-        routines.Clear();
+        timersList = new List<Timer>();
+        routines = new List<Routine>();
+        completeRoutines = new List<CompleteRoutine>();
+        instance = this;
+
+        print("Se instancio el timer");
     }
 
     void Update()
@@ -64,6 +80,16 @@ public class Timers : MonoBehaviour
             {
                 if (routines[i].Execute())
                     routines.RemoveAt(i);
+            }
+        }
+
+        for (int i = completeRoutines.Count - 1; i >= 0; i--)
+        {
+            completeRoutines[i].Update();
+            if (completeRoutines[i].finish && completeRoutines[i].execute)
+            {
+                if (completeRoutines[i].Execute())
+                    completeRoutines.RemoveAt(i);
             }
         }
     }
@@ -138,6 +164,7 @@ public class Timer
     {
         _currentTime = _totalTime;
     }
+
     /// <summary>
     /// Efectua una resta en el contador
     /// </summary>
@@ -149,6 +176,7 @@ public class Timer
             _currentTime -= n*_multiply;
         }
     }
+
     /// <summary>
     /// Configura el timer para su uso
     /// </summary>
@@ -162,7 +190,9 @@ public class Timer
     }
 }
 
-
+/// <summary>
+/// rutina que ejecutara una accion desp de que termine el tiemer
+/// </summary>
 [System.Serializable] 
 public class Routine
 {
@@ -173,6 +203,17 @@ public class Routine
     public bool destroy;
 
     public bool execute;
+
+    public bool pauseTimer
+    {
+        set 
+        {
+            if(value)
+                timer.Stop();
+            else
+                timer.Start();
+        }
+    }
     
     public bool finish
     {
@@ -182,7 +223,7 @@ public class Routine
         }
     }
 
-    public void Restart()
+    public virtual void Restart()
     {
         timer.Reset();
         execute = true;
@@ -204,4 +245,49 @@ public class Routine
     }
 
 
+}
+
+/// <summary>
+/// rutina que ejecutara una funcion al comenzar/reiniciar, otra en cada frame, y otra al final
+/// </summary>
+[System.Serializable]
+public class CompleteRoutine : Routine
+{
+
+    Action start;
+    Action update;
+    public bool pauseRoutine;
+
+    public override void Restart()
+    {
+        base.Restart();
+        start?.Invoke();
+    }
+
+    /// <summary>
+    /// funcion que ejecutara de forma automatica cada frame
+    /// </summary>
+    public void Update()
+    {
+        if(!pauseRoutine)
+        {
+            timer.Substract(Time.deltaTime);
+            update();
+        }
+    }
+
+    /// <summary>
+    /// crea una rutina que ejecutara una funcion al comenzar/reiniciar, otra en cada frame, y otra al final
+    /// </summary>
+    /// <param name="timer"></param>
+    /// <param name="start"></param>
+    /// <param name="update"></param>
+    /// <param name="end"></param>
+    /// <param name="destroy"></param>
+    public CompleteRoutine(float timer, Action start, Action update, Action end, bool destroy = true) : base(timer, end, destroy)
+    {
+        this.start = start;
+        this.update = update;
+        start?.Invoke();
+    }
 }

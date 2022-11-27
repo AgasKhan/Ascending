@@ -67,7 +67,7 @@ public class Toxic_Enemy : Enemy_Character
 
     public override void DashSound()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void WoRSoundLeft()

@@ -99,9 +99,6 @@ public class Player_Character : Character
                { "take",flag },
                { "power",ActivePower },
                { "interact", flag },
-               { "jump", Jump },
-               { "dash", Dash },
-               { "roll", Roll },
                { "offMesh", OffMesh },
                { "land", LandSound }
            });
@@ -296,16 +293,7 @@ public class Player_Character : Character
     
     void MyFixedUpdate()
     {
-        animator.FloorDistance(movement.lastFloorDistance);            
-
-        if ((movement.dash && movement.relation < 0.7f) || (!movement.dash && animator.CheckAnimations("Dash")))
-            DashEnd();
-
-        if ((transform.position.y - previousTransformY) > 0.2f)
-            animator.Ascending(true);
-        else
-            animator.Ascending(false);
-
+       
         if (input.sqrMagnitude > 0)
         {
             if (_sprint && movement.isOnFloor)
@@ -321,15 +309,6 @@ public class Player_Character : Character
 
             movement.RotateY(cameraScript.transform.GetChild(0).rotation.eulerAngles.y);
         }
-
-        if(animator.CheckAnimations("Jump"))
-            movement.Move(animator.transform.forward);
-
-        if (animator.CheckAnimations("Falling"))
-            movement.Move(animator.transform.forward, movement.maxSpeed*0.25f);
-
-
-        previousTransformY = transform.position.y;
     }
 
     private void OnApplicationFocus(bool focus)

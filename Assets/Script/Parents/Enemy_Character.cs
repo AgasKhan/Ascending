@@ -64,7 +64,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     /// Layer de deteccion
     /// </summary>
     [SerializeField]
-    LayerMask layerMask;
+    protected LayerMask layerMask;
 
     /// <summary>
     /// tiempo de espera para volver a su patrulla

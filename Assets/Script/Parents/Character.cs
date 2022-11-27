@@ -130,7 +130,7 @@ abstract public class Character : MyScripts
     /// El tiempo que espera antes de anular el salto
     /// </summary>
     [SerializeField]
-    protected Timer coyoteTime = Timers.Create(0.3f);
+    protected Timer coyoteTime;
 
     /// <summary>
     /// Variable que cuenta los saltos en el aire
@@ -176,7 +176,7 @@ abstract public class Character : MyScripts
     /// <summary>
     /// Funcion que ejecuta un salto
     /// </summary>
-    public void Jump()
+    public virtual void Jump()
     {
         if (!coyoteTime.Chck())
         {
@@ -196,7 +196,7 @@ abstract public class Character : MyScripts
     /// <summary>
     /// Funcion que ejecuta un dash
     /// </summary>
-    public void Roll()
+    public virtual void Roll()
     {
         movement.Move(animator.transform.forward,100);
     }
@@ -204,7 +204,7 @@ abstract public class Character : MyScripts
     /// <summary>
     /// Funcion que ejecuta un dash
     /// </summary>
-    public void Dash()
+    public virtual void Dash()
     {
         if(animator.Dash())
         {
@@ -219,7 +219,7 @@ abstract public class Character : MyScripts
     /// <summary>
     /// Funcion que se ejecuta al finalizar un dash
     /// </summary>
-    public void DashEnd()
+    public virtual void DashEnd()
     {
         //movement.eneableDetectFloor = true;
         animator.Dash(false);
@@ -565,6 +565,7 @@ abstract public class Character : MyScripts
         MyAwakes += MyAwake;
         MyStarts += MyStart;
         MyUpdates += MyUpdate;
+        MyFixedUpdates += MyFixedUpdate;
     }
 
     void MyAwake()
@@ -579,11 +580,16 @@ abstract public class Character : MyScripts
     {
         gameObject.AddTags(Tag.character);
 
-        
+        coyoteTime = Timers.Create(0.3f);
+
+
         animator.functions.AddRange(new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
                //{ "WoRLeft",WoRSoundLeft},
                //{ "WoRRight",WoRSoundRight},
+               { "jump", Jump },
+               { "dash", Dash },
+               { "roll", Roll },
                {"AttackSound", AttackSound},
                {"AuxiliarSound", AuxiliarSound},
                {"DeathSound", DeathSound}
@@ -594,6 +600,29 @@ abstract public class Character : MyScripts
     void MyUpdate()
     {
         RefreshAnims();
+    }
+
+    void MyFixedUpdate()
+    {
+ 
+        animator.FloorDistance(movement.lastFloorDistance);
+
+        if ((movement.dash && movement.relation < 0.7f) || (!movement.dash && animator.CheckAnimations("Dash")))
+            DashEnd();
+
+        if ((transform.position.y - previousTransformY) > 0.2f)
+            animator.Ascending(true);
+        else
+            animator.Ascending(false);
+
+        if (animator.CheckAnimations("Jump"))
+            movement.Move(animator.transform.forward);
+
+        if (animator.CheckAnimations("Falling"))
+            movement.Move(animator.transform.forward, movement.maxSpeed * 0.25f);
+
+
+        previousTransformY = transform.position.y;
     }
 
     IEnumerator CoroutineMesh()

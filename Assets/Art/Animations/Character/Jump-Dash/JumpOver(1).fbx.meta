@@ -62,7 +62,7 @@ ModelImporter:
       - time: 0
         functionName: ANIM_EVENT
         data: dash
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: d7651b1f3df79ee4c8e06a71609fccc1, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

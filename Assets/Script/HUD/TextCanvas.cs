@@ -17,7 +17,7 @@ public class TextCanvas : MonoBehaviour
     {
         foreach (var item in instance.text)
         {
-            print(item.name);
+            //print(item.name);
             if (item.name == name)
                 return item;
         }

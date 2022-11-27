@@ -4,7 +4,16 @@ using UnityEngine;
 using System.Linq;
 public static class Utilitys
 {
-    static public float AngleOffAroundAxis(Vector3 v, Vector3 forward, Vector3 axis, bool clockwise = true)
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="v"></param>
+    /// <param name="forward"></param>
+    /// <param name="axis"></param>
+    /// <param name="clockwise"></param>
+    /// <returns></returns>
+    static public float AngleOffAroundAxis(Vector3 dir, Vector3 forward, Vector3 axis, bool clockwise = true)
     {
         Vector3 right;
         if (clockwise)
@@ -17,10 +26,18 @@ public static class Utilitys
             right = Vector3.Cross(axis, forward);
             forward = Vector3.Cross(right, axis);
         }
-        return Mathf.Atan2(Vector3.Dot(v, right), Vector3.Dot(v, forward)) * Mathf.Rad2Deg;
+        return Mathf.Atan2(Vector3.Dot(dir, right), Vector3.Dot(dir, forward)) * Mathf.Rad2Deg;
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dir"></param>
+    /// <param name="angle">devuelve el angulo entre los vectores</param>
+    /// <param name="from"></param>
+    /// <param name="axis"></param>
+    /// <param name="MyRot"></param>
+    /// <returns>retorna la diferencia absoluta entre el angulo y la rotacion del objeto</returns>
     static public float DeltaAngle(Vector3 dir, out float angle, Vector3 from, Vector3 axis, Quaternion MyRot)
     {
 

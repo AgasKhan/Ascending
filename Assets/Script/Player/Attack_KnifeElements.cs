@@ -20,7 +20,7 @@ public class Attack_KnifeElements : KnifeElements
     Knifes knife;
 
     PostProcessVolume volume;
-    LensDistortion lens;
+    public LensDistortion lens;
 
     float time=1;
 
@@ -115,7 +115,12 @@ public class Attack_KnifeElements : KnifeElements
         lens = ScriptableObject.CreateInstance<LensDistortion>();
         lens.enabled.Override(true);
         lens.intensity.Override(0);
-        volume = PostProcessManager.instance.QuickVolume(12, 100f, lens);
+        volume = PostProcessManager.instance.QuickVolume(12, -1, lens);
+    }
+
+    private void OnDestroy()
+    {
+        RuntimeUtilities.DestroyVolume(volume, true, true);
     }
 
     void Update()

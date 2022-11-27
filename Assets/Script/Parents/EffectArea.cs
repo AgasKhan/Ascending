@@ -99,6 +99,7 @@ public abstract class EffectArea : MyScripts
     private void OnEnable()
     {
         toDeactivate.Reset();
+        particle.gameObject.SetActive(true);
         particle.Play();
     }
 
