@@ -4802,6 +4802,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+--- !u!1 &915266782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5209663062771025065, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+  m_PrefabInstance: {fileID: 915266781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &915266783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915266782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 7334c09bf50ba7d4e9923833cfa749c7, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 56a3fc200e67efd4984968bf8fb2491f, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &961625695
 GameObject:
   m_ObjectHideFlags: 0
@@ -4931,6 +4974,7 @@ MonoBehaviour:
     _currentTime: 0
   minimalDistancePlayer: 4
   _minimalDistance: 2
+  _angleOfDashAim: 15
 --- !u!114 &961625699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5088,11 +5132,24 @@ MonoBehaviour:
     - key: EnemyDash
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
-        volume: 0.2
+        clip: {fileID: 8300000, guid: 4ea38e865b9531645adde1a1efa5bf64, type: 3}
+        volume: 0.4
         pitch: 1
         spatialBlend: 1
-        maxDistance: 10
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: dc11af26c64bd3946afddd164d82ebf8, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -7038,6 +7095,7 @@ GameObject:
   - component: {fileID: 1401937194}
   - component: {fileID: 1401937193}
   - component: {fileID: 1401937192}
+  - component: {fileID: 1401937201}
   m_Layer: 9
   m_Name: Enemigo Vortex Variant (1)
   m_TagString: Untagged
@@ -7287,6 +7345,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401937190}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1401937201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401937190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6bacc74df967c40be8c91163e3587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios:
+    pictionaries:
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 7334c09bf50ba7d4e9923833cfa749c7, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 56a3fc200e67efd4984968bf8fb2491f, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!4 &1417262207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3808997158721104317, guid: fe5a7384391f09e458977afc075f85cf, type: 3}

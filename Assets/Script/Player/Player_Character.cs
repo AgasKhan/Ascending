@@ -100,7 +100,7 @@ public class Player_Character : Character
                { "power",ActivePower },
                { "interact", flag },
                { "offMesh", OffMesh },
-               { "land", LandSound }
+               { "land", LandSound },
            });
 
         maxSpeed = movement.maxSpeed;

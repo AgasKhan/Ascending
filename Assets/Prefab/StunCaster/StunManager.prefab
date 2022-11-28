@@ -195,31 +195,28 @@ MonoBehaviour:
   health: {fileID: 1134143966555334095}
   movement: {fileID: 1652326395236201545}
   audioM: {fileID: 0}
-  coll: {fileID: 0}
-  scoped: {fileID: 0}
-  interactuable: {fileID: 0}
-  scopedPoint: {x: 0, y: 0, z: 0}
   animator: {fileID: 7939842618966427528}
-  input: {x: 0, y: 0, z: 0}
+  scoped: {fileID: 0}
+  scopedPoint: {x: 0, y: 0, z: 0}
+  interactuable: {fileID: 0}
   MyCooldowns:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
   powerObjectSpawn: []
+  damage: 10
   power:
   - {fileID: 7939842618333871690}
   actualPower: 0
-  damage: 10
+  input: {x: 0, y: 0, z: 0}
   jumpStrength: 50
   extraJumps: 0
+  maxSpeed: 0
   coyoteTime:
     _totalTime: 2
     _currentTime: -0.004900165
   player: {fileID: 0}
   proyectile: {fileID: 0}
-  attackDelay:
-    _totalTime: 0
-    _currentTime: 0
   patrol:
     reverse: 0
     iPatrulla: 0
@@ -232,15 +229,18 @@ MonoBehaviour:
   playerDetF: 0
   detectedRadio: 20.5
   coneOfVision: 85.2
-  minimalDistancePlayer: 0
-  waitMetalGear: 7.74
-  attackCooldown: 7
-  deleySearch:
-    _totalTime: 0
-    _currentTime: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 961
+  waitMetalGear: 7.74
+  deleySearch:
+    _totalTime: 0
+    _currentTime: 0
+  attackCooldown: 7
+  attackDelay:
+    _totalTime: 0
+    _currentTime: 0
+  minimalDistancePlayer: 0
   _minimalDistance: 2
 --- !u!195 &6000038451714288472
 NavMeshAgent:
@@ -277,7 +277,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-    pictionaries: []
+    pictionaries:
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: dc11af26c64bd3946afddd164d82ebf8, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Attack
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 84f6ea0e5cc370848a2650e95ec81c97, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Power
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 5d4f9840898ddb0419cc4ce75d6c48c6, type: 3}
+        volume: 1
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 25
+        minDistance: 0
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &7939842618333871688
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,17 +16,17 @@ public class Toxic_Enemy : Enemy_Character
 
     public override void AttackSound()
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public override void AuxiliarSound()
     {
-        throw new System.NotImplementedException();
+     
     }
 
     public override void DeathSound()
     {
-        throw new System.NotImplementedException();
+        audioM.Play("Death");
     }
 
     void MyAwake()
@@ -36,8 +36,9 @@ public class Toxic_Enemy : Enemy_Character
            new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
                {"power", ActivePower},
-               {"shoot", Shoot}
-              
+               {"shoot", Shoot},
+               { "offMesh", OffMesh}
+
            }
         );
     }
@@ -70,6 +71,9 @@ public class Toxic_Enemy : Enemy_Character
         
     }
 
-    
 
+    public override void OffMesh()
+    {
+        DeathSound();
+    }
 }

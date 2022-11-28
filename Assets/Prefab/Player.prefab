@@ -339,22 +339,24 @@ MonoBehaviour:
     - key: PoweredDagger
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 21d52df9492f5f143888664bde4eabcd, type: 3}
-        volume: 0.2
+        clip: {fileID: 8300000, guid: 08763489cb0edae45b281912d350acf7, type: 3}
+        volume: 0.3
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
     - key: CallDagger
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 1b297efe10352084e84dff7f6ff62608, type: 3}
-        volume: 0.2
-        pitch: 1
+        clip: {fileID: 8300000, guid: d9469a9e435fb9b439c4755c4677fbba, type: 3}
+        volume: 0.25
+        pitch: 2
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -362,10 +364,11 @@ MonoBehaviour:
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 082ddaa2c82317e4f91997c99c01b437, type: 3}
-        volume: 0.2
+        volume: 0.8
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -377,6 +380,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -388,17 +392,19 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
     - key: Dash
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 1e6d8650eade13348b5b531f40a307d6, type: 3}
-        volume: 0.2
+        clip: {fileID: 8300000, guid: 0a7e7aa93142bc540a2184cae24a5d15, type: 3}
+        volume: 0.5
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -406,10 +412,11 @@ MonoBehaviour:
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 68ed02f29b6da1c4abff01f4186b70f7, type: 3}
-        volume: 0.2
+        volume: 0.8
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -421,6 +428,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -432,6 +440,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -443,6 +452,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -454,6 +464,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -465,6 +476,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -476,6 +488,7 @@ MonoBehaviour:
         pitch: 1
         spatialBlend: 0
         maxDistance: 10
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}

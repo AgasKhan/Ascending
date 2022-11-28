@@ -310,6 +310,7 @@ MonoBehaviour:
     _currentTime: 0
   minimalDistancePlayer: 4
   _minimalDistance: 2
+  _angleOfDashAim: 15
 --- !u!195 &6540944138226449917
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -349,11 +350,24 @@ MonoBehaviour:
     - key: EnemyDash
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
-        volume: 0.2
+        clip: {fileID: 8300000, guid: 4ea38e865b9531645adde1a1efa5bf64, type: 3}
+        volume: 0.4
         pitch: 1
         spatialBlend: 1
-        maxDistance: 10
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: dc11af26c64bd3946afddd164d82ebf8, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}

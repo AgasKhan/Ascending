@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
             item.value.source.playOnAwake = item.value.onAwake;
             item.value.source.maxDistance = item.value.maxDistance;
             item.value.source.spatialBlend = item.value.spatialBlend;
+            item.value.source.minDistance = item.value.minDistance;
         }
     }
 }
@@ -61,6 +62,8 @@ public struct AudioLink
     public float spatialBlend;
     [Range(1, 100)]
     public float maxDistance;
+    [Range(1, 100)]
+    public float minDistance;
 
     [Header("configuracion")]
     public bool loop;

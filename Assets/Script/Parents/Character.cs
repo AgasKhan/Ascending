@@ -209,7 +209,6 @@ abstract public class Character : MyScripts
         if(animator.Dash())
         {
             movement.Dash(animator.transform.forward);
-            DashSound();
         }
            
         //movement.eneableDetectFloor = false;
@@ -592,7 +591,9 @@ abstract public class Character : MyScripts
                { "roll", Roll },
                {"AttackSound", AttackSound},
                {"AuxiliarSound", AuxiliarSound},
-               {"DeathSound", DeathSound}
+               {"DeathSound", DeathSound},
+               {"dashSound", DashSound}
+
            });
         
     }

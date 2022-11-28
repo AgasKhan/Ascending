@@ -27,22 +27,22 @@ public class DashEnemy_Enemy : Enemy_Character
 
     public override void AttackSound()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void AuxiliarSound()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void DeathSound()
     {
-        throw new System.NotImplementedException();
+        audioM.Play("Death");
     }
 
     public override void PowerSound()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void DashSound()
@@ -50,19 +50,18 @@ public class DashEnemy_Enemy : Enemy_Character
         audioM.Play("EnemyDash");
     }
 
-/*
+
     void MyAwake()
     {
-        
         animator.functions.AddRange
         (
            new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
-               //{"dash", Dash}
+               { "offMesh", OffMesh}
            }
         );
     }
-*/
+
     void MyUpdate()
     {
 
@@ -78,5 +77,10 @@ public class DashEnemy_Enemy : Enemy_Character
         }
     }
 
-  
+    public override void OffMesh()
+    {
+        DeathSound();
+    }
+
+
 }

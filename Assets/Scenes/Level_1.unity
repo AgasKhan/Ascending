@@ -4910,7 +4910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].key
@@ -4919,7 +4919,7 @@ PrefabInstance:
     - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].value.clip
       value: 
-      objectReference: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
+      objectReference: {fileID: 8300000, guid: 4ea38e865b9531645adde1a1efa5bf64, type: 3}
     - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].value.mixer
       value: 
@@ -4930,11 +4930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].value.volume
-      value: 0.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4898808737626946610, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].value.maxDistance
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5209663062771025065, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_IsActive
@@ -4990,7 +4990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].key
@@ -5010,7 +5010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5841362028053264091, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: audios.pictionaries.Array.data[0].value.volume
-      value: 0.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8160019945717223739, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7383,7 +7383,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32268
+  m_Name: pb_Mesh322762
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18041,10 +18041,23 @@ MonoBehaviour:
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
-        volume: 0.2
+        volume: 0.4
         pitch: 1
-        spatialBlend: 0
-        maxDistance: 10
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: d617857b1e349284e99776c858e01e8e, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -19551,10 +19564,23 @@ MonoBehaviour:
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 3f332a11e7b300a439011eef85c0f815, type: 3}
-        volume: 0.2
+        volume: 0.4
         pitch: 1
-        spatialBlend: 0
-        maxDistance: 10
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: d617857b1e349284e99776c858e01e8e, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -19625,7 +19651,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31196
+  m_Name: pb_Mesh321656
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21157,7 +21183,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17902
+  m_Name: pb_Mesh-755442
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21753,7 +21779,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-13386
+  m_Name: pb_Mesh-750908
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

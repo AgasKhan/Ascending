@@ -17,17 +17,17 @@ public class Stun_Enemy : Enemy_Character
 
     public override void AttackSound()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void AuxiliarSound()
     {
-        throw new System.NotImplementedException();
+   
     }
 
     public override void DeathSound()
     {
-        throw new System.NotImplementedException();
+        audioM.Play("Death");
     }
 
 
@@ -39,7 +39,8 @@ public class Stun_Enemy : Enemy_Character
            new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
                {"attackMelee", AttackMelee},
-               { "endAttackMelee", EndAttackMelee}
+               { "endAttackMelee", EndAttackMelee},
+               { "offMesh", OffMesh}
 
            }
         );
@@ -63,12 +64,17 @@ public class Stun_Enemy : Enemy_Character
 
     public override void PowerSound()
     {
-       
+        audioM.Play("Attack");
     }
 
     public override void DashSound()
     {
       
+    }
+
+    public override void OffMesh()
+    {
+        DeathSound();
     }
 
 }
