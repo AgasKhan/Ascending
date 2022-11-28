@@ -73,9 +73,9 @@ public class Movement : MoveRotAndGlueRb
 
     public float FloorDistance()
     {
-        foreach (var item in Physics.OverlapSphere(_cubeDetect.transform.position, 0.1f))
+        foreach (var item in Physics.OverlapSphere(_cubeDetect.transform.position, 0.1f, _layerMask))
         {
-            if (!item.gameObject.CompareOneTags(Tag.Player, Tag.Interactuable) && item.name != "Detect floor")
+            if (!item.gameObject.CompareOneTags(Tag.Player))
             {
                 OnFloor(item);
                 lastFloorDistance = 0;

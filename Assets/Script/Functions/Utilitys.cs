@@ -83,5 +83,37 @@ public static class Utilitys
 
 
 
+public class LerpFixed
+{
+    float actualTime;
+    float addTime;
+    
+    public bool finish
+    {
+        get
+        {
+            return actualTime >= 1;
+        }
+    }
 
+    public LerpFixed(float deltaTime)
+    {
+        addTime = deltaTime* Time.deltaTime;
+    }
+
+    public float Update(float a, float b)
+    {
+        actualTime += addTime;
+        if (actualTime > 1)
+            actualTime = 1;
+
+        return Mathf.Lerp(a, b, actualTime);
+    }
+
+    public void Reset()
+    {
+        actualTime = 0;
+    }
+
+}
 

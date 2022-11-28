@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 210393525682972558}
   - component: {fileID: 5980640367385784785}
   - component: {fileID: -1875851172777224119}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Daguita
   m_TagString: Dagger
   m_Icon: {fileID: 0}

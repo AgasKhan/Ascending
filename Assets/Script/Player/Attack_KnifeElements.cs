@@ -14,15 +14,19 @@ public class Attack_KnifeElements : KnifeElements
 
     public float chargePercentage;
 
+    public LensDistortion lens;
+
     float zoomDistorsion;
 
     [SerializeReference]
     Knifes knife;
 
     PostProcessVolume volume;
-    public LensDistortion lens;
-
+    
     float time=1;
+
+    LerpFixed zoomTozero;
+    //LerpFixed intensityToZoom;
 
     public float ChargeAttack()
     {
@@ -30,13 +34,18 @@ public class Attack_KnifeElements : KnifeElements
 
         chargePercentage =  (time - 1) / maxPressedTime;
 
-        
-
-        if (chargePercentage > 1)
+        if (chargePercentage < 1 && chargePercentage!=0)
+        {
+            zoomDistorsion = chargePercentage;    
+        }
+        else if (chargePercentage > 1)
+        {
             chargePercentage = 1;
+            zoomDistorsion = 1 + 0.05f*Mathf.Sin(Time.time*15);
+        }
 
-        if(chargePercentage!=0)
-            zoomDistorsion = chargePercentage;
+
+        zoomTozero.Reset();
 
         return chargePercentage;
     }
@@ -83,6 +92,7 @@ public class Attack_KnifeElements : KnifeElements
         chargePercentage = 0;
 
         zoomDistorsion = -1;
+        zoomTozero.Reset();
 
         PreAttack();
 
@@ -105,7 +115,7 @@ public class Attack_KnifeElements : KnifeElements
 
         knife.reference.parent = Other.transform;
         knife = null;
-
+        chargePercentage = 0;
     }
 
     // Update is called once per frame
@@ -116,6 +126,9 @@ public class Attack_KnifeElements : KnifeElements
         lens.enabled.Override(true);
         lens.intensity.Override(0);
         volume = PostProcessManager.instance.QuickVolume(12, -1, lens);
+
+        zoomTozero = new LerpFixed(0.5f);
+        //intensityToZoom = new LerpFixed(2/3f);
     }
 
     private void OnDestroy()
@@ -153,10 +166,11 @@ public class Attack_KnifeElements : KnifeElements
 
 
         if (Mathf.Abs( Mathf.Abs(lens.intensity.value) - Mathf.Abs(zoomDistorsion * 50))<1f)
-            zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, Time.deltaTime * 10f/20);
+            //zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, Time.deltaTime * 10f/20);
+            zoomDistorsion = zoomTozero.Update(zoomDistorsion, 0);
 
-        lens.intensity.Override(Mathf.Lerp(lens.intensity.value, 50 * zoomDistorsion, Time.deltaTime*10));
-
+        lens.intensity.Override(Mathf.Lerp(lens.intensity.value, 50 * zoomDistorsion, Time.deltaTime*15));
+        //lens.intensity.Override(intensityToZoom.Update(lens.intensity.value, 50 * zoomDistorsion));
 
     }
 }
