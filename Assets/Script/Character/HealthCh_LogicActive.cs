@@ -28,6 +28,7 @@ public class HealthCh_LogicActive : LogicActive
         _controlers = GetComponentsInChildren<Character>();
     }
 
+    //1ero damage, 2do life, 3ero percentage life
     public override void Activate(params float[] floatParms)
     {
         if (floatParms[0] > 0 && _anim!=null)
