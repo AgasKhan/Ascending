@@ -555,7 +555,8 @@ MonoBehaviour:
         clip: {fileID: 8300000, guid: d80864309d73cd04b829a04fccb2df4d, type: 3}
         volume: 0.2
         pitch: 1
-        maxDistance: 10
+        spatialBlend: 1
+        maxDistance: 15
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -565,7 +566,8 @@ MonoBehaviour:
         clip: {fileID: 8300000, guid: 80c5b391509ae9442b30ea5e13def8f7, type: 3}
         volume: 0.2
         pitch: 1
-        maxDistance: 10
+        spatialBlend: 1
+        maxDistance: 15
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -575,7 +577,8 @@ MonoBehaviour:
         clip: {fileID: 8300000, guid: 80cfaa7358c7e9d46a228855ce6086a0, type: 3}
         volume: 0.2
         pitch: 1
-        maxDistance: 10
+        spatialBlend: 1
+        maxDistance: 15
         loop: 0
         onAwake: 0
         source: {fileID: 0}

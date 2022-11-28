@@ -354,7 +354,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -365,7 +365,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -376,7 +376,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -409,7 +409,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -420,7 +420,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -431,7 +431,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -442,7 +442,7 @@ MonoBehaviour:
         volume: 0
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -453,7 +453,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -464,7 +464,7 @@ MonoBehaviour:
         volume: 0.2
         pitch: 1
         spatialBlend: 0
-        maxDistance: 0
+        maxDistance: 10
         loop: 0
         onAwake: 0
         source: {fileID: 0}

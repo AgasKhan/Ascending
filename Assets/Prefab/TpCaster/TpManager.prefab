@@ -352,6 +352,7 @@ MonoBehaviour:
         clip: {fileID: 8300000, guid: 3c63ff3c7d9aee341a8b90ba2c4d1c8d, type: 3}
         volume: 0.2
         pitch: 1
+        spatialBlend: 1
         maxDistance: 10
         loop: 0
         onAwake: 0

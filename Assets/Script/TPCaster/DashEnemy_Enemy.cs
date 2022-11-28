@@ -50,15 +50,6 @@ public class DashEnemy_Enemy : Enemy_Character
         audioM.Play("EnemyDash");
     }
 
-    public override void WoRSoundLeft()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void WoRSoundRight()
-    {
-        throw new System.NotImplementedException();
-    }
 /*
     void MyAwake()
     {

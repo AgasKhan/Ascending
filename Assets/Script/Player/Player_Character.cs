@@ -361,23 +361,7 @@ public class Player_Character : Character
         audioM.Play("ChargeDagger");
     }
 
-    public override void WoRSoundLeft()
-    {
-        if (UnityEngine.Random.Range(0, 2) == 0)
-            audioM.Play("StepLeft1");
-        else
-            audioM.Play("StepLeft2");
-    }
-
-    public override void WoRSoundRight()
-    {
-        if (UnityEngine.Random.Range(0, 2) == 0)
-            audioM.Play("StepRight1");
-        else
-            audioM.Play("StepRight2");
-    }
-
-
+    
     #endregion
 
 

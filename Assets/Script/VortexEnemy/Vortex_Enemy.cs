@@ -69,13 +69,4 @@ public class Vortex_Enemy : Enemy_Character
         
     }
 
-    public override void WoRSoundLeft()
-    {
-       
-    }
-
-    public override void WoRSoundRight()
-    {
-       
-    }
 }

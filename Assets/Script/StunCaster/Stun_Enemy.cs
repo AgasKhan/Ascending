@@ -63,21 +63,12 @@ public class Stun_Enemy : Enemy_Character
 
     public override void PowerSound()
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public override void DashSound()
     {
-        throw new System.NotImplementedException();
+      
     }
 
-    public override void WoRSoundLeft()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void WoRSoundRight()
-    {
-        throw new System.NotImplementedException();
-    }
 }

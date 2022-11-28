@@ -70,16 +70,6 @@ public class Toxic_Enemy : Enemy_Character
         
     }
 
-    public override void WoRSoundLeft()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void WoRSoundRight()
-    {
-        throw new System.NotImplementedException();
-    }
-
-
+    
 
 }

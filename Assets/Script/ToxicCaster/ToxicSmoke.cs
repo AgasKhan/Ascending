@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ToxicSmoke : EffectArea
 {
-    AudioManager audioM;
+    
     /*
     private void Awake()
     {
-        audioM = GetComponent<AudioManager>();
         ImpactToxineAudio();
     }
     */
@@ -38,7 +37,7 @@ public class ToxicSmoke : EffectArea
     
     void ImpactToxineAudio()
     {
-        audioM.Play("ImpactToxine");
+        //audioM.Play("ImpactToxine");
     }
 
 }
