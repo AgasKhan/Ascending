@@ -19,7 +19,6 @@ public class Timers : MonoBehaviour
     /// <returns>Devuelve la referencia del contador creado</returns>
     public static Timer Create(float totTime2 = 10, float m = 1)
     {
-
         Timer newTimer = new Timer(totTime2, m);
         instance.timersList.Add(newTimer);
         return newTimer;
@@ -95,15 +94,66 @@ public class Timers : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class Timer
+
+
+public class Tim
 {
     [SerializeField]
-    float _totalTime;
+    protected float _totalTime;
 
     [SerializeField]
-    float _currentTime;
+    protected float _currentTime;
 
+    public float percentage
+    {
+        get
+        {
+            return (_totalTime - _currentTime) / _totalTime;
+        }
+    }
+
+    /// <summary>
+    /// Reinicia el contador a su valor por defecto, para reiniciar la cuenta
+    /// </summary>
+    public void Reset()
+    {
+        _currentTime = _totalTime;
+    }
+
+    /// <summary>
+    /// Efectua una resta en el contador
+    /// </summary>
+    /// <param name="n">En caso de ser negativo(-) suma al contador, siempre y cuando no este frenado</param>
+    public virtual float Substract(float n)
+    {
+        if (_currentTime > 0)
+        {
+            _currentTime -= n;
+        }
+
+        return percentage;
+    }
+
+    /// <summary>
+    /// Setea el contador
+    /// </summary>
+    /// <param name="totalTim">El numero a contar</param>
+    public void Set(float totalTim)
+    {
+        _totalTime = totalTim;
+        Reset();
+    }
+
+    public Tim(float totTim = 10)
+    {
+        Set(totTim);
+    }
+}
+
+
+[System.Serializable]
+public class Timer : Tim
+{
     float _multiply;
     bool _freeze;
 
@@ -115,6 +165,7 @@ public class Timer
     {
         _multiply = m;
     }
+
     /// <summary>
     /// En caso de que el contador este detenido lo reanuda
     /// </summary>
@@ -130,6 +181,7 @@ public class Timer
     {
         _freeze = false;
     }
+
     /// <summary>
     /// Setea el contador, y comienza la cuenta (si se quiere) desde ese numero
     /// </summary>
@@ -137,9 +189,8 @@ public class Timer
     /// <param name="f">Si arranca a contar o no</param>
     public void Set(float totalTim, bool f=true)
     {
-        _totalTime = totalTim;
+        base.Set(totalTim);
         _freeze = f;
-        Reset();
     }
 
     /// <summary>
@@ -148,33 +199,22 @@ public class Timer
     /// <returns>Devuelve true si llego a 0</returns>
     public bool Chck()
     {
-        if (_currentTime<=0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return _currentTime <= 0;
     }
-    /// <summary>
-    /// Reinicia el contador a su valor por defecto, para reiniciar la cuenta
-    /// </summary>
-    public void Reset()
-    {
-        _currentTime = _totalTime;
-    }
+
 
     /// <summary>
     /// Efectua una resta en el contador
     /// </summary>
     /// <param name="n">En caso de ser negativo(-) suma al contador, siempre y cuando no este frenado</param>
-    public void Substract(float n)
+    public override float Substract(float n)
     {
         if (_currentTime > 0 && _freeze)
         {
             _currentTime -= n*_multiply;
         }
+
+        return percentage;
     }
 
     /// <summary>

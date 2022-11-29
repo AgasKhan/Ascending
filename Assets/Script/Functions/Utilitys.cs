@@ -82,7 +82,7 @@ public static class Utilitys
 }
 
 
-
+/*
 public class LerpFixed
 {
     float actualTime;
@@ -116,4 +116,4 @@ public class LerpFixed
     }
 
 }
-
+*/

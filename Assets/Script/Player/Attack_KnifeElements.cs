@@ -25,7 +25,9 @@ public class Attack_KnifeElements : KnifeElements
     
     float time=1;
 
-    LerpFixed zoomTozero;
+    Tim zoomTozero;
+
+    //LerpFixed zoomTozero;
     //LerpFixed intensityToZoom;
 
     public float ChargeAttack()
@@ -127,7 +129,7 @@ public class Attack_KnifeElements : KnifeElements
         lens.intensity.Override(0);
         volume = PostProcessManager.instance.QuickVolume(12, -1, lens);
 
-        zoomTozero = new LerpFixed(0.5f);
+        zoomTozero = new Tim(0.5f);
         //intensityToZoom = new LerpFixed(2/3f);
     }
 
@@ -165,12 +167,10 @@ public class Attack_KnifeElements : KnifeElements
         }
 
 
-        if (Mathf.Abs( Mathf.Abs(lens.intensity.value) - Mathf.Abs(zoomDistorsion * 50))<1f)
-            //zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, Time.deltaTime * 10f/20);
-            zoomDistorsion = zoomTozero.Update(zoomDistorsion, 0);
-
+        if (Mathf.Abs(Mathf.Abs(lens.intensity.value) - Mathf.Abs(zoomDistorsion * 50)) < 1f)
+            zoomDistorsion = Mathf.Lerp(zoomDistorsion, 0, zoomTozero.Substract(Time.deltaTime));
+            
         lens.intensity.Override(Mathf.Lerp(lens.intensity.value, 50 * zoomDistorsion, Time.deltaTime*15));
-        //lens.intensity.Override(intensityToZoom.Update(lens.intensity.value, 50 * zoomDistorsion));
 
     }
 }
