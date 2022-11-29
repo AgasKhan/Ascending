@@ -22,19 +22,14 @@ public class Attack_KnifeElements : KnifeElements
     Knifes knife;
 
     PostProcessVolume volume;
-    
-    float time=1;
+
+    Tim charge;
 
     Tim zoomTozero;
 
-    //LerpFixed zoomTozero;
-    //LerpFixed intensityToZoom;
-
     public float ChargeAttack()
     {
-        time += Time.deltaTime;
-
-        chargePercentage =  (time - 1) / maxPressedTime;
+        chargePercentage = charge.Substract(Time.deltaTime);
 
         if (chargePercentage < 1 && chargePercentage!=0)
         {
@@ -71,8 +66,8 @@ public class Attack_KnifeElements : KnifeElements
 
         //knife.movement.Move(character.scoped.point-knife.reference.position, knife.movement.maxSpeed * 10);
 
-        if(time-1 < maxPressedTime)
-            atackMultiply = 1 + relationXtime * time / 10;
+        if(charge.percentage < 1)
+            atackMultiply = 1 + relationXtime * charge.percentage/10;
         else
         {
             if(UnlockHitScan)
@@ -89,7 +84,7 @@ public class Attack_KnifeElements : KnifeElements
 
         knife = null;
 
-        time = 1;
+        charge.Reset();
 
         chargePercentage = 0;
 
@@ -118,6 +113,7 @@ public class Attack_KnifeElements : KnifeElements
         knife.reference.parent = Other.transform;
         knife = null;
         chargePercentage = 0;
+        charge.Reset();
     }
 
     // Update is called once per frame
@@ -130,6 +126,7 @@ public class Attack_KnifeElements : KnifeElements
         volume = PostProcessManager.instance.QuickVolume(12, -1, lens);
 
         zoomTozero = new Tim(0.5f);
+        charge = new Tim(maxPressedTime);
         //intensityToZoom = new LerpFixed(2/3f);
     }
 
