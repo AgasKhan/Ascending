@@ -29475,6 +29475,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
+      propertyPath: LevelToUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: refMenuInGame
       value: 
       objectReference: {fileID: 0}

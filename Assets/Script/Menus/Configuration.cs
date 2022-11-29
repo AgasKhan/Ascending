@@ -43,19 +43,22 @@ public class Configuration : MonoBehaviour
         });
     }
 
+    // Llamada cada que cambia el slider
     void CameraSpeed(GameObject g, float f)
     {
+        // Almacenar 
+        CSVReader.SaveInPictionary ("MouseSensibility", f);
+
+        print("Todo funciono: " + f);
         if (player == null)
             return;
-
         player.cameraScript.Speed(f);
     }
 
+    // On
     void CameraSpeed(Slider s)
     {
-        if (player == null)
-            return;
-        s.value = player.cameraScript.Speed();
+         s.value = CSVReader.LoadFromPictionary<float>("MouseSensibility", 10);
     }
 
     void ChangeVolumeLevel(GameObject g , float volume)
@@ -122,4 +125,5 @@ public class Configuration : MonoBehaviour
 
         text.text = active ? "Deactivate" : "Activate";
     }
+
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class VictoryLevelSelector : MonoBehaviour
 {
     MenuManager _refMenuManager;
+    public int LevelToUnlock;
+
     private void Start()
     {
         _refMenuManager = MenuManager.instance;
@@ -15,9 +17,11 @@ public class VictoryLevelSelector : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        _refMenuManager.OpenCloseMenu();
+        if(LevelToUnlock > CSVReader.LoadFromPictionary<int>("LastUnlockedLevel"))
+            CSVReader.SaveInPictionary<int>("LastUnlockedLevel", LevelToUnlock);
 
-        _refMenuManager.ChangeMenu(3);        
+        CSVReader.SaveInPictionary<int>("CurrentLevel", LevelToUnlock - 1);
+        _refMenuManager.refSceneChanger.Load("Lobby");
     }
 
 }

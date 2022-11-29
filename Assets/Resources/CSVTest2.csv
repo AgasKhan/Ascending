@@ -1,7 +1,7 @@
-Scene_1_Dialogue_1;TestNumberOne
-Scene_1_Dialogue_2;TestNumberTwo
-Scene_1_Dialogue_3;TestNumberThree
-Scene_1_Dialogue_4;TestNumberFour
+Scene_1_Dialogue_1;{"value":"TestNumberOne"}
+Scene_1_Dialogue_2;{"value":"TestNumberTwo"}
+Scene_1_Dialogue_3;{"value":"TestNumberThree"}
+Scene_1_Dialogue_4;{"value":"TestNumberFour"}
 Scene_1_Dialogue_5;E
 Scene_1_Dialogue_6;F
 Scene_1_Dialogue_7;G

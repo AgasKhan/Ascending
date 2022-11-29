@@ -11,7 +11,7 @@ public class CSVReader : MonoBehaviour
     /// </summary>
     public TextAsset textAssetData;
     
-    public Pictionarys<string, string> myPictionary = new Pictionarys<string, string>();
+    public Pictionarys<string, string> baseData = new Pictionarys<string, string>();
 
     public static CSVReader instance;
 
@@ -21,29 +21,33 @@ public class CSVReader : MonoBehaviour
     {
         get
         {
-            return instance.myPictionary;
+            return instance.baseData;
         }
         set
         {
-            instance.myPictionary = value;
+            instance.baseData = value;
         }
     }
 
-    
 
-    //[System.Serializable]
-    public class TestPlayer
+
+    [System.Serializable]
+    public class AuxClass <T>
     {
-        public string name;
-        public int health;
-        public int damage;
-        public int defense;
+        public T value;
+
+        public AuxClass(T o)
+        {
+            value = o;
+        }
     }
+
+
 
     [System.Serializable]
     public class TestPlayerList
     {
-        public TestPlayer[] player;
+        //public AuxClass[] player;
     }
 
     public TestPlayerList myTestPlayerList = new TestPlayerList();
@@ -62,7 +66,7 @@ public class CSVReader : MonoBehaviour
         SaveInPictionary("Scene_1_Dialogue_3", "TestNumberThree");
         SaveInPictionary("Scene_1_Dialogue_4", "TestNumberFour");
 
-        WriteCSV(textAssetData, myPictionary);
+        WriteCSV(textAssetData, baseData);
 
 
         for (int i = 0; i < maximumGames; i++)
@@ -70,11 +74,13 @@ public class CSVReader : MonoBehaviour
             PlayerPrefs.SetString("GameSlot_" + i.ToString() , "");
         }
 
-        SaveProgress(0, myPictionary);
+        SaveProgress(0, baseData);
 
         print(LoadProgress(0));
 
         DontDestroyOnLoad(this);
+
+        SaveInPictionary<int>("CurrentLevel",0);
 
     }
 
@@ -109,7 +115,7 @@ public class CSVReader : MonoBehaviour
         {
             string[] reglonCSV= dataCSV[i].Split(';');
 
-            myPictionary.Add(reglonCSV[0], reglonCSV[1]);
+            baseData.Add(reglonCSV[0], reglonCSV[1]);
         }
 
     }
@@ -149,7 +155,7 @@ public class CSVReader : MonoBehaviour
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
     /// <param name="data"></param>
-    public static void SaveInPictionary<T>(string id, T data) where T : MonoBehaviour
+    public static void SaveClassInPictionary<T>(string id, T data) where T : MonoBehaviour
     {
         string json = JsonUtility.ToJson(data);
 
@@ -160,14 +166,19 @@ public class CSVReader : MonoBehaviour
     }
 
 
-    public static void SaveInPictionary(string id, object data)
+    public static void SaveInPictionary<T>(string id, T data)
     {
-        string json = data.ToString();
+        string json = JsonUtility.ToJson(new AuxClass<T>(data));
 
         if (BD.ContainsKey(id))
             BD[id] = json;
         else
             BD.Add(id, json);
+    }
+
+    public static bool CheckKeyInBD (string key)
+    {
+        return BD.ContainsKey(key);
     }
 
     /// <summary>
@@ -176,9 +187,8 @@ public class CSVReader : MonoBehaviour
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
     /// <returns></returns>
-    public static T LoadFromPictionary<T>(string id)
+    public static T LoadClassFromPictionary<T>(string id)
     {
-
         if (BD.ContainsKey(id))
         {
             var obj = JsonUtility.FromJson<T>(BD[id]);
@@ -186,8 +196,22 @@ public class CSVReader : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not id found on pictionary");
+            Debug.Log("Not id found on Base Data");
             return default;
+        }
+    }
+
+    public static T LoadFromPictionary<T>(string id, T failed=default)
+    {
+        if (BD.ContainsKey(id))
+        {
+            var obj = JsonUtility.FromJson<AuxClass<T>>(BD[id]);
+            return obj.value;
+        }
+        else
+        {
+            Debug.Log("Not id found on Base Data");
+            return failed;
         }
     }
 

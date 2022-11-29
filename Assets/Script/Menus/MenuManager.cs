@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+        if (SceneManager.GetActiveScene().name != "MainMenu" && SceneManager.GetActiveScene().name != "Lobby")
         {
             _inGame = true;
         }

@@ -215,6 +215,8 @@ public class CameraParent : MonoBehaviour
 
         //StartCoroutine(CameraPan());
 
+        Speed(CSVReader.LoadFromPictionary<float>("MouseSensibility", 10));
+
         GameManager.AddTimeController(cam.transform);
 
         GameManager.AddTimeController(transform);

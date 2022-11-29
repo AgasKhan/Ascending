@@ -1175,7 +1175,9 @@ MonoBehaviour:
         clip: {fileID: 8300000, guid: 76658eda050bbc5449ab12231d32813e, type: 3}
         volume: 0
         pitch: 0
+        spatialBlend: 0
         maxDistance: 100
+        minDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
@@ -1185,7 +1187,9 @@ MonoBehaviour:
         clip: {fileID: 8300000, guid: 4c19cf7662572154eaee446aeb4654ca, type: 3}
         volume: 0
         pitch: 0
+        spatialBlend: 0
         maxDistance: 100
+        minDistance: 0
         loop: 0
         onAwake: 0
         source: {fileID: 0}
