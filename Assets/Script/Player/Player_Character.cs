@@ -162,17 +162,17 @@ public class Player_Character : Character
             {
                 if (!animator.CheckAnimations(1,"Take_dagger", "Interact"))
                 {
+                    inter = Interact;
+
                     if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
                     {
                         animator.Take(timePressed);
-                        inter = Interact;
                         inter += Take;
                         
                     }
                     else
                     {
                         animator.Interact(timePressed);
-                        inter = Interact;
                     }
                         
                 }

@@ -77,7 +77,7 @@ public class AnimatorController : MonoBehaviour
             {
                 float aux = (invert ? item.length - item.events[0].time : item.events[0].time);
                 Multiply((aux)/t);
-                print("largo: " + aux + "\n"+"tiempo :"+ t + "\ntotal: "+ ((aux)/t));
+                //print("largo: " + aux + "\n"+"tiempo :"+ t + "\ntotal: "+ ((aux)/t));
             }
         }    
     }
