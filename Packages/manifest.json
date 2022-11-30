@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.coffee.softmask-for-ugui": "file:D:/Downloads/SoftMaskForUGUI-main/SoftMaskForUGUI-main",
+    "com.coffee.softmask-for-ugui": "file:../SoftMaskForUGUI-main",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.15.18",
     "com.unity.ide.rider": "2.0.7",

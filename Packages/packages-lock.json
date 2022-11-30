@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.coffee.softmask-for-ugui": {
-      "version": "file:D:/Downloads/SoftMaskForUGUI-main/SoftMaskForUGUI-main",
+      "version": "file:../SoftMaskForUGUI-main",
       "depth": 0,
       "source": "local",
       "dependencies": {}
