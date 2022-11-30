@@ -552,8 +552,8 @@ MonoBehaviour:
     - key: ImpactEnemy
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
-        clip: {fileID: 8300000, guid: d80864309d73cd04b829a04fccb2df4d, type: 3}
-        volume: 0.6
+        clip: {fileID: 8300000, guid: 3c8da777351212346a1ace3a2bbebe02, type: 3}
+        volume: 1
         pitch: 1
         spatialBlend: 1
         maxDistance: 6

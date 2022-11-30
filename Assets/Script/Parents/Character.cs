@@ -222,6 +222,7 @@ abstract public class Character : MyScripts
     {
         //movement.eneableDetectFloor = true;
         animator.Dash(false);
+
         JumpEnd();
     }
 

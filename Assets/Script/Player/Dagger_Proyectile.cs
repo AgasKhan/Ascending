@@ -67,10 +67,11 @@ public class Dagger_Proyectile : Proyectile
             Character aux;
             gameObject.transform.parent = other.transform;
             MoveRb.kinematic = true;
-            ImpactWallSound();
+            
 
             if ((aux = other.gameObject.GetComponent<Character>()) != null)
             {
+                ImpactEnemySound();
                 if (aux.power.Count > 0)
                     for (int i = 0; i < aux.power.Count; i++)
                     {
@@ -79,6 +80,9 @@ public class Dagger_Proyectile : Proyectile
 
                 AplicateDebuff(aux);
             }
+            else
+                ImpactWallSound();
+
 
             ((MoveRotAndGlueRb)MoveRb).AddGlue(other.transform);
 

@@ -343,6 +343,7 @@ public class Player_Character : Character
     public override void DashSound()
     {
         audioM.Play("Dash");
+        
     }
     public void TakeSound()
     {
