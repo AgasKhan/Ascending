@@ -20,13 +20,11 @@ public class Teleport_Powers : Powers_FatherPwDbff
         base.Off(me);
 
         me.movement.layerDash = layerDash;
+        MainHud.ReticulaPlay("Default");
     }
 
     public override void On(Character me)
-    {
-        on_Update = MyUpdate;
-
-
+    {    
         layerDash = me.movement.layerDash;
         if (LayerName == null || LayerName == "")
         {
@@ -37,10 +35,22 @@ public class Teleport_Powers : Powers_FatherPwDbff
         me.AddCooldown("dashDamageCooldown",1);
     }
 
+    void MyUpdatePlayer(Character me)
+    {
+        print(me.name);
+        print(me.scoped.name);
+        if (me.scoped.gameObject.CompareTags("rb"))
+        {
+            MainHud.ReticulaPlay("Power");
+        }
+        else
+        {
+            MainHud.ReticulaPlay("Default");
+        }
+    }
+
     void MyUpdate(Character me)
     {
-        //se puede optimizar
-
         if(me.movement.dash)
         {
             colliders = Physics.OverlapSphere(me.transform.position, 0.5f);
@@ -57,9 +67,14 @@ public class Teleport_Powers : Powers_FatherPwDbff
                     }
                 }
             }
-
         }
 
-       
+        if (me.CompareTag("Player"))
+            MyUpdatePlayer(me);
+    }
+
+    private void Start()
+    {
+        on_Update = MyUpdate;
     }
 }

@@ -10,7 +10,7 @@ public class DashEnemy_Enemy : Enemy_Character
     {
         base.Config();
 
-        //MyAwakes += MyAwake;
+        MyAwakes += MyAwake;
         
         MyUpdates += MyUpdate;
 
@@ -49,7 +49,10 @@ public class DashEnemy_Enemy : Enemy_Character
     {
         audioM.Play("EnemyDash");
     }
-
+    public override void OffMesh()
+    {
+        DeathSound();
+    }
 
     void MyAwake()
     {
@@ -67,20 +70,12 @@ public class DashEnemy_Enemy : Enemy_Character
 
         //Physics.Raycast(new Ray(transform.position, transform.forward),  out RaycastHit rayCastHit, layerMask);
 
-        if (attackDelay.Chck() && Physics.Raycast(new Ray(transform.position, transform.forward), out RaycastHit rayCastHit, layerMask) && rayCastHit.distance <= 5 && rayCastHit.collider.gameObject.CompareOneTags("Player", "Traspasable"))
+        if ((attackDelay.Chck() && playerDetF || Raycast(new Ray(transform.position, transform.forward)) && scoped.CompareTag("Traspasable")) && (scopedPoint - transform.position).sqrMagnitude < 25)
         {
-            scopedPoint = rayCastHit.point;
-
             attackDelay.Reset();
 
             animator.Dash(true);
         }
+        
     }
-
-    public override void OffMesh()
-    {
-        DeathSound();
-    }
-
-
 }

@@ -100,5 +100,6 @@ public class CameraStart : MoveAndRotTrToPatrol
 
         gameObject.SetActive(false);
         Controllers.eneable = true;
+        MainHud.ReticulaPlay("Start");
     }
 }

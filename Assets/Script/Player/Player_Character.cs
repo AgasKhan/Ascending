@@ -37,6 +37,7 @@ public class Player_Character : Character
             AttackSound();
         }
         MainHud.DaggerText(_actualDaggers, _totalDaggers);
+        MainHud.ReticulaFill(0);
     }
 
     public void Flip()
@@ -228,7 +229,8 @@ public class Player_Character : Character
         if(Controllers.attack.pressed)
         {
             if (Controllers.aim.pressed)
-                atackElements.ChargeAttack();
+                MainHud.ReticulaFill(atackElements.ChargeAttack());
+                
 
             //poder de atraer las dagas
             else if(UnlockAtrackt && _actualDaggers < _totalDaggers)
@@ -265,6 +267,7 @@ public class Player_Character : Character
             atackElements.CancelAttack();
             cameraScript.ZoomOut();
             animator.Aim(false);
+            MainHud.ReticulaFill(0);
         }
 
         if (Controllers.aim.down)
@@ -287,7 +290,7 @@ public class Player_Character : Character
             Flip();
         }
 
-        scoped = null;
+        //
     }
 
     

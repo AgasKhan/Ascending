@@ -47,6 +47,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 4161b3a3144eb4447885cd6fa5941e01, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 86ce407eca3e14d42bbcc84dbeab1f92, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -57,9 +65,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cull: 0
+    - _Cutoff: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeWidth: 1
+    - _FresnelPower: 2.77
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -73,6 +84,12 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _BoxDims: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 0.39462668, b: 0, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission1: {r: 2.56, g: 0, b: 0, a: 1}
+    - _Emission2: {r: 0, g: 1.95, b: 2.52, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MovementDirection: {r: 0, g: -1, b: 0, a: 1}
+    - _ScrollDirection: {r: 0.09, g: 0.21, b: 0, a: 0.12}
   m_BuildTextureStacks: []

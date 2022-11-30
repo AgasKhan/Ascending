@@ -19,6 +19,9 @@ public class HealthUI_HealthCh : HealthCh_LogicActive
 
     public override void Activate(params float[] floatParms)
     {
+        if (floatParms[1] <= 0)
+            MainHud.ReticulaPlay("Exit");
+
         base.Activate(floatParms);
 
         hpPercentage = floatParms[floatParms.Length - 1];

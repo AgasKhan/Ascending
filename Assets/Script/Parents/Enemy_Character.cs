@@ -163,8 +163,6 @@ abstract public class Enemy_Character : Character, IPatrolReturn
                 }
             }
         }
-
-
         //attackCollider.SetActive(true);
     }
 
@@ -172,6 +170,37 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     {
         //attackCollider.SetActive(false);
     }
+
+    /// <summary>
+    /// version modificada del raycast donde ya configura el scope y el scopepoint con los valores del raycasthit
+    /// </summary>
+    /// <param name="ray"></param>
+    /// <returns></returns>
+    protected bool Raycast(Ray ray)
+    {
+        if (Physics.Raycast(ray, out RaycastHit rayCastHit, detectedRadio, layerMask))
+        {
+            scoped = rayCastHit.collider;
+
+            scopedPoint = rayCastHit.point;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// version simplificada del raycast, donde ya esta configurado el radio de deteccion y el layer mask
+    /// </summary>
+    /// <param name="ray"></param>
+    /// <param name="raycastHit"></param>
+    /// <returns></returns>
+    protected bool Raycast(Ray ray, out RaycastHit rayCastHit)
+    {
+        return Physics.Raycast(ray, out rayCastHit, detectedRadio, layerMask);
+    }
+
 
     /// <summary>
     /// Funcion que devolvera el vector direccion con respecto al jugador en caso de detectarlo, o la direccion puesta como parametro en caso que no
@@ -187,17 +216,9 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
         if (Utilitys.DeltaAngleY(playerDirection, out float angle, transform.rotation) < coneOfVision/2)
         {
-            Ray ray = new Ray(transform.position, playerDirection);
-
-            RaycastHit raycastHit;
-
-            if (Physics.Raycast(ray, out raycastHit, detectedRadio, layerMask))
+            if (Raycast(new Ray(transform.position, playerDirection)))
             {
-                scoped = raycastHit.collider;
-
-                scopedPoint = raycastHit.point;
-
-                if (raycastHit.collider.CompareTag("Player"))
+                if (scoped.CompareTag("Player"))
                 {
                     distance = minimalDistancePlayer;
                     playerDetect = true;
@@ -325,7 +346,6 @@ abstract public class Enemy_Character : Character, IPatrolReturn
             item.chrAffected.Add(this);
             item.On(this);
         }
-
     }
 
     #endregion

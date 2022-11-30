@@ -17,6 +17,12 @@ public class MainHud : MonoBehaviour
 
     public Image puntero;
 
+    public Image reticulaCharge;
+
+    public Image reticula;
+
+    public CanvasGroup reticulaAlpha;
+
     public Icon dagger;
 
     public List<Icon> power;
@@ -24,6 +30,8 @@ public class MainHud : MonoBehaviour
     public List<Icon> debuff;
 
     public List<Icon> buff;
+
+    public Animator animatorReticula;
 
     public CanvasScaler canvas;
 
@@ -40,6 +48,37 @@ public class MainHud : MonoBehaviour
     Graphic[] graphics;
 
     Timer tim;
+
+    string preciusNamePlay;
+
+    static public void ReticulaCrossColor(Color color)
+    {
+        instance.reticula.color = color;
+    }
+
+    static public Color ReticulaCrossColor()
+    {
+        return instance.reticula.color;
+    }
+
+    static public void ReticulaAlpha(float n)
+    {
+        instance.reticulaAlpha.alpha = n;
+    }
+
+    static public void ReticulaPlay(string name)
+    {
+        if(instance.preciusNamePlay !=name)
+        {
+            instance.animatorReticula.Play(name);
+            instance.preciusNamePlay = name;
+        }   
+    }
+
+    static public void ReticulaFill(float n)
+    {
+        instance.reticulaCharge.fillAmount = n;
+    }
 
     static public Image Puntero()
     {
@@ -243,6 +282,8 @@ public class MainHud : MonoBehaviour
         originalColor = puntero.color;
         DaggerText(0, 0);
         dagger.textManager.timeInScreen.Stop();
+        ReticulaFill(0);
+        ReticulaAlpha(CSVReader.LoadFromPictionary<float>("AlphaReticula", 0.15f));
     }
 
     IEnumerator posStart()

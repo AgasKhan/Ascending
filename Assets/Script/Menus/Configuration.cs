@@ -22,6 +22,7 @@ public class Configuration : MonoBehaviour
         menu.eventListFloat.AddRange(new Pictionarys<string, System.Action<GameObject, float>>()
         {
             {"sens", CameraSpeed},
+            {"AlphaReticula", ChangeAlphaReticula},
             {"Master", ChangeVolumeLevel},
             {"Ambiental", ChangeVolumeLevel},
             {"Effects", ChangeVolumeLevel}
@@ -30,6 +31,7 @@ public class Configuration : MonoBehaviour
         menu.eventListSliderOn.AddRange(new Pictionarys<string, System.Action<Slider>>()
         {
             {"sens", CameraSpeed},
+            {"AlphaReticula", OnAlphaReticula},
             {"Master", LoadVolumeLevel},
             {"Ambiental", LoadVolumeLevel},
             {"Effects", LoadVolumeLevel}
@@ -60,6 +62,18 @@ public class Configuration : MonoBehaviour
     {
          s.value = CSVReader.LoadFromPictionary<float>("MouseSensibility", 10);
     }
+
+    void ChangeAlphaReticula(GameObject g, float f)
+    {
+        CSVReader.SaveInPictionary("AlphaReticula", f);        
+        MainHud.ReticulaAlpha(f);
+    }
+
+    void OnAlphaReticula(Slider s)
+    {
+        s.value = CSVReader.LoadFromPictionary<float>("AlphaReticula", 0.15f);
+    }
+
 
     void ChangeVolumeLevel(GameObject g , float volume)
     {
