@@ -8,9 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static Player_Character player;
 
-    static GameManager instance;
-
-    public List<TimeController> entitys = new List<TimeController>();
+    static public GameManager instance;
 
     public float delayStart;
 
@@ -50,14 +48,14 @@ public class GameManager : MonoBehaviour
 
     public static void AddTimeController(Transform t)
     {
-        foreach (var item in instance.entitys)
+        
+        foreach (var item in TimeController.entitys)
         {
             if (item.t == t)
                 return;
         }
-        instance.entitys.Add(new TimeController(t));
-        instance.entitys.AddRange(TimeController.ChildTranform(t));
-        
+        TimeController.entitys.Add(new TimeController(t));
+        TimeController.entitys.AddRange(TimeController.ChildTranform(t));
     }
 
     public static void AddEnemy(Character enemy)
@@ -106,44 +104,7 @@ public class GameManager : MonoBehaviour
     {      
         TextCanvas.SrchMessages("debug").ShowText(false, FPS());
 
-        if (!saveTime)
-            return;
-         
-        if (maxLevelTimer < currentTime)
-            StartCoroutine(ReverseAll(multiplyReverseCamera));
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Controllers.eneable = false;
-            Time.timeScale = 0;
-        }
-
-        else if (Input.GetKeyUp(KeyCode.R))
-        {
-            Controllers.eneable = true;
-            Time.timeScale = 1;
-        }
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            if (entitys[0].count > 1)
-            {
-                CurrentTime(-Time.unscaledDeltaTime);
-            }
-
-            foreach (var item in entitys)
-            {
-                item.Reverse();
-            }
-        }
-        else
-        {
-            CurrentTime(Time.unscaledDeltaTime);
-            foreach (var item in entitys)
-            {
-                item.Update();
-            }
-        }
+        TimeController.Update();
     }
 
     private void Awake()
@@ -154,6 +115,8 @@ public class GameManager : MonoBehaviour
         var listPlayer = gameObject.FindWithTags("Player");
         if (listPlayer.Length > 0)
             player = listPlayer[0].GetComponent<Player_Character>();
+
+        TimeController.Awake();
     }
 
 
@@ -176,16 +139,16 @@ public class GameManager : MonoBehaviour
         Controllers.eneable = false;
         Time.timeScale = 0;
 
-        while (instance.entitys[0].count > velocity)
+        while (TimeController.entitys[0].count > velocity)
         {
-            foreach (var item in instance.entitys)
+            foreach (var item in TimeController.entitys)
             {
-                item.Reverse(velocity);
+                item.ReverseItem(velocity);
             }
             yield return null;
         }
 
-        foreach (var item in instance.entitys)
+        foreach (var item in TimeController.entitys)
         {
             if (item.a != null)
                 item.a.enabled = true;

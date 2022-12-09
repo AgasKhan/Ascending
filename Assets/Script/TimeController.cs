@@ -5,6 +5,59 @@ using UnityEngine;
 [System.Serializable]
 public class TimeController
 {
+    static public List<TimeController> entitys;
+
+    static TimeController instance;
+
+    static float maxLevelTimer;
+
+    static float currentTime;
+
+    static int multiplyReverseCamera;
+
+    static public void Update()
+    {
+        if (!GameManager.saveTime)
+            return;
+
+        if (maxLevelTimer < currentTime)
+            GameManager.instance.StartCoroutine(GameManager.ReverseAll(multiplyReverseCamera));
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Controllers.eneable = false;
+            Time.timeScale = 0;
+        }
+
+        else if (Input.GetKeyUp(KeyCode.R))
+        {
+            Controllers.eneable = true;
+            Time.timeScale = 1;
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            if (entitys[0].count > 1)
+            {
+                GameManager.CurrentTime(-Time.unscaledDeltaTime);
+            }
+
+            foreach (var item in entitys)
+            {
+                item.ReverseItem();
+            }
+        }
+        else
+        {
+            GameManager.CurrentTime(Time.unscaledDeltaTime);
+            foreach (var item in entitys)
+            {
+                item.UpdateItem();
+            }
+        }
+    }
+
+
     [System.Serializable]
     public struct PosAndRot
     {
@@ -75,7 +128,7 @@ public class TimeController
 
     Stack<bool[]> monoActive = new Stack<bool[]>();
 
-    public void Reverse(int jump = 1)
+    public void ReverseItem(int jump = 1)
     {
         if (posAndRots.Count <= 1 || t == null)
             return;
@@ -138,7 +191,7 @@ public class TimeController
         }*/
     }
 
-    public void Update()
+    public void UpdateItem()
     {
         if (t == null)
             return;
@@ -196,6 +249,11 @@ public class TimeController
 
         return d;
 
+    }
+
+    public static void Awake()
+    {
+        entitys = new List<TimeController>();
     }
 
     public TimeController(Transform t)
