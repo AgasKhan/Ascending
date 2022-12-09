@@ -46,8 +46,6 @@ public class KnifeElements : MonoBehaviour
             daggerScript.pause = true;
             daggerScript.owner = character;
 
-            
-
             //daggerScript.transform.GetChild(0).GetComponent<Interactuable_LogicActive>().diseable = false;
         }
     }

@@ -9,16 +9,21 @@ abstract public class Proyectile : MonoBehaviour
 
     public MoveRb MoveRb;
 
-    protected void Damage(Collider other)
+    public Damage damage;
+    public void AplicateDebuff(Character ch)
     {
-        Health health;
-
-        if ((health = other.GetComponent<Health>()) != null)
+        if (damage.debuffList != null)
         {
-            health.Substract(owner.damage);
+            if (damage.debuffList.Count != 0)
+            {
+                foreach (var item in damage.debuffList)
+                {
+                    Debuff_FatherPwDbff.SchDebuff(item).Add(ch);
+                }
+            }
         }
     }
-
+    
     protected void CasterObject()
     {
         if (owner != null)
@@ -35,20 +40,66 @@ abstract public class Proyectile : MonoBehaviour
         }
     }
 
-    protected void AplicateDebuff(Character ch)
+    protected virtual void OnEnter(Collider other)
     {
-        if (owner != null)
+        if (other.gameObject.TryGetComponent(out IOnProyectileEnter aux))
         {
-            if (owner.debuffToAplicate.Count != 0)
-            {
-                foreach (var item in owner.debuffToAplicate)
-                {
-                    Debuff_FatherPwDbff.SchDebuff(item).Add(ch);
-                }
+            OnDamage(aux);
+        }
+        else
+            FailDamage();
+    }
+    protected virtual void OnExit(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out IOnProyectileExit aux))
+        {
+            aux.ProyectileExit();
+        }
+    }
+    protected virtual void OnDamage(IOnProyectileEnter aux)
+    {
+        aux.ProyectileEnter(damage);
+    }
+    protected virtual void FailDamage()
+    {
 
-            }
+    }
 
+    private void Awake()
+    {
+        damage.proyectile = this;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag(tag) && !other.CompareTag(owner.tag))
+        {
+            OnEnter(other);
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag(tag) && !other.CompareTag(owner.tag))
+        {
+            OnExit(other);
+        }
+    }
+}
+
+public interface IOnProyectileEnter
+{
+    void ProyectileEnter(Damage damage);
+}
+
+public interface IOnProyectileExit
+{
+    void ProyectileExit();
+}
+
+public struct Damage
+{
+    public float amount;
+    public List<System.Type> debuffList;
+    public Proyectile proyectile;
 }

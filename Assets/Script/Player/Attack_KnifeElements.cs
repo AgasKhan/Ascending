@@ -35,7 +35,7 @@ public class Attack_KnifeElements : KnifeElements
         {
             zoomDistorsion = chargePercentage;    
         }
-        else if (chargePercentage > 1)
+        else if (chargePercentage >= 1)
         {
             chargePercentage = 1;
             zoomDistorsion = 1 + 0.05f*Mathf.Sin(Time.time*15);
@@ -79,6 +79,8 @@ public class Attack_KnifeElements : KnifeElements
                 atackMultiply = 1 + maxPressedTime * relationXtime / 10;
         }
 
+        knife.daggerScript.damage.amount = character.damage;
+        knife.daggerScript.damage.debuffList = character.debuffToAplicate;
 
         knife.movement.Dash(character.scopedPoint - knife.reference.position, atackMultiply);
 
@@ -127,7 +129,7 @@ public class Attack_KnifeElements : KnifeElements
 
         zoomTozero = new Tim(0.5f);
         charge = new Tim(maxPressedTime);
-        //intensityToZoom = new LerpFixed(2/3f);
+ 
     }
 
     private void OnDestroy()
@@ -158,8 +160,6 @@ public class Attack_KnifeElements : KnifeElements
                 //knife.daggerScript.SetLine(knife.reference.position, raycastHit.point);
                 MainHud.PunteroPos(Camera.main.WorldToScreenPoint(raycastHit.point));
             }
-            
-            
             //knife.reference.LookAt(character.cameraScript.hitPoint);
         }
 

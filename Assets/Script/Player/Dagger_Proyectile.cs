@@ -46,56 +46,48 @@ public class Dagger_Proyectile : Proyectile
         }
     }
 
-    public void SetLine(Vector3 p1, Vector3 p2)
+    protected override void OnDamage(IOnProyectileEnter aux)
     {
-        daggerEffect.SetLine(p1, p2);
+        base.OnDamage(aux);
+        ImpactEnemySound();
     }
 
-    private void Start()
+    protected override void FailDamage()
     {
-        colliders = GetComponentsInChildren<Collider>();
-        interact = GetComponentInChildren<Interactuable_LogicActive>();
-        powerSteal = new List<System.Type>();
-        daggerEffect = GetComponentInChildren<DaggerEffect>();
-        audioM = GetComponent<AudioManager>();
+        base.FailDamage();
+        ImpactWallSound();
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnEnter(Collider other)
     {
-        if(active && !other.CompareTag("Player") && !other.CompareTag("Shield"))
+        if (active)
         {
-            Character aux;
             gameObject.transform.parent = other.transform;
             MoveRb.kinematic = true;
-            
 
-            if ((aux = other.gameObject.GetComponent<Character>()) != null)
-            {
-                ImpactEnemySound();
-                if (aux.power.Count > 0)
-                    for (int i = 0; i < aux.power.Count; i++)
-                    {
-                        powerSteal.Add(aux.power[i].GetType());
-                    }
-
-                AplicateDebuff(aux);
-            }
-            else
-                ImpactWallSound();
-
+            base.OnEnter(other); 
 
             ((MoveRotAndGlueRb)MoveRb).AddGlue(other.transform);
 
             active = false;
 
-            
-
-            Damage(other);
-
             CasterObject();
         }
     }
 
+    public void StealPowers(Character ch)
+    {
+        if (ch.power.Count > 0)
+            for (int i = 0; i < ch.power.Count; i++)
+            {
+                powerSteal.Add(ch.power[i].GetType());
+            }
+    }
+
+    public void SetLine(Vector3 p1, Vector3 p2)
+    {
+        daggerEffect.SetLine(p1, p2);
+    }
 
     public void ImpactEnemySound()
     {
@@ -109,4 +101,15 @@ public class Dagger_Proyectile : Proyectile
     {
         audioM.Play("ImpactTpObject");
     }
+
+    private void Start()
+    {
+        colliders = GetComponentsInChildren<Collider>();
+        interact = GetComponentInChildren<Interactuable_LogicActive>();
+        powerSteal = new List<System.Type>();
+        daggerEffect = GetComponentInChildren<DaggerEffect>();
+        audioM = GetComponent<AudioManager>();
+    }
 }
+
+

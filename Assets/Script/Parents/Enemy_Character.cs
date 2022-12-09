@@ -129,6 +129,9 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
         Proyectile proyScript = aux.GetComponent<Proyectile>();
 
+        proyScript.damage.amount = damage;
+        proyScript.damage.debuffList = debuffToAplicate;
+
         proyScript.owner = this;
         proyScript.MoveRb.Move((player.transform.position - transform.position));
 

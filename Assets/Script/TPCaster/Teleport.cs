@@ -5,14 +5,9 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class Teleport : MonoBehaviour
 {
-
-   
     private void OnEnable()
     {
         Player_Character player = GameManager.player;
-
-
-
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f);
 

@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(HealthCh_LogicActive))]
-abstract public class Character : MyScripts
+abstract public class Character : MyScripts, IOnProyectileEnter
 {
     [Header("Common propertys")]
     [Space]
@@ -558,7 +558,17 @@ abstract public class Character : MyScripts
     }
 
     #endregion
-    
+
+    public void ProyectileEnter(Damage damage)
+    {
+        health.Substract(damage.amount);
+
+        damage.proyectile.AplicateDebuff(this);
+
+        if (damage.proyectile is Dagger_Proyectile)
+            ((Dagger_Proyectile)damage.proyectile).StealPowers(this);
+
+    }
 
     protected override void Config()
     {
@@ -634,5 +644,5 @@ abstract public class Character : MyScripts
         gameObject.SetActive(false);
     }
 
-
+    
 }

@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class Enemy_Proyectile : Proyectile
 {
-
-    void Active(Collider other)
+    protected override void OnEnter(Collider other)
     {
-        Damage(other);
+        base.OnEnter(other);
 
         CasterObject();
 
         gameObject.SetActive(false);
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        Active(other);
-    }
-
 }

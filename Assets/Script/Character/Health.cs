@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IGetPercentage
 {
     public float maxHp;
     public float hp;
@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
     /// Devuele el porcentage de vida del objeto
     /// </summary>
     /// <returns>valor entre 0 y 1</returns>
-    public float HpPercentage()
+    public float Percentage()
     {
         return hp / maxHp;
     }
@@ -68,7 +68,7 @@ public class Health : MonoBehaviour
 
             _enf.Reset();
 
-            damageLogic.Activate(damage, hp, HpPercentage());
+            damageLogic.Activate(damage, hp, Percentage());
         }
     }
 
@@ -88,4 +88,6 @@ public class Health : MonoBehaviour
         hp = h;
         armor = a;
     }
+
+    
 }

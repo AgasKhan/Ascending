@@ -79,7 +79,9 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
 
         part.Stop();
 
-        TimersManager.Create(1, ()=> {
+        TimersManager.Create(1, 
+        ()=> 
+        {
             var partMain = part.main;
             partMain.duration = (dbffTimer - partMain.startLifetime.constant / partMain.simulationSpeed) * partMain.simulationSpeed;
             part.Play();
