@@ -65,7 +65,7 @@ public class Interfaz : MonoBehaviour
         foreach (var item in titulosC)
         {            
             
-            if (item.Write() && item.fade && item.timer.Chck())
+            if (item.Write() && item.fade && item.timer.Chck)
             {
                 item.Fade(Time.deltaTime,0);
             }
@@ -159,7 +159,7 @@ public class TextCompleto
         }
         else if(final != "")
         {
-            if (letras.Chck())
+            if (letras.Chck)
             {
                 texto.text += final[texto.text.Length];
 
@@ -202,9 +202,9 @@ public class TextCompleto
         
         name = o.name;
         texto = o;
-        letras = Timers.Create(t);
+        letras = TimersManager.Create(t);
         final = palabraInicial;
         fade = fadeActivacion;
-        timer = Timers.Create(3);
+        timer = TimersManager.Create(3);
     }
 }

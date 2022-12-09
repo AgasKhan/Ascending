@@ -23,7 +23,7 @@ public class Vortex_Debuff : Debuff_FatherPwDbff
     {
         print(a.name + " esta relentizado");
 
-        if (a.MyCooldowns[dbffTimerName].Chck())
+        if (a.MyCooldowns[dbffTimerName].Chck)
         {
             Remove(a);
         }

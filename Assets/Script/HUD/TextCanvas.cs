@@ -73,7 +73,7 @@ public class TextCanvas : MonoBehaviour
 
         foreach (var item in instance.text)
         {
-            if (item.Load() && item.timeInScreen.Chck())
+            if (item.Load() && item.timeInScreen.Chck)
                 item.Next();
 
             item.Fade();
@@ -267,7 +267,7 @@ namespace Internal
             }
             else if (final != "")
             {
-                if (letters.Chck())
+                if (letters.Chck)
                 {
                     textBox.text += final[textBox.text.Length];
 
@@ -335,8 +335,8 @@ namespace Internal
 
         public void Start()
         {
-            timeInScreen = Timers.Create(inScreen + startFadeIn);
-            letters = Timers.Create(btwLetters);
+            timeInScreen = TimersManager.Create(inScreen + startFadeIn);
+            letters = TimersManager.Create(btwLetters);
             Load = Write;
             textBox.text = "";
             itemText = new List<string>();

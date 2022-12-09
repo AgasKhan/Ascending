@@ -126,14 +126,14 @@ public class Patrol
     {
         if (_distance.sqrMagnitude < minimal * minimal)
         {
-            if (_wait.Chck() && !firstTime)
+            if (_wait.Chck && !firstTime)
             {
                 if (automatic)
                 {
                     iPatrulla = NextPoint(out _reverseEffect);
                 }
             }
-            else if (_wait.Chck() && firstTime)
+            else if (_wait.Chck && firstTime)
             {
                 _wait.Reset();
                 firstTime = false;
@@ -142,7 +142,7 @@ public class Patrol
             Distance();
             return true;
         }
-        if(_wait.Chck())
+        if(_wait.Chck)
             firstTime = true;
         return false;
     }
@@ -152,7 +152,7 @@ public class Patrol
     {
         _mono = m;
 
-        _wait = Timers.Create(_waitTime);
+        _wait = TimersManager.Create(_waitTime);
 
         if (patrol.Count <= 0)
         {

@@ -101,10 +101,10 @@ public class MainHud : MonoBehaviour
         instance.puntero.rectTransform.position = vec;
         instance.puntero.color = instance.cancelColor;
 
-        if (instance.punteroRoutine == null || instance.punteroRoutine.finish)
-            instance.punteroRoutine = Timers.Create(0.1f, PunteroPos);
+        if (instance.punteroRoutine == null || instance.punteroRoutine.Chck)
+            instance.punteroRoutine = TimersManager.Create(0.1f, PunteroPos);
         else
-            instance.punteroRoutine.Restart();
+            instance.punteroRoutine.Reset();
 
 
     }
@@ -265,7 +265,7 @@ public class MainHud : MonoBehaviour
             powerList.transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        tim = Timers.Create(1);
+        tim = TimersManager.Create(1);
 
         foreach (var item in graphics)
         {
@@ -288,7 +288,7 @@ public class MainHud : MonoBehaviour
 
     IEnumerator posStart()
     {
-        while (!tim.Chck())
+        while (!tim.Chck)
         {
             yield return null;
         }

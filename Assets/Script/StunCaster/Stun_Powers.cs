@@ -49,11 +49,11 @@ public class Stun_Powers : Powers_FatherPwDbff
 
     private void MyUpdate(Character me)
     {
-        if (me.MyCooldowns["ShieldTimer"].Chck() || me.movement.dash)
+        if (me.MyCooldowns["ShieldTimer"].Chck || me.movement.dash)
         {
             me.OffObjRef("Shield");
         }
-        else if (!me.MyCooldowns["ShieldTimer"].Chck() && me.animator.CheckAnimations("Jump"))
+        else if (!me.MyCooldowns["ShieldTimer"].Chck && me.animator.CheckAnimations("Jump"))
         {
             me.animator.OnFloor();
         }

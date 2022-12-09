@@ -66,8 +66,8 @@ public class Attack_KnifeElements : KnifeElements
 
         //knife.movement.Move(character.scoped.point-knife.reference.position, knife.movement.maxSpeed * 10);
 
-        if(charge.percentage < 1)
-            atackMultiply = 1 + relationXtime * charge.percentage/10;
+        if(charge.Percentage() < 1)
+            atackMultiply = 1 + relationXtime * charge.Percentage()/10;
         else
         {
             if(UnlockHitScan)

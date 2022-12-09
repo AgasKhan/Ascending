@@ -16,7 +16,7 @@ public abstract class EffectArea : MyScripts
 
         public void ChckandSubsHealth(float damage)
         {
-            if (affected.MyCooldowns[strTimer].Chck() && !go.CompareTags("Death"))
+            if (affected.MyCooldowns[strTimer].Chck && !go.CompareTags("Death"))
             {
                 health.Substract(damage);
                 affected.MyCooldowns[strTimer].Reset();
@@ -128,7 +128,7 @@ public abstract class EffectArea : MyScripts
 
      void MyAwake()
     {
-        toDeactivate = Timers.Create(toDestroy);
+        toDeactivate = TimersManager.Create(toDestroy);
 
         strTimer += GetType().FullName+"-"+GetInstanceID();
 
@@ -145,7 +145,7 @@ public abstract class EffectArea : MyScripts
 
     void MyUpdate()
     {
-        if (toDeactivate.Chck())
+        if (toDeactivate.Chck)
         {
             gameObject.SetActive(false);
         }

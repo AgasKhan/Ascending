@@ -24,18 +24,18 @@ public class FadeBlack : MonoBehaviour
         // Use the QuickVolume method to create a volume with a priority of 100, and assign the vignette to this volume
         m_Volume = PostProcessManager.instance.QuickVolume(gameObject.layer, 100f, m_Vignette);
 
-        tim = Timers.Create(1);
+        tim = TimersManager.Create(1);
     }
     void Update()
     {
-        if(tim.Chck())
+        if(tim.Chck)
         {
             m_Vignette.opacity.value -= Time.deltaTime * velocity;
         }
         
         if (m_Vignette.opacity.value <= 0)
         {
-            Timers.Destroy(tim);
+            TimersManager.Destroy(tim);
             RuntimeUtilities.DestroyVolume(m_Volume, true, true);
             this.enabled = false;
         }

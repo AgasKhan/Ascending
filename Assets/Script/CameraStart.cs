@@ -65,14 +65,14 @@ public class CameraStart : MoveAndRotTrToPatrol
 
     IEnumerator Wait()
     {
-        myTimer = Timers.Create(2);
+        myTimer = TimersManager.Create(2);
 
-        while (!myTimer.Chck())
+        while (!myTimer.Chck)
         {
             yield return null;
         }
 
-        Timers.Destroy(myTimer);
+        TimersManager.Destroy(myTimer);
         myTimer = null;
         MyUpdates = auxUpdate;
 

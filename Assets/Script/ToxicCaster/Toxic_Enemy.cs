@@ -47,7 +47,7 @@ public class Toxic_Enemy : Enemy_Character
     void MyUpdate()
     {
         
-        if (playerDetF && attackDelay.Chck())
+        if (playerDetF && attackDelay.Chck)
         {
             attackDelay.Reset();
 

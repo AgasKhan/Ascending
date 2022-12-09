@@ -29,41 +29,25 @@ public class Teleport : MonoBehaviour
 
                 PostProcessVolume volume = PostProcessManager.instance.QuickVolume(12, 100f, lens);
 
-                Timers.Create(0.5f, ()=> {
+                Utilitys.LerpInTime(lens.intensity.value, 75, 0.5f, Mathf.Lerp, (saveData)=> { lens.intensity.Override(saveData); });
+                Utilitys.LerpInTime(lens.scale.value, 0.01f, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
 
-                    DebugPrint.Log("comenzo la animacion del teleport");
+                TimersManager.Create(0.5f,
+                ()=>
+                {
+                    item.transform.position = player.transform.position;
+                    player.transform.position = transform.position;
 
-                }, ()=> {
+                    Utilitys.LerpInTime(lens.intensity.value, ()=> player.atackElements.lens.intensity.value, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
+                    Utilitys.LerpInTime(lens.scale.value, 1, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
 
-                    Vector3 vector = Camera.main.WorldToScreenPoint(item.transform.position);
-
-                    lens.intensity.Override(Mathf.Lerp(lens.intensity.value, +75, Time.deltaTime*5));
-                    lens.scale.Override(Mathf.Lerp(lens.scale.value, 0.01f, Time.deltaTime*5));
-
-                },()=> {
-                    
-                    Timers.Create(0.5f, () => {
-
-                        DebugPrint.Log("comenzo la finalizacion de la animacion de teleport");
-                        item.transform.position = player.transform.position;
-                        player.transform.position = transform.position;
-
-                    }, () => {
-                        Vector3 vector = Camera.main.WorldToScreenPoint(transform.position);
-
-                        lens.intensity.Override(Mathf.Lerp(lens.intensity.value, player.atackElements.lens.intensity.value, Time.deltaTime*15));
-                        lens.scale.Override(Mathf.Lerp(lens.scale.value, 1, Time.deltaTime*15));
-
-                    }, () => {
-
+                    TimersManager.Create(0.5f, 
+                    () => 
+                    {
                         RuntimeUtilities.DestroyVolume(volume, true, true);
-
                     });
 
                 });
-
-               
-                
                 break;
             }
 

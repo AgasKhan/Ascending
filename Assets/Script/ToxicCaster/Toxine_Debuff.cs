@@ -21,13 +21,13 @@ public class Toxine_Debuff : Debuff_FatherPwDbff
     {
         print(a.name + " tiene toxina");
 
-        if (a.MyCooldowns[_cdString].Chck())
+        if (a.MyCooldowns[_cdString].Chck)
         {
             a.health.Substract(_toxineDameg);
             a.MyCooldowns[_cdString].Reset();
         }
 
-        if (a.MyCooldowns[dbffTimerName].Chck())
+        if (a.MyCooldowns[dbffTimerName].Chck)
         {
             Remove(a);
         }

@@ -79,41 +79,73 @@ public static class Utilitys
 
 
     #endregion
-}
 
 
-/*
-public class LerpFixed
-{
-    float actualTime;
-    float addTime;
-    
-    public bool finish
+    #region lerps
+
+    static public void LerpInTime<T>(T original, T final, float seconds, System.Func<T, T, float, T> Lerp, System.Action<T> save)
     {
-        get
+        LerpInTime(() => original, () => final, seconds, Lerp, save);
+    }
+
+    static public void LerpInTime<T>(T original, System.Func<T> final, float seconds, System.Func<T, T, float, T> Lerp, System.Action<T> save)
+    {
+        LerpInTime(() => original, final, seconds, Lerp, save);
+    }
+
+    static public void LerpInTime<T>(System.Func<T> original, T final, float seconds, System.Func<T, T, float, T> Lerp, System.Action<T> save)
+    {
+        LerpInTime(original, () => final, seconds, Lerp, save);
+    }
+
+
+    static public void LerpInTime<T>(System.Func<T> original, System.Func<T> final, float seconds, System.Func<T, T, float, T> Lerp, System.Action<T> save)
+    {
+        Timer tim = new Timer(seconds);
+
+        System.Action
+
+        update = () =>
         {
-            return actualTime >= 1;
+            save(Lerp(original(), final(), tim.Percentage()));
         }
+        ,
+
+        end = () =>
+        {
+            save(final());
+        };
+
+        tim = TimersManager.Create(seconds, null, update, end);
     }
 
-    public LerpFixed(float deltaTime)
+    static public void LerpWithCompare<T>(T original, T final, float velocity, System.Func<T, T, float, T> Lerp, System.Func<T, T, bool> compare, System.Action<T> save)
     {
-        addTime = deltaTime* Time.deltaTime;
+        Timer tim = new Timer(1);
+
+        System.Action
+
+        update = () =>
+        {
+            original = Lerp(original, final, Time.deltaTime * velocity);
+            save(original);
+
+            if (compare(original, final))
+                tim.Set(0);
+            else
+                tim.Reset();
+
+        }
+        ,
+        end = () =>
+        {
+            save(final);
+
+        };
+
+        tim = TimersManager.Create(1, null, update, end);
     }
 
-    public float Update(float a, float b)
-    {
-        actualTime += addTime;
-        if (actualTime > 1)
-            actualTime = 1;
-
-        return Mathf.Lerp(a, b, actualTime);
-    }
-
-    public void Reset()
-    {
-        actualTime = 0;
-    }
-
+    #endregion
 }
-*/
+

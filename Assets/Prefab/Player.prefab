@@ -123,6 +123,7 @@ MonoBehaviour:
   character: {fileID: 8202150891239359146}
   Other: {fileID: 8202150891830918423}
   distance: {x: 1, y: 0, z: 0}
+  timeToAttrackt: 2
 --- !u!1 &8202150891239359137
 GameObject:
   m_ObjectHideFlags: 0

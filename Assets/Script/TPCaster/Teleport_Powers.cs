@@ -60,7 +60,7 @@ public class Teleport_Powers : Powers_FatherPwDbff
                 if (me.name != item.name)
                 {
                     Health health = item.GetComponent<Health>();
-                    if (me.MyCooldowns["dashDamageCooldown"].Chck() && health != null)
+                    if (me.MyCooldowns["dashDamageCooldown"].Chck && health != null)
                     {
                         health.Substract(me.damage);
                         me.MyCooldowns["dashDamageCooldown"].Reset();

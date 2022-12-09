@@ -22,7 +22,7 @@ public class Stun_Debuff : Debuff_FatherPwDbff
 
     void MyUpdate(Character a)
     {
-        if (a.MyCooldowns[dbffTimerName].Chck())
+        if (a.MyCooldowns[dbffTimerName].Chck)
         {
             Remove(a);
         }

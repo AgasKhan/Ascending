@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Float_KnifeElements : KnifeElements
 {
+    public float timeToAttrackt;
+
     void Order()
     {
         System.Type[] type=null;
@@ -38,6 +40,10 @@ public class Float_KnifeElements : KnifeElements
         }   
     }
 
+    private void Awake()
+    {
+        //timeToAttrackt
+    }
 
     private void Update()
     {
@@ -55,30 +61,21 @@ public class Float_KnifeElements : KnifeElements
         {
             MoveRotAndGlueRb move = transform.GetChild(i).GetComponent<MoveRotAndGlueRb>();
 
-            move.kinematic = false;
+            move.kinematic = true;
             move.eneableDrag = true;
-            move.Move(transform.position - transform.GetChild(i).position);
+            move.Stop();
+            move.transform.parent = null;
 
-            if ((transform.position - transform.GetChild(i).position).sqrMagnitude <= (distance * 2).sqrMagnitude)
-            {
-                move.Stop();
-                move.kinematic = true;
-                transform.GetChild(i).parent = transform.GetChild(0);
-                Timers.Create(0.1f, ()=> {
+            Utilitys.LerpInTime(move.transform.position, () => (transform.position + transform.GetChild(0).rotation * distance), timeToAttrackt, Vector3.Lerp, (saveData) => { move.transform.position = saveData; });
 
-                    bool chck = true;
-                    
-                    foreach (var item in elements)
-                    {
-                        if (item.reference == move.transform)
-                            chck = false;
-                    }
+            Utilitys.LerpInTime(move.transform.rotation, Quaternion.identity, timeToAttrackt, Quaternion.Slerp, (saveData) => { move.transform.rotation = saveData; });
 
-                    if(chck && Other.transform.childCount>0 && Other.transform.GetChild(0) != move.transform)
-                        move.transform.localPosition = distance;
 
+            TimersManager.Create(timeToAttrackt, 
+                () => 
+                {
+                    move.transform.parent = transform.GetChild(0);
                 });
-            }
         }
 
         foreach (Transform item in transform)

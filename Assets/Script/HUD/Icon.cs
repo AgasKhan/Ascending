@@ -41,7 +41,7 @@ public class Icon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (textManager.Load() && textManager.timeInScreen.Chck())
+        if (textManager.Load() && textManager.timeInScreen.Chck)
             textManager.Next();
 
         textManager.Fade();

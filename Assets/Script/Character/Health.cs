@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
     {
         hp = maxHp;
 
-        _enf = Timers.Create(cooldownDamage);
+        _enf = TimersManager.Create(cooldownDamage);
 
         damageLogic = GetComponent<LogicActive>();
 
@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
 
     private void OnDestroy()
     {
-        Timers.Destroy(_enf);
+        TimersManager.Destroy(_enf);
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class Health : MonoBehaviour
     {
         damage = damage > 0 ? ( (damage - armor)>0 ? (damage - armor) : 0) : damage;
 
-        if (_enf.Chck())
+        if (_enf.Chck)
         {
             hp -= damage;
 

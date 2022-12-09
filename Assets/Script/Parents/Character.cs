@@ -178,7 +178,7 @@ abstract public class Character : MyScripts
     /// </summary>
     public virtual void Jump()
     {
-        if (!coyoteTime.Chck())
+        if (!coyoteTime.Chck)
         {
             _extraJumps = extraJumps;
             coyoteTime.Substract(10);
@@ -356,7 +356,7 @@ abstract public class Character : MyScripts
         if (MyCooldowns.ContainsKey(n))
             return;
 
-        MyCooldowns.Add(n, Timers.Create(t));
+        MyCooldowns.Add(n, TimersManager.Create(t));
     }
 
     public void RemoveCooldown(string n)
@@ -368,7 +368,7 @@ abstract public class Character : MyScripts
             return;
         }
 
-        Timers.Destroy(MyCooldowns[n]);
+        TimersManager.Destroy(MyCooldowns[n]);
 
         MyCooldowns.Remove(n);
 
@@ -580,7 +580,7 @@ abstract public class Character : MyScripts
     {
         gameObject.AddTags(Tag.character);
 
-        coyoteTime = Timers.Create(0.3f);
+        coyoteTime = TimersManager.Create(0.3f);
 
 
         animator.functions.AddRange(new Pictionarys<string, AnimatorController.PrototypeFunc>

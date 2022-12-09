@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Timers : MonoBehaviour
+public class TimersManager : MonoBehaviour
 {
     List<Timer> timersList;
-    List<Routine> routines;
-    List<CompleteRoutine> completeRoutines;
 
-    static Timers instance;
+    static TimersManager instance;
+
+
+
+
 
     /// <summary>
     /// Crea un timer que se almacena en una lista para restarlos de forma automatica
@@ -34,14 +36,14 @@ public class Timers : MonoBehaviour
     public static Routine Create(float totTime, Action action, bool destroy=true)
     {
         Routine newTimer = new Routine(totTime, action, destroy);
-        instance.routines.Add(newTimer);
+        instance.timersList.Add(newTimer);
         return newTimer;
     }
 
     public static CompleteRoutine Create(float totTime, Action start, Action update, Action end, bool destroy = true)
     {
         CompleteRoutine newTimer = new CompleteRoutine(totTime, start, update, end, destroy);
-        instance.completeRoutines.Add(newTimer);
+        instance.timersList.Add(newTimer);
         return newTimer;
     }
 
@@ -58,8 +60,6 @@ public class Timers : MonoBehaviour
     private void Awake()
     {
         timersList = new List<Timer>();
-        routines = new List<Routine>();
-        completeRoutines = new List<CompleteRoutine>();
         instance = this;
 
         print("Se instancio el timer");
@@ -70,25 +70,11 @@ public class Timers : MonoBehaviour
         for (int i = 0; i < timersList.Count; i++)
         {
             timersList[i].Substract(Time.deltaTime);
-        }
 
-        for (int i = routines.Count-1; i >= 0; i--)
-        {
-            routines[i].timer.Substract(Time.deltaTime);
-            if(routines[i].finish && routines[i].execute)
+            if (timersList[i].Chck && timersList[i] is Routine && ((Routine)timersList[i]).execute)
             {
-                if (routines[i].Execute())
-                    routines.RemoveAt(i);
-            }
-        }
-
-        for (int i = completeRoutines.Count - 1; i >= 0; i--)
-        {
-            completeRoutines[i].Update();
-            if (completeRoutines[i].finish && completeRoutines[i].execute)
-            {
-                if (completeRoutines[i].Execute())
-                    completeRoutines.RemoveAt(i);
+                if (((Routine)timersList[i]).Execute())
+                    timersList.RemoveAt(i);
             }
         }
     }
@@ -96,7 +82,7 @@ public class Timers : MonoBehaviour
 
 
 
-public class Tim
+public class Tim : IGetPercentage
 {
     [SerializeField]
     protected float _totalTime;
@@ -104,18 +90,10 @@ public class Tim
     [SerializeField]
     protected float _currentTime;
 
-    public float percentage
-    {
-        get
-        {
-            return (_totalTime - _currentTime) / _totalTime;
-        }
-    }
-
     /// <summary>
     /// Reinicia el contador a su valor por defecto, para reiniciar la cuenta
     /// </summary>
-    public void Reset()
+    public virtual void Reset()
     {
         _currentTime = _totalTime;
     }
@@ -131,7 +109,7 @@ public class Tim
             _currentTime -= n;
         }
 
-        return percentage;
+        return Percentage();
     }
 
     /// <summary>
@@ -142,6 +120,11 @@ public class Tim
     {
         _totalTime = totalTim;
         Reset();
+    }
+
+    public float Percentage()
+    {
+        return 1 - (_currentTime) / _totalTime;
     }
 
     public Tim(float totTim = 10)
@@ -156,6 +139,17 @@ public class Timer : Tim
 {
     float _multiply;
     bool _freeze;
+
+    public bool pauseTimer
+    {
+        set
+        {
+            if (value)
+                Stop();
+            else
+                Start();
+        }
+    }
 
     /// <summary>
     /// Modifica el numero que multiplica la constante temporal, y asi acelerar o disminuir el timer
@@ -197,9 +191,13 @@ public class Timer : Tim
     /// Chequea si el contador llego a su fin
     /// </summary>
     /// <returns>Devuelve true si llego a 0</returns>
-    public bool Chck()
+    public bool Chck
     {
-        return _currentTime <= 0;
+        get
+        {
+            return _currentTime <= 0;
+        }
+        
     }
 
 
@@ -214,7 +212,7 @@ public class Timer : Tim
             _currentTime -= n*_multiply;
         }
 
-        return percentage;
+        return Percentage();
     }
 
     /// <summary>
@@ -234,38 +232,17 @@ public class Timer : Tim
 /// rutina que ejecutara una accion desp de que termine el tiemer
 /// </summary>
 [System.Serializable] 
-public class Routine
-{
-    public Timer timer;
-    
+public class Routine : Timer
+{    
     public Action action;
 
     public bool destroy;
 
     public bool execute;
 
-    public bool pauseTimer
+    public override void Reset()
     {
-        set 
-        {
-            if(value)
-                timer.Stop();
-            else
-                timer.Start();
-        }
-    }
-    
-    public bool finish
-    {
-        get
-        {
-            return timer.Chck();
-        }
-    }
-
-    public virtual void Restart()
-    {
-        timer.Reset();
+        base.Reset();
         execute = true;
     }
 
@@ -276,9 +253,9 @@ public class Routine
         return destroy;
     }
 
-    public Routine(float timer, Action action, bool destroy = true)
+    public Routine(float timer, Action action, bool destroy = true) : base(timer)
     {
-        this.timer = new Timer(timer);
+       
         this.action = action;
         this.destroy = destroy;
         execute = true;
@@ -293,27 +270,28 @@ public class Routine
 [System.Serializable]
 public class CompleteRoutine : Routine
 {
-
     Action start;
     Action update;
     public bool pauseRoutine;
 
-    public override void Restart()
+    public override void Reset()
     {
-        base.Restart();
+        base.Reset();
         start?.Invoke();
     }
 
     /// <summary>
     /// funcion que ejecutara de forma automatica cada frame
     /// </summary>
-    public void Update()
+    public override float Substract(float n)
     {
-        if(!pauseRoutine)
+        if (!pauseRoutine)
         {
-            timer.Substract(Time.deltaTime);
+            base.Substract(n);
             update();
         }
+
+        return Percentage();
     }
 
     /// <summary>
@@ -330,4 +308,10 @@ public class CompleteRoutine : Routine
         this.update = update;
         start?.Invoke();
     }
+}
+
+
+public interface IGetPercentage
+{
+    float Percentage();
 }

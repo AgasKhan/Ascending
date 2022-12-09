@@ -287,7 +287,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         scoped = null;
         scopedPoint = Vector3.zero;
 
-        if (deleySearch.Chck())
+        if (deleySearch.Chck)
             _direction = patrol.Distance();
         else
             _direction = _lastPosition - transform.position;
@@ -299,7 +299,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         if (_angle < coneOfVision/2 && !MinimalChck())
             input = (Vector3.forward);
 
-        else if (MinimalChck() && !deleySearch.Chck())
+        else if (MinimalChck() && !deleySearch.Chck)
             input = (Vector3.right * -1);
 
         else if (MinimalChck())
@@ -329,8 +329,8 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
         player = GameManager.player;
 
-        attackDelay = Timers.Create(attackCooldown);
-        deleySearch = Timers.Create(0);
+        attackDelay = TimersManager.Create(attackCooldown);
+        deleySearch = TimersManager.Create(0);
 
         _rotation = transform.rotation.eulerAngles.y;
 

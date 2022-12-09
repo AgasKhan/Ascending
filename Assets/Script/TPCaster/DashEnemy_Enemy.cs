@@ -70,7 +70,7 @@ public class DashEnemy_Enemy : Enemy_Character
 
         //Physics.Raycast(new Ray(transform.position, transform.forward),  out RaycastHit rayCastHit, layerMask);
 
-        if ((attackDelay.Chck() && playerDetF || Raycast(new Ray(transform.position, transform.forward)) && scoped.CompareTag("Traspasable")) && (scopedPoint - transform.position).sqrMagnitude < 25)
+        if ((attackDelay.Chck && playerDetF || Raycast(new Ray(transform.position, transform.forward)) && scoped.CompareTag("Traspasable")) && (scopedPoint - transform.position).sqrMagnitude < 25)
         {
             attackDelay.Reset();
 

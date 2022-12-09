@@ -22,7 +22,7 @@ public class Fire_Debuff : Debuff_FatherPwDbff
 
     void InTimePropio(Character a)
     {
-        if (a.MyCooldowns[dbffTimerName].Chck())
+        if (a.MyCooldowns[dbffTimerName].Chck)
         {
             a.health.Substract(1);
             a.MyCooldowns[dbffTimerName].Reset();
