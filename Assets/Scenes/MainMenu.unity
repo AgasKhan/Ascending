@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textAssetData: {fileID: 4900000, guid: 9635386699f257b46a3ab0d0a77aa3d4, type: 3}
-  myPictionary:
+  baseData:
     pictionaries: []
   maximumGames: 3
 --- !u!4 &1315528585
@@ -919,6 +919,30 @@ PrefabInstance:
     - target: {fileID: 6655305171474529448, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921747814355428232, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921747814355428232, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 386925220}
+    - target: {fileID: 6921747814355428232, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Load
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921747814355428232, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneChanger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921747814355428232, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921747814355428232, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c57b349ccb452341817d9bf5e22983b, type: 3}
