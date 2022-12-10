@@ -61,7 +61,7 @@ public class CSVReader : MonoBehaviour
         
         ReadCSV(textAssetData);
 
-        SaveInPictionary("Scene_1_Dialogue_1","TestNumberOne");
+        SaveInPictionary("Scene_1_Dialogue_1", "TestNumberOne");
         SaveInPictionary("Scene_1_Dialogue_2", "TestNumberTwo");
         SaveInPictionary("Scene_1_Dialogue_3", "TestNumberThree");
         SaveInPictionary("Scene_1_Dialogue_4", "TestNumberFour");

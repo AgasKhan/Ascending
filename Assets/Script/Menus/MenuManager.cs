@@ -99,6 +99,8 @@ public class MenuManager : MonoBehaviour
         */
         audioM = GetComponent<AudioManager>();
 
+        audioM.Play("MenuMusic");
+
         foreach (var item in GetComponentsInChildren<Slider>(true))
         {
             DebugPrint.Log("Nombre del Slider: " + item.name.RichText("color", "green"));

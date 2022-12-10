@@ -155,6 +155,18 @@ MonoBehaviour:
         loop: 0
         onAwake: 0
         source: {fileID: 0}
+    - key: MenuMusic
+      value:
+        mixer: {fileID: -8696892227603033050, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 810550398fa58ec42b3935b7f32cb92e, type: 3}
+        volume: 0.2
+        pitch: 1
+        spatialBlend: 0
+        maxDistance: 100
+        minDistance: 0
+        loop: 1
+        onAwake: 0
+        source: {fileID: 0}
 --- !u!1 &4891124892926145141
 GameObject:
   m_ObjectHideFlags: 0
