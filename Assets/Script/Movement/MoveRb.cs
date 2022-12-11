@@ -27,6 +27,19 @@ public class MoveRb : FatherMoves
         }
     }
 
+    public bool useGravity
+    {
+        get
+        {
+            return _myRigid.useGravity;
+        }
+
+        set
+        {
+            _myRigid.useGravity = value;
+        }
+    }
+
     /// <summary>
     /// activa o desactiva el drag general (las funciones permiten desactivar el calculo del limite de velocidad aparte)
     /// </summary>

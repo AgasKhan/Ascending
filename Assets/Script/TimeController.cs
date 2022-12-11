@@ -1,55 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 [System.Serializable]
 public class TimeController
 {
     static public List<TimeController> entitys;
 
-    static TimeController instance;
 
-    static float maxLevelTimer;
+    static MotionBlur motionBlur;
+    static ChromaticAberration chromaticAberration;
+    static ColorGrading colorGrading;
+    static PostProcessVolume volume;
 
-    static float currentTime;
-
-    static int multiplyReverseCamera;
-
-    static public void Update()
+    static public void StartReverse()
     {
-        if (!GameManager.saveTime)
-            return;
-
-        if (maxLevelTimer < currentTime)
-            GameManager.instance.StartCoroutine(GameManager.ReverseAll(multiplyReverseCamera));
-
-        if (Input.GetKeyDown(KeyCode.R))
+        Controllers.eneable = false;
+        Time.timeScale = 0;
+        foreach (var item in entitys)
         {
-            Controllers.eneable = false;
-            Time.timeScale = 0;
+            item.StartReverseItem();
         }
 
-        else if (Input.GetKeyUp(KeyCode.R))
+        Utilitys.LerpInTime(volume.weight, 1f, 1, Mathf.Lerp, (weight)=> { volume.weight = weight; });
+        MainHud.ChangeAlphaWithFade(0,1, "Effect");
+    }
+
+    static public void FinishReverse()
+    {
+        Controllers.eneable = true;
+        Time.timeScale = 1;
+        foreach (var item in entitys)
         {
-            Controllers.eneable = true;
-            Time.timeScale = 1;
+            item.FinishReverseItem();
         }
 
+        Utilitys.LerpInTime(volume.weight, 0f, 1, Mathf.Lerp, (weight) => { volume.weight = weight; });
+        MainHud.ChangeAlphaWithFade(1, 1, "Effect");
+        HealthUI_HealthCh.instance.RefreshHealth(GameManager.player.health.Percentage());
+    }
+
+    public static void Awake()
+    {
+        entitys = new List<TimeController>();
+
+        motionBlur = ScriptableObject.CreateInstance<MotionBlur>();
+        chromaticAberration = ScriptableObject.CreateInstance<ChromaticAberration>();
+        colorGrading = ScriptableObject.CreateInstance<ColorGrading>();
+
+
+        motionBlur.enabled.Override(true);
+        motionBlur.shutterAngle.Override(270);
+        motionBlur.sampleCount.Override(10);
+
+        chromaticAberration.enabled.Override(true);
+        chromaticAberration.fastMode.Override(false);
+        chromaticAberration.intensity.Override(0.99f);
+
+        colorGrading.enabled.Override(true);
+        colorGrading.saturation.Override(-100);
+
+
+        volume = PostProcessManager.instance.QuickVolume(12, 2, chromaticAberration, colorGrading, motionBlur);
+        volume.weight = 0;
+
+    }
+
+    static public void FixedUpdate()
+    {
         if (Input.GetKey(KeyCode.R))
         {
-            if (entitys[0].count > 1)
-            {
-                GameManager.CurrentTime(-Time.unscaledDeltaTime);
-            }
-
             foreach (var item in entitys)
             {
-                item.ReverseItem();
+                item.ReverseItem(2);
             }
         }
         else
         {
-            GameManager.CurrentTime(Time.unscaledDeltaTime);
             foreach (var item in entitys)
             {
                 item.UpdateItem();
@@ -57,9 +85,40 @@ public class TimeController
         }
     }
 
+    static public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartReverse();
+        }
+
+        else if (Input.GetKeyUp(KeyCode.R))
+        {
+            FinishReverse();
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            if (entitys.Count > 1)
+            {
+                GameManager.CurrentTime(-Time.unscaledDeltaTime);
+            }
+        }
+        else
+        {
+            GameManager.CurrentTime(Time.unscaledDeltaTime);
+           
+        }
+
+    }
+
+
+
+
+
 
     [System.Serializable]
-    public struct PosAndRot
+    struct PosAndRot
     {
         public Vector3 pos;
         public Vector3 scale;
@@ -109,6 +168,8 @@ public class TimeController
 
     Enemy_Character e;
 
+    Interactuable_LogicActive l;
+
     /// <summary>
     /// auxiliar array bools monobehabior
     /// </summary>
@@ -122,20 +183,58 @@ public class TimeController
 
     Stack<Vector3> healths = new Stack<Vector3>();
 
+    Stack<bool> logicActiveInteractuable = new Stack<bool>();
+
     Stack<int> patrolIndex = new Stack<int>();
 
     Stack<bool> colActive = new Stack<bool>();
 
     Stack<bool[]> monoActive = new Stack<bool[]>();
 
-    public void ReverseItem(int jump = 1)
+    Stack<bool> kinematic = new Stack<bool>();
+
+    Stack<bool> gravity = new Stack<bool>();
+
+    public void FinishReverseItem()
     {
-        if (posAndRots.Count <= 1 || t == null)
-            return;
+        if (m.Length > 0)
+        { 
+            for (int ii = 0; ii < m.Length; ii++)
+            {
+                m[ii].enabled = mono[ii];
+            }
+        }
+
+        //activo el animator
+        if (a != null)
+        {
+            a.enabled = true;
+            a.Play("standing idle");
+        }
+            
+
+
+    }
+
+    public void StartReverseItem()
+    {
+        for (int ii = 0; ii < m.Length; ii++)
+        {
+            m[ii].enabled = false;
+        }
 
         //desactivo el animator
         if (a != null)
             a.enabled = false;
+
+        if (t.TryGetComponent(out Dagger_Proyectile dagger))
+            dagger.CancelLerps();
+    }
+
+    public void ReverseItem(int jump = 1)
+    {
+        if (posAndRots.Count <= 1 || t == null)
+            return;
 
         PosAndRot aux;
         //List<PosAndRot> par = new List<PosAndRot>();
@@ -156,15 +255,15 @@ public class TimeController
             if(m.Length>0)
             {
                 mono = monoActive.Pop();
-
-                for (int ii = 0; ii < m.Length; ii++)
-                {
-                    m[ii].enabled = mono[ii];
-                }
             }
 
             if (rb != null)
+            {
                 rb.velocity = velocitys.Pop();
+                rb.isKinematic = kinematic.Pop();
+                rb.useGravity = gravity.Pop();
+            }
+                
 
             if (h != null)
                 h.SetAll(healths.Pop());
@@ -178,6 +277,9 @@ public class TimeController
             if (c != null)
                 c.enabled = colActive.Pop();
 
+            if (l != null)
+                l.diseable = logicActiveInteractuable.Pop();
+            
             //par = childs.Pop();
         }
         /*
@@ -199,11 +301,12 @@ public class TimeController
         count++;
 
         if (rb != null)
+        {
             velocitys.Push(rb.velocity);
-
-        //activo el animator
-        if (a != null)
-            a.enabled = true;
+            kinematic.Push(rb.isKinematic);
+            gravity.Push(rb.useGravity);
+        }
+            
 
         if (h != null)
             healths.Push(h.GetAll());
@@ -213,6 +316,9 @@ public class TimeController
 
         if (c != null)
             colActive.Push(c.enabled);
+
+        if (l != null)
+            logicActiveInteractuable.Push(l.diseable);
             
         if (m.Length>0)
         {
@@ -233,7 +339,7 @@ public class TimeController
 
     }
 
-    public static List<TimeController> ChildTranform(Transform c)
+    public static List<TimeController> ChildTranform(Transform c, bool monoActive=true)
     {
         List<TimeController> d = new List<TimeController>();
 
@@ -241,9 +347,9 @@ public class TimeController
         {
             for (int i = 0; i < c.childCount; i++)
             {
-                d.Add(new TimeController(c.GetChild(i)));
+                d.Add(new TimeController(c.GetChild(i), monoActive));
                 if (c.GetChild(i).childCount > 0)
-                    d.AddRange(ChildTranform(c.GetChild(i)));
+                    d.AddRange(ChildTranform(c.GetChild(i),monoActive));
             }
         }
 
@@ -251,12 +357,9 @@ public class TimeController
 
     }
 
-    public static void Awake()
-    {
-        entitys = new List<TimeController>();
-    }
 
-    public TimeController(Transform t)
+
+    public TimeController(Transform t, bool monoActive=true)
     {
         this.t = t;
         rb = t.GetComponent<Rigidbody>();
@@ -264,11 +367,15 @@ public class TimeController
         h = t.GetComponent<Health>();
         e = t.GetComponent<Enemy_Character>();
         c = t.GetComponent<Collider>();
-        m = t.GetComponents<MonoBehaviour>();
+        l = t.GetComponent<Interactuable_LogicActive>();
             
-        var aux = t.GetComponent<IPatrolReturn>();
-        if(aux!=null)
+        if(t.TryGetComponent(out IPatrolReturn aux))
             p = aux.PatrolReturn();
+
+        if (monoActive)
+            m = t.GetComponents<MonoBehaviour>();
+        else
+            m = new MonoBehaviour[0];
     }
 }
 

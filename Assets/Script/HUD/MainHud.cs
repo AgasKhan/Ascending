@@ -109,10 +109,25 @@ public class MainHud : MonoBehaviour
 
     }
 
-    static public void RefreshUI()
+    static public void RefreshPowersUI()
     {
         RefreshPower();
         ChangePowerSelector();
+    }
+
+    static public void ChangeAlphaWithFade(float alpha, float time, string nameToNotIgnore)
+    {
+        foreach (var item in instance.graphics)
+        {
+            if (item.transform.parent.name != nameToNotIgnore)
+            {
+                var color = item.color;
+
+                var destinyColor = new Color(color.r, color.g, color.b, alpha);
+
+                Utilitys.LerpInTime(color, destinyColor, time, Color.Lerp, (colorSave) => { item.color = colorSave;});
+            }
+        }
     }
 
     #region Daggers
@@ -267,10 +282,7 @@ public class MainHud : MonoBehaviour
 
         tim = TimersManager.Create(1);
 
-        foreach (var item in graphics)
-        {
-            item.CrossFadeAlpha(0, 0, false);
-        }
+        ChangeAlphaWithFade(0, 0, "");
 
         StartCoroutine(posStart());
 
@@ -293,11 +305,7 @@ public class MainHud : MonoBehaviour
             yield return null;
         }
 
-        foreach (var item in graphics)
-        {
-            if(item.transform.parent.name != "Effect")
-                item.CrossFadeAlpha(2, 1, false);
-        }
+        ChangeAlphaWithFade(1,2, "Effect");
 
     }
 

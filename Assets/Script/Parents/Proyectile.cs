@@ -10,7 +10,8 @@ abstract public class Proyectile : MonoBehaviour
     public MoveRb MoveRb;
 
     public Damage damage;
-    public void AplicateDebuff(Character ch)
+
+    protected void AplicateDebuff(Character ch)
     {
         if (damage.debuffList != null)
         {
@@ -56,19 +57,44 @@ abstract public class Proyectile : MonoBehaviour
             aux.ProyectileExit();
         }
     }
-    protected virtual void OnDamage(IOnProyectileEnter aux)
+
+    /// <summary>
+    /// Funcion por defecto de danio
+    /// </summary>
+    /// <param name="damaged"></param>
+    protected virtual void OnDamage(IOnProyectileEnter damaged)
     {
-        aux.ProyectileEnter(damage);
+        damaged.ProyectileEnter(damage);
     }
+
+
+    /// <summary>
+    /// Funcion complementaria de danio que no sera llamada por defecto
+    /// </summary>
+    /// <typeparam name="T">Tipo de conversion que se buscara realizar</typeparam>
+    /// <param name="damaged">Interfaz que representa la funcion que se desea ejecutar cuando colisiona con un proyectil</param>
+    /// <returns>devolvera verdadero en caso de que se realice con exito la conversion</returns>
+    protected virtual bool OnDamaged<T>(IOnProyectileEnter damaged, out T OUT)
+    {
+        if (damaged is T)
+        {
+            T aux = ((T)damaged);
+
+            OUT = aux;
+
+            return true;
+        }
+
+        OUT = default;
+
+        return false;
+    }
+
     protected virtual void FailDamage()
     {
 
     }
 
-    private void Awake()
-    {
-        damage.proyectile = this;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -101,5 +127,4 @@ public struct Damage
 {
     public float amount;
     public List<System.Type> debuffList;
-    public Proyectile proyectile;
 }

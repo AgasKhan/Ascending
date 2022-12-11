@@ -50,6 +50,11 @@ public class KnifeElements : MonoBehaviour
         }
     }
 
+    protected void RefreshUI(int n = 0)
+    {
+        character.MainHUDDaggers(elements.Count+n);
+    }
+
     private void Start()
     {
         elements = new List<Knifes>();

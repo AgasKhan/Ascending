@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaggerDetection : MonoBehaviour, IOnProyectileEnter, IOnProyectileExit
+public class ProyectileDetection : MonoBehaviour, IOnProyectileEnter, IOnProyectileExit
 {
     [SerializeField]
     LogicActive[] active;
@@ -10,19 +10,15 @@ public class DaggerDetection : MonoBehaviour, IOnProyectileEnter, IOnProyectileE
     [SerializeField]
     LogicActive[] deactive;
 
-    public void ProyectileEnter(Damage damage)
+    public virtual void ProyectileEnter(Damage damage)
     {
-        if (!(damage.proyectile is Dagger_Proyectile))
-            return;
-
         foreach (var item in active)
         {
             item.Activate();
         }
-
     }
 
-    public void ProyectileExit()
+    public virtual void ProyectileExit()
     {
         foreach (var item in deactive)
         {

@@ -37,12 +37,8 @@ public class Float_KnifeElements : KnifeElements
                 }*/
                 elements[elements.Count - 1].daggerScript.powerSteal.Clear();
             }
-        }   
-    }
-
-    private void Awake()
-    {
-        //timeToAttrackt
+        }
+        RefreshUI(Other.transform.childCount);
     }
 
     private void Update()
@@ -59,23 +55,16 @@ public class Float_KnifeElements : KnifeElements
 
         for (int i = 1; i < transform.childCount; i++)
         {
-            MoveRotAndGlueRb move = transform.GetChild(i).GetComponent<MoveRotAndGlueRb>();
+            Dagger_Proyectile dagger = transform.GetChild(i).GetComponent<Dagger_Proyectile>();
 
-            move.kinematic = true;
-            move.eneableDrag = true;
-            move.Stop();
-            move.transform.parent = null;
+            float time = timeToAttrackt * (((dagger.transform.position - transform.position).sqrMagnitude)/(25*25));
 
-            Utilitys.LerpInTime(move.transform.position, () => (transform.position + transform.GetChild(0).rotation * distance), timeToAttrackt, Vector3.Lerp, (saveData) => { move.transform.position = saveData; });
+            if (time > timeToAttrackt * 2)
+                time = timeToAttrackt * 2;
+            else if (time < 0.3f)
+                time = 0.3f;
 
-            Utilitys.LerpInTime(move.transform.rotation, Quaternion.identity, timeToAttrackt, Quaternion.Slerp, (saveData) => { move.transform.rotation = saveData; });
-
-
-            TimersManager.Create(timeToAttrackt, 
-                () => 
-                {
-                    move.transform.parent = transform.GetChild(0);
-                });
+            dagger.MoveLerpToParent(() => (transform.position + transform.GetChild(0).rotation * distance), time, transform.GetChild(0));
         }
 
         foreach (Transform item in transform)

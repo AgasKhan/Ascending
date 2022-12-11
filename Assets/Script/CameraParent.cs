@@ -217,16 +217,19 @@ public class CameraParent : MonoBehaviour
 
         Speed(CSVReader.LoadFromPictionary<float>("MouseSensibility", 10));
 
-        GameManager.AddTimeController(cam.transform);
-
-        GameManager.AddTimeController(transform);
-        
         offSetPos = offSet;
+    }
 
+    private void Start()
+    {
+        GameManager.AddTimeController(transform, false);
     }
 
     private void LateUpdate()
     {
+        if (Time.timeScale == 0)
+            return;
+
         transform.position = character.transform.position;
 
         if (Quaternion.Euler(_axis) != transform.rotation)

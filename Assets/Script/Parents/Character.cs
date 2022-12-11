@@ -420,7 +420,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         
         power.Insert(i, powerStatic);
 
-        MainHud.RefreshUI();
+        MainHud.RefreshPowersUI();
     }
 
     /// <summary>
@@ -562,12 +562,6 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     public void ProyectileEnter(Damage damage)
     {
         health.Substract(damage.amount);
-
-        damage.proyectile.AplicateDebuff(this);
-
-        if (damage.proyectile is Dagger_Proyectile)
-            ((Dagger_Proyectile)damage.proyectile).StealPowers(this);
-
     }
 
     protected override void Config()

@@ -12,4 +12,19 @@ public class Enemy_Proyectile : Proyectile
 
         gameObject.SetActive(false);
     }
+
+    protected override void OnDamage(IOnProyectileEnter damaged)
+    {
+        base.OnDamage(damaged);
+
+        if (OnDamaged(damaged, out Character ch))
+        {
+            AplicateDebuff(ch);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        OnEnter(other);
+    }
 }

@@ -26,13 +26,14 @@ public class GameManager : MonoBehaviour
 
     List<int> media = new List<int>();
 
+    Timer fixedUpdate;
+
     public static bool saveTime
     {
         get
         {
             return instance.saveTimeP;
         }
-
         set
         {
             instance.saveTimeP = value;
@@ -46,16 +47,16 @@ public class GameManager : MonoBehaviour
         return instance.currentTime;
     }
 
-    public static void AddTimeController(Transform t)
+    public static void AddTimeController(Transform t, bool monoActive=true)
     {
-        
         foreach (var item in TimeController.entitys)
         {
             if (item.t == t)
                 return;
         }
-        TimeController.entitys.Add(new TimeController(t));
-        TimeController.entitys.AddRange(TimeController.ChildTranform(t));
+
+        TimeController.entitys.Add(new TimeController(t, monoActive));
+        TimeController.entitys.AddRange(TimeController.ChildTranform(t, monoActive));
     }
 
     public static void AddEnemy(Character enemy)
@@ -104,7 +105,21 @@ public class GameManager : MonoBehaviour
     {      
         TextCanvas.SrchMessages("debug").ShowText(false, FPS());
 
+        if (!saveTime)
+            return;
+
         TimeController.Update();
+
+        fixedUpdate.Substract(Time.unscaledDeltaTime);
+        if (fixedUpdate.Chck && saveTime)
+        {
+            TimeController.FixedUpdate();
+            fixedUpdate.Reset();
+        }
+
+        if (maxLevelTimer < currentTime)
+            ReverseAllCoroutine();
+
     }
 
     private void Awake()
@@ -117,6 +132,8 @@ public class GameManager : MonoBehaviour
             player = listPlayer[0].GetComponent<Player_Character>();
 
         TimeController.Awake();
+
+        fixedUpdate = new Timer(1/60f);
     }
 
 
@@ -132,30 +149,33 @@ public class GameManager : MonoBehaviour
         instance = null;
     }
 
-    public static IEnumerator ReverseAll(int velocity = 1)
+    public static void ReverseAllCoroutine()
+    {
+        instance.StartCoroutine(ReverseAll());
+    }
+
+    static IEnumerator ReverseAll()
     {
         saveTime = false;
 
-        Controllers.eneable = false;
-        Time.timeScale = 0;
+        TimeController.StartReverse();
 
-        while (TimeController.entitys[0].count > velocity)
+        while (TimeController.entitys[0].count > instance.multiplyReverseCamera)
         {
+            CurrentTime(-Time.unscaledDeltaTime);
             foreach (var item in TimeController.entitys)
             {
-                item.ReverseItem(velocity);
+                item.ReverseItem(instance.multiplyReverseCamera);
             }
             yield return null;
         }
 
-        foreach (var item in TimeController.entitys)
-        {
-            if (item.a != null)
-                item.a.enabled = true;
-        }
+        TimeController.FinishReverse();
 
-        Controllers.eneable = true;
-        Time.timeScale = 1;
+        MainHud.ReticulaPlay("Start");
+
+        
+
         instance.currentTime = 0;
         saveTime = true;
     }

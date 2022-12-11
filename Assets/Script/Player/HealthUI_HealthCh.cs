@@ -5,16 +5,18 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class HealthUI_HealthCh : HealthCh_LogicActive
 {
-
-    float hpPercentage = 1;
+    float hpPercentage;
     PostProcessVolume volume;
     Vignette vignette;
-    void RefreshHealth()
+
+    static public HealthUI_HealthCh instance;
+
+    public void RefreshHealth(float percentage)
     {
+        hpPercentage = percentage;
         Sliders.SrchSlider("Health").CurrValue(hpPercentage);
     }
 
-   
     public override void Activate(params float[] floatParms)
     {
         if (floatParms[1] <= 0)
@@ -22,16 +24,14 @@ public class HealthUI_HealthCh : HealthCh_LogicActive
 
         base.Activate(floatParms);
 
-        hpPercentage = floatParms[floatParms.Length - 1];
-
         vignette.intensity.Override(0.9f);
 
-        RefreshHealth();
+        RefreshHealth(floatParms[floatParms.Length - 1]);
     }
 
     private void Start()
     {
-        RefreshHealth();
+        RefreshHealth(1);
         vignette = ScriptableObject.CreateInstance<Vignette>();
         vignette.enabled.Override(true);
         vignette.intensity.Override(0);
@@ -41,6 +41,8 @@ public class HealthUI_HealthCh : HealthCh_LogicActive
         vignette.rounded.Override(true);
 
         volume = PostProcessManager.instance.QuickVolume(12, 1, vignette);
+
+        instance = this;
     }
 
 

@@ -5,13 +5,10 @@ using System;
 
 public class TimersManager : MonoBehaviour
 {
+    [SerializeReference]
     List<Timer> timersList;
 
     static TimersManager instance;
-
-
-
-
 
     /// <summary>
     /// Crea un timer que se almacena en una lista para restarlos de forma automatica
@@ -19,9 +16,9 @@ public class TimersManager : MonoBehaviour
     /// <param name="totTime2">el tiempo que dura el contador</param>
     /// <param name="m">el multiplicador del contador</param>
     /// <returns>Devuelve la referencia del contador creado</returns>
-    public static Timer Create(float totTime2 = 10, float m = 1)
+    public static Timer Create(float totTime2 = 10, float m = 1, bool unscaled=false)
     {
-        Timer newTimer = new Timer(totTime2, m);
+        Timer newTimer = new Timer(totTime2, m, unscaled);
         instance.timersList.Add(newTimer);
         return newTimer;
     }
@@ -33,16 +30,16 @@ public class TimersManager : MonoBehaviour
     /// <param name="action">la funcion que se ejecutara</param>
     /// <param name="destroy">si se destruye luego de ejecutar la funcion</param>
     /// <returns>retorna la rutina creada</returns>
-    public static Routine Create(float totTime, Action action, bool destroy=true)
+    public static Routine Create(float totTime, Action action, bool destroy=true, bool unscaled = false)
     {
-        Routine newTimer = new Routine(totTime, action, destroy);
+        Routine newTimer = new Routine(totTime, action, destroy, unscaled);
         instance.timersList.Add(newTimer);
         return newTimer;
     }
 
-    public static CompleteRoutine Create(float totTime, Action start, Action update, Action end, bool destroy = true)
+    public static CompleteRoutine Create(float totTime, Action start, Action update, Action end, bool destroy = true, bool unscaled = false)
     {
-        CompleteRoutine newTimer = new CompleteRoutine(totTime, start, update, end, destroy);
+        CompleteRoutine newTimer = new CompleteRoutine(totTime, start, update, end, destroy, unscaled);
         instance.timersList.Add(newTimer);
         return newTimer;
     }
@@ -69,7 +66,7 @@ public class TimersManager : MonoBehaviour
     {
         for (int i = 0; i < timersList.Count; i++)
         {
-            timersList[i].Substract(Time.deltaTime);
+            timersList[i].SubsDeltaTime();
 
             if (timersList[i].Chck && timersList[i] is Routine && ((Routine)timersList[i]).execute)
             {
@@ -139,6 +136,16 @@ public class Timer : Tim
 {
     float _multiply;
     bool _freeze;
+    protected bool _unscaled;
+
+    public float deltaTime
+    {
+        get
+        {
+            return _unscaled ? Time.unscaledDeltaTime : Time.deltaTime;
+        }
+    }
+
 
     public bool pauseTimer
     {
@@ -149,6 +156,19 @@ public class Timer : Tim
             else
                 Start();
         }
+    }
+
+    /// <summary>
+    /// Chequea si el contador llego a su fin
+    /// </summary>
+    /// <returns>Devuelve true si llego a 0</returns>
+    public bool Chck
+    {
+        get
+        {
+            return _currentTime <= 0;
+        }
+
     }
 
     /// <summary>
@@ -188,20 +208,6 @@ public class Timer : Tim
     }
 
     /// <summary>
-    /// Chequea si el contador llego a su fin
-    /// </summary>
-    /// <returns>Devuelve true si llego a 0</returns>
-    public bool Chck
-    {
-        get
-        {
-            return _currentTime <= 0;
-        }
-        
-    }
-
-
-    /// <summary>
     /// Efectua una resta en el contador
     /// </summary>
     /// <param name="n">En caso de ser negativo(-) suma al contador, siempre y cuando no este frenado</param>
@@ -215,16 +221,24 @@ public class Timer : Tim
         return Percentage();
     }
 
+
+    public float SubsDeltaTime()
+    {
+        return Substract(deltaTime);
+    }
+
+
     /// <summary>
     /// Configura el timer para su uso
     /// </summary>
     /// <param name="totTim">valor por defecto a partir de donde se va a contar</param>
     /// <param name="m">Modifica el multiplicador del timer, por defecto 0</param>
-    public Timer(float totTim = 10, float m=1)
+    public Timer(float totTim = 10, float m=1, bool unscaled = false)
     {
         _multiply = m;
         Start();
         Set(totTim);
+        this._unscaled = unscaled;
     }
 }
 
@@ -253,12 +267,13 @@ public class Routine : Timer
         return destroy;
     }
 
-    public Routine(float timer, Action action, bool destroy = true) : base(timer)
+    public Routine(float timer, Action action, bool destroy = true, bool unscaled = false) : base(timer)
     {
        
         this.action = action;
         this.destroy = destroy;
         execute = true;
+        _unscaled = unscaled;
     }
 
 
@@ -302,11 +317,12 @@ public class CompleteRoutine : Routine
     /// <param name="update"></param>
     /// <param name="end"></param>
     /// <param name="destroy"></param>
-    public CompleteRoutine(float timer, Action start, Action update, Action end, bool destroy = true) : base(timer, end, destroy)
+    public CompleteRoutine(float timer, Action start, Action update, Action end, bool destroy = true, bool unscaled = false) : base(timer, end, destroy)
     {
         this.start = start;
         this.update = update;
         start?.Invoke();
+        _unscaled = unscaled;
     }
 }
 

@@ -60,7 +60,11 @@ public class Attack_KnifeElements : KnifeElements
 
         knife.movement.kinematic = false;
 
+        knife.movement.useGravity = false;
+
         knife.daggerScript.active = true;
+
+
 
         //print(character.cameraScript.hitPoint - knife.reference.position);
 
@@ -95,6 +99,8 @@ public class Attack_KnifeElements : KnifeElements
 
         PreAttack();
 
+        RefreshUI();
+
         return true;
     }
 
@@ -104,6 +110,7 @@ public class Attack_KnifeElements : KnifeElements
         {
             knife = elements[0];
             knife.reference.parent = transform;
+            knife.daggerScript.pause = true;
         }
     }
 
@@ -161,6 +168,10 @@ public class Attack_KnifeElements : KnifeElements
                 MainHud.PunteroPos(Camera.main.WorldToScreenPoint(raycastHit.point));
             }
             //knife.reference.LookAt(character.cameraScript.hitPoint);
+        }
+        else if(transform.childCount!=0)
+        {
+            transform.GetChild(0).parent = Other.transform;
         }
 
 

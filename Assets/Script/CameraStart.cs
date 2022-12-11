@@ -16,6 +16,7 @@ public class CameraStart : MoveAndRotTrToPatrol
 
     Action auxUpdate;
 
+    bool saveTimeCopy;
 
     protected override void Config()
     {
@@ -40,6 +41,10 @@ public class CameraStart : MoveAndRotTrToPatrol
         transform.rotation = patrol.patrol[0].rotation;
 
         StartCoroutine(Wait());
+
+        saveTimeCopy = GameManager.saveTime;
+
+        GameManager.saveTime = false;
     }
 
     void MyStart()
@@ -100,6 +105,7 @@ public class CameraStart : MoveAndRotTrToPatrol
 
         gameObject.SetActive(false);
         Controllers.eneable = true;
+        GameManager.saveTime = saveTimeCopy;
         MainHud.ReticulaPlay("Start");
     }
 }

@@ -27,16 +27,22 @@ public class Player_Character : Character
 
     Action inter;
 
+    public void MainHUDDaggers(int n)
+    {
+        _actualDaggers = n;
+        MainHud.DaggerText(_actualDaggers, _totalDaggers);
+    }
+
     public void AttackDist()
     {
         Debug.Log("EL JUGADOR HA ATACADO");
         if(atackElements.Attack())
         {
-            _actualDaggers--;
+            //_actualDaggers--;
             MainHud.RemoveAllBuffs();
             AttackSound();
         }
-        MainHud.DaggerText(_actualDaggers, _totalDaggers);
+        //MainHud.DaggerText(_actualDaggers, _totalDaggers);
         MainHud.ReticulaFill(0);
     }
 
@@ -66,12 +72,14 @@ public class Player_Character : Character
         if(interactuable)
             interactuable.diseable = true;
 
+        /*
         _actualDaggers++;
         if (_actualDaggers > _totalDaggers)
             _actualDaggers = _totalDaggers;
+        */
 
         TakeSound();
-        MainHud.DaggerText(_actualDaggers, _totalDaggers);
+        //MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
 
    
@@ -83,9 +91,12 @@ public class Player_Character : Character
 
     public override void OffMesh()
     {
-        print("Moriste");
-        MenuManager.instance.OpenCloseMenu();
+        //print("Moriste");
+        //MenuManager.instance.OpenCloseMenu();
+
         DeathSound();
+
+        GameManager.ReverseAllCoroutine();
     }
 
     void flag() { }

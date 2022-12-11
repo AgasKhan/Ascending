@@ -272,11 +272,15 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         StartCoroutine(PostAwake());
 
         patrol.Start(this);
+
+        /*
         nav = GetComponent<NavMeshAgent>();
 
         nav.speed = movement.maxSpeed;
         nav.angularSpeed = movement.desAcelerationAxis;
         nav.acceleration = movement.desAceleration;
+        */
+
         animator.AddFunction("offMesh", OffMesh);
 
         GameManager.AddEnemy(this);
