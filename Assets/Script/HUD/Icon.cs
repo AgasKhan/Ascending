@@ -11,16 +11,34 @@ public class Icon : MonoBehaviour
     public Image front;
     public TextManager textManager;
 
-    public void CrossFadeColor(Color targetColor, float duration, bool ignoreTimeScale, bool useAlpha)
+    public void LerpFadeColor(Color targetColor, float duration, bool ignoreTimeScale, bool useAlpha)
     {
-        back.CrossFadeColor(targetColor, duration, ignoreTimeScale, useAlpha);
-        front.CrossFadeColor(targetColor, duration, ignoreTimeScale, useAlpha);
+        Utilitys.LerpInTime(back.color, targetColor, duration, Color.Lerp,
+            (saveColor) =>
+            {
+                back.color = saveColor;
+            });
+
+        Utilitys.LerpInTime(front.color, targetColor, duration, Color.Lerp,
+            (saveColor) =>
+            {
+                front.color = saveColor;
+            });
     }
 
-    public void CrossFadeAlpha(float alpha, float duration, bool ignoreTimeScale)
+    public void LerpFadeAlpha(float alpha, float duration, bool ignoreTimeScale)
     {
-        back.CrossFadeAlpha(alpha, duration, ignoreTimeScale);
-        front.CrossFadeAlpha(alpha, duration, ignoreTimeScale);
+        Utilitys.LerpInTime(back.color, new Color(back.color.r, back.color.g, back.color.b, alpha), duration, Color.Lerp, 
+            (saveColor)=> 
+            { 
+                back.color = saveColor;
+            });
+
+        Utilitys.LerpInTime(front.color, new Color(front.color.r, front.color.g, front.color.b, alpha), duration, Color.Lerp, 
+            (saveColor) =>
+            {
+                front.color = saveColor;
+            });
     }
 
     public void ChangeFront(Sprite s)

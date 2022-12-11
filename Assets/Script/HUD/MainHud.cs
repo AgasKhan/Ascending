@@ -199,8 +199,9 @@ public class MainHud : MonoBehaviour
         instance.buff[instance.iBuff].textManager.ShowText(false, GameManager.player.power[GameManager.player.actualPower].ui.activeText);
         instance.buff[instance.iBuff].ChangeFront(GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon);
 
-        instance.buff[instance.iBuff].CrossFadeColor(Color.white, 0.3f, true, false);
-        instance.buff[instance.iBuff].CrossFadeAlpha(1, 0.3f, false);
+        instance.buff[instance.iBuff].LerpFadeColor(Color.white, 0.3f, true, false);
+        //instance.buff[instance.iBuff].LerpFadeAlpha(1, 0.3f, false);
+
         instance.iBuff++;
         if (instance.buff.Count == instance.iBuff)
             instance.iBuff = 0;
@@ -213,10 +214,9 @@ public class MainHud : MonoBehaviour
         instance.iBuff = 0;
         foreach (var item in instance.buff)
         {
+            item.front.color = new Color(0,0,0,0);
             item.ChangeFront(null);
-            item.front.CrossFadeAlpha(0, 0, false);
-            item.back.CrossFadeColor(Color.black, 0.3f, true, false);
-            item.back.CrossFadeAlpha(0, 0.3f, false);
+            Utilitys.LerpInTime(item.back.color, item.front.color, 0.3f, Color.Lerp, (save)=> { item.back.color = save; });
         }
     }
 
@@ -236,7 +236,7 @@ public class MainHud : MonoBehaviour
         instance.iDebuff++;
         instance.debuff[instance.iDebuff].ChangeFront(sprite);
 
-        instance.debuff[instance.iDebuff].CrossFadeAlpha(1, 0.3f, false);
+        instance.debuff[instance.iDebuff].LerpFadeAlpha(1, 0.3f, false);
     }
 
     static public void RemoveDebuff(Sprite sprite)
