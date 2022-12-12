@@ -4,11 +4,26 @@ using System.Collections.Generic;
 
 public class Controllers : MonoBehaviour
 {
-
-
     #region static classes
     static List<Key> _keys = new List<Key>();
 
+    static public Key attack = new Key(KeyCode.Mouse0);
+
+    static public Key aim = new Key(KeyCode.Mouse1);
+
+    static public Key active = new Key(KeyCode.E);
+
+    static public Key power = new Key(KeyCode.Q);
+
+    static public Key jump = new Key(KeyCode.Space);
+
+    static public Key dash = new Key(KeyCode.LeftShift);
+
+    static public Key flip = new Key(KeyCode.F);
+
+    static public Key locked = new Key(KeyCode.Tab);
+
+    static Controllers _instance;
     static public Vector2 dir
     {
         get
@@ -26,44 +41,55 @@ public class Controllers : MonoBehaviour
 
     static public Vector2 cameraInput;
 
-    static public Key attack = new Key(KeyCode.Mouse0);
-
-    static public Key aim = new Key(KeyCode.Mouse1);
-
-    static public Key active = new Key(KeyCode.E);
-
-    static public Key power = new Key(KeyCode.Q);
-
-    static public Key jump = new Key("Jump");
-
-    static public Key dash = new Key(KeyCode.LeftShift);
-
-    static public Key flip = new Key(KeyCode.F);
-
-    static public Key locked = new Key(KeyCode.Tab);
-
-    static Controllers _instance;
 
     #endregion
     public class Key
     {
         #region atributes
 
-        public bool pressed;
-        public bool down;
-        public bool up;
+        public bool enable;
         public float _timePressed;
         bool _startTimePressed = false;
 
-        public KeyCode key
+        public KeyCode principal
         {
             get;
             private set;
         }
-        public string strKey
+
+        public KeyCode secondary
         {
             get;
             private set;
+        }
+
+        public bool pressed
+        {
+            get
+            {
+                return CheckKey(principal, secondary, Input.GetKey);
+            }
+        }
+
+        public bool down
+        {
+            get
+            {
+                return CheckKey(principal, secondary, Input.GetKeyDown);
+            }
+        }
+
+        public bool up
+        {
+            get
+            {
+                return CheckKey(principal, secondary, Input.GetKeyUp);
+            }
+        }
+
+        protected bool CheckKey(KeyCode p, KeyCode s, System.Func<KeyCode, bool> func)
+        {
+            return func(p) || func(s) && enable && eneable;
         }
 
         #endregion
@@ -71,19 +97,6 @@ public class Controllers : MonoBehaviour
         #region general functions
         public void MyUpdate()
         {
-            if (strKey != null && strKey != "")
-            {
-                pressed = Input.GetButton(strKey);
-                down = Input.GetButtonDown(strKey);
-                up = Input.GetButtonUp(strKey);
-            }
-            else
-            {
-                pressed = Input.GetKey(key);
-                down = Input.GetKeyDown(key);
-                up = Input.GetKeyUp(key);
-            }
-
             if (_startTimePressed)
             {
                 if (pressed)
@@ -93,16 +106,6 @@ public class Controllers : MonoBehaviour
             }
         }
 
-
-        public void SetAll(bool b)
-        {
-            pressed = b;
-            down = b;
-            up = b;
-        }
-
-
-
         /// <summary>
         /// setea si se comenzara a contar el tiempo presionado
         /// </summary>
@@ -111,34 +114,33 @@ public class Controllers : MonoBehaviour
         public float TimePressed(bool startTime = true)
         {
             _startTimePressed = startTime;
-
             if (!startTime)
                 _timePressed = 0;
-
             return _timePressed;
         }
 
-        public void ChangeKey(string s)
+        public override string ToString()
         {
-            strKey = s;
+            return principal.ToString();
         }
+
+        public void ChangeKey(KeyCode k, KeyCode k2)
+        {
+            principal = k;
+            secondary = k2;
+        }
+
         public void ChangeKey(KeyCode k)
         {
-            key = k;
-            strKey = null;
+            principal = k;
         }
         #endregion
 
-        //Se podria optimizar para usar una sola funcion constructora que llamase a la changekey correspondiente?
         #region constructor
-        public Key(string s)
-        {
-            ChangeKey(s);
-            _keys.Add(this);
-        }
 
         public Key(KeyCode k)
         {
+            enable = true;
             ChangeKey(k);
             _keys.Add(this);
         }
@@ -152,18 +154,11 @@ public class Controllers : MonoBehaviour
         {
             if (value == false)
             {
-                foreach (Key item in _keys)
-                {
-                    item.SetAll(false);
-                }
-
                 dir = Vector2.zero;
                 cameraInput = Vector2.zero;
-
             }
             _instance.enabled = value;
         }
-
         get
         {
             return _instance.enabled;
@@ -179,8 +174,13 @@ public class Controllers : MonoBehaviour
         Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
+    public static void MouseLock(bool lockState)
+    {
+        Cursor.lockState = (lockState) ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
     #region unity functions
-    
+
     private void Awake()
     {
         _instance = this;

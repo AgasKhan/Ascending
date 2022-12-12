@@ -57,11 +57,11 @@ public class CameraStart : MoveAndRotTrToPatrol
     {
         if(myTimer==null)
         {
-            TextCanvas.SrchMessages("Lucas").ShowText(false, "Presiona " + " saltar ".RichText("b").RichText("color", "green") + "para saltear");
+            TextCanvas.SrchMessages("Lucas").ShowText(false, "Presiona " + (" "+ Controllers.jump.ToString() + " ").RichText("b").RichText("color", "green") + "para saltear");
 
         }
 
-        if(Input.GetButtonDown(Controllers.jump.strKey))
+        if(Input.GetKeyDown(Controllers.jump.principal))
         {
             StartCoroutine(CameraPan());
         }

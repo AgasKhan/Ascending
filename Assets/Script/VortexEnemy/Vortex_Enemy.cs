@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Vortex_Enemy : Enemy_Character
 {
-    
-
     protected override void Config()
     {
         base.Config();
