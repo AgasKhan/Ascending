@@ -14,7 +14,7 @@ public abstract class Interactuable_LogicActive : LogicActive
 
     public void RefreshUi(Vector3 pos, float perc)
     {
-        InteractiveObj.instance.LoadInfo("E", pos, perc);
+        InteractiveObj.instance.LoadInfo(Controllers.active.ToString(), pos, perc);
         InteractiveObj.instance.subTittle.text=DisplayText;
     }
 
