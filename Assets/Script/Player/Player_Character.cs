@@ -140,9 +140,14 @@ public class Player_Character : Character
     
     void MyUpdate()
     {
+        Vector2 mouse = new Vector2();
         float pressed = 0;
 
-        input = new Vector3(Controllers.dir.x, 0, Controllers.dir.y);
+        input.x = Controllers.horizontal.pressed;
+        input.z = Controllers.vertical.pressed;
+
+        mouse.x = Controllers.horizontalMouse.pressed;
+        mouse.y = Controllers.verticalMouse.pressed;
 
         if (movement.isOnFloor)
         {
@@ -160,9 +165,11 @@ public class Player_Character : Character
         
         _previusOnFloor = movement.isOnFloor;
 
-        if (Controllers.cameraInput.sqrMagnitude > 0)
+        
+
+        if (mouse.sqrMagnitude > 0)
         {
-            cameraScript.Rotate(Controllers.cameraInput);
+            cameraScript.Rotate(mouse);
         }
 
         if (interactuable != null && !interactuable.diseable)

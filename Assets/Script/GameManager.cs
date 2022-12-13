@@ -180,11 +180,6 @@ public class GameManager : MonoBehaviour
         saveTime = true;
     }
 
-    IEnumerator DelayStart()
-    {
-        yield return new WaitForSeconds(delayStart);
-        Controllers.eneable = true;
-    }
 
     IEnumerator DestroyRetarded(GameObject destroy)
     {

@@ -67,7 +67,7 @@ public class CameraParent : MonoBehaviour
     [SerializeField]
     float _linearVelocity;
 
-    [Range(0.01f, 1)]
+    [Range(0.01f, 2)]
     [SerializeField]
     float _sensibilityRelationVelocity;
 
@@ -181,11 +181,11 @@ public class CameraParent : MonoBehaviour
         return false;
     }
 
-    public void Speed(float f, float m=-1)
+    public void Speed(float f)
     {
-        _sensibility = f;
-        if (m > 0)
-            _sensibilityRelationVelocity = m;
+        _sensibility = Mathf.Pow(1.1f,f);
+
+        _sensibilityRelationVelocity = (0.8f  * (50 - f)) /10;
     }
 
     public float Speed()
@@ -215,7 +215,7 @@ public class CameraParent : MonoBehaviour
 
         //StartCoroutine(CameraPan());
 
-        Speed(CSVReader.LoadFromPictionary<float>("MouseSensibility", 10));
+        Speed(CSVReader.LoadFromPictionary<float>("MouseSensibility", 25));
 
         offSetPos = offSet;
     }
