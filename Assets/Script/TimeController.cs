@@ -24,7 +24,7 @@ public class TimeController
         }
 
         Utilitys.LerpInTime(volume.weight, 1f, 1, Mathf.Lerp, (weight)=> { volume.weight = weight; });
-        MainHud.ChangeAlphaWithFade(0,1, "Effect");
+        MainHud.ChangeAlphaWithFade(0.1f,1, "Effect");
     }
 
     static public void FinishReverse()

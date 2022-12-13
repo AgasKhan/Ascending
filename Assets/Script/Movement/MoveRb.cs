@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveRb : FatherMoves
+public class MoveRb : FatherMoves, IOnProyectileEnter
 {
 
     /// <summary>
@@ -117,8 +117,16 @@ public class MoveRb : FatherMoves
 
     #region Movimiento Global
 
-    public void Move(Vector3 direction, bool drag)
+    public void ProyectileEnter(Damage damage)
     {
+        print("entre en movimiento");
+        
+        Move(damage.velocity, damage.velocity.magnitude, false);
+    }
+
+
+    public void Move(Vector3 direction, bool drag)
+    { 
         Move(direction, maxSpeed, drag);
     }
 
@@ -189,13 +197,17 @@ public class MoveRb : FatherMoves
     /// Aplica un impulso y cambia la capa de colision
     /// </summary>
     /// <param name="dir">vector direccion</param>
-    public void Dash(Vector3 dir, float multiply =1)
+    public float Dash(Vector3 dir, float multiply =1)
     {
-        Move(dir, _dashImpulse * multiply);
+        var aux = _dashImpulse * multiply;
+
+        Move(dir, aux);
 
         //if(layerDash!=null && layerDash != "")
         gameObject.layer = LayerMask.NameToLayer(layerDash);
         dash = true;
+
+        return aux;
     }
 
 
@@ -297,4 +309,6 @@ public class MoveRb : FatherMoves
         MyUpdates += MyUpdate;
         MyFixedUpdates += MyFixedUpdate;
     }
+
+
 }

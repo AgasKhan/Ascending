@@ -43,9 +43,14 @@ abstract public class Proyectile : MonoBehaviour
 
     protected virtual void OnEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out IOnProyectileEnter aux))
+        var aux = other.GetComponents<IOnProyectileEnter>();
+
+        if (aux!=null && aux.Length>0)
         {
-            OnDamage(aux);
+            foreach (var item in aux)
+            {
+                OnDamage(item);
+            }
         }
         else
             FailDamage();
@@ -95,6 +100,12 @@ abstract public class Proyectile : MonoBehaviour
 
     }
 
+    public void Throw(Damage dmg, Vector3 dir, float multiply)
+    {
+        damage = dmg;
+        MoveRb.Dash(dir, multiply);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -127,4 +138,5 @@ public struct Damage
 {
     public float amount;
     public List<System.Type> debuffList;
+    public Vector3 velocity;
 }

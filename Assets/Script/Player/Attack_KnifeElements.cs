@@ -54,6 +54,16 @@ public class Attack_KnifeElements : KnifeElements
 
         float atackMultiply=1;
 
+        Vector3 dir = (character.scopedPoint - knife.reference.position).normalized;
+
+        Damage dmg = new Damage();
+
+        dmg.amount = character.damage;
+
+        dmg.debuffList = character.debuffToAplicate;
+
+        dmg.velocity = dir*200;
+
         elements.Remove(knife);
 
         knife.reference.parent = null;
@@ -71,22 +81,37 @@ public class Attack_KnifeElements : KnifeElements
         //knife.movement.Move(character.scoped.point-knife.reference.position, knife.movement.maxSpeed * 10);
 
         if(charge.Percentage() < 1)
-            atackMultiply = 1 + relationXtime * charge.Percentage()/10;
+        {
+            atackMultiply = 1 + relationXtime * charge.Percentage() / 10;
+            dmg.velocity *= atackMultiply;
+        }
         else
         {
-            if(UnlockHitScan)
+            if(!UnlockHitScan)
             {
-                knife.daggerScript.SetLine(character.scopedPoint,knife.reference.position);
-                knife.movement.transform.position = (character.scopedPoint - (character.scopedPoint - knife.reference.position).normalized);
+                atackMultiply = 1 + maxPressedTime * relationXtime / 10;
+                dmg.velocity *= atackMultiply;
             }
             else
-                atackMultiply = 1 + maxPressedTime * relationXtime / 10;
+            {
+                knife.daggerScript.SetLine(character.scopedPoint, knife.reference.position);
+                knife.movement.transform.position = character.scopedPoint - dir;
+                dmg.velocity *= 1 + maxPressedTime * relationXtime;
+
+                Utilitys.LerpInTime(1f, 0.3f, 0.25f, Mathf.Lerp, (save) => { Time.timeScale = save; });
+
+                TimersManager.Create(0.25f, 
+                    ()=>
+                    {
+                        Utilitys.LerpInTime(0.3f, 1f, 0.75f, Mathf.Lerp, (save) => { Time.timeScale = save; });
+                    }, true, true);
+            }
         }
 
-        knife.daggerScript.damage.amount = character.damage;
-        knife.daggerScript.damage.debuffList = character.debuffToAplicate;
+        if (dmg.velocity.sqrMagnitude > 500 * 500)
+            dmg.velocity = dmg.velocity.normalized * 500;
 
-        knife.movement.Dash(character.scopedPoint - knife.reference.position, atackMultiply);
+        knife.daggerScript.Throw(dmg, dir, atackMultiply);
 
         knife = null;
 

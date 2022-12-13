@@ -86,6 +86,7 @@ public class Dagger_Proyectile : Proyectile
 
     protected override void OnDamage(IOnProyectileEnter damaged)
     {
+
         base.OnDamage(damaged);
 
         if(OnDamaged(damaged, out Character ch))
@@ -109,18 +110,19 @@ public class Dagger_Proyectile : Proyectile
         if (active)
         {
             //gameObject.transform.parent = other.transform;
+            base.OnEnter(other);
+
             MoveRb.kinematic = true;
             MoveRb.useGravity = false;
-
-            base.OnEnter(other); 
+            active = false;
 
             ((MoveRotAndGlueRb)MoveRb).AddGlue(other.transform);
-
-            active = false;
 
             CasterObject();
 
             //enabled = false;
+
+
         }
     }
 
