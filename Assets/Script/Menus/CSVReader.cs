@@ -54,8 +54,8 @@ public class CSVReader : MonoBehaviour
 
     void Awake()
     {
-        if(instance!=null)
-            return;
+        if (instance != null)
+            Destroy(gameObject);
 
         instance = this;
         

@@ -37,8 +37,10 @@ public class Teleport_Powers : Powers_FatherPwDbff
 
     void MyUpdatePlayer(Character me)
     {
+        /*
         print(me.name);
         print(me.scoped.name);
+        */
         if (me.scoped.gameObject.CompareTags("rb"))
         {
             MainHud.ReticulaPlay("Power");

@@ -118,9 +118,7 @@ public class MoveRb : FatherMoves, IOnProyectileEnter
     #region Movimiento Global
 
     public void ProyectileEnter(Damage damage)
-    {
-        print("entre en movimiento");
-        
+    {        
         Move(damage.velocity, damage.velocity.magnitude, false);
     }
 

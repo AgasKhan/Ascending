@@ -54,13 +54,15 @@ public class Configuration : MonoBehaviour
         print("Todo funciono: " + f);
         if (player == null)
             return;
+
+
         player.cameraScript.Speed(f);
     }
 
     // On
     void CameraSpeed(Slider s)
     {
-         s.value = CSVReader.LoadFromPictionary<float>("MouseSensibility", 10);
+         s.value = CSVReader.LoadFromPictionary<float>("MouseSensibility", 25);
     }
 
     void ChangeAlphaReticula(GameObject g, float f)

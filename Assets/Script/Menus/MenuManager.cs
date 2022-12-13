@@ -72,6 +72,8 @@ public class MenuManager : MonoBehaviour
             _inGame = false;
             Cursor.lockState = CursorLockMode.None;
         }
+
+        audioM = GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -98,10 +100,12 @@ public class MenuManager : MonoBehaviour
             }
         }
         */
-        if (!_inGame)
-            audioM = GetComponent<AudioManager>();
+        
 
-        audioM.Play("MenuMusic");
+        if (!_inGame)
+        {
+            audioM.Play("MenuMusic");
+        }
 
         foreach (var item in GetComponentsInChildren<Slider>(true))
         {
@@ -128,7 +132,7 @@ public class MenuManager : MonoBehaviour
     {
         if (_inGame)
         {
-            if (Input.GetKeyDown("p") || Input.GetKeyDown(KeyCode.Escape))
+            if (Controllers.pause.down)
             {
                 OpenCloseMenu();
             }
@@ -198,10 +202,15 @@ public class MenuManager : MonoBehaviour
     public void OpenCloseMenu()
     {
         gamePausedMenu.SetActive(!gamePausedMenu.activeSelf);
-        Debug.Log(gamePausedMenu.activeSelf);
+      
         Time.timeScale = System.Convert.ToInt32(!gamePausedMenu.activeSelf);
 
-        Cursor.lockState = (gamePausedMenu.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
+        Controllers.MouseLock(!gamePausedMenu.activeSelf);
+
+        GameManager.saveTime = !gamePausedMenu.activeSelf;
+
+        Controllers.verticalMouse.enable = !gamePausedMenu.activeSelf;
+        Controllers.horizontalMouse.enable = !gamePausedMenu.activeSelf;
     }
 
     public void StartGame()
