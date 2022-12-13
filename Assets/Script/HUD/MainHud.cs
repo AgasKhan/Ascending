@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class MainHud : MonoBehaviour
 {
+    public struct OriginalGraphics
+    {
+        public Color originalColor;
+
+        public Graphic graphic;
+
+        public OriginalGraphics(Graphic graphic)
+        {
+            originalColor = graphic.color;
+            this.graphic = graphic;
+        }
+    }
+
+
+
     static MainHud instance;
 
     public PowerSelecctor powerSelector;
@@ -45,7 +60,7 @@ public class MainHud : MonoBehaviour
 
     int iBuff;
 
-    Graphic[] graphics;
+    OriginalGraphics[] graphics;
 
     Timer tim;
 
@@ -115,17 +130,27 @@ public class MainHud : MonoBehaviour
         ChangePowerSelector();
     }
 
+    static public void RestoreOriginalColorWithFade(float time, string nameToNotIgnore)
+    {
+        foreach (var item in instance.graphics)
+            if (item.graphic.transform.parent.name != nameToNotIgnore)
+            {
+                Utilitys.LerpInTime(item.graphic.color, item.originalColor, time, Color.Lerp, (colorSave) => { item.graphic.color = colorSave; });
+            }
+        }
+    }
+
     static public void ChangeAlphaWithFade(float alpha, float time, string nameToNotIgnore)
     {
         foreach (var item in instance.graphics)
         {
-            if (item.transform.parent.name != nameToNotIgnore)
+            if (item.graphic.transform.parent.name != nameToNotIgnore)
             {
-                var color = item.color;
+                var color = item.graphic.color;
 
                 var destinyColor = new Color(color.r, color.g, color.b, alpha);
 
-                Utilitys.LerpInTime(color, destinyColor, time, Color.Lerp, (colorSave) => { item.color = colorSave;});
+                Utilitys.LerpInTime(color, destinyColor, time, Color.Lerp, (colorSave) => { item.graphic.color = colorSave;});
             }
         }
     }
@@ -262,7 +287,9 @@ public class MainHud : MonoBehaviour
     {
         instance = this;
 
-        graphics = GetComponentsInChildren<Graphic>();
+        var auxGraphics = GetComponentsInChildren<Graphic>();
+
+        graphics = new OriginalGraphics[auxGraphics.Length];
 
         canvas = GetComponent<CanvasScaler>();
 
@@ -278,6 +305,11 @@ public class MainHud : MonoBehaviour
         for (int i = 1; i < 1; i++)
         {
             powerList.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        for (int i = 0; i < auxGraphics.Length; i++)
+        {
+            graphics[i] = new OriginalGraphics(auxGraphics[i]);
         }
 
         tim = TimersManager.Create(1);
@@ -305,7 +337,7 @@ public class MainHud : MonoBehaviour
             yield return null;
         }
 
-        ChangeAlphaWithFade(1,2, "Effect");
+        RestoreOriginalColorWithFade(2, "Effect");
 
     }
 
