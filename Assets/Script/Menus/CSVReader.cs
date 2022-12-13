@@ -80,7 +80,15 @@ public class CSVReader : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-        SaveInPictionary<int>("CurrentLevel",0);
+        SaveInPictionary<int>("CurrentLevel", 0);
+
+        SaveInPictionary<int>("PlayerPoints", 20);
+
+        SaveInPictionary<float>("Ability_1", 0);
+        SaveInPictionary<float>("Ability_2", 0);
+        SaveInPictionary<float>("Ability_3", 0);
+        SaveInPictionary<float>("Ability_4", 0);
+        SaveInPictionary<bool>("Ability_5", false);
 
     }
 

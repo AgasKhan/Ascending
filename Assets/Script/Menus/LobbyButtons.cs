@@ -6,7 +6,7 @@ public class LobbyButtons : MonoBehaviour
 {
     MenuManager myMenuManager;
     int lastLevelUnlocked;
-
+    public GameObject[] skillButtons;
 
     void Awake()
     {
@@ -20,6 +20,7 @@ public class LobbyButtons : MonoBehaviour
             {"bMenu", BackMenu}
 
         });
+
     }
 
     void BackMenu(GameObject g)
@@ -40,5 +41,6 @@ public class LobbyButtons : MonoBehaviour
     {
         myMenuManager.ChangeMenu(1);
     }
+
 
 }

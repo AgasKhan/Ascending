@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviour
     public GameObject gamePausedMenu;
     public SceneChanger refSceneChanger;
     public AudioManager audioM;
+    public TextMeshProUGUI points;
 
     private int _currentMemuPrincipal = 0;
     private int _currentMemu = 0;
@@ -97,7 +98,8 @@ public class MenuManager : MonoBehaviour
             }
         }
         */
-        audioM = GetComponent<AudioManager>();
+        if (!_inGame)
+            audioM = GetComponent<AudioManager>();
 
         audioM.Play("MenuMusic");
 
@@ -246,6 +248,12 @@ public class MenuManager : MonoBehaviour
             imageToChange.sprite = previewImages[index];
             _currentPreview = index;
         }
+    }
+
+    public void RefreshPoints()
+    {
+        if (points != null)
+            points.text = CSVReader.LoadFromPictionary<int>("PlayerPoints").ToString();
     }
 
     public void ClickSound()
