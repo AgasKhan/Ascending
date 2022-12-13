@@ -133,6 +133,7 @@ public class MainHud : MonoBehaviour
     static public void RestoreOriginalColorWithFade(float time, string nameToNotIgnore)
     {
         foreach (var item in instance.graphics)
+        {
             if (item.graphic.transform.parent.name != nameToNotIgnore)
             {
                 Utilitys.LerpInTime(item.graphic.color, item.originalColor, time, Color.Lerp, (colorSave) => { item.graphic.color = colorSave; });
