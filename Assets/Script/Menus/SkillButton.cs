@@ -6,23 +6,44 @@ using TMPro;
 
 public class SkillButton : MonoBehaviour
 {
-    public int abilityNumber;
-    public float quantity;
-    public bool boolIsNeeded = false;
+    public enum Ability
+    {
+        TimeToAttract,
+        Charge,
+        HitScan,
+        InitialDaggers,
+
+        Speed,
+        Armor,
+        HealthPoints,
+        Interact,
+        AttractAll,
+
+        InitialPower,
+    }
+
+    public Ability myAbility;
+    public float quantity = 0;
+    public bool activate = false;
     public int cost;
     public Button nextButton;
+    public TextMeshProUGUI myCost;
 
-    TextMeshProUGUI myText;
+    TextMeshProUGUI myImprovement;
     Button currentButton;
     public void Awake()
     {
-        myText = GetComponentInChildren<TextMeshProUGUI>();
+        myImprovement = GetComponentInChildren<TextMeshProUGUI>();
         currentButton = GetComponent<Button>();
 
-        if(quantity>0)
-            myText.text = "+ " + quantity.ToString();
+        myCost.text = cost.ToString() + " pts";
+
+        if (quantity>0)
+            myImprovement.text = "+ " + quantity.ToString();
+        else if(quantity==0)
+            myImprovement.text = "Unlock";
         else
-            myText.text = quantity.ToString();
+            myImprovement.text = quantity.ToString();
 
         MenuManager.instance.RefreshPoints();
     }
@@ -34,10 +55,10 @@ public class SkillButton : MonoBehaviour
             aux -= cost;
             CSVReader.SaveInPictionary<int>("PlayerPoints", aux);
 
-            if(boolIsNeeded)
-                ImproveSkills(abilityNumber,boolIsNeeded);
+            if(quantity == 0)
+                ImproveSkills(myAbility.ToString(), activate);
             else
-                ImproveSkills(new Vector2(abilityNumber, quantity));
+                ImproveSkills(myAbility.ToString(), quantity);
 
             UnlockNextButton();
             MenuManager.instance.RefreshPoints();
@@ -47,13 +68,13 @@ public class SkillButton : MonoBehaviour
 
     }
 
-    void ImproveSkills(Vector2 v)
+    void ImproveSkills(string ability, float points)
     {
-        CSVReader.SaveInPictionary<float>("Ability_" + (v.x.ToString()), v.y);
+        CSVReader.SaveInPictionary<float>(ability, points);
     }
-    void ImproveSkills(int ability, bool b)
+    void ImproveSkills(string ability, bool b)
     {
-        CSVReader.SaveInPictionary<bool>("Ability_" + (ability.ToString()), b);
+        CSVReader.SaveInPictionary<bool>(ability, b);
     }
 
     public void UnlockNextButton()
