@@ -82,23 +82,24 @@ public class CSVReader : MonoBehaviour
 
         SaveInPictionary<int>("CurrentLevel", 0);
 
-        SaveInPictionary<int>("PlayerPoints", 20);
-
-        SaveInPictionary<bool>("Ability_1", false);
-        SaveInPictionary<bool>("Ability_2", false);
-        SaveInPictionary<bool>("Ability_3", false);
-        SaveInPictionary<bool>("Ability_4", false);
-        SaveInPictionary<bool>("Ability_5", false);
-        SaveInPictionary<bool>("Ability_5", false);
-        SaveInPictionary<bool>("Ability_7", false);
-        SaveInPictionary<bool>("Ability_8", false);
-        SaveInPictionary<bool>("Ability_9", false);
+        SaveInPictionary<int>("PlayerPoints", 1000);
+        /*
+        SaveInPictionary<bool>("ChargeIsActive", false);
+        SaveInPictionary<bool>("HitScanIsActive", false);
+        SaveInPictionary<bool>("TimeToAttractIsActive", false);
+        SaveInPictionary<bool>("InitialDaggersIsActive", false);
+        SaveInPictionary<bool>("SpeedIsActive", false);
+        SaveInPictionary<bool>("ArmorIsActive", false);
+        SaveInPictionary<bool>("HealthPointsIsActive", false);
+        SaveInPictionary<bool>("InteractIsActive", false);
+        SaveInPictionary<bool>("AttractAllIsActive", false);
 
         SaveInPictionary<bool>("PowerUnlock", false);
 
-        SaveInPictionary<float>("TimeToAttract", 0);
+        
         SaveInPictionary<float>("Charge", 0);
         SaveInPictionary<bool>("HitScan", false);
+        SaveInPictionary<float>("TimeToAttract", 0);
         SaveInPictionary<int>("InitialDaggers", 0);
         SaveInPictionary<float>("Speed", 0);
         SaveInPictionary<float>("Armor", 0);
@@ -107,6 +108,7 @@ public class CSVReader : MonoBehaviour
         SaveInPictionary<bool>("AttractAll", false);
 
         SaveInPictionary<string>("InitialPower", "");
+        */
     }
 
     void SaveProgress(int indexSlot, Pictionarys<string, string> myChanges)

@@ -28,7 +28,11 @@ public class SkillButton : MonoBehaviour
     public int cost;
     public Button nextButton;
     public TextMeshProUGUI myCost;
+    public GameObject buttonManager;
+    public CanvasGroup myUnlockable;
+    public GameObject objectToDestroy;
 
+    DraggableItem myReference;
     TextMeshProUGUI myImprovement;
     Button currentButton;
     public void Awake()
@@ -46,6 +50,8 @@ public class SkillButton : MonoBehaviour
             myImprovement.text = quantity.ToString();
 
         MenuManager.instance.RefreshPoints();
+
+        myReference = buttonManager.GetComponent<DraggableItem>();
     }
     public void CheckPoints()
     {
@@ -86,11 +92,26 @@ public class SkillButton : MonoBehaviour
             //aux = Color.white;
             currentButton.interactable = false;
         }
-            
 
-        
+
         if(nextButton!=null)
+        {
             nextButton.interactable = true;
+            myReference.ChangeColor();
+        }
+        else
+        {
+            myReference.ChangeColor(DraggableItem.Level.Violet);
+
+            if (myUnlockable != null)
+            {
+                if(objectToDestroy!=null)
+                    Destroy(objectToDestroy);
+                myUnlockable.interactable = true;
+                myUnlockable.blocksRaycasts = true;
+            }
+
+        }
     }
 
 }
