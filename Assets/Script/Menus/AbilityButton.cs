@@ -4,13 +4,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class AbilityButton : SkillTreeManager, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public bool lockedAbility = false;
+    public string lockedMessage;
+
+    [HideInInspector] 
     public Transform parentAfterDrag;
+    [HideInInspector]
     public CanvasGroup myCanvasGroup;
+    [HideInInspector] 
     public Level myLevel;
 
     Image myImage;
+    Button myButton;
 
     public enum Level
     {
@@ -22,6 +29,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     int currentColor = 0;
     Level[] myColors = { Level.Default, Level.Blue, Level.Green, Level.Yellow, Level.Violet };
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;
@@ -45,11 +53,31 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         myCanvasGroup = GetComponent<CanvasGroup>();
         myImage = GetComponent<Image>();
+        myButton = GetComponent<Button>();
 
         if (myLevel != default)
         {
             ChangeColor(myLevel);
         }
+
+        myButton.onClick.RemoveAllListeners();
+        if (lockedAbility)
+        {
+            myButton.onClick.AddListener(() =>
+            {
+                OpenLockedDetails(transform.name, lockedMessage);
+            });
+            myCanvasGroup.blocksRaycasts = false;
+        }
+        else
+        {
+            myButton.onClick.AddListener(() =>
+            {
+                OpenDetailWindow(transform.name);
+            });
+        }
+
+
     }
 
     public void ChangeColor(Level l)
@@ -59,7 +87,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         switch(aux)
         {
             case "Default":
-                myImage.color = Color.red;
+                myImage.color = Color.white;
                 break;
             case "Blue":
                 myImage.color = Color.blue;
@@ -85,7 +113,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void RefreshAbilitiesList()
     {
-        
+        CSVReader.SaveInPictionary<bool>(transform.name + "IsActive", true);
     }
 
 }
+
