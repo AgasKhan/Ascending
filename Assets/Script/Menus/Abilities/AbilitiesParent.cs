@@ -15,6 +15,7 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         public string inferior;
     }
 
+    static int points;
 
     [HideInInspector]
     public Transform parentAfterDrag;
@@ -77,6 +78,8 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
     private void Awake()
     {
+        points = CSVReader.LoadFromPictionary<int>("PlayerPoints");
+
         myCanvasGroup = GetComponent<CanvasGroup>();
         myImage = GetComponent<Image>();
 
@@ -93,20 +96,24 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
         originalParent = transform.parent;
 
-        if (Abilities.Abilitieslist.ContainsKey(this.GetType()))
-            myAbility = Abilities.Abilitieslist[this.GetType()];
+        if (Abilities.Abilitieslist.ContainsKey(ReturnType()))
+            myAbility = Abilities.Abilitieslist[ReturnType()];
         else
-            myAbility = new Abilities.Ability(this.GetType(), currentLevel, false, ActionOnStart);
+            myAbility = Create();
     }
+
+    public abstract Abilities.Ability Create();
+
+    public abstract System.Type ReturnType();
 
 
     public virtual void Listener()
     {
-        DetailsWindow.instance.ModifyTexts(information);
+        DetailsWindow.ModifyTexts(information);
 
-        DetailsWindow.instance.GenerateButtons(buttons);
+        DetailsWindow.GenerateButtons(buttons);
 
-        DetailsWindow.instance.SetLevelUpButton(Upgrade);
+        DetailsWindow.SetLevelUpButton(Upgrade);
     }
 
     public abstract void ActionOnStart();
@@ -137,11 +144,10 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
     public void CheckPoints(int cost)
     {
-        var aux = CSVReader.LoadFromPictionary<int>("PlayerPoints");
-        if (aux >= cost)
+        if (points >= cost)
         {
-            aux -= cost;
-            CSVReader.SaveInPictionary<int>("PlayerPoints", aux);
+            points -= cost;
+            CSVReader.SaveInPictionary<int>("PlayerPoints", points);
 
             DetailsWindow.instance.RefreshPoints();
         }
@@ -188,31 +194,5 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 }
 
 
-[System.Serializable]
-public static class Abilities
-{
-    [System.Serializable]
-    public class Ability
-    {
-        public int level;
-        public bool active;
-
-        public Ability(System.Type tipo, int level, bool active, System.Action onStart)
-        {
-            this.level = level;
-            this.active = active;
-
-            Abilitieslist.Add(tipo, this);
-        }
-    }
-
-    public static Pictionarys<System.Type, Ability> Abilitieslist= new Pictionarys<System.Type, Ability>();
-}
-
-/* Se tiene que poder guardar los cambios en las habilidades
- * 
- * Deberia existir una funcion que sea virtual que defina el que pasara cuando un nivel empiece "ref: OnStart"
- * Esa funcion debe ser overrideada por los hijos, ya que cada uno debe modificar algo diferente (Armadura, vida, etc)
- * La clase debe ser guardada en un json. Esta clase = Abilities*/
 
 

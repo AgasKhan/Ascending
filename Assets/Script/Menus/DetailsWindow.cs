@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class DetailsWindow : MonoBehaviour
 {
+    
     public static DetailsWindow instance;
     public TextMeshProUGUI pointsCounter;
 
@@ -33,26 +34,26 @@ public class DetailsWindow : MonoBehaviour
         RefreshPoints();
     }
 
-    public void ModifyTexts(AbilitiesParent.DoubleString d)
+    public static void ModifyTexts(AbilitiesParent.DoubleString d)
     {
-        myTitle.text = d.superior;
-        myDescription.text = d.inferior;
+        instance.myTitle.text = d.superior;
+        instance.myDescription.text = d.inferior;
     }
 
-    public void GenerateButtons(AbilitiesParent.DoubleString[] d)
+    public static void GenerateButtons(AbilitiesParent.DoubleString[] d)
     {
-        if (myUpgradesGrid.transform.childCount > 0)
-            DeletePreviousButtons();
+        if (instance.myUpgradesGrid.transform.childCount > 0)
+            instance.DeletePreviousButtons();
 
-        transform.GetChild(3).gameObject.SetActive(true);
+        instance.transform.GetChild(3).gameObject.SetActive(true);
 
         for (int i = 0; i < d.Length; i++)
         {
-            var aux = myUpgrade.GetComponent<LevelUpButton>();
+            var aux = instance.myUpgrade.GetComponent<LevelUpButton>();
             aux.cost = d[i].superior + " pts";
             aux.improvement = d[i].inferior;
 
-            Instantiate(myUpgrade, myUpgradesGrid.transform);
+            Instantiate(instance.myUpgrade, instance.myUpgradesGrid.transform);
 
         }
         /*
@@ -72,11 +73,11 @@ public class DetailsWindow : MonoBehaviour
         }
     }
 
-    public void SetLevelUpButton(System.Action myAction)
+    public static void SetLevelUpButton(System.Action myAction)
     {
-        myLevelUpButton.interactable = true;
-        myLevelUpButton.onClick.RemoveAllListeners();
-        myLevelUpButton.onClick.AddListener(() =>
+        instance.myLevelUpButton.interactable = true;
+        instance.myLevelUpButton.onClick.RemoveAllListeners();
+        instance.myLevelUpButton.onClick.AddListener(() =>
         {
             myAction();
             //ChangeLevelsColor();
