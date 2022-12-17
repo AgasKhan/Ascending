@@ -34,7 +34,7 @@ public class Consola : MonoBehaviour
         else
             instancia = this;
 
-        //DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
 
         texto = new List<string>();
 

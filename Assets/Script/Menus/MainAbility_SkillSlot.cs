@@ -8,6 +8,8 @@ public class MainAbility_SkillSlot : SkillSlot
     {
         base.AcceptedDrop();
         draggableItem.ActiveAbility();
-        SkillTreeManager.SwitchPowers(false);
+
+        if(draggableItem.originalParent.parent.name == "PowersBranch")
+            SkillTreeManager.SwitchPowers(false);
     }
 }

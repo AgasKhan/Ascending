@@ -9,6 +9,7 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
     [System.Serializable]
     public struct DoubleString
     {
+        [TextArea(1, 6)]
         public string superior;
 
         [TextArea(3, 6)]
@@ -40,7 +41,9 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         Violet = 4
     }
     public int currentLevel = 0;
+
     Level[] myColors = { Level.Default, Level.Blue, Level.Green, Level.Yellow, Level.Violet };
+    
     Image myImage;
 
     public void ChangeColor(Level l)
@@ -95,17 +98,25 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         }
 
         originalParent = transform.parent;
-
-        if (Abilities.Abilitieslist.ContainsKey(ReturnType()))
-            myAbility = Abilities.Abilitieslist[ReturnType()];
-        else
-            myAbility = Create();
     }
 
-    public abstract Abilities.Ability Create();
+    public void VinculatedAbilities<T>() where T : Abilities.Ability, new()
+    {
+        if (Abilities.Abilitieslist.ContainsKey(typeof(T)))
+        {
+            myAbility = Abilities.Abilitieslist[typeof(T)];
+            DebugPrint.Log("lo encontro");
+        }
+            
+        else
+        {
+            myAbility = new T();
 
-    public abstract System.Type ReturnType();
+            myAbility.level = (currentLevel);
 
+            DebugPrint.Log("lo creo " + typeof(T).FullName);
+        }
+    }
 
     public virtual void Listener()
     {
@@ -116,8 +127,6 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         DetailsWindow.SetLevelUpButton(Upgrade);
     }
 
-    public abstract void ActionOnStart();
-    
     public virtual void Upgrade()
     {
         if(currentLevel < buttons.Length-1)
@@ -192,7 +201,4 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
 
 }
-
-
-
 

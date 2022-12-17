@@ -11,18 +11,9 @@ public class AbStun : AbilitiesParent
         SkillTreeManager.SwitchPowers();
     }
 
-    public override void ActionOnStart()
+    private void Start()
     {
-
+        VinculatedAbilities<Abilities.PowerInit<Stun_Powers>>();
     }
 
-    public override Abilities.Ability Create()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Type ReturnType()
-    {
-        throw new NotImplementedException();
-    }
 }

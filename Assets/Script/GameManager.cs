@@ -134,6 +134,8 @@ public class GameManager : MonoBehaviour
         TimeController.Awake();
 
         fixedUpdate = new Timer(1/60f);
+
+        
     }
 
 
@@ -141,7 +143,18 @@ public class GameManager : MonoBehaviour
     {
         currentTime -= Time.realtimeSinceStartup;
         audioM = GetComponent<AudioManager>();
-        BackgroundMusic();
+        BackgroundMusic();      
+
+        TimersManager.Create(0.1f, 
+            () => 
+            {
+                foreach (var item in Abilities.Abilitieslist)
+                {
+                    item.value.CheckOnStart();
+                }
+
+                DebugPrint.Log(Abilities.Abilitieslist.ToString());
+            });
     }
 
     private void OnDestroy()
@@ -198,7 +211,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Funciono Background Music");
         audioM.Play("BackgroundMusic");
     }
-
 }
 
 

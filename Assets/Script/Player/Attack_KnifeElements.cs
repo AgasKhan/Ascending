@@ -8,9 +8,24 @@ public class Attack_KnifeElements : KnifeElements
 
     public bool UnlockHitScan = false;
 
-    public float maxPressedTime = 3;
+    public float maxPressedTime
+    {
+        get
+        {
+            return _maxPressedTime;
+        }
 
-    public float relationXtime = 1;
+        set
+        {
+            _maxPressedTime = value;
+            charge = new Tim(_maxPressedTime);
+        }
+    }
+
+    [SerializeField]
+    float _maxPressedTime = 5;
+
+    public float relationXtime = 0.5f;
 
     public float chargePercentage;
 
@@ -160,8 +175,8 @@ public class Attack_KnifeElements : KnifeElements
         volume = PostProcessManager.instance.QuickVolume(12, -1, lens);
 
         zoomTozero = new Tim(0.5f);
-        charge = new Tim(maxPressedTime);
- 
+        maxPressedTime = _maxPressedTime;
+
     }
 
     private void OnDestroy()

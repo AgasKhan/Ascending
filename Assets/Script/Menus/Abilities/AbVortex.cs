@@ -11,18 +11,8 @@ public class AbVortex : AbilitiesParent
         SkillTreeManager.SwitchPowers();
     }
 
-    public override void ActionOnStart()
+    private void Start()
     {
-
-    }
-
-    public override Abilities.Ability Create()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Type ReturnType()
-    {
-        throw new NotImplementedException();
+        VinculatedAbilities<Abilities.PowerInit<Vortex_Powers>>();
     }
 }

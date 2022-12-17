@@ -5,19 +5,9 @@ using UnityEngine;
 
 public class Charge : AbilitiesParent
 {
-    public override void ActionOnStart()
+    private void Start()
     {
-
-    }
-
-    public override Abilities.Ability Create()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Type ReturnType()
-    {
-        throw new NotImplementedException();
+        VinculatedAbilities<Abilities.ChargeDagger>();
     }
 
     public override void UnlockAbility()

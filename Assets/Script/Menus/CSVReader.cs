@@ -83,33 +83,10 @@ public class CSVReader : MonoBehaviour
         SaveInPictionary<int>("CurrentLevel", 0);
 
         SaveInPictionary<int>("PlayerPoints", 1000);
-        
-        SaveInPictionary<bool>("ChargeIsActive", false);
-        SaveInPictionary<bool>("HitScanIsActive", false);
-        SaveInPictionary<bool>("TimeToArriveIsActive", false);
-        SaveInPictionary<bool>("InitialDaggersIsActive", false);
-        SaveInPictionary<bool>("HealthPointsIsActive", false);
-        SaveInPictionary<bool>("ArmorIsActive", false);
-        SaveInPictionary<bool>("SpeedIsActive", false);
-        SaveInPictionary<bool>("TimeToInteractIsActive", false);
-        SaveInPictionary<bool>("CallAllDaggersIsActive", false);
 
-        SaveInPictionary<bool>("PowerUnlock", false);
-        
+        if(Abilities.Abilitieslist==null)
+            Abilities.Abilitieslist = LoadClassFromPictionary("Abilities", new Pictionarys<Type, Abilities.Ability>());
 
-        /*
-        SaveInPictionary<float>("Charge", 0);
-        SaveInPictionary<bool>("HitScan", false);
-        SaveInPictionary<float>("TimeToAttract", 0);
-        SaveInPictionary<int>("InitialDaggers", 0);
-        SaveInPictionary<float>("Speed", 0);
-        SaveInPictionary<float>("Armor", 0);
-        SaveInPictionary<float>("HealthPoints", 0);
-        SaveInPictionary<float>("Interact", 0);
-        SaveInPictionary<bool>("AttractAll", false);
-
-        SaveInPictionary<string>("InitialPower", "");
-        */
     }
 
     void SaveProgress(int indexSlot, Pictionarys<string, string> myChanges)
@@ -183,7 +160,7 @@ public class CSVReader : MonoBehaviour
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
     /// <param name="data"></param>
-    public static void SaveClassInPictionary<T>(string id, T data) where T : MonoBehaviour
+    public static void SaveClassInPictionary<T>(string id, T data)
     {
         string json = JsonUtility.ToJson(data);
 
@@ -215,7 +192,7 @@ public class CSVReader : MonoBehaviour
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
     /// <returns></returns>
-    public static T LoadClassFromPictionary<T>(string id)
+    public static T LoadClassFromPictionary<T>(string id, T failed = default)
     {
         if (BD.ContainsKey(id))
         {
@@ -224,8 +201,8 @@ public class CSVReader : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not id found on Base Data");
-            return default;
+            Debug.Log(id + " Not found on Base Data");
+            return failed;
         }
     }
 
@@ -238,7 +215,7 @@ public class CSVReader : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not id found on Base Data");
+            Debug.Log(id + " Not found on Base Data");
             return failed;
         }
     }
