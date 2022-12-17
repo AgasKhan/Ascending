@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class TimeToInteract : AbilitiesParent
 {
-    
+    public override void ActionOnStart()
+    {
+
+    }
+
+    public override void UnlockAbility()
+    {
+        base.UnlockAbility();
+    }
 }

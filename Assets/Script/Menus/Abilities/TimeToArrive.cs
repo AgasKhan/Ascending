@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class TimeToArrive : AbilitiesParent
 {
-    
+    public override void ActionOnStart()
+    {
+
+    }
 }

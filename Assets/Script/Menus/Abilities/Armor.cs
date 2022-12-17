@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Armor : AbilitiesParent
 {
-    
+    public override void ActionOnStart()
+    {
+
+    }
 }

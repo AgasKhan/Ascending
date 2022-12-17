@@ -65,7 +65,7 @@ public class AbilityButton : SkillTreeManager, IBeginDragHandler, IDragHandler, 
         {
             myButton.onClick.AddListener(() =>
             {
-                OpenLockedDetails(transform.name, lockedMessage);
+                //OpenLockedDetails(transform.name, lockedMessage);
             });
             myCanvasGroup.blocksRaycasts = false;
         }
@@ -73,7 +73,7 @@ public class AbilityButton : SkillTreeManager, IBeginDragHandler, IDragHandler, 
         {
             myButton.onClick.AddListener(() =>
             {
-                OpenDetailWindow(transform.name);
+                //OpenDetailWindow(transform.name);
             });
         }
 

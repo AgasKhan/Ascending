@@ -5,20 +5,30 @@ using UnityEngine.EventSystems;
 
 public class SkillSlot : MonoBehaviour,IDropHandler
 {
-    AbilityButton draggableItem;
-    public bool mainAbilitySlot = false;
-
+    protected AbilitiesParent draggableItem;
     public void OnDrop(PointerEventData eventData)
     {
         if(transform.childCount == 0)
         {
             GameObject dropped = eventData.pointerDrag;
-            draggableItem = dropped.GetComponent<AbilityButton>();
-            draggableItem.parentAfterDrag = transform;
+            draggableItem = dropped.GetComponent<AbilitiesParent>();
+            
+            if (transform != draggableItem.originalParent)
+                DeclinedDrop();
+            else
+                AcceptedDrop();
 
-            if(mainAbilitySlot)
-                draggableItem.RefreshAbilitiesList();
         }
     }
-    
+
+    public virtual void AcceptedDrop()
+    {
+        draggableItem.parentAfterDrag = transform;
+    }
+
+    public virtual void DeclinedDrop()
+    {
+        draggableItem.parentAfterDrag = draggableItem.originalParent;
+    }
+
 }

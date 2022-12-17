@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class InitialDaggers : AbilitiesParent
 {
-    
+    public override void ActionOnStart()
+    {
+
+    }
+    public override void UnlockAbility()
+    {
+        base.UnlockAbility();
+    }
 }

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class HitScan : AbilitiesParent
 {
+    public override void ActionOnStart()
+    {
 
+    }
 }

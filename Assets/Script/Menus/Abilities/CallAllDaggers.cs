@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class CallAllDaggers : AbilitiesParent
 {
-    
+    public override void ActionOnStart()
+    {
+
+    }
 }

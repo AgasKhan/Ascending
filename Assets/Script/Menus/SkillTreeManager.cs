@@ -7,37 +7,27 @@ using UnityEngine.UI;
 public class SkillTreeManager : MonoBehaviour
 {
     static public SkillTreeManager instance;
-    
-    //public GameObject[] currentAbilities;
-    [SerializeField]
-    AbilityButton[] allAbilities;
-    [SerializeField]
-    GameObject[] detailsWindow;
-    [SerializeField]
-    TextMeshProUGUI points;
 
-    public Ability myAbility;
-    
-    private int currentDetailW = 0;
+    public RectTransform gridActives;
 
-    public enum Ability
+    public RectTransform allPowers;
+
+    private void Start()
     {
-        Charge,
-        HitScan,
+        AbilitiesParent[] allAbilities = GameObject.FindObjectsOfTypeAll(typeof(AbilitiesParent)) as AbilitiesParent[];
 
-        TimeToArrive,
+        SkillSlot[] activeAbilities = gridActives.GetComponentsInChildren<SkillSlot>();
+        int index = 0;
 
-        InitialDaggers,
-
-        HealthPoints,
-        Armor,
-
-        Speed,
+        foreach (var item in allAbilities)
+        {
+            if(item.myAbility.active)
+            {
+                item.transform.parent = activeAbilities[index].transform;
+                index++;
+            }
+        }
         
-        TimeToInteract,
-        CallAllDaggers,
-
-        InitialPower,
     }
 
     private void Awake()
@@ -45,54 +35,14 @@ public class SkillTreeManager : MonoBehaviour
         instance = this;
     }
 
-    public void OpenDetailWindow(string s)
+    public static void SwitchPowers(bool b = false)
     {
-        for (int i = 0; i < detailsWindow.Length; i++)
+        AbilitiesParent[] powers = instance.allPowers.GetComponentsInChildren<AbilitiesParent>();
+
+        foreach (var item in powers)
         {
-            if (detailsWindow[i].name == s)
-            {
-                detailsWindow[currentDetailW].SetActive(false);
-                detailsWindow[i].SetActive(true);
-            }
+            var myCanvasGroup = item.GetComponent<CanvasGroup>();
+            myCanvasGroup.blocksRaycasts = b;
         }
     }
-    public void OpenLockedDetails(string name, string message)
-    {
-        for (int i = 0; i < detailsWindow.Length; i++)
-        {
-            if (detailsWindow[i].name == name)
-            {
-                detailsWindow[currentDetailW].SetActive(false);
-                detailsWindow[i].SetActive(true);
-                var aux = detailsWindow[i].GetComponent<TextMeshProUGUI>();
-                aux.text = message;
-            }
-        }
-    }
-
-
-    public AbilityButton FindAbilityButton(string s)
-    {
-        for (int i = 0; i < allAbilities.Length; i++)
-        {
-            if (allAbilities[i].myAbility.ToString() == s)
-                return allAbilities[i];
-        }
-        return null;
-    }
-
-    public void UnlockAbility(string s)
-    {
-        var aux = FindAbilityButton(s);
-        aux.myCanvasGroup.interactable = true;
-        aux.myCanvasGroup.blocksRaycasts = true;
-    }
-
-
-    public void RefreshPoints()
-    {
-        if (points != null)
-            points.text = CSVReader.LoadFromPictionary<int>("PlayerPoints").ToString();
-    }
-
 }

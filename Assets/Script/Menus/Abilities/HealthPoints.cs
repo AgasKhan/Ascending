@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class HealthPoints : AbilitiesParent
 {
-    
+    public override void ActionOnStart()
+    {
+
+    }
 }

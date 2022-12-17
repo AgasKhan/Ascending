@@ -4,5 +4,14 @@ using UnityEngine;
 
 public class Charge : AbilitiesParent
 {
+    public override void ActionOnStart()
+    {
+
+    }
+
+    public override void UnlockAbility()
+    {
+        base.UnlockAbility();
+    }
 
 }
