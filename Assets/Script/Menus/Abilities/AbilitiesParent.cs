@@ -7,15 +7,7 @@ using System;
 
 public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [System.Serializable]
-    public struct DoubleString
-    {
-        [TextArea(1, 6)]
-        public string superior;
-
-        [TextArea(3, 6)]
-        public string inferior;
-    }
+    
 
     static int points;
 
@@ -81,9 +73,6 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
             });
 
         //Utilitys.LerpInTime(myImage.color, auxColor, 0.3f, Color.Lerp, (save) => { myImage.color = save; });
-
-
-
     }
 
     public void ChangeColor()
@@ -230,3 +219,18 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
 }
 
+[System.Serializable]
+public struct DoubleString
+{
+    [TextArea(1, 6)]
+    public string superior;
+
+    [TextArea(3, 6)]
+    public string inferior;
+
+    public DoubleString(string superior, string inferior)
+    {
+        this.superior = superior;
+        this.inferior = inferior;
+    }
+}
