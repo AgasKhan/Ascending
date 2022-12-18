@@ -181,7 +181,7 @@ public static class Abilities
                 case 1:
 
                     maxPressedTime = 5;
-                    relationXtime = 1;
+                    relationXtime = 1; // 1 * 10% x segundo de carga
 
                     break;
 
