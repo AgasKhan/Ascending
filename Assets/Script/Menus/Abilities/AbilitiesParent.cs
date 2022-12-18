@@ -30,6 +30,7 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
     public DoubleString[] buttons;
 
     public Transform originalParent;
+    public int currentLevel = 0;
 
     #region Colores
     public enum Level
@@ -40,7 +41,7 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         Yellow = 3,
         Violet = 4
     }
-    public int currentLevel = 0;
+    
 
     Level[] myColors = { Level.Default, Level.Blue, Level.Green, Level.Yellow, Level.Violet };
     
@@ -135,9 +136,10 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         }
         else
         {
+            if ((originalParent.parent.childCount - 1) > originalParent.GetSiblingIndex())
+                UnlockNextButton();
             NormalUpgrade();
             DetailsWindow.instance.DeactiveLevelButton();
-            UnlockAbility();
         }
     }
 
@@ -150,6 +152,20 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         myAbility.level = currentLevel;
     }
 
+    public void UnlockAbility(AbilitiesParent a)
+    {
+        a.currentLevel = 0;
+        a.myAbility.level = a.currentLevel;
+        a.myCanvasGroup.interactable = true;
+        a.myCanvasGroup.blocksRaycasts = true;
+    }
+
+    public virtual void UnlockNextButton()
+    {
+        var aux = originalParent.GetSiblingIndex() + 1 ;
+        var nextButton = originalParent.parent.GetChild(aux).GetComponentInChildren<AbilitiesParent>();
+        UnlockAbility(nextButton);
+    }
 
     public void CheckPoints(int cost)
     {
@@ -164,15 +180,7 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
             print("No tienes puntos suficientes");
     }
 
-    public virtual void UnlockAbility()
-    {
-        print("Desbloqueaste una habilidad");
-        /*
-         * Esta funcion se ejecuta cada que un boton llega a su nivel maximo y debe desbloquear otro boton
-         * Los botones bloqueados deben tener el "level" en -1
-         * Al activarlos su level cambia a 0, ya que deben ser comprados despues 
-        */
-    }
+   
 
 
     public void OnBeginDrag(PointerEventData eventData)

@@ -157,6 +157,68 @@ public static class Abilities
 
         }
     }
+
+
+
+    public class TimeToInteract : Ability
+    {
+        public float maxPressedTime;
+        public float relationXtime;
+
+        public override void OnStart()
+        {
+            GameManager.player.atackElements.maxPressedTime = maxPressedTime;
+            GameManager.player.atackElements.relationXtime = relationXtime;
+        }
+
+        protected override void OnChangeLevel(int l)
+        {
+            base.OnChangeLevel(l);
+
+            DebugPrint.Warning("nivel ingresado: " + l);
+            switch (l)
+            {
+                case 1:
+
+                    maxPressedTime = 5;
+                    relationXtime = 1;
+
+                    break;
+
+                case 2:
+
+                    maxPressedTime = 3;
+                    relationXtime = 2;
+
+                    break;
+
+                case 3:
+
+                    maxPressedTime = 1;
+                    relationXtime = 7;
+
+                    break;
+
+                case 4:
+
+                    maxPressedTime = 1;
+                    relationXtime = 10;
+
+                    break;
+
+                default:
+                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
+                    break;
+
+            }
+        }
+
+        public TimeToInteract() : base()
+        {
+
+        }
+    }
+
 }
 
 

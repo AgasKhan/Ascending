@@ -560,7 +560,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 277140220}
+    m_TransformParent: {fileID: 113734338}
     m_Modifications:
     - target: {fileID: 1659767728134340392, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_Name
@@ -576,7 +576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -632,11 +632,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -785.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -88
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -652,6 +652,70 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
+--- !u!1 &113734337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113734338}
+  - component: {fileID: 113734339}
+  m_Layer: 0
+  m_Name: ChargeBranch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &113734338
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113734337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 285497021}
+  - {fileID: 76236496}
+  m_Father: {fileID: 277140220}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -780, y: -133}
+  m_SizeDelta: {x: 113, y: 250}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &113734339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113734337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 30
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &133055098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,9 +1082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0c000000
   information:
     superior: Teleport
@@ -1315,9 +1376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 10000000
   information:
     superior: 'Initial  Daggers   III '
@@ -1704,8 +1762,7 @@ RectTransform:
   - {fileID: 716245523}
   - {fileID: 533432730}
   - {fileID: 1029986419}
-  - {fileID: 285497021}
-  - {fileID: 76236496}
+  - {fileID: 113734338}
   - {fileID: 2078024071}
   - {fileID: 515647107}
   - {fileID: 1384051617}
@@ -2089,7 +2146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2875,7 +2932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3389,9 +3446,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0a000000
   information:
     superior: 'Call   All   Daggers '
@@ -4169,7 +4223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4266,7 +4320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5126,7 +5180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5586,9 +5640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0400000006000000080000000c000000
   information:
     superior: 'Time   To   Interact '
@@ -7101,9 +7152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0a000000
   information:
     superior: 'Initial  Daggers   I '
@@ -7778,7 +7826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8142,9 +8190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 08000000
   information:
     superior: 'Hit   Scan '
@@ -8155,7 +8200,7 @@ MonoBehaviour:
   - superior: 8 pts
     inferior: Unlock
   originalParent: {fileID: 0}
-  currentLevel: 0
+  currentLevel: -1
 --- !u!1 &1399993869
 GameObject:
   m_ObjectHideFlags: 0
@@ -8503,7 +8548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9124,9 +9169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 01000000020000000300000005000000
   information:
     superior: Armor
@@ -9688,9 +9730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0200000004000000060000000a000000
   information:
     superior: 'Time   To   Arrive '
@@ -10599,9 +10638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0a000000
   information:
     superior: Initial  Daggers   I I
@@ -10634,7 +10670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10859,9 +10895,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0c000000
   information:
     superior: Toxic
@@ -12022,7 +12055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12590,9 +12623,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0200000004000000060000000a000000
   information:
     superior: 'Health    Points '
@@ -12891,9 +12921,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0200000004000000060000000a000000
   information:
     superior: Speed
@@ -13136,7 +13163,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 277140220}
+    m_TransformParent: {fileID: 113734338}
     m_Modifications:
     - target: {fileID: 1659767728134340392, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_Name
@@ -13152,7 +13179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13208,11 +13235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -785.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659767728134340393, guid: 89f53e9b4966e334ead5810e95c83344, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13590,9 +13617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0c000000
   information:
     superior: Stun
@@ -14128,9 +14152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 0c000000
   information:
     superior: Vortex
@@ -14291,9 +14312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
   myCanvasGroup: {fileID: 0}
-  myAbility:
-    level: 0
-    active: 0
   allCosts: 02000000040000000600000008000000
   information:
     superior: Charge

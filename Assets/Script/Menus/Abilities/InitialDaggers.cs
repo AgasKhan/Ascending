@@ -7,8 +7,8 @@ public class InitialDaggers : AbilitiesParent
 {
    
 
-    public override void UnlockAbility()
+    public override void UnlockNextButton()
     {
-        base.UnlockAbility();
+        base.UnlockNextButton();
     }
 }
