@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -42,39 +43,61 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         Violet = 4
     }
     
-
-    Level[] myColors = { Level.Default, Level.Blue, Level.Green, Level.Yellow, Level.Violet };
-    
     Image myImage;
 
     public void ChangeColor(Level l)
     {
+        myImage.type = Image.Type.Filled;
+        myImage.fillMethod = Image.FillMethod.Horizontal;
+        myImage.fillOrigin = 0;
 
         string aux = l.ToString();
+        Color auxColor = Color.white;
+
         switch (aux)
         {
-            case "Default":
-                myImage.color = Color.white;
-                break;
             case "Blue":
-                myImage.color = Color.blue;
+                auxColor = Color.blue;
                 break;
             case "Green":
-                myImage.color = Color.green;
+                auxColor = Color.green;
                 break;
             case "Yellow":
-                myImage.color = Color.yellow;
+                auxColor = Color.yellow;
                 break;
             case "Violet":
-                myImage.color = Color.magenta;
+                auxColor = Color.magenta;
                 break;
         }
+
+        Utilitys.LerpInTime(myImage.fillAmount, 0, 0.3f, Mathf.Lerp, (save) => { myImage.fillAmount = save; });
+
+        TimersManager.Create(0.3f,
+            ()=> 
+            {
+                myImage.fillOrigin = 1;
+                myImage.color = auxColor;
+                Utilitys.LerpInTime(myImage.fillAmount, 1, 0.3f, Mathf.Lerp, (save) => { myImage.fillAmount = save; });
+            });
+
+        //Utilitys.LerpInTime(myImage.color, auxColor, 0.3f, Color.Lerp, (save) => { myImage.color = save; });
+
+
 
     }
 
     public void ChangeColor()
     {
-        ChangeColor(myColors[currentLevel]);
+        //currentLevel
+
+        //Enum.GetNames(Level)[currentLevel];
+
+        var arr = Enum.GetValues(typeof(Level));
+
+        int aux = 4 - ((buttons.Length) - currentLevel);
+
+        ChangeColor((Level)arr.GetValue(aux));
+        
     }
 
 
@@ -152,19 +175,19 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         myAbility.level = currentLevel;
     }
 
-    public void UnlockAbility(AbilitiesParent a)
+    public void UnlockAbility()
     {
-        a.currentLevel = 0;
-        a.myAbility.level = a.currentLevel;
-        a.myCanvasGroup.interactable = true;
-        a.myCanvasGroup.blocksRaycasts = true;
+        currentLevel = 0;
+        myAbility.level = currentLevel;
+        myCanvasGroup.interactable = true;
+        myCanvasGroup.blocksRaycasts = true;
     }
 
     public virtual void UnlockNextButton()
     {
         var aux = originalParent.GetSiblingIndex() + 1 ;
         var nextButton = originalParent.parent.GetChild(aux).GetComponentInChildren<AbilitiesParent>();
-        UnlockAbility(nextButton);
+        nextButton.UnlockAbility();
     }
 
     public void CheckPoints(int cost)
@@ -179,9 +202,6 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         else
             print("No tienes puntos suficientes");
     }
-
-   
-
 
     public void OnBeginDrag(PointerEventData eventData)
     {
