@@ -61,7 +61,7 @@ public static class Abilities
         {
             this.active = false;
             Abilitieslist.Add(this.GetType(), this);
-            DebugPrint.Log(Abilitieslist.ToString());
+            //DebugPrint.Log(Abilitieslist.ToString());
         }
     }
     /* Se tiene que poder guardar los cambios en las habilidades
@@ -226,15 +226,32 @@ public static class Abilities
 
     public class InitialDaggers : Ability
     {
-        public int count;
+        public Pictionarys<string,int> count;
+
         public override void OnStart()
         {
-            
+            var aux = 0;
+
+            Player_Character player = GameManager.player;
+
+            foreach (var item in count)
+            {
+                aux += item.value;
+            }
+
+            float angle =360f / aux;
+
+            for (int i = 1; i <= aux; i++)
+            {
+                var dagger = PoolObjects.SpawnPoolObject(0, "Daguita", player.transform.position + Quaternion.Euler(0, i * angle, 0) * player.transform.forward, Quaternion.identity);
+                player.dagger = dagger.GetComponent<Dagger_Proyectile>();
+                player.Take();
+            }
         }
 
         public InitialDaggers() : base()
         {
-
+            count = new Pictionarys<string, int>();
         }
     }
 

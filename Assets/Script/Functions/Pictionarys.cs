@@ -159,7 +159,9 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
             if (pictionaries[i].key.Equals(key))
             {
                 pictionaries.RemoveAt(i);
+
                 count--;
+
                 return;
             }
         }

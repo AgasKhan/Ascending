@@ -5,11 +5,27 @@ using UnityEngine;
 
 public class InitialDaggers : AbilitiesParent
 {
+    [SerializeField]
     public int count;
+
+    Abilities.InitialDaggers reference;
+
     private void Start()
     {
-        VinculatedAbilities<Abilities.InitialDaggers>();
+        reference = VinculatedAbilities<Abilities.InitialDaggers>();
+    }
 
-        ((Abilities.InitialDaggers)myAbility).count = count;
+    public override void ActiveAbility()
+    {
+        myAbility.active = true;
+        reference.count.Add(name, count);
+    }
+
+    public override void DeactiveAbility()
+    {
+        reference.count.Remove(name);
+
+        if(reference.count.count==0)
+            myAbility.active = false;
     }
 }

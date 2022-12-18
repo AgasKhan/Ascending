@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MainAbility_SkillSlot : SkillSlot
 {
+
+    private void Awake()
+    {
+        deactive = false;
+    }
+
     public override void DeclinedDrop()
     {
         base.AcceptedDrop();

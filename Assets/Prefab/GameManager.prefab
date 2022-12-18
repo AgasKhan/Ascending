@@ -117,6 +117,7 @@ MonoBehaviour:
     poolNumber: 10
     prefabReference:
     - {fileID: 4415753222827290869, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
+    - {fileID: 3919127826687303864, guid: c0704024b8a360f48b34232b40316964, type: 3}
     pool: []
   - classType: Fire
     poolNumber: 5

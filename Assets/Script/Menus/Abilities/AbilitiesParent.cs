@@ -113,7 +113,7 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         originalParent = transform.parent;
     }
 
-    public void VinculatedAbilities<T>() where T : Abilities.Ability, new()
+    public T VinculatedAbilities<T>() where T : Abilities.Ability, new()
     {
         if (Abilities.Abilitieslist.ContainsKey(typeof(T)))
         {
@@ -129,6 +129,8 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
             DebugPrint.Log("lo creo " + typeof(T).FullName);
         }
+
+        return ((T)myAbility);
     }
 
     public virtual void Listener()
@@ -215,6 +217,11 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
     public virtual void ActiveAbility()
     {
         myAbility.active = true;
+    }
+
+    public virtual void DeactiveAbility()
+    {
+        myAbility.active = false;
     }
 
 

@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class SkillSlot : MonoBehaviour,IDropHandler
 {
     protected AbilitiesParent draggableItem;
+
+    protected bool deactive = true;
+
     public void OnDrop(PointerEventData eventData)
     {
         if(transform.childCount == 0)
@@ -18,6 +21,9 @@ public class SkillSlot : MonoBehaviour,IDropHandler
             else
                 AcceptedDrop();
 
+           
+            if(deactive)
+                draggableItem.DeactiveAbility();
         }
     }
 
@@ -29,6 +35,7 @@ public class SkillSlot : MonoBehaviour,IDropHandler
     public virtual void DeclinedDrop()
     {
         draggableItem.parentAfterDrag = draggableItem.originalParent;
+        
     }
 
 }

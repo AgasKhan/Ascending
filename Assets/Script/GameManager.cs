@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         BackgroundMusic();
         StartQuests();
 
-        TimersManager.Create(0.1f, 
+        TimersManager.Create(0.5f, 
             () => 
             {
                 foreach (var item in Abilities.Abilitieslist)
