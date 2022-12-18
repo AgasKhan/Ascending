@@ -107,7 +107,7 @@ public static class Abilities
                 case 1:
 
                     maxPressedTime = 5;
-                    relationXtime = 1;
+                    relationXtime = 1; // 1 * 10% x segundo de carga
 
                     break;
 
@@ -158,17 +158,13 @@ public static class Abilities
         }
     }
 
-
-
     public class TimeToInteract : Ability
     {
-        public float maxPressedTime;
-        public float relationXtime;
-
+        public float timeToInteract;
+        
         public override void OnStart()
         {
-            GameManager.player.atackElements.maxPressedTime = maxPressedTime;
-            GameManager.player.atackElements.relationXtime = relationXtime;
+            GameManager.player.timeInteractMultiply = timeToInteract;
         }
 
         protected override void OnChangeLevel(int l)
@@ -180,29 +176,25 @@ public static class Abilities
             {
                 case 1:
 
-                    maxPressedTime = 5;
-                    relationXtime = 1; // 1 * 10% x segundo de carga
+                    timeToInteract = 1.1f;
 
                     break;
 
                 case 2:
 
-                    maxPressedTime = 3;
-                    relationXtime = 2;
+                    timeToInteract = 1.25f;
 
                     break;
 
                 case 3:
 
-                    maxPressedTime = 1;
-                    relationXtime = 7;
+                    timeToInteract = 1.75f;
 
                     break;
 
                 case 4:
 
-                    maxPressedTime = 1;
-                    relationXtime = 10;
+                    timeToInteract = 2.5f;
 
                     break;
 
@@ -218,6 +210,87 @@ public static class Abilities
 
         }
     }
+
+    public class CallAllDaggers : Ability
+    {
+        public override void OnStart()
+        {
+            GameManager.player.UnlockAtrackt = true;
+        }
+
+        public CallAllDaggers() : base()
+        {
+
+        }
+    }
+
+    public class InitialDaggers : Ability
+    {
+        public int count;
+        public override void OnStart()
+        {
+            
+        }
+
+        public InitialDaggers() : base()
+        {
+
+        }
+    }
+
+    public class TimeToArrive : Ability
+    {
+        public float timeToArrive;
+
+        public override void OnStart()
+        {
+            GameManager.player.floatElements.timeToAttrackt = timeToArrive;
+        }
+
+        protected override void OnChangeLevel(int l)
+        {
+            base.OnChangeLevel(l);
+
+            DebugPrint.Warning("nivel ingresado: " + l);
+            switch (l)
+            {
+                case 1:
+
+                    timeToArrive = 1.75f;
+
+                    break;
+
+                case 2:
+
+                    timeToArrive = 1.5f;
+
+                    break;
+
+                case 3:
+
+                    timeToArrive = 1.25f;
+
+                    break;
+
+                case 4:
+
+                    timeToArrive = 1;
+
+                    break;
+
+                default:
+                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
+                    break;
+
+            }
+        }
+
+        public TimeToArrive() : base()
+        {
+
+        }
+    }
+
 
 }
 

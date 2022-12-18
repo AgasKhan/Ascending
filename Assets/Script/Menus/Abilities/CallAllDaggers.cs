@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class CallAllDaggers : AbilitiesParent
 {
+    private void Start()
+    {
+        VinculatedAbilities<Abilities.CallAllDaggers>();
+    }
 
-    
-    
 }

@@ -10,9 +10,4 @@ public class Charge : AbilitiesParent
         VinculatedAbilities<Abilities.ChargeDagger>();
     }
 
-    public override void UnlockNextButton()
-    {
-        base.UnlockNextButton();
-    }
-
 }

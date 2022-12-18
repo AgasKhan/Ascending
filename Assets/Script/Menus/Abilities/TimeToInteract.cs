@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class TimeToInteract : AbilitiesParent
 {
-
-    
-   
-    public override void UnlockNextButton()
+    private void Start()
     {
-        base.UnlockNextButton();
+        VinculatedAbilities<Abilities.TimeToInteract>();
     }
 }

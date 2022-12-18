@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class InitialDaggers : AbilitiesParent
 {
-   
-
-    public override void UnlockNextButton()
+    public int count;
+    private void Start()
     {
-        base.UnlockNextButton();
+        VinculatedAbilities<Abilities.InitialDaggers>();
+
+        ((Abilities.InitialDaggers)myAbility).count = count;
     }
 }
