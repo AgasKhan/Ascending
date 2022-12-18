@@ -14245,6 +14245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobilePlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5584647860906735062, guid: 7c1df888b3ed23741a004ef0a52e8d4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c1df888b3ed23741a004ef0a52e8d4b, type: 3}
 --- !u!1001 &6481158623159626688
@@ -14461,6 +14465,10 @@ PrefabInstance:
     - target: {fileID: 8668934731599095650, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
       propertyPath: m_Name
       value: MobilePlatform and rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668934731599095650, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8668934731599095675, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
       propertyPath: m_RootOrder
