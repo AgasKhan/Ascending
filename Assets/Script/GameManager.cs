@@ -66,6 +66,41 @@ public class GameManager : MonoBehaviour
         enemys.Add(enemy);
     }
 
+    public static void ReverseAllCoroutine()
+    {
+        instance.StartCoroutine(ReverseAll());
+    }
+
+    static IEnumerator ReverseAll()
+    {
+        saveTime = false;
+
+        TimeController.StartReverse();
+
+        while (TimeController.entitys[0].count > instance.multiplyReverseCamera)
+        {
+            CurrentTime(-Time.unscaledDeltaTime);
+            foreach (var item in TimeController.entitys)
+            {
+                item.ReverseItem(instance.multiplyReverseCamera);
+            }
+            yield return null;
+        }
+
+        TimeController.FinishReverse();
+
+        MainHud.ReticulaPlay("Start");
+
+        instance.currentTime = 0;
+        saveTime = true;
+    }
+
+    public void BackgroundMusic()
+    {
+        //Debug.Log("Funciono Background Music");
+        audioM.Play("BackgroundMusic");
+    }
+
     public string FPS()
     {
         int fps = (int)(Mathf.Round(1 / Time.unscaledDeltaTime));
@@ -101,8 +136,79 @@ public class GameManager : MonoBehaviour
         return aux;
     }
 
+
+    void StartQuests()
+    {
+        new Quests.Mission(
+            0, 
+            "Mision x", 
+            "Debes hacer cosas", 
+            ()=> 
+            {
+                return Controllers.jump.down;
+            },
+            () => 
+            {
+                
+                print("ganaste reputacion");
+            }
+        );
+
+
+        //ejemplo de como activar todas las misiones de un nivel
+
+        //Quests.SrchIncomplete(1)
+        foreach (var item in Quests.SrchIncomplete(1))
+        {
+            item.active = true;
+        }
+
+    }
+    
+
+    private void Awake()
+    {
+        instance = this;
+        Controllers.eneable = false;
+
+        var listPlayer = gameObject.FindWithTags("Player");
+        if (listPlayer.Length > 0)
+            player = listPlayer[0].GetComponent<Player_Character>();
+
+        TimeController.Awake();
+
+        fixedUpdate = new Timer(1/60f);        
+    }
+
+
+    private void Start()
+    {
+        currentTime -= Time.realtimeSinceStartup;
+        audioM = GetComponent<AudioManager>();
+        BackgroundMusic();
+        StartQuests();
+
+        TimersManager.Create(0.1f, 
+            () => 
+            {
+                foreach (var item in Abilities.Abilitieslist)
+                {
+                    item.value.CheckOnStart();
+                }
+
+                DebugPrint.Log(Abilities.Abilitieslist.ToString());
+            });
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     private void Update()
-    {      
+    {
+        Quests.Update();
+
         TextCanvas.SrchMessages("debug").ShowText(false, FPS());
 
         if (!saveTime)
@@ -122,166 +228,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Awake()
-    {
-        instance = this;
-        Controllers.eneable = false;
-
-        var listPlayer = gameObject.FindWithTags("Player");
-        if (listPlayer.Length > 0)
-            player = listPlayer[0].GetComponent<Player_Character>();
-
-        TimeController.Awake();
-
-        fixedUpdate = new Timer(1/60f);
-
-        
-    }
-
-
-    private void Start()
-    {
-        currentTime -= Time.realtimeSinceStartup;
-        audioM = GetComponent<AudioManager>();
-        BackgroundMusic();      
-
-        TimersManager.Create(0.1f, 
-            () => 
-            {
-                foreach (var item in Abilities.Abilitieslist)
-                {
-                    item.value.CheckOnStart();
-                }
-
-                DebugPrint.Log(Abilities.Abilitieslist.ToString());
-            });
-    }
-
-    private void OnDestroy()
-    {
-        instance = null;
-    }
-
-    public static void ReverseAllCoroutine()
-    {
-        instance.StartCoroutine(ReverseAll());
-    }
-
-    static IEnumerator ReverseAll()
-    {
-        saveTime = false;
-
-        TimeController.StartReverse();
-
-        while (TimeController.entitys[0].count > instance.multiplyReverseCamera)
-        {
-            CurrentTime(-Time.unscaledDeltaTime);
-            foreach (var item in TimeController.entitys)
-            {
-                item.ReverseItem(instance.multiplyReverseCamera);
-            }
-            yield return null;
-        }
-
-        TimeController.FinishReverse();
-
-        MainHud.ReticulaPlay("Start");
-
-        
-
-        instance.currentTime = 0;
-        saveTime = true;
-    }
-
-
-    IEnumerator DestroyRetarded(GameObject destroy)
-    {
-        yield return null;
-        Destroy(destroy);
-    }
-
     static public IEnumerator DeActivateRetarded(GameObject go, float time)
     {
         yield return new WaitForSeconds(time);
         go.SetActive(false);
     }
 
-    public void BackgroundMusic()
-    {
-        Debug.Log("Funciono Background Music");
-        audioM.Play("BackgroundMusic");
-    }
+   
 }
 
-
-/*
-public static void AddGlue(Transform t, Transform me)
-{
-    GameObject glue = PoolObjects.SpawnPoolObject(Vector2Int.zero, me.transform.position, t.rotation);
-
-    me.transform.SetParent(null);
-    glue.transform.SetParent(null);
-    glue.transform.localScale = Vector3.one;
-    //glue.transform.SetPositionAndRotation(me.transform.position, t.rotation);
-    glue.transform.SetParent(t.transform);
-    me.transform.SetParent(glue.transform);
-}
-
-
-    private void Update()
-    {
-        if (!saveTime)
-            return;
-
-        List<TimeController> removes = new List<TimeController>();
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Controllers.eneable = false;
-            Time.timeScale = 0;
-        }
-
-        else if (Input.GetKeyUp(KeyCode.R))
-        {
-            Controllers.eneable = true;
-            Time.timeScale = 1;
-        }
-
-
-        foreach (var item in entitys)
-        {
-            if (item.t == null)
-                removes.Add(item);
-        }
-
-        for (int i = 0; i < removes.Count; i++)
-        {
-            entitys.Remove(removes[i]);
-        }
-
-
-        if (maxLevelTimer < currentTime)
-            StartCoroutine(ReverseAll(3));
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            if (entitys[0].posAndRots.Count > 1)
-            {
-                CurrentTime(-Time.unscaledDeltaTime);
-            }
-
-            foreach (var item in entitys)
-            {
-                item.Reverse();
-            }
-        }
-        else
-        {
-            CurrentTime(Time.unscaledDeltaTime);
-            foreach (var item in entitys)
-            {
-                item.Update();
-            }
-        }
-    }
-*/

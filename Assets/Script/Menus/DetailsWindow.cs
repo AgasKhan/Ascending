@@ -34,13 +34,13 @@ public class DetailsWindow : MonoBehaviour
         RefreshPoints();
     }
 
-    public static void ModifyTexts(AbilitiesParent.DoubleString d)
+    public static void ModifyTexts(DoubleString d)
     {
         instance.myTitle.text = d.superior;
         instance.myDescription.text = d.inferior;
     }
 
-    public static void GenerateButtons(AbilitiesParent.DoubleString[] d)
+    public static void GenerateButtons(DoubleString[] d)
     {
         if (instance.myUpgradesGrid.transform.childCount > 0)
             instance.DeletePreviousButtons();
