@@ -12,7 +12,7 @@ public class MoveTrToPatrol : MoveTr, IPatrolReturn
     /// distancia minima para ir al siguiente objetivo
     /// </summary>
     [SerializeField]
-    float _distance;
+    protected float _distance;
 
     public Patrol PatrolReturn()
     {

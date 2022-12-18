@@ -73,9 +73,9 @@ public class DetailsWindow : MonoBehaviour
         }
     }
 
-    public static void SetLevelUpButton(System.Action myAction)
+    public static void SetLevelUpButton(System.Action myAction, bool interact)
     {
-        instance.myLevelUpButton.interactable = true;
+        instance.myLevelUpButton.interactable = interact;
         instance.myLevelUpButton.onClick.RemoveAllListeners();
         instance.myLevelUpButton.onClick.AddListener(() =>
         {

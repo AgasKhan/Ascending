@@ -137,8 +137,9 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
         DetailsWindow.GenerateButtons(buttons);
 
-        DetailsWindow.SetLevelUpButton(Upgrade);
+        DetailsWindow.SetLevelUpButton(Upgrade, buttons.Length > currentLevel);
     }
+
 
     public virtual void Upgrade()
     {
