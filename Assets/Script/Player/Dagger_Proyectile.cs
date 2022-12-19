@@ -81,7 +81,6 @@ public class Dagger_Proyectile : Proyectile
         localAtrackt.Set(0);
         angularAtrackt.Set(0);
         finishTimer.Set(0);
-
     }
 
     protected override void OnDamage(IOnProyectileEnter damaged)

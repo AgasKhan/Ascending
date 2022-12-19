@@ -39,8 +39,6 @@ public class Sliders : MonoBehaviour
             amount = currValue;
         }
 
-
-
     }
 
     static public Sliders instance;

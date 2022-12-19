@@ -37,6 +37,16 @@ public class TimersManager : MonoBehaviour
         return newTimer;
     }
 
+    /// <summary>
+    /// Crea una rutina completa, la cual ejecutara una funcion al comenzar/reiniciar, en el update, y al finalizar
+    /// </summary>
+    /// <param name="totTime"></param>
+    /// <param name="start"></param>
+    /// <param name="update"></param>
+    /// <param name="end"></param>
+    /// <param name="destroy"></param>
+    /// <param name="unscaled"></param>
+    /// <returns></returns>
     public static CompleteRoutine Create(float totTime, Action start, Action update, Action end, bool destroy = true, bool unscaled = false)
     {
         CompleteRoutine newTimer = new CompleteRoutine(totTime, start, update, end, destroy, unscaled);
@@ -58,8 +68,6 @@ public class TimersManager : MonoBehaviour
     {
         timersList = new List<Timer>();
         instance = this;
-
-        print("Se instancio el timer");
     }
 
     void Update()
