@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviour
 {
+    public static int playerPoints;
 
-    // Duda: Crear todas las misiones a la vez? (Start o Awake del menu)
+    // Duda: Crear todas las misiones a la vez? (Start o Awake del main menu)
     void ChargeQuests(int level)
     {
         foreach (var item in Quests.SrchIncomplete(level))
@@ -24,7 +25,7 @@ public class LobbyManager : MonoBehaviour
             "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                return GameManager.CurrentTime() > 120;
             },
             () =>
             {
@@ -39,7 +40,7 @@ public class LobbyManager : MonoBehaviour
             "No utilices el poder de Toxina para obtener 5 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                return GameManager.player.power[0] is Toxine_Powers;
             },
             () =>
             {
@@ -53,7 +54,7 @@ public class LobbyManager : MonoBehaviour
             "No atraigas mas de una daga durante todo el nivel para obtener 3 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                return GameManager.player.totalDaggers > 1;
             },
             () =>
             {
@@ -73,18 +74,33 @@ public class LobbyManager : MonoBehaviour
             {
                 AddPoints(5);
             }
-        );
+            , false);
 
         #endregion
 
         #region Level 2
+
+        new Quests.Mission(
+            2,
+            "Contra Reloj",
+            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
+            () =>
+            {
+                return GameManager.CurrentTime() > 120;
+            },
+            () =>
+            {
+                AddPoints(10);
+            }
+        );
+
         new Quests.Mission(
             2,
             "Singular",
             "Utiliza solo un poder durante todo el nivel para obtener 10 puntos",
             () =>
             {
-                return GameManager.player.power.Count > 1;
+                return GameManager.player.lastPower != null && GameManager.player.lastPower != GameManager.player.power[0];
             },
             () =>
             {
@@ -126,13 +142,18 @@ public class LobbyManager : MonoBehaviour
             "Elimina a todos los enemigos de Dash para obtener 5 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                foreach (var item in GameManager.enemys)
+                {
+                    if (item is DashEnemy_Enemy)
+                        return true;
+                }
+                return false;
             },
             () =>
             {
                 AddPoints(5);
             }
-        );
+        , false);
 
 
 
@@ -142,11 +163,31 @@ public class LobbyManager : MonoBehaviour
 
         new Quests.Mission(
             3,
-            "Adicto al dash",
-            "Utiliza el dash al menos 10 veces para obtener 5 puntos",
+            "Contra Reloj",
+            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
             () =>
             {
-                return Controllers.dash.down;
+                return GameManager.CurrentTime() > 120;
+            },
+            () =>
+            {
+                AddPoints(10);
+            }
+        );
+
+        int dashCount = 0;
+        new Quests.Mission(
+            3,
+            "Adicto al dash",
+            "Utiliza el dash por lo menos 1 vez cada 15 segundos para obtener 5 puntos",
+            () =>
+            {
+                if (Controllers.dash.down)
+                    dashCount++;
+
+                int currentTime = (int)GameManager.CurrentTime();
+
+                return currentTime % 15 == 0 && currentTime / 15 < dashCount;
             },
             () =>
             {
@@ -154,13 +195,17 @@ public class LobbyManager : MonoBehaviour
             }
         );
 
+        int enemyCount = 0;
         new Quests.Mission(
             3,
             "Asesinato veloz",
             "Mata a un enemigo al iniciar el nivel en menos de 30 segundos para obtener 8 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                if (enemyCount == 0)
+                    enemyCount = GameManager.enemys.Count;
+
+                return (GameManager.CurrentTime() > 30) && (GameManager.enemys.Count == enemyCount);
             },
             () =>
             {
@@ -170,7 +215,7 @@ public class LobbyManager : MonoBehaviour
 
         new Quests.Mission(
             3,
-            "Sin poderes",
+            "Nunca muestres lo que tienes",
             "Termina el nivel sin activar un solo poder para obtener 8 puntos",
             () =>
             {
@@ -182,38 +227,73 @@ public class LobbyManager : MonoBehaviour
             }
         );
 
-
+        /*
+        int chargesCount = 0;
         new Quests.Mission(
             3,
             "Ataques cargados",
             "Usa la carga al maximo antes de disparar 3 veces para obtener 3 puntos",
             () =>
             {
+                if()
+                
                 return Controllers.jump.down;
             },
             () =>
             {
                 AddPoints(3);
             }
-        );
+        );*/
 
         #endregion
 
         #region Level 4
 
+        /*
+        bool complete = false;
         new Quests.Mission(
             4,
             "Combo poderoso",
             "Usa el poder de Vortice y Toxina a la vez para obtener 5 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                var toxine = PoolObjects.SrchInCategory("Toxine", "toxicSmoke");
+                var vortex = PoolObjects.SrchInCategory("Vortex", "Vortex");
+
+                bool chkToxine = false, chkVortex = false;
+                foreach (var item in GameManager.player.powerObjectSpawn)
+                {
+                    if (item == toxine)
+                        chkToxine = true;
+                    if (item == vortex)
+                        chkVortex = true;
+                }
+
+
+                complete = (Controllers.aim.pressed && Controllers.attack.pressed && chkToxine && chkVortex);
+
+                return !complete;
             },
             () =>
             {
                 AddPoints(5);
             }
+        );*/
+
+        new Quests.Mission(
+            4,
+            "Contra Reloj",
+            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
+            () =>
+            {
+                return GameManager.CurrentTime() > 120;
+            },
+            () =>
+            {
+                AddPoints(10);
+            }
         );
+
 
         new Quests.Mission(
             4,
@@ -229,6 +309,7 @@ public class LobbyManager : MonoBehaviour
             }
         );
 
+        /*
         new Quests.Mission(
             4,
             "Coleccionista",
@@ -241,15 +322,18 @@ public class LobbyManager : MonoBehaviour
             {
                 AddPoints(3);
             }
-        );
+        );*/
 
+        int activesCount = 0;
         new Quests.Mission(
             4,
             "Estratega",
             "Encanta la daga solo 2 veces durante todo el nivel para obtener 10 puntos",
             () =>
             {
-                return Controllers.jump.down;
+                if (Controllers.active.down)
+                    activesCount++;
+                return activesCount > 2;
             },
             () =>
             {
@@ -272,8 +356,8 @@ public class LobbyManager : MonoBehaviour
 
     public void AddPoints(int p)
     {
-        var aux= CSVReader.LoadFromPictionary<int>("PlayerPoints");
-        CSVReader.SaveInPictionary<int>("PlayerPoints", aux + p);
+        playerPoints += p;
+        CSVReader.SaveInPictionary<int>("PlayerPoints", playerPoints);
     }
 
     #region lobby buttons
@@ -290,6 +374,8 @@ public class LobbyManager : MonoBehaviour
             {"bMenu", BackMenu}
 
         });
+
+        playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints");
 
     }
 

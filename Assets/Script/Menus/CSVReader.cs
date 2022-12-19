@@ -58,7 +58,7 @@ public class CSVReader : MonoBehaviour
             Destroy(gameObject);
 
         instance = this;
-        
+
         ReadCSV(textAssetData);
 
         SaveInPictionary("Scene_1_Dialogue_1", "TestNumberOne");

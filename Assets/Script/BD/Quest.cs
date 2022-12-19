@@ -41,6 +41,7 @@ public static class Quests
         return missions.ToArray();
     }
 
+    // Desarrollar misiones ejecuten un update y hagan check al final de los niveles
 
     [System.Serializable]
     public class Mission
@@ -50,6 +51,7 @@ public static class Quests
         public DoubleString Description;
         public System.Func<bool> chck;
         public System.Action reward;
+        public bool update;
 
         public void Reward()
         {
@@ -65,7 +67,7 @@ public static class Quests
 
         public void Chck()
         {
-            if(active && chck())
+            if(active && update &&chck())
             {
                 active = false;
 
@@ -73,12 +75,13 @@ public static class Quests
             }
         }
 
-        public Mission(int level, string sup, string inf, Func<bool> chck, Action reward)
+        public Mission(int level, string sup, string inf, Func<bool> chck, Action reward, bool update = true)
         {
             this.level = level;
             Description = new DoubleString(sup, inf);
             this.chck = chck;
             this.reward = reward;
+            this.update = update;
 
             incomplete.Add(this);
         }
