@@ -84,7 +84,7 @@ public class CSVReader : MonoBehaviour
 
         SaveInPictionary<int>("LastUnlockedLevel", 0);
 
-        SaveInPictionary<int>("PlayerPoints", 1000);
+        SaveInPictionary<int>("PlayerPoints", 0);
 
 
 

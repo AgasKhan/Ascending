@@ -29,7 +29,12 @@ public class LobbyManager : MonoBehaviour
 
         });
 
-        playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints", 1000);
+        playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints");
+
+        foreach (var item in Quests.complete)
+        {
+            item.reward();
+        }
 
     }
 
@@ -65,6 +70,10 @@ public class LobbyManager : MonoBehaviour
     }
     #endregion
 
-
+    private void Update()
+    {
+        if (Controllers.jump.down)
+            AddPoints(10);
+    }
 
 }
