@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class CallAllDaggers : AbilitiesParent
 {
-    private void Start()
+    protected override void Config()
+    {
+        base.Config();
+        MyAwakes += MyAwake;
+    }
+    private void MyAwake()
     {
         VinculatedAbilities<Abilities.CallAllDaggers>();
     }

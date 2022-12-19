@@ -198,6 +198,8 @@ public class GameManager : MonoBehaviour
 
                 DebugPrint.Log(Abilities.Abilitieslist.ToString());
             });
+
+        Quests.ChargeQuests(CSVReader.LoadFromPictionary<int>("CurrentLevel"));
     }
 
     private void OnDestroy()

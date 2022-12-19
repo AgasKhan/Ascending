@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public abstract class AbilitiesParent : MyScripts, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     
 
@@ -92,7 +92,12 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
 
     #endregion
 
-    private void Awake()
+    protected override void Config()
+    {
+        MyAwakes += MyAwake;
+    }
+
+    void MyAwake()
     {
         points = CSVReader.LoadFromPictionary<int>("PlayerPoints");
 
@@ -118,6 +123,8 @@ public abstract class AbilitiesParent : MonoBehaviour, IBeginDragHandler, IDragH
         if (Abilities.Abilitieslist.ContainsKey(typeof(T)))
         {
             myAbility = Abilities.Abilitieslist[typeof(T)];
+            currentLevel = myAbility.level;
+
             DebugPrint.Log("lo encontro");
         }
             

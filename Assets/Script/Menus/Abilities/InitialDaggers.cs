@@ -10,7 +10,12 @@ public class InitialDaggers : AbilitiesParent
 
     Abilities.InitialDaggers reference;
 
-    private void Start()
+    protected override void Config()
+    {
+        base.Config();
+        MyAwakes += MyAwake;
+    }
+    private void MyAwake()
     {
         reference = VinculatedAbilities<Abilities.InitialDaggers>();
     }

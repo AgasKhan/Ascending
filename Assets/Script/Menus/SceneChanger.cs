@@ -26,6 +26,13 @@ public class SceneChanger : MonoBehaviour
 
         //Controllers.MouseLock();
         Cursor.lockState = CursorLockMode.Locked;
+
+        var index = scn.IndexOf('_');
+        if(index > -1)
+        {
+            var numberLevel = System.Convert.ToInt32(scn.Substring(index));
+            CSVReader.SaveInPictionary<int>("CurrentLevel", numberLevel);
+        }
     }
 
 

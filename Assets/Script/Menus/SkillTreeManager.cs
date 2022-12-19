@@ -19,16 +19,18 @@ public class SkillTreeManager : MonoBehaviour
         SkillSlot[] activeAbilities = gridActives.GetComponentsInChildren<SkillSlot>();
         int index = 0;
 
-        /*
+        print(allAbilities.Length);
+        
         foreach (var item in allAbilities)
         {
-            if(item.myAbility.active)
+            
+            if(item.myAbility!=null && item.myAbility.active)
             {
                 item.transform.parent = activeAbilities[index].transform;
                 index++;
             }
         }
-        */
+        
         
     }
 

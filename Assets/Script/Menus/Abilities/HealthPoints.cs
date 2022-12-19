@@ -6,7 +6,12 @@ using UnityEngine;
 public class HealthPoints : AbilitiesParent
 {
 
-    private void Start()
+    protected override void Config()
+    {
+        base.Config();
+        MyAwakes += MyAwake;
+    }
+    private void MyAwake()
     {
         VinculatedAbilities<Abilities.HealthPoints>();
     }
