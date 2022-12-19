@@ -4,32 +4,37 @@ using UnityEngine;
 
 public class MisionHUD : MonoBehaviour
 {
-
     MiniMisionHUD[] mini;
+    Quests.Mission[] missions;
+
+    static MisionHUD instance;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        instance = this;
+     
         mini = GetComponentsInChildren<MiniMisionHUD>();
 
-        Quests.Mission[] missions = Quests.SrchIncomplete(1);
+        missions = Quests.SrchIncomplete(BaseData.currentLevel);
 
-        for (int i = 0; i < mini.Length; i++)
-        {
-            mini[i].gameObject.SetActive(false);
-        }
+        print("nivel: " +BaseData.currentLevel);
 
-        for (int i = 0; i < missions.Length; i++)
-        {
-            mini[i].title = missions[i].Description.superior;
-            mini[i].text = missions[i].Description.inferior;
-            mini[i].gameObject.SetActive(true);
-        }
+        UpdateMisions();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void UpdateMisions()
     {
-        
+        for (int i = 0; i < instance.mini.Length; i++)
+        {
+            instance.mini[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < instance.missions.Length; i++)
+        {
+            instance.mini[i].title = instance.missions[i].Description.superior;
+            instance.mini[i].text = instance.missions[i].Description.inferior;
+            instance.mini[i].gameObject.SetActive(true);
+        }
     }
 }

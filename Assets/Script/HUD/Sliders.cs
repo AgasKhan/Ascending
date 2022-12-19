@@ -12,6 +12,19 @@ public class Sliders : MonoBehaviour
         public string name;
         public Image slider;
 
+        public Color color
+        {
+            set
+            {
+                slider.color = value;
+            }
+
+            get
+            {
+                return slider.color;
+            }
+        }
+
         [SerializeField]
         float amount;
 
@@ -25,6 +38,8 @@ public class Sliders : MonoBehaviour
         {
             amount = currValue;
         }
+
+
 
     }
 

@@ -30,8 +30,9 @@ public class SceneChanger : MonoBehaviour
         var index = scn.IndexOf('_');
         if(index > -1)
         {
-            var numberLevel = System.Convert.ToInt32(scn.Substring(index));
+            var numberLevel = System.Convert.ToInt32(scn.Substring(index+1));
             CSVReader.SaveInPictionary<int>("CurrentLevel", numberLevel);
+            BaseData.currentLevel = numberLevel;
         }
     }
 

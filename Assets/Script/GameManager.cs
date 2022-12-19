@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public AudioManager audioM;
 
+    Sliders.Slid timeImage;
+
     int minFps=900, maxFps=0;
 
     List<int> media = new List<int>();
@@ -136,36 +138,6 @@ public class GameManager : MonoBehaviour
         return aux;
     }
 
-    /*
-    void StartQuests()
-    {
-        new Quests.Mission(
-            0, 
-            "Mision x", 
-            "Debes hacer cosas", 
-            ()=> 
-            {
-                return Controllers.jump.down;
-            },
-            () => 
-            {
-                
-                print("ganaste reputacion");
-            }
-        );
-
-
-        //ejemplo de como activar todas las misiones de un nivel
-
-        //Quests.SrchIncomplete(1)
-        foreach (var item in Quests.SrchIncomplete(1))
-        {
-            item.active = true;
-        }
-
-    }*/
-    
-
     private void Awake()
     {
         instance = this;
@@ -186,7 +158,7 @@ public class GameManager : MonoBehaviour
         currentTime -= Time.realtimeSinceStartup;
         audioM = GetComponent<AudioManager>();
         BackgroundMusic();
-        //StartQuests();
+        timeImage = Sliders.SrchSlider("Time");
 
         TimersManager.Create(0.5f, 
             () => 
@@ -209,9 +181,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Quests.Update();
+        if(Quests.Update())
+            MisionHUD.UpdateMisions();
 
         TextCanvas.SrchMessages("debug").ShowText(false, FPS());
+
+        timeImage.CurrValue(1 - currentTime/maxLevelTimer);
+        timeImage.color = Color.Lerp(Color.white, Color.red, currentTime / maxLevelTimer);
+
 
         if (!saveTime)
             return;

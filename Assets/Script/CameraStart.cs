@@ -106,6 +106,7 @@ public class CameraStart : MoveAndRotTrToPatrol
         gameObject.SetActive(false);
         Controllers.eneable = true;
         GameManager.saveTime = saveTimeCopy;
+        GameManager.instance.currentTime = 0;
         MainHud.ReticulaPlay("Start");
     }
 }

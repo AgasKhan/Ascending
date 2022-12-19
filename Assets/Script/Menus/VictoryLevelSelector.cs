@@ -17,6 +17,12 @@ public class VictoryLevelSelector : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
+        foreach (var item in Quests.incomplete)
+        {
+            if (item.active && !item.update && item.chck())
+                item.active = false;
+        }
+
         if(LevelToUnlock > CSVReader.LoadFromPictionary<int>("LastUnlockedLevel"))
             CSVReader.SaveInPictionary<int>("LastUnlockedLevel", LevelToUnlock);
 

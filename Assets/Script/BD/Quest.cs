@@ -6,16 +6,20 @@ using UnityEngine;
 [System.Serializable]
 public static class Quests
 {
-
+    [SerializeField]
     static public List<Mission> incomplete;
+
+    [SerializeField]
     static public List<Mission> complete;
 
-    static public void Update()
+    static public bool Update()
     {
+        bool refresh = false;
         foreach (var item in incomplete)
         {
-            item.Chck();
+            refresh=item.Chck();
         }
+        return refresh;
     }
 
     static public Mission[] SrchComplete(int level)
@@ -409,14 +413,17 @@ public static class Quests
             }
         }
 
-        public void Chck()
+        public bool Chck()
         {
+            bool refresh = false;
+
             if(active && update &&chck())
             {
                 active = false;
-
-                Debug.Log("Perdiste");
+                refresh = true;
             }
+
+            return refresh;
         }
 
         public Mission(int level, string sup, string inf, Func<bool> chck, Action reward, bool update = true)
