@@ -52,6 +52,8 @@ public static class Quests
 
     public static void CreateQuests()
     {
+        incomplete = new List<Mission>();
+
         #region Level 1
 
         new Quests.Mission(
