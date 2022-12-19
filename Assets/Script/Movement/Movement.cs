@@ -189,7 +189,8 @@ public class Movement : MoveRotAndGlueRb
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(_cubeDetect.transform.position, 0.1f);
+        if(_cubeDetect!=null)
+            Gizmos.DrawSphere(_cubeDetect.transform.position, 0.1f);
     }
 
 }
