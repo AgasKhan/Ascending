@@ -20,8 +20,13 @@ public class Player_Character : Character
 
     float timePressed;
 
+    public int totalDaggers
+    {
+        get;
+        private set;
+    }
+
     int _actualDaggers;
-    int _totalDaggers;
     bool _previusOnFloor;
     bool _sprint;
 
@@ -30,7 +35,7 @@ public class Player_Character : Character
     public void MainHUDDaggers(int n)
     {
         _actualDaggers = n;
-        MainHud.DaggerText(_actualDaggers, _totalDaggers);
+        MainHud.DaggerText(_actualDaggers, totalDaggers);
     }
 
     public void AttackDist()
@@ -67,7 +72,7 @@ public class Player_Character : Character
         dagger.transform.parent = floatElements.transform;
 
         if (dagger.owner == null)
-            _totalDaggers++;
+            totalDaggers++;
 
         if(interactuable)
             interactuable.diseable = true;
@@ -251,9 +256,9 @@ public class Player_Character : Character
                 
 
             //poder de atraer las dagas
-            else if(UnlockAtrackt && _actualDaggers < _totalDaggers)
+            else if(UnlockAtrackt && _actualDaggers < totalDaggers)
             {
-                if(Controllers.attack.TimePressed() > _totalDaggers)
+                if(Controllers.attack.TimePressed() > totalDaggers)
                 {
                     foreach (var item in gameObject.FindWithTags("Dagger"))
                     {
@@ -270,7 +275,7 @@ public class Player_Character : Character
                 }
                 else
                 {
-                    MainHud.DaggerPower(Controllers.attack.TimePressed() / _totalDaggers);
+                    MainHud.DaggerPower(Controllers.attack.TimePressed() / totalDaggers);
                 }
                 
             }

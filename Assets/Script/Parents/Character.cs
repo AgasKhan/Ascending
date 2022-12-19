@@ -87,6 +87,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     [SerializeField]
     public List<Powers_FatherPwDbff> power = new List<Powers_FatherPwDbff>();
 
+    public Powers_FatherPwDbff lastPower;
+
     /// <summary>
     /// indice del poder actual
     /// </summary>
@@ -462,6 +464,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <typeparam name="T">El poder que se va a agregar</typeparam>
     public void ReplaceFirstPower(System.Type type)
     {
+        lastPower=power[0];
         RemovePower(0);
         AddPower(type,0);
     }
