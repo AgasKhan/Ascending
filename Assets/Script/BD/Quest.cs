@@ -17,7 +17,8 @@ public static class Quests
         bool refresh = false;
         foreach (var item in incomplete)
         {
-            refresh=item.Chck();
+            if(item.Chck())
+                refresh=true;
         }
         return refresh;
     }
@@ -397,7 +398,7 @@ public static class Quests
         public int level;
         public bool active;
         public DoubleString Description;
-        public System.Func<bool> chck;
+        public System.Func<bool> chck;//chequea si perdiste/condicion de derrota
         public System.Action reward;
         public bool update;
 
@@ -421,6 +422,8 @@ public static class Quests
             {
                 active = false;
                 refresh = true;
+
+                Debug.Log("Perdiste: "+ Description.superior);
             }
 
             return refresh;
@@ -433,7 +436,6 @@ public static class Quests
             this.chck = chck;
             this.reward = reward;
             this.update = update;
-
             incomplete.Add(this);
         }
     }

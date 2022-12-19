@@ -46,6 +46,9 @@ public class SkillTreeManager : MonoBehaviour
 
                 item.transform.parent = activeAbilities[index].transform;
                 index++;
+
+                if (item.myAbility is Abilities.PowerInit<Toxine_Powers> || item.myAbility is Abilities.PowerInit<Vortex_Powers> || item.myAbility is Abilities.PowerInit<Teleport_Powers> || item.myAbility is Abilities.PowerInit<Stun_Powers>)
+                    SwitchPowers();
             }
         }
        

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MisionHUD : MonoBehaviour
 {
     MiniMisionHUD[] mini;
-    Quests.Mission[] missions;
+    List<Quests.Mission> missions = new List<Quests.Mission>();
 
     static MisionHUD instance;
 
@@ -16,7 +16,7 @@ public class MisionHUD : MonoBehaviour
      
         mini = GetComponentsInChildren<MiniMisionHUD>();
 
-        missions = Quests.SrchIncomplete(BaseData.currentLevel);
+        missions.AddRange(Quests.SrchIncomplete(BaseData.currentLevel));
 
         print("nivel: " +BaseData.currentLevel);
 
@@ -25,16 +25,19 @@ public class MisionHUD : MonoBehaviour
 
     public static void UpdateMisions()
     {
+
+        print("se actualizo la lista de misiones");
+
         for (int i = 0; i < instance.mini.Length; i++)
         {
             instance.mini[i].gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < instance.missions.Length; i++)
+        for (int i = instance.missions.Count -1 ; i >=0 ; i--)
         {
             instance.mini[i].title = instance.missions[i].Description.superior;
             instance.mini[i].text = instance.missions[i].Description.inferior;
-            instance.mini[i].gameObject.SetActive(true);
+            instance.mini[i].gameObject.SetActive(instance.missions[i].active);
         }
     }
 }

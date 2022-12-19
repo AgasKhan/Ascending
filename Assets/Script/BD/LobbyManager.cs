@@ -32,9 +32,10 @@ public class LobbyManager : MonoBehaviour
         //playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints", 21);
 
 
-        foreach (var item in Quests.incomplete)
+
+        for (int i = Quests.incomplete.Count - 1; i >= 0; i--)
         {
-            item.Reward();
+            Quests.incomplete[i].Reward();
         }
 
     }

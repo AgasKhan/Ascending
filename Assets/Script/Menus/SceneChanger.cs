@@ -21,9 +21,6 @@ public class SceneChanger : MonoBehaviour
 
     public void Load(string scn)
     {
-        StartCoroutine(LoadSc(scn));
-        Time.timeScale = 1;
-
         //Controllers.MouseLock();
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -33,7 +30,14 @@ public class SceneChanger : MonoBehaviour
             var numberLevel = System.Convert.ToInt32(scn.Substring(index+1));
             CSVReader.SaveInPictionary<int>("CurrentLevel", numberLevel);
             BaseData.currentLevel = numberLevel;
+
+            foreach (var item in Quests.SrchIncomplete(numberLevel))
+            {
+                item.active = true;
+            } 
         }
+
+        StartCoroutine(LoadSc(scn));
     }
 
 
@@ -50,6 +54,9 @@ public class SceneChanger : MonoBehaviour
             Debug.Log("cargando: " + async.progress);
             yield return null;
         }
+
+        Time.timeScale = 1;
+
         //Debug.Log("Carga finalizada");
     }
 

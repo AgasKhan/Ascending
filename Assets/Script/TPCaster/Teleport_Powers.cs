@@ -41,7 +41,9 @@ public class Teleport_Powers : Powers_FatherPwDbff
         print(me.name);
         print(me.scoped.name);
         */
-        if (me.scoped.gameObject.CompareTags("rb"))
+        
+
+        if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
         {
             MainHud.ReticulaPlay("Power");
         }
