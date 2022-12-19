@@ -23,6 +23,17 @@ public static class Abilities
         /// </summary>
         int _level;
 
+        protected float[,] values;
+
+        protected float[] value
+        {
+            get
+            {
+                return (float[])values.GetValue(_level-1);
+            }
+        }
+
+
         public int level
         {
             get
@@ -44,6 +55,7 @@ public static class Abilities
         protected virtual void OnChangeLevel(int l)
         {
             _level = l;
+            DebugPrint.Log("nivel ingresado: " + l);
         }
 
         public void CheckOnStart()
@@ -88,55 +100,19 @@ public static class Abilities
 
     public class ChargeDagger : Ability
     {
-        public float maxPressedTime;
-        public float relationXtime;
-
         public override void OnStart()
         {
-            GameManager.player.atackElements.maxPressedTime = maxPressedTime;
-            GameManager.player.atackElements.relationXtime = relationXtime;
-        }
+            //primero es el maxPressed, segundo es el relationTime
+            values = new float[,]
+                {
+                    {5,1},
+                    {3,2},
+                    {1,7},
+                    {1,10}
+                };
 
-        protected override void OnChangeLevel(int l)
-        {
-            base.OnChangeLevel(l);
-
-            DebugPrint.Warning("nivel ingresado: " + l);
-            switch (l)
-            {
-                case 1:
-
-                    maxPressedTime = 5;
-                    relationXtime = 1; // 1 * 10% x segundo de carga
-
-                    break;
-
-                case 2:
-
-                    maxPressedTime = 3;
-                    relationXtime = 2;
-
-                    break;
-
-                case 3:
-
-                    maxPressedTime = 1;
-                    relationXtime = 7;
-
-                    break;
-
-                case 4:
-
-                    maxPressedTime = 1;
-                    relationXtime = 10;
-
-                    break;
-
-                default:
-                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
-                    break;
-
-            }
+            GameManager.player.atackElements.maxPressedTime = value[0];
+            GameManager.player.atackElements.relationXtime = value[1];
         }
 
         public ChargeDagger() : base()
@@ -160,50 +136,21 @@ public static class Abilities
 
     public class TimeToInteract : Ability
     {
-        public float timeToInteract;
-        
+       
         public override void OnStart()
         {
-            GameManager.player.timeInteractMultiply = timeToInteract;
+            values = new float[,]
+                {
+                    {1.1f},
+                    {1.25f},
+                    {1.75f},
+                    {2.5f},
+                };
+
+            GameManager.player.timeInteractMultiply = value[0];
         }
 
-        protected override void OnChangeLevel(int l)
-        {
-            base.OnChangeLevel(l);
-
-            DebugPrint.Warning("nivel ingresado: " + l);
-            switch (l)
-            {
-                case 1:
-
-                    timeToInteract = 1.1f;
-
-                    break;
-
-                case 2:
-
-                    timeToInteract = 1.25f;
-
-                    break;
-
-                case 3:
-
-                    timeToInteract = 1.75f;
-
-                    break;
-
-                case 4:
-
-                    timeToInteract = 2.5f;
-
-                    break;
-
-                default:
-                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
-                    break;
-
-            }
-        }
+      
 
         public TimeToInteract() : base()
         {
@@ -257,49 +204,17 @@ public static class Abilities
 
     public class TimeToArrive : Ability
     {
-        public float timeToArrive;
-
         public override void OnStart()
         {
-            GameManager.player.floatElements.timeToAttrackt = timeToArrive;
-        }
+            values = new float[,]
+                {
+                    {1.75f},
+                    {1.5f},
+                    {1.25f},
+                    {1},
+                };
 
-        protected override void OnChangeLevel(int l)
-        {
-            base.OnChangeLevel(l);
-
-            DebugPrint.Warning("nivel ingresado: " + l);
-            switch (l)
-            {
-                case 1:
-
-                    timeToArrive = 1.75f;
-
-                    break;
-
-                case 2:
-
-                    timeToArrive = 1.5f;
-
-                    break;
-
-                case 3:
-
-                    timeToArrive = 1.25f;
-
-                    break;
-
-                case 4:
-
-                    timeToArrive = 1;
-
-                    break;
-
-                default:
-                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
-                    break;
-
-            }
+            GameManager.player.floatElements.timeToAttrackt = value[0];
         }
 
         public TimeToArrive() : base()
@@ -310,49 +225,17 @@ public static class Abilities
 
     public class HealthPoints : Ability
     {
-        public float HP;
-
         public override void OnStart()
         {
-            GameManager.player.health.maxHp = HP;
-        }
+            values = new float[,]
+                {
+                    {105},
+                    {110},
+                    {115},
+                    {120},
+                };
 
-        protected override void OnChangeLevel(int l)
-        {
-            base.OnChangeLevel(l);
-
-            DebugPrint.Warning("nivel ingresado: " + l);
-            switch (l)
-            {
-                case 1:
-
-                    HP = 105;
-
-                    break;
-
-                case 2:
-
-                    HP = 110;
-
-                    break;
-
-                case 3:
-
-                    HP = 115;
-
-                    break;
-
-                case 4:
-
-                    HP = 120;
-
-                    break;
-
-                default:
-                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
-                    break;
-
-            }
+            GameManager.player.health.maxHp = value[0];
         }
 
         public HealthPoints() : base()
@@ -367,47 +250,18 @@ public static class Abilities
 
         public override void OnStart()
         {
-            GameManager.player.health.armor = ArmorPoints;
+            values = new float[,]
+                {
+                    {1},
+                    {1.3f},
+                    {1.6f},
+                    {2},
+                };
+
+            GameManager.player.health.armor = value[0];
         }
 
-        protected override void OnChangeLevel(int l)
-        {
-            base.OnChangeLevel(l);
-
-            DebugPrint.Warning("nivel ingresado: " + l);
-            switch (l)
-            {
-                case 1:
-
-                    ArmorPoints = 1;
-
-                    break;
-
-                case 2:
-
-                    ArmorPoints = 1.3f;
-
-                    break;
-
-                case 3:
-
-                    ArmorPoints = 1.6f;
-
-                    break;
-
-                case 4:
-
-                    ArmorPoints = 2;
-
-                    break;
-
-                default:
-                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
-                    break;
-
-
-            }
-        }
+        
 
         public Armor() : base()
         {
@@ -417,49 +271,17 @@ public static class Abilities
 
     public class Speed : Ability
     {
-        public float SpeedPoints;
-
         public override void OnStart()
         {
-            GameManager.player.maxSpeed *= SpeedPoints;
-        }
+            values = new float[,]
+               {
+                    {1.1f},
+                    {1.2f},
+                    {1.3f},
+                    {1.5f},
+               };
 
-        protected override void OnChangeLevel(int l)
-        {
-            base.OnChangeLevel(l);
-
-            DebugPrint.Warning("nivel ingresado: " + l);
-            switch (l)
-            {
-                case 1:
-
-                    SpeedPoints = 1.1f;
-
-                    break;
-
-                case 2:
-
-                    SpeedPoints = 1.2f;
-
-                    break;
-
-                case 3:
-
-                    SpeedPoints = 1.3f;
-
-                    break;
-
-                case 4:
-
-                    SpeedPoints = 1.5f;
-
-                    break;
-
-                default:
-                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
-                    break;
-
-            }
+            GameManager.player.maxSpeed *= value[0];
         }
 
         public Speed() : base()
