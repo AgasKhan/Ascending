@@ -421,7 +421,7 @@ public static class Abilities
 
         public override void OnStart()
         {
-            GameManager.player.maxSpeed = SpeedPoints;
+            GameManager.player.maxSpeed *= SpeedPoints;
         }
 
         protected override void OnChangeLevel(int l)
@@ -433,25 +433,25 @@ public static class Abilities
             {
                 case 1:
 
-                    SpeedPoints = 10.5f;
+                    SpeedPoints = 1.1f;
 
                     break;
 
                 case 2:
 
-                    SpeedPoints = 11;
+                    SpeedPoints = 1.2f;
 
                     break;
 
                 case 3:
 
-                    SpeedPoints = 12;
+                    SpeedPoints = 1.3f;
 
                     break;
 
                 case 4:
 
-                    SpeedPoints = 14;
+                    SpeedPoints = 1.5f;
 
                     break;
 
