@@ -464,7 +464,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <typeparam name="T">El poder que se va a agregar</typeparam>
     public void ReplaceFirstPower(System.Type type)
     {
-        lastPower=power[0];
+        if(power.Count>0)
+            lastPower=power[0];
         RemovePower(0);
         AddPower(type,0);
     }

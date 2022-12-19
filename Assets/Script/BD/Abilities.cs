@@ -29,7 +29,14 @@ public static class Abilities
         {
             get
             {
-                return (float[])values.GetValue(_level-1);
+                float[] arr = new float[values.GetLength(1)];
+
+                for (int i = 0; i < values.GetLength(1); i++)
+                {
+                    arr[i] = values[_level-1 , i];
+                }
+
+                return arr;
             }
         }
 
