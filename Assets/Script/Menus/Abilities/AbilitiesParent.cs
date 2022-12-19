@@ -7,8 +7,6 @@ using System;
 
 public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    static int points;
-
     [HideInInspector]
     public Transform parentAfterDrag;
     [HideInInspector]
@@ -33,8 +31,6 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
 
     void MyAwake()
     {
-        points = CSVReader.LoadFromPictionary<int>("PlayerPoints");
-
         myCanvasGroup = GetComponent<CanvasGroup>();
 
         var button = GetComponent<Button>();
@@ -133,15 +129,17 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
 
     public void CheckPoints(int cost)
     {
-        if (points >= cost)
+        if (LobbyManager.playerPoints >= cost)
         {
-            points -= cost;
-            CSVReader.SaveInPictionary<int>("PlayerPoints", points);
+            LobbyManager.playerPoints -= cost;
+            
 
             DetailsWindow.instance.RefreshPoints();
         }
         else
             print("No tienes puntos suficientes");
+
+        CSVReader.SaveInPictionary<int>("PlayerPoints", LobbyManager.playerPoints);
     }
 
     public void OnBeginDrag(PointerEventData eventData)

@@ -29,11 +29,12 @@ public class LobbyManager : MonoBehaviour
 
         });
 
-        playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints");
+        //playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints", 21);
 
-        foreach (var item in Quests.complete)
+
+        foreach (var item in Quests.incomplete)
         {
-            item.reward();
+            item.Reward();
         }
 
     }
@@ -49,7 +50,7 @@ public class LobbyManager : MonoBehaviour
     }
     void RestartLevel(GameObject g)
     {
-        int aux = CSVReader.LoadFromPictionary<int>("CurrentLevel");
+        int aux = BaseData.currentLevel;
         MenuManager.instance.refSceneChanger.Load("Level_" + aux.ToString());
 
         Quests.ChargeQuests(aux);

@@ -55,7 +55,11 @@ public class CSVReader : MonoBehaviour
     void Awake()
     {
         if (instance != null)
+        {
             Destroy(gameObject);
+            return;
+        }
+            
 
         instance = this;
 
@@ -80,14 +84,6 @@ public class CSVReader : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-        SaveInPictionary<int>("CurrentLevel", 0);
-
-        SaveInPictionary<int>("LastUnlockedLevel", 0);
-
-        SaveInPictionary<int>("PlayerPoints", 0);
-
-
-
         if(Abilities.Abilitieslist==null)
             Abilities.Abilitieslist = LoadClassFromPictionary("Abilities", new Pictionarys<Type, Abilities.Ability>());
 
@@ -109,8 +105,10 @@ public class CSVReader : MonoBehaviour
 
     private void Start()
     {
-        BaseData.currentLevel = LoadFromPictionary<int>("CurrentLevel");
-        BaseData.lastLevelUnlocked = LoadFromPictionary<int>("LastUnlockedLevel");
+        LobbyManager.playerPoints = LoadFromPictionary<int>("PlayerPoints", 213);
+       
+        BaseData.currentLevel = LoadFromPictionary<int>("CurrentLevel",1);
+        BaseData.lastLevelUnlocked = LoadFromPictionary<int>("LastUnlockedLevel", 1);
     }
 
     void SaveProgress(int indexSlot, Pictionarys<string, string> myChanges)

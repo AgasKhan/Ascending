@@ -81,7 +81,7 @@ public static class Quests
             "No utilices el poder de Toxina para obtener 5 puntos",
             () =>
             {
-                return GameManager.player.power[0] is Toxine_Powers;
+                return GameManager.player.power.Count > 0 && GameManager.player.power[0] is Toxine_Powers;
             },
             () =>
             {

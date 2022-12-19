@@ -85,7 +85,7 @@ public class DetailsWindow : MonoBehaviour
 
     public void RefreshPoints()
     {
-        pointsCounter.text = CSVReader.LoadFromPictionary<int>("PlayerPoints").ToString();
+        pointsCounter.text = LobbyManager.playerPoints.ToString();
     }
 
 }
