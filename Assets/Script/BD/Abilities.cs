@@ -308,6 +308,165 @@ public static class Abilities
         }
     }
 
+    public class HealthPoints : Ability
+    {
+        public float HP;
+
+        public override void OnStart()
+        {
+            GameManager.player.health.maxHp = HP;
+        }
+
+        protected override void OnChangeLevel(int l)
+        {
+            base.OnChangeLevel(l);
+
+            DebugPrint.Warning("nivel ingresado: " + l);
+            switch (l)
+            {
+                case 1:
+
+                    HP = 105;
+
+                    break;
+
+                case 2:
+
+                    HP = 110;
+
+                    break;
+
+                case 3:
+
+                    HP = 115;
+
+                    break;
+
+                case 4:
+
+                    HP = 120;
+
+                    break;
+
+                default:
+                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
+                    break;
+
+            }
+        }
+
+        public HealthPoints() : base()
+        {
+
+        }
+    }
+
+    public class Armor : Ability
+    {
+        public float ArmorPoints;
+
+        public override void OnStart()
+        {
+            GameManager.player.health.armor = ArmorPoints;
+        }
+
+        protected override void OnChangeLevel(int l)
+        {
+            base.OnChangeLevel(l);
+
+            DebugPrint.Warning("nivel ingresado: " + l);
+            switch (l)
+            {
+                case 1:
+
+                    ArmorPoints = 1;
+
+                    break;
+
+                case 2:
+
+                    ArmorPoints = 1.3f;
+
+                    break;
+
+                case 3:
+
+                    ArmorPoints = 1.6f;
+
+                    break;
+
+                case 4:
+
+                    ArmorPoints = 2;
+
+                    break;
+
+                default:
+                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
+                    break;
+
+
+            }
+        }
+
+        public Armor() : base()
+        {
+
+        }
+    }
+
+    public class Speed : Ability
+    {
+        public float SpeedPoints;
+
+        public override void OnStart()
+        {
+            GameManager.player.maxSpeed = SpeedPoints;
+        }
+
+        protected override void OnChangeLevel(int l)
+        {
+            base.OnChangeLevel(l);
+
+            DebugPrint.Warning("nivel ingresado: " + l);
+            switch (l)
+            {
+                case 1:
+
+                    SpeedPoints = 10.5f;
+
+                    break;
+
+                case 2:
+
+                    SpeedPoints = 11;
+
+                    break;
+
+                case 3:
+
+                    SpeedPoints = 12;
+
+                    break;
+
+                case 4:
+
+                    SpeedPoints = 14;
+
+                    break;
+
+                default:
+                    DebugPrint.Warning("Este nivel no efectua cambios en las estadisticas");
+                    break;
+
+            }
+        }
+
+        public Speed() : base()
+        {
+
+        }
+    }
 
 }
 

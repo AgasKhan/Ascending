@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Speed : AbilitiesParent
 {
-
-   
+    private void Start()
+    {
+        VinculatedAbilities<Abilities.Speed>();
+    }
 }

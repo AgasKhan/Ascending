@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
         return aux;
     }
 
-
+    /*
     void StartQuests()
     {
         new Quests.Mission(
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
             item.active = true;
         }
 
-    }
+    }*/
     
 
     private void Awake()
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
         currentTime -= Time.realtimeSinceStartup;
         audioM = GetComponent<AudioManager>();
         BackgroundMusic();
-        StartQuests();
+        //StartQuests();
 
         TimersManager.Create(0.5f, 
             () => 

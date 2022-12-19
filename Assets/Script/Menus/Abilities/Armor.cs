@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Armor : AbilitiesParent
 {
-
-  
+    private void Start()
+    {
+        VinculatedAbilities<Abilities.Armor>();
+    }
 }

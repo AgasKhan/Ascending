@@ -6,6 +6,9 @@ using UnityEngine;
 public class HealthPoints : AbilitiesParent
 {
 
-    
- 
+    private void Start()
+    {
+        VinculatedAbilities<Abilities.HealthPoints>();
+    }
+
 }
