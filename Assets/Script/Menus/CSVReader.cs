@@ -82,11 +82,30 @@ public class CSVReader : MonoBehaviour
 
         SaveInPictionary<int>("CurrentLevel", 0);
 
+        SaveInPictionary<int>("LastUnlockedLevel", 0);
+
         SaveInPictionary<int>("PlayerPoints", 1000);
+
+
 
         if(Abilities.Abilitieslist==null)
             Abilities.Abilitieslist = LoadClassFromPictionary("Abilities", new Pictionarys<Type, Abilities.Ability>());
 
+        if(Quests.incomplete == null)
+        {
+            Quests.incomplete = LoadFromPictionary<List<Quests.Mission>>("QuestsIncomplete");
+            Quests.complete = LoadFromPictionary<List<Quests.Mission>>("QuestsComplete", new List<Quests.Mission>());
+
+            if (Quests.incomplete == null)
+                Quests.CreateQuests();
+        }
+
+    }
+
+    private void Start()
+    {
+        BaseData.currentLevel = LoadFromPictionary<int>("CurrentLevel");
+        BaseData.lastLevelUnlocked = LoadFromPictionary<int>("LastUnlockedLevel");
     }
 
     void SaveProgress(int indexSlot, Pictionarys<string, string> myChanges)

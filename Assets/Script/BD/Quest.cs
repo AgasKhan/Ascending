@@ -7,8 +7,8 @@ using UnityEngine;
 public static class Quests
 {
 
-    static public List<Mission> incomplete = new List<Mission>();
-    static public List<Mission> complete = new List<Mission>();
+    static public List<Mission> incomplete;
+    static public List<Mission> complete;
 
     static public void Update()
     {
@@ -377,6 +377,9 @@ public static class Quests
         );
         #endregion
 
+
+        CSVReader.SaveClassInPictionary("QuestsIncomplete",incomplete);
+        CSVReader.SaveClassInPictionary("QuestsComplete", complete);
     }
 
 

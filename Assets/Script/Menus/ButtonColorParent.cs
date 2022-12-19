@@ -32,16 +32,16 @@ public abstract class ButtonColorParent : MyScripts
         switch (aux)
         {
             case "Blue":
-                auxColor = Color.blue;
+                auxColor = Color.blue;  //new Color (22,55,82);
                 break;
             case "Green":
-                auxColor = Color.green;
+                auxColor = Color.green; //new Color(22,82,44);
                 break;
             case "Yellow":
-                auxColor = Color.yellow;
+                auxColor = Color.yellow; //new Color(82,62,22);
                 break;
             case "Violet":
-                auxColor = Color.magenta;
+                auxColor = Color.magenta; //new Color(62,22,82);
                 break;
         }
 
