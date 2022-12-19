@@ -12,6 +12,22 @@ public class SkillTreeManager : MonoBehaviour
 
     public RectTransform allPowers;
 
+    public static void SwitchPowers(bool b = false)
+    {
+        AbilitiesParent[] powers = instance.allPowers.GetComponentsInChildren<AbilitiesParent>();
+
+        foreach (var item in powers)
+        {
+            var myCanvasGroup = item.GetComponent<CanvasGroup>();
+            myCanvasGroup.blocksRaycasts = b;
+        }
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         AbilitiesParent[] allAbilities = GameObject.FindObjectsOfTypeAll(typeof(AbilitiesParent)) as AbilitiesParent[];
@@ -26,27 +42,12 @@ public class SkillTreeManager : MonoBehaviour
             
             if(item.myAbility!=null && item.myAbility.active)
             {
+                print(item.name + " fue cargado");
+
                 item.transform.parent = activeAbilities[index].transform;
                 index++;
             }
         }
-        
-        
-    }
-
-    private void Awake()
-    {
-        instance = this;
-    }
-
-    public static void SwitchPowers(bool b = false)
-    {
-        AbilitiesParent[] powers = instance.allPowers.GetComponentsInChildren<AbilitiesParent>();
-
-        foreach (var item in powers)
-        {
-            var myCanvasGroup = item.GetComponent<CanvasGroup>();
-            myCanvasGroup.blocksRaycasts = b;
-        }
+       
     }
 }

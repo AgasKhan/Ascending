@@ -11,7 +11,12 @@ public class AbTeleport : AbilitiesParent
         SkillTreeManager.SwitchPowers();
     }
 
-    private void Start()
+    protected override void Config()
+    {
+        base.Config();
+        MyAwakes += MyAwake;
+    }
+    private void MyAwake()
     {
         VinculatedAbilities<Abilities.PowerInit<Teleport_Powers>>();
     }

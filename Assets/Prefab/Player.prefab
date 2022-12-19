@@ -341,6 +341,7 @@ MonoBehaviour:
   powerObjectSpawn: []
   damage: 10
   power: []
+  lastPower: {fileID: 0}
   actualPower: 0
   input: {x: 0, y: 0, z: 0}
   jumpStrength: 75
@@ -350,7 +351,7 @@ MonoBehaviour:
     _totalTime: 0.3
     _currentTime: -0.0067698695
   floatElements: {fileID: 8202150890860376913}
-  atackElements: {fileID: 8202150891830918423}
+  attackElements: {fileID: 8202150891830918423}
   cameraScript: {fileID: 0}
   dagger: {fileID: 0}
   timeInteractMultiply: 1
@@ -587,7 +588,7 @@ MonoBehaviour:
   Other: {fileID: 8202150890860376913}
   distance: {x: 0.5, y: 0.65, z: 0.6}
   UnlockHitScan: 0
-  maxPressedTime: 5
+  _maxPressedTime: 5
   relationXtime: 1
   chargePercentage: 0
   lens: {fileID: 0}

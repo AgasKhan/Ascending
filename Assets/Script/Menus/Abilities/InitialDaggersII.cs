@@ -3,14 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbToxic : AbilitiesParent
+public class InitialDaggersII : AbilitiesParent
 {
-    public override void ActiveAbility()
-    {
-        base.ActiveAbility();
-        SkillTreeManager.SwitchPowers();
-    }
-
     protected override void Config()
     {
         base.Config();
@@ -18,6 +12,6 @@ public class AbToxic : AbilitiesParent
     }
     private void MyAwake()
     {
-        VinculatedAbilities<Abilities.PowerInit<Toxine_Powers>>();
+        VinculatedAbilities<Abilities.InitialDaggersII>();
     }
 }

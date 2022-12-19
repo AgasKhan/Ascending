@@ -5,6 +5,10 @@ using System;
 using UnityEditor;
 using Internal;
 
+
+/*
+ Implementar sort
+ */
 [System.Serializable]
 public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
 {
@@ -120,6 +124,11 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         return -1;
     }
 
+    public void Sort(IComparer<Pictionary<K,V>> comparer)
+    {
+        pictionaries.Sort(comparer);
+    }
+
     public bool ContainsKey(K key)
     {
         for (int i = 0; i < pictionaries.Count; i++)
@@ -197,11 +206,16 @@ namespace Internal
 { 
 
     [System.Serializable]
-    public class Pictionary<K, V>
+    public class Pictionary<K, V> : IComparable<Pictionary<K, V>>
     {
         
         public K key;
         public V value;
+
+        public int CompareTo(Pictionary<K, V> other)
+        {
+            return String.Compare(this.key.ToString(), other.key.ToString());
+        }
 
         public Pictionary() { }
         public Pictionary(K k, V v)
@@ -209,6 +223,7 @@ namespace Internal
             key = k;
             value = v;
         }
+
 
     }
 

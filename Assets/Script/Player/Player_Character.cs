@@ -9,7 +9,7 @@ public class Player_Character : Character
     [Header("Player propertys")]
     [Space]
     public Float_KnifeElements floatElements;
-    public Attack_KnifeElements atackElements;
+    public Attack_KnifeElements attackElements;
     public CameraParent cameraScript;
 
     public Dagger_Proyectile dagger;
@@ -41,7 +41,7 @@ public class Player_Character : Character
     public void AttackDist()
     {
         Debug.Log("EL JUGADOR HA ATACADO");
-        if(atackElements.Attack())
+        if(attackElements.Attack())
         {
             //_actualDaggers--;
             MainHud.RemoveAllBuffs();
@@ -54,7 +54,7 @@ public class Player_Character : Character
     public void Flip()
     {
         cameraScript.Flip();
-        atackElements.distance = new Vector3(atackElements.distance.x * -1, atackElements.distance.y, atackElements.distance.z);
+        attackElements.distance = new Vector3(attackElements.distance.x * -1, attackElements.distance.y, attackElements.distance.z);
     }
 
     public void Take()
@@ -252,7 +252,7 @@ public class Player_Character : Character
         if(Controllers.attack.pressed)
         {
             if (Controllers.aim.pressed)
-                MainHud.ReticulaFill(atackElements.ChargeAttack());
+                MainHud.ReticulaFill(attackElements.ChargeAttack());
                 
 
             //poder de atraer las dagas
@@ -287,7 +287,7 @@ public class Player_Character : Character
 
         if (Controllers.aim.up)
         {
-            atackElements.CancelAttack();
+            attackElements.CancelAttack();
             cameraScript.ZoomOut();
             animator.Aim(false);
             MainHud.ReticulaFill(0);
@@ -295,7 +295,7 @@ public class Player_Character : Character
 
         if (Controllers.aim.down)
         {
-            atackElements.PreAttack();
+            attackElements.PreAttack();
             cameraScript.ZoomIn(new Vector3(-cameraScript.offSet.x/2, 0, 2));
             animator.Aim(true);
         }
@@ -341,7 +341,7 @@ public class Player_Character : Character
     {
         if(!focus)
         {
-            atackElements.CancelAttack();
+            attackElements.CancelAttack();
             cameraScript.ZoomOut();
             animator.Aim(false);
         }

@@ -40,6 +40,9 @@ public class CameraParent : MonoBehaviour
     public Vector3 offSetFix;
 
 
+    public float coneOfVision=50;
+
+
     /// <summary>
     /// Vector que contiene los angulos de euler a los que se desea girar la camara
     /// </summary>
@@ -260,7 +263,7 @@ public class CameraParent : MonoBehaviour
             if (raycastHit.distance < rayDetection)
             {
 
-                float distance = 50 * raycastHit.distance / rayDetection;
+                float distance = coneOfVision * raycastHit.distance / rayDetection;
 
                 character.scopedPoint = hitPoint;
 

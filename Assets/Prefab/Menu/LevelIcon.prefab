@@ -360,5 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 
   improvement: 
+  color: {r: 1, g: 1, b: 1, a: 1}
   costText: {fileID: 7788691957850189226}
   improvementText: {fileID: 7788691958692859651}
+  image: {fileID: 7788691958807523724}

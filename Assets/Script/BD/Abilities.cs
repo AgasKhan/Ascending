@@ -80,7 +80,6 @@ public static class Abilities
         {
             this.active = false;
             Abilitieslist.Add(this.GetType(), this);
-            //DebugPrint.Log(Abilitieslist.ToString());
         }
     }
     /* Se tiene que poder guardar los cambios en las habilidades
@@ -99,10 +98,7 @@ public static class Abilities
             GameManager.player.ReplaceFirstPower<T>();
         }
 
-        public PowerInit() : base()
-        {
-
-        }
+    
     }
 
     public class ChargeDagger : Ability
@@ -118,32 +114,22 @@ public static class Abilities
                     {1,10}
                 };
 
-            GameManager.player.atackElements.maxPressedTime = value[0];
-            GameManager.player.atackElements.relationXtime = value[1];
+            GameManager.player.attackElements.maxPressedTime = value[0];
+            GameManager.player.attackElements.relationXtime = value[1];
         }
 
-        public ChargeDagger() : base()
-        {
-
-        }
     }
 
     public class HitScan : Ability
     {
         public override void OnStart()
         {
-            GameManager.player.atackElements.UnlockHitScan = true;
-        }
-
-        public HitScan() : base()
-        {
-
+            GameManager.player.attackElements.UnlockHitScan = true;
         }
     }
 
     public class TimeToInteract : Ability
     {
-       
         public override void OnStart()
         {
             values = new float[,]
@@ -156,13 +142,6 @@ public static class Abilities
 
             GameManager.player.timeInteractMultiply = value[0];
         }
-
-      
-
-        public TimeToInteract() : base()
-        {
-
-        }
     }
 
     public class CallAllDaggers : Ability
@@ -171,29 +150,15 @@ public static class Abilities
         {
             GameManager.player.UnlockAtrackt = true;
         }
-
-        public CallAllDaggers() : base()
-        {
-
-        }
     }
 
-    public class InitialDaggers : Ability
+     public abstract class InitialDaggersFather : Ability
     {
-        public Pictionarys<string,int> count;
-
-        public override void OnStart()
+        protected void SpawnDaggers(int aux)
         {
-            var aux = 0;
-
             Player_Character player = GameManager.player;
-
-            foreach (var item in count)
-            {
-                aux += item.value;
-            }
-
-            float angle =360f / aux;
+            
+            float angle = 360f / aux;
 
             for (int i = 1; i <= aux; i++)
             {
@@ -202,10 +167,31 @@ public static class Abilities
                 player.Take();
             }
         }
+    }
 
-        public InitialDaggers() : base()
+    public class InitialDaggersI : InitialDaggersFather
+    {
+        public override void OnStart()
         {
-            count = new Pictionarys<string, int>();
+            SpawnDaggers(1);
+            GameManager.player.damage *= 0.9f;
+        }
+    }
+
+    public class InitialDaggersII : InitialDaggersFather
+    {
+        public override void OnStart()
+        {
+            SpawnDaggers(1);
+            GameManager.player.cameraScript.coneOfVision *= 0.50f;
+        }
+    }
+
+    public class InitialDaggersIII : InitialDaggersFather
+    {
+        public override void OnStart()
+        {
+            SpawnDaggers(2);
         }
     }
 
@@ -224,10 +210,6 @@ public static class Abilities
             GameManager.player.floatElements.timeToAttrackt = value[0];
         }
 
-        public TimeToArrive() : base()
-        {
-
-        }
     }
 
     public class HealthPoints : Ability
@@ -245,10 +227,6 @@ public static class Abilities
             GameManager.player.health.maxHp = value[0];
         }
 
-        public HealthPoints() : base()
-        {
-
-        }
     }
 
     public class Armor : Ability
@@ -270,10 +248,6 @@ public static class Abilities
 
         
 
-        public Armor() : base()
-        {
-
-        }
     }
 
     public class Speed : Ability
@@ -289,11 +263,6 @@ public static class Abilities
                };
 
             GameManager.player.maxSpeed *= value[0];
-        }
-
-        public Speed() : base()
-        {
-
         }
     }
 

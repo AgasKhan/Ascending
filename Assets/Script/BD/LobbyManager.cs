@@ -7,9 +7,7 @@ public class LobbyManager : MonoBehaviour
     public static int playerPoints;
 
     // Duda: Crear todas las misiones a la vez? (Start o Awake del main menu)
-    
-
-
+   
     public static void AddPoints(int p)
     {
         playerPoints += p;
@@ -18,7 +16,7 @@ public class LobbyManager : MonoBehaviour
 
     #region lobby buttons
 
-    public GameObject[] skillButtons;
+    //public GameObject[] skillButtons;
 
     void Awake()
     {
@@ -31,8 +29,13 @@ public class LobbyManager : MonoBehaviour
 
         });
 
-        playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints");
+        playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints", 1000);
 
+    }
+
+    private void Start()
+    {
+        DebugPrint.Log(Abilities.Abilitieslist.ToString());
     }
 
     void BackMenu(GameObject g)

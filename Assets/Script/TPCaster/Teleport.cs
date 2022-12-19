@@ -33,7 +33,7 @@ public class Teleport : MonoBehaviour
                     item.transform.position = player.transform.position;
                     player.transform.position = transform.position;
 
-                    Utilitys.LerpInTime(lens.intensity.value, ()=> player.atackElements.lens.intensity.value, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
+                    Utilitys.LerpInTime(lens.intensity.value, ()=> player.attackElements.lens.intensity.value, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
                     Utilitys.LerpInTime(lens.scale.value, 1, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
 
                     TimersManager.Create(0.5f, 

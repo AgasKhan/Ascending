@@ -3,19 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class LevelUpButton : MonoBehaviour
-{
-    public string cost;
-    public string improvement;
 
+public class LevelUpButton : ButtonColorParent
+{
     public TextMeshProUGUI costText;
     public TextMeshProUGUI improvementText;
 
-    public void Awake()
+    public string cost
     {
-        costText.text = cost;
-        improvementText.text = improvement;
+        set
+        {
+            costText.text = value;
+        }
     }
+    public string improvement
+    {
+        set
+        {
+            improvementText.text = value;
+        }
+    }
+
+    protected override void Config()
+    {
+        base.Config();
+        //MyAwakes += 
+    }
+
+
     /*
     public void CheckPoints()
     {

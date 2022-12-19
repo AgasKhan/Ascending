@@ -20,13 +20,11 @@ public class DetailsWindow : MonoBehaviour
     [SerializeField]
     GameObject myUpgrade;
 
-    Image[] levelsImage;
-
     [SerializeField]
     Button myLevelUpButton;
 
-    int currentImLevel;
-
+    [SerializeField]
+    LevelUpButton[] buttoncitos;
 
     private void Awake()
     {
@@ -41,21 +39,25 @@ public class DetailsWindow : MonoBehaviour
     }
 
     public static void GenerateButtons(DoubleString[] d)
-    {
-        if (instance.myUpgradesGrid.transform.childCount > 0)
-            instance.DeletePreviousButtons();
+    {        
+        for (int i = 0; i < instance.myUpgradesGrid.transform.childCount; i++)
+        {
+            instance.myUpgradesGrid.transform.GetChild(i).gameObject.SetActive(false);
+        }
 
         instance.transform.GetChild(3).gameObject.SetActive(true);
 
         for (int i = 0; i < d.Length; i++)
         {
-            var aux = instance.myUpgrade.GetComponent<LevelUpButton>();
+            instance.buttoncitos[i].gameObject.SetActive(true);
+
+            var aux = instance.buttoncitos[i];
             aux.cost = d[i].superior + " pts";
             aux.improvement = d[i].inferior;
 
-            Instantiate(instance.myUpgrade, instance.myUpgradesGrid.transform);
-
+            aux.ChangeColor(i+1, d.Length);
         }
+
         /*
         for (int i = 0; i < myUpgradesGrid.transform.childCount; i++)
         {
@@ -63,14 +65,6 @@ public class DetailsWindow : MonoBehaviour
             levelsImage[i] = aux.GetComponent<Image>();
         }*/
 
-    }
-
-    public void DeletePreviousButtons()
-    {
-        for (int i = 0; i < myUpgradesGrid.transform.childCount; i++)
-        {
-            Destroy(myUpgradesGrid.transform.GetChild(i).gameObject);
-        }
     }
 
     public static void SetLevelUpButton(System.Action myAction, bool interact)
@@ -84,17 +78,9 @@ public class DetailsWindow : MonoBehaviour
         }
         );
     }
-
     public void DeactiveLevelButton()
     {
         myLevelUpButton.interactable = false;
-    }
-
-    public void ChangeLevelsColor()
-    {
-        levelsImage[currentImLevel].color = Color.white;
-        currentImLevel++;
-        levelsImage[currentImLevel].color = Color.magenta;
     }
 
     public void RefreshPoints()
