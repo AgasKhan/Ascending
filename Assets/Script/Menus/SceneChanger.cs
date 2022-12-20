@@ -7,7 +7,9 @@ using TMPro;
 public class SceneChanger : MonoBehaviour
 {
     public Animator transition;
-    
+
+    bool isCharging = false;
+
     public void QuitGame()
     {
         Application.Quit();
@@ -15,12 +17,14 @@ public class SceneChanger : MonoBehaviour
 
     public void ReloadSc()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Load(string scn)
     {
+        if (isCharging)
+            return;
+
         //Controllers.MouseLock();
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -37,6 +41,9 @@ public class SceneChanger : MonoBehaviour
             } 
         }
 
+        print("mandaste a cargar");
+
+        isCharging = true;
         StartCoroutine(LoadSc(scn));
     }
 

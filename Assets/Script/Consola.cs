@@ -25,14 +25,17 @@ public class Consola : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (instancia != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+            instancia = this;
+
         DebugPrint.Error("");
         DebugPrint.Log("");
         DebugPrint.Warning("");
-
-        if (instancia != null)
-            Destroy(gameObject);
-        else
-            instancia = this;
 
         DontDestroyOnLoad(this);
 

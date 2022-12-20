@@ -11,6 +11,8 @@ public class LobbyManager : MonoBehaviour
 
     public TextMeshProUGUI pointsCounter;
 
+    public RewardPopUp reward;
+
     // Duda: Crear todas las misiones a la vez? (Start o Awake del main menu)
 
     public static void AddPoints(int p)
@@ -57,6 +59,9 @@ public class LobbyManager : MonoBehaviour
         if(message.Count>0)
         {
             print("llamo al pop up");
+
+            reward.SetReward(message);
+
             foreach (var item in message)
             {
                 //muestro por consola las misiones completadas
@@ -69,7 +74,9 @@ public class LobbyManager : MonoBehaviour
     private void Start()
     {
         DebugPrint.Log(Abilities.Abilitieslist.ToString());
+        print("me ejecute");
         RefreshPoints();
+
     }
 
     void BackMenu(GameObject g)
