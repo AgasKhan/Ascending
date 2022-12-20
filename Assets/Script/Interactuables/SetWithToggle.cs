@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetWithBool_LogicActive : LogicActive
+public class SetWithToggle : SetWithBool_LogicActive
 {
-    [SerializeField]
-    protected Behaviour[] components;
-
-    [SerializeField]
-    protected GameObject[] gameObjects;
-
     public override void Activate(params bool[] bul)
     {
+        Activate();
+    }
+
+    public override void Activate()
+    {  
         foreach (var item in gameObjects)
         {
-            item.SetActive(bul[0]);
+            item.SetActive(!item.activeSelf);
         }
 
         foreach (var item in components)
         {
-            item.enabled = bul[0];
+            item.enabled = !item.enabled;
         }
     }
 }
