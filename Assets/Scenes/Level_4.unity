@@ -6047,6 +6047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo_Indefeinido2
       objectReference: {fileID: 0}
+    - target: {fileID: 3511456846307102167, guid: 76c71dd40cab8864a96edcb0a2e581a8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2f1b153cbb2b244291bc6a3c6977146, type: 2}
     - target: {fileID: 5866666021909216657, guid: 76c71dd40cab8864a96edcb0a2e581a8, type: 3}
       propertyPath: m_Avatar
       value: 
