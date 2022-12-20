@@ -9,8 +9,6 @@ public class DetailsWindow : MonoBehaviour
     
     static DetailsWindow instance;
 
-    public TextMeshProUGUI pointsCounter;
-
     [SerializeField]
     TextMeshProUGUI myTitle;
     [SerializeField]
@@ -41,7 +39,6 @@ public class DetailsWindow : MonoBehaviour
     {
         instance = this;
         alphaCanvas = GetComponent<CanvasGroup>();
-        RefreshPoints();
         gameObject.SetActive(false);
     }
 
@@ -117,10 +114,7 @@ public class DetailsWindow : MonoBehaviour
         instance.myButton.interactable = false;
     }
 
-    public static void RefreshPoints()
-    {
-        instance.pointsCounter.text = LobbyManager.playerPoints.ToString();
-    }
+
 
     public static void ChangeAlpha(float alpha, float seconds)
     {

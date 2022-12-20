@@ -132,9 +132,9 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
         if (LobbyManager.playerPoints >= cost)
         {
             LobbyManager.playerPoints -= cost;
-            
 
-            DetailsWindow.RefreshPoints();
+
+            LobbyManager.instance.RefreshPoints();
         }
         else
             print("No tienes puntos suficientes");

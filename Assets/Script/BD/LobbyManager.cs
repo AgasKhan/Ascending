@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LobbyManager : MonoBehaviour
 {
     public static int playerPoints;
 
+    public static LobbyManager instance;
+
+    public TextMeshProUGUI pointsCounter;
+
     // Duda: Crear todas las misiones a la vez? (Start o Awake del main menu)
-   
+
     public static void AddPoints(int p)
     {
         playerPoints += p;
@@ -20,6 +25,8 @@ public class LobbyManager : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
+
         MenuManager.instance.eventListVoid.AddRange(new Pictionarys<string, System.Action<GameObject>>()
         {
             {"rLevel", RestartLevel},
@@ -62,6 +69,7 @@ public class LobbyManager : MonoBehaviour
     private void Start()
     {
         DebugPrint.Log(Abilities.Abilitieslist.ToString());
+        RefreshPoints();
     }
 
     void BackMenu(GameObject g)
@@ -89,6 +97,11 @@ public class LobbyManager : MonoBehaviour
     {
         MenuManager.instance.ChangeMenu(1);
         //DetailsWindow.
+    }
+
+    public void RefreshPoints()
+    {
+        pointsCounter.text = playerPoints.ToString();
     }
     #endregion
 
