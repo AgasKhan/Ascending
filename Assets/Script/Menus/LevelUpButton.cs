@@ -27,40 +27,11 @@ public class LevelUpButton : ButtonColorParent
     protected override void Config()
     {
         base.Config();
-        //MyAwakes += 
+        MyAwakes += MyAwake;
     }
 
-
-    /*
-    public void CheckPoints()
+    void MyAwake()
     {
-        var aux = CSVReader.LoadFromPictionary<int>("PlayerPoints");
-        if (aux >= cost)
-        {
-            aux -= cost;
-            CSVReader.SaveInPictionary<int>("PlayerPoints", aux);
-            
-            if(quantity == 0)
-                ImproveSkills(myAbility.ToString(), activate);
-            else
-                ImproveSkills(myAbility.ToString(), quantity);
-            
-            UnlockNextButton();
-            RefreshPoints();
-        }
-        else
-            print("No tienes puntos suficientes");
-
+        gameObject.SetActive(false);
     }
-
-    void ImproveSkills(string ability, float points)
-    {
-        CSVReader.SaveInPictionary<float>(ability, points);
-    }
-    void ImproveSkills(string ability, bool b)
-    {
-        CSVReader.SaveInPictionary<bool>(ability, b);
-    }
-    */
-
 }

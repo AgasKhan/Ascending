@@ -170,13 +170,15 @@ public static class Extensions
         s.onValueChanged.RemoveAllListeners();
 
         //UnityEventTools.RemovePersistentListener(s.onValueChanged, 0);
-        s.onValueChanged.AddListener((float f) => { 
-            menu.eventListFloat[s.name](s.gameObject, f); 
-        });
+        s.onValueChanged.AddListener(
+            (float f) => 
+            { 
+                menu.eventListFloat[s.name](s.gameObject, f); 
+            }
+        );
         //menu.eventListFloat[s.name](s.gameObject, s.value);
 
         DebugPrint.Log("\tslider configurado");
     }
-
     #endregion
 }

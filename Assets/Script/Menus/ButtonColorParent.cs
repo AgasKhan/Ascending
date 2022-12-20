@@ -46,6 +46,7 @@ public abstract class ButtonColorParent : MyScripts
         }
 
         Utilitys.LerpInTime(myImage.fillAmount, 0, 0.3f, Mathf.Lerp, (save) => { myImage.fillAmount = save; });
+        myImage.color = Color.white;
 
         TimersManager.Create(0.3f,
             () =>
@@ -82,7 +83,6 @@ public abstract class ButtonColorParent : MyScripts
 
     void MyAwake()
     {
-
         myImage = GetComponent<Image>();
     }
 

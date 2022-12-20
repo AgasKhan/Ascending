@@ -12,12 +12,20 @@ public class MenuManager : MonoBehaviour
 {
     static public MenuManager instance;
 
+    [System.Serializable]
+    public struct SelectLevels 
+    {
+        public DoubleString texts;
+        public Sprite previewImage;
+        public string numberScene;
+    }
+
+
+    public SelectLevels[] preview;
+
     public GameObject[] menus;
     public GameObject[] subMenus;
     public Button[] levelButtons;
-    public GameObject[] previews;
-    public Sprite[] previewImages;
-    public Image imageToChange;
     public string firstLevel;
     public GameObject gamePausedMenu;
     public SceneChanger refSceneChanger;
@@ -184,6 +192,7 @@ public class MenuManager : MonoBehaviour
             menus[index].SetActive(true);
             _currentMemuPrincipal = index;
         }
+        DetailsWindow.ChangeAlpha(0, 0.1f);
     }
 
 
@@ -249,13 +258,32 @@ public class MenuManager : MonoBehaviour
     public void ChangePreviews(int index)
     {
         ClickSound();
-        if (index != _currentPreview)
+
+        DetailsWindow.ChangeAlpha(1,0.1f);
+
+        DetailsWindow.PreviewImage(true, preview[index].previewImage);
+
+        DetailsWindow.SetMyButton(() => { SelectLevel(preview[index].numberScene); }, true, "Play: " + preview[index].texts.superior);
+
+        DetailsWindow.ActiveButtons(false);
+
+        var aux = preview[index].texts;
+
+        aux.inferior += "\n" + "Misiones incompletas:".RichText("color","red")+"\n";
+
+        foreach (var item in Quests.SrchIncomplete(index + 1))
         {
-            previews[_currentPreview].SetActive(false);
-            previews[index].SetActive(true);
-            imageToChange.sprite = previewImages[index];
-            _currentPreview = index;
+            aux.inferior += ("\n" + item.Description.superior.RichText("size", "16") + "\n"+ item.Description.inferior.RichText("size", "12") + "\n");
         }
+
+        aux.inferior += "\n" + "Misiones completas:".RichText("color", "green")+"\n";
+
+        foreach (var item in Quests.SrchComplete(index + 1))
+        {
+            aux.inferior += ("\n" + item.Description.superior.RichText("size", "16") + "\n" + item.Description.inferior.RichText("size", "12") + "\n");
+        }
+
+        DetailsWindow.ModifyTexts(aux);       
     }
 
     public void ClickSound()

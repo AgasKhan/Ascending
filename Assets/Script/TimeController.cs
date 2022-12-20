@@ -8,7 +8,6 @@ public class TimeController
 {
     static public List<TimeController> entitys;
 
-
     static MotionBlur motionBlur;
     static ChromaticAberration chromaticAberration;
     static ColorGrading colorGrading;

@@ -8,6 +8,8 @@ public class SkillTreeManager : MonoBehaviour
 {
     static public SkillTreeManager instance;
 
+    public DoubleString presentation;
+
     public RectTransform gridActives;
 
     public RectTransform allPowers;
@@ -21,6 +23,20 @@ public class SkillTreeManager : MonoBehaviour
             var myCanvasGroup = item.GetComponent<CanvasGroup>();
             myCanvasGroup.blocksRaycasts = b;
         }
+    }
+
+    private void OnEnable()
+    {
+        DetailsWindow.ChangeAlpha(1, 0.5f);
+        DetailsWindow.PreviewImage(false);
+        DetailsWindow.ModifyTexts(presentation);
+        DetailsWindow.HideMyButton(true);
+        DetailsWindow.ActiveButtons(false);
+    }
+
+    private void OnDisable()
+    {
+        DetailsWindow.ChangeAlpha(0, 0.5f);
     }
 
     private void Awake()

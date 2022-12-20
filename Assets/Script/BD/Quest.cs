@@ -402,7 +402,7 @@ public static class Quests
         public System.Action reward;
         public bool update;
 
-        public void Reward()
+        public DoubleString Reward()
         {
             if (active)
             {
@@ -411,7 +411,11 @@ public static class Quests
                 complete.Add(this);
 
                 incomplete.Remove(this);
+
+                return Description;
             }
+
+            return new DoubleString();
         }
 
         public bool Chck()

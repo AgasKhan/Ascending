@@ -60,7 +60,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
 
             if (currentLevel >= buttons.Length - 1)
             {
-                DetailsWindow.instance.DeactiveLevelButton();
+                DetailsWindow.DeactiveLevelButton();
             }
             ChangeColor(currentLevel, buttons.Length);
            
@@ -85,7 +85,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
 
         DetailsWindow.GenerateButtons(buttons);
 
-        DetailsWindow.SetLevelUpButton(Upgrade, buttons.Length > currentLevel);
+        DetailsWindow.SetMyButton(Upgrade, buttons.Length > currentLevel, "Upgrade");
     }
 
 
@@ -100,7 +100,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
             if ((originalParent.parent.childCount - 1) > originalParent.GetSiblingIndex())
                 UnlockNextButton();
             NormalUpgrade();
-            DetailsWindow.instance.DeactiveLevelButton();
+            DetailsWindow.DeactiveLevelButton();
         }
     }
 
@@ -134,7 +134,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
             LobbyManager.playerPoints -= cost;
             
 
-            DetailsWindow.instance.RefreshPoints();
+            DetailsWindow.RefreshPoints();
         }
         else
             print("No tienes puntos suficientes");

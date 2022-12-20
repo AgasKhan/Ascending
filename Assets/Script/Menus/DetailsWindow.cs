@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class DetailsWindow : MonoBehaviour
 {
     
-    public static DetailsWindow instance;
+    static DetailsWindow instance;
+
     public TextMeshProUGUI pointsCounter;
 
     [SerializeField]
@@ -17,75 +18,123 @@ public class DetailsWindow : MonoBehaviour
 
     [SerializeField]
     GameObject myUpgradesGrid;
-    [SerializeField]
-    GameObject myUpgrade;
 
     [SerializeField]
-    Button myLevelUpButton;
+    Button myButton;
+
+    [SerializeField]
+    TextMeshProUGUI myButtonText;
 
     [SerializeField]
     LevelUpButton[] buttoncitos;
 
+    [SerializeField]
+    Image previewImage;
+
+    [SerializeField]
+    Scrollbar scrollbar;
+
+
+    CanvasGroup alphaCanvas;
+
     private void Awake()
     {
         instance = this;
+        alphaCanvas = GetComponent<CanvasGroup>();
         RefreshPoints();
+        gameObject.SetActive(false);
     }
 
     public static void ModifyTexts(DoubleString d)
     {
         instance.myTitle.text = d.superior;
         instance.myDescription.text = d.inferior;
+
+        Utilitys.LerpInTime(() => instance.scrollbar.value, 1, 0.3f, Mathf.Lerp, (save) => { instance.scrollbar.value = save; });
+        
+    }
+
+    public static void ActiveButtons(bool value)
+    {
+        for (int i = 0; i < instance.myUpgradesGrid.transform.childCount; i++)
+        {
+            instance.myUpgradesGrid.transform.GetChild(i).gameObject.SetActive(value);
+        }
+
+        instance.myUpgradesGrid.transform.parent.GetChild(0).gameObject.SetActive(value);
     }
 
     public static void GenerateButtons(DoubleString[] d)
-    {        
-        for (int i = 0; i < instance.myUpgradesGrid.transform.childCount; i++)
+    {
+        ActiveButtons(true);
+        int i;
+
+        for (i = 0; i < d.Length; i++)
         {
-            instance.myUpgradesGrid.transform.GetChild(i).gameObject.SetActive(false);
-        }
-
-        instance.transform.GetChild(3).gameObject.SetActive(true);
-
-        for (int i = 0; i < d.Length; i++)
-        {
-            instance.buttoncitos[i].gameObject.SetActive(true);
-
             var aux = instance.buttoncitos[i];
             aux.cost = d[i].superior + " pts";
             aux.improvement = d[i].inferior;
 
             aux.ChangeColor(i+1, d.Length);
         }
-
-        /*
-        for (int i = 0; i < myUpgradesGrid.transform.childCount; i++)
+        for (; i < instance.buttoncitos.Length; i++)
         {
-            var aux = myUpgradesGrid.transform.GetChild(i).GetComponent<GameObject>();
-            levelsImage[i] = aux.GetComponent<Image>();
-        }*/
-
+            instance.buttoncitos[i].gameObject.SetActive(false);
+        }
     }
 
-    public static void SetLevelUpButton(System.Action myAction, bool interact)
+    public static void HideMyButton(bool interact)
     {
-        instance.myLevelUpButton.interactable = interact;
-        instance.myLevelUpButton.onClick.RemoveAllListeners();
-        instance.myLevelUpButton.onClick.AddListener(() =>
+        instance.myButton.gameObject.SetActive(!interact);
+    }
+
+    public static void SetMyButton(System.Action myAction, bool interact, string text)
+    {
+        HideMyButton(false);
+
+        instance.myButtonText.text = text;
+        instance.myButton.interactable = interact;
+        instance.myButton.onClick.RemoveAllListeners();
+        instance.myButton.onClick.AddListener(() =>
         {
             myAction();
             //ChangeLevelsColor();
         }
         );
+
+        var size = instance.myButton.GetComponent<RectTransform>();
+
+        TimersManager.Create(0.1f, 
+            () => 
+            {
+                size.sizeDelta = new Vector2(instance.myButtonText.GetComponent<RectTransform>().sizeDelta.x + 30, size.sizeDelta.y);
+            }
+        );
+        
     }
-    public void DeactiveLevelButton()
+    public static void DeactiveLevelButton()
     {
-        myLevelUpButton.interactable = false;
+        instance.myButton.interactable = false;
     }
 
-    public void RefreshPoints()
+    public static void RefreshPoints()
     {
-        pointsCounter.text = LobbyManager.playerPoints.ToString();
+        instance.pointsCounter.text = LobbyManager.playerPoints.ToString();
+    }
+
+    public static void ChangeAlpha(float alpha, float seconds)
+    {
+        instance.gameObject.SetActive(true);
+
+        Utilitys.LerpInTime(instance.alphaCanvas.alpha, alpha, seconds, Mathf.Lerp, (save) => { instance.alphaCanvas.alpha = save; });        
+    }
+
+    static public void PreviewImage(bool active, Sprite sprite=null)
+    {
+        instance.previewImage.gameObject.SetActive(active);
+
+        if(sprite!=null)
+            instance.previewImage.sprite = sprite;
     }
 
 }

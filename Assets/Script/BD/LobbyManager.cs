@@ -31,11 +31,30 @@ public class LobbyManager : MonoBehaviour
 
         //playerPoints = CSVReader.LoadFromPictionary<int>("PlayerPoints", 21);
 
+        List<DoubleString> message = new List<DoubleString>();
 
-
+        //reclamo y lo guardo en mi lista
         for (int i = Quests.incomplete.Count - 1; i >= 0; i--)
         {
-            Quests.incomplete[i].Reward();
+            message.Add(Quests.incomplete[i].Reward());
+        }
+
+        //limpio la lista de los vacios
+        for (int i = message.Count-1; i >= 0; i--)
+        {
+            if (message[i].superior == "" || message[i].superior==null)
+                message.RemoveAt(i);
+        }
+
+        //en caso de que tenga mensajes, llamo al pop up
+        if(message.Count>0)
+        {
+            print("llamo al pop up");
+            foreach (var item in message)
+            {
+                //muestro por consola las misiones completadas
+                DebugPrint.Log(item.superior+"="+item.inferior);
+            }
         }
 
     }
@@ -69,6 +88,7 @@ public class LobbyManager : MonoBehaviour
     void SelectLevelLobby(GameObject g)
     {
         MenuManager.instance.ChangeMenu(1);
+        //DetailsWindow.
     }
     #endregion
 
