@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetWithToggle : SetWithBool_LogicActive
+public class SetWithToggleObject : SetWithBool_LogicActive
 {
     public override void Activate(params bool[] bul)
     {
