@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6481158622204739316}
   - component: {fileID: 6481158622204739315}
   - component: {fileID: 6481158622204739314}
-  - component: {fileID: 6481158622204739313}
   - component: {fileID: 6481158622204739312}
+  - component: {fileID: 6481158622204739313}
   - component: {fileID: 7857651105562848816}
   m_Layer: 0
   m_Name: Interactuable ejemplo
@@ -98,6 +98,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6481158622204739312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481158622204739311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3981de8a9704f4fa2f12cddf9a6c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 6481158622204739314}
+  pressedTime: 10
+  DisplayText: 
+  diseable: 0
+  distanceDetection: 3
+  remote:
+  - {fileID: 6481158622204739313}
 --- !u!114 &6481158622204739313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,25 +132,6 @@ MonoBehaviour:
   components: []
   gameObjects:
   - {fileID: 6481158622204739311}
---- !u!114 &6481158622204739312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6481158622204739311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3981de8a9704f4fa2f12cddf9a6c1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  col: {fileID: 0}
-  pressedTime: 10
-  DisplayText: 
-  diseable: 0
-  distanceDetection: 3
-  remote:
-  - {fileID: 6481158622204739313}
 --- !u!114 &7857651105562848816
 MonoBehaviour:
   m_ObjectHideFlags: 0

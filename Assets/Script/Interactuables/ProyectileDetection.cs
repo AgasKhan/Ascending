@@ -10,11 +10,15 @@ public class ProyectileDetection : MonoBehaviour, IOnProyectileEnter, IOnProyect
     [SerializeField]
     LogicActive[] deactive;
 
+    public bool enter;
+
+    public bool exit;
+
     public virtual void ProyectileEnter(Damage damage)
     {
         foreach (var item in active)
         {
-            item.Activate();
+            item.Activate(enter);
         }
     }
 
@@ -22,7 +26,7 @@ public class ProyectileDetection : MonoBehaviour, IOnProyectileEnter, IOnProyect
     {
         foreach (var item in deactive)
         {
-            item.Activate();
+            item.Activate(exit);
         }
     }
 

@@ -110,10 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invert: 0
-  setInts:
-  - mono: {fileID: 0}
-    newValue: 0
-    oldValue: 0
+  setInts: []
 --- !u!1001 &5305660646613209700
 PrefabInstance:
   m_ObjectHideFlags: 0

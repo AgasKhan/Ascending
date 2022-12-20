@@ -10,7 +10,10 @@ public abstract class Interactuable_LogicActive : LogicActive
     public bool diseable;
     public float distanceDetection;
 
+    protected Animator[] animator;
+    
     Player_Character player;
+    
 
     public void RefreshUi(Vector3 pos, float perc)
     {
@@ -22,6 +25,8 @@ public abstract class Interactuable_LogicActive : LogicActive
     {
         col = GetComponent<Collider>();
         player = GameManager.player;
+
+        animator = GetComponentsInChildren<Animator>();
     }
 
     private void FixedUpdate()

@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeValues : LogicActive
+public class ChangeValuesWithBool : LogicActive
 {
     public bool invert;
     public SetInts[] setInts;
-
-    bool _invert;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,14 +17,12 @@ public class ChangeValues : LogicActive
         }
     }
 
-    public override void Activate()
+    public override void Activate(params bool[] bul)
     {
         foreach (var item in setInts)
         {
-            item.inter.SetInt(_invert && invert ? item.oldValue : item.newValue);
+            item.inter.SetInt(bul[0] ? item.newValue : item.oldValue);
         }
-
-        _invert = !_invert;
     }
 
     [System.Serializable]
