@@ -92,6 +92,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8520502754086293963}
     m_Modifications:
+    - target: {fileID: 4480580260090588772, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
+      propertyPath: power.Array.data[0]
+      value: 
+      objectReference: {fileID: 8520502754086293960}
     - target: {fileID: 4480580260090588776, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
       propertyPath: m_Name
       value: Enemigo Vortex
