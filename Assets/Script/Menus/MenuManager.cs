@@ -306,4 +306,15 @@ public class MenuManager : MonoBehaviour
     {
         audioM.Play("ClickAccept");
     }
+
+    public void ClaimSound()
+    {
+        audioM.Play("Claim");
+    }
+
+    public void FireworksSound()
+    {
+        audioM.Play("Fireworks");
+    }
+
 }

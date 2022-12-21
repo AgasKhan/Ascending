@@ -36,7 +36,7 @@ public class RewardPopUp : MonoBehaviour
             float x = Random.Range(20, 81) * (Random.Range(0, 2) == 0 ? 1 : -1);
             float y = Random.Range(10, 41) * (Random.Range(0, 2) == 0 ? 1 : -1);
 
-
+            MenuManager.instance.FireworksSound();
             Instantiate(particle[Random.Range(0,particle.Length)], new Vector3(x, y, 98), Quaternion.identity);
         }
 
