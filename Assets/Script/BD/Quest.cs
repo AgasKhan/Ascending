@@ -63,8 +63,8 @@ public static class Quests
 
         new Quests.Mission(
             1,
-            "Contra Reloj",
-            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
+            "Contra  Reloj",
+            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
             () =>
             {
                 return GameManager.CurrentTime() > 120;
@@ -79,7 +79,7 @@ public static class Quests
         new Quests.Mission(
             1,
             "Estratega",
-            "Encanta la daga solo una vez durante todo el nivel para obtener 8 puntos",
+            "Encanta  la  daga  solo  una  vez  durante  todo  el  nivel  para  obtener  8  puntos",
             () =>
             {
                 if (Controllers.active.down)
@@ -96,7 +96,7 @@ public static class Quests
         new Quests.Mission(
             1,
             "Sin toxina",
-            "No utilices el poder de Toxina para obtener 5 puntos",
+            "No  utilices  el  poder  de  Toxina  para  obtener  5  puntos",
             () =>
             {
                 return GameManager.player.power.Count > 0 && GameManager.player.power[0] is Toxine_Powers;
@@ -109,8 +109,8 @@ public static class Quests
 
         new Quests.Mission(
             1,
-            "Solo una daga",
-            "No atraigas mas de una daga durante todo el nivel para obtener 3 puntos",
+            "Solo  una  daga",
+            "No  atraigas  mas  de  una  daga  durante  todo  el  nivel  para  obtener  3  puntos",
             () =>
             {
                 return GameManager.player.totalDaggers > 1;
@@ -124,7 +124,7 @@ public static class Quests
         new Quests.Mission(
             1,
             "Genocida",
-            "Asesina a todos los enemigos antes de pasarte el nivel para obtener 5 puntos",
+            "Asesina  a  todos  los  enemigos  antes  de  pasarte  el  nivel  para  obtener  5  puntos",
             () =>
             {
                 return GameManager.enemys.Count > 1;
@@ -141,8 +141,8 @@ public static class Quests
 
         new Quests.Mission(
             2,
-            "Contra Reloj",
-            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
+            "Contra  Reloj",
+            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
             () =>
             {
                 return GameManager.CurrentTime() > 120;
@@ -156,7 +156,7 @@ public static class Quests
         new Quests.Mission(
             2,
             "Singular",
-            "Utiliza solo un poder durante todo el nivel para obtener 10 puntos",
+            "Utiliza  solo  un  poder  durante  todo  el  nivel  para  obtener  10  puntos",
             () =>
             {
                 return GameManager.player.lastPower != null && GameManager.player.lastPower != GameManager.player.power[0];
@@ -169,8 +169,8 @@ public static class Quests
 
         new Quests.Mission(
             2,
-            "Casi Ileso",
-            "No pierdas mas de 10 puntos de vida para obtener 8 puntos",
+            "Casi  Ileso",
+            "No  pierdas  mas  de  10  puntos  de  vida  para  obtener  8  puntos",
             () =>
             {
                 return GameManager.player.health.hp < (GameManager.player.health.maxHp - 10);
@@ -183,8 +183,8 @@ public static class Quests
 
         new Quests.Mission(
             2,
-            "Pies en la tierra",
-            "No saltes ni una sola vez para obtener 3 puntos",
+            "Pies  en  la  tierra",
+            "No  saltes  ni  una  sola  vez  para  obtener  3  puntos",
             () =>
             {
                 return Controllers.jump.down;
@@ -197,8 +197,8 @@ public static class Quests
 
         new Quests.Mission(
             2,
-            "Objetivos claros",
-            "Elimina a todos los enemigos de Dash para obtener 5 puntos",
+            "Objetivos  claros",
+            "Elimina  a  todos  los  enemigos  de  Dash  para  obtener  5  puntos",
             () =>
             {
                 foreach (var item in GameManager.enemys)
@@ -222,8 +222,8 @@ public static class Quests
 
         new Quests.Mission(
             5,
-            "Contra Reloj",
-            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
+            "Contra  Reloj",
+            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
             () =>
             {
                 return GameManager.CurrentTime() > 120;
@@ -237,8 +237,8 @@ public static class Quests
         int dashCount = 0;
         new Quests.Mission(
             5,
-            "Adicto al dash",
-            "Utiliza el dash por lo menos 1 vez cada 15 segundos para obtener 5 puntos",
+            "Adicto  al  dash",
+            "Utiliza  el  dash  por  lo  menos  1  vez  cada  15  segundos  para  obtener  5  puntos",
             () =>
             {
                 if (Controllers.dash.down)
@@ -257,8 +257,8 @@ public static class Quests
         int enemyCount = 0;
         new Quests.Mission(
             5,
-            "Asesinato veloz",
-            "Mata a un enemigo al iniciar el nivel en menos de 30 segundos para obtener 8 puntos",
+            "Asesinato  veloz",
+            "Mata  a  un  enemigo  al  iniciar  el  nivel  en  menos  de  30  segundos  para  obtener  8  puntos",
             () =>
             {
                 if (enemyCount == 0)
@@ -274,8 +274,8 @@ public static class Quests
 
         new Quests.Mission(
             5,
-            "Nunca muestres lo que tienes",
-            "Termina el nivel sin activar un solo poder para obtener 8 puntos",
+            "Nunca  muestres  lo  que  tienes",
+            "Termina  el  nivel  sin  activar  un  solo  poder  para  obtener  8  puntos",
             () =>
             {
                 return Controllers.power.down;
@@ -288,8 +288,8 @@ public static class Quests
 
         new Quests.Mission(
             5,
-            "Solo una daga",
-            "No atraigas mas de una daga durante todo el nivel para obtener 3 puntos",
+            "Solo  una  daga",
+            "No  atraigas  mas  de  una  daga  durante  todo  el  nivel  para  obtener  3  puntos",
             () =>
             {
                 return GameManager.player.totalDaggers > 1;
@@ -357,8 +357,8 @@ public static class Quests
 
         new Quests.Mission(
             6,
-            "Contra Reloj",
-            "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
+            "Contra  Reloj",
+            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
             () =>
             {
                 return GameManager.CurrentTime() > 120;
@@ -372,8 +372,8 @@ public static class Quests
 
         new Quests.Mission(
             6,
-            "Sin Dash",
-            "No utilices el Dash durante todo el nivel para obtener 3 puntos",
+            "Sin  Dash",
+            "No  utilices  el  Dash  durante  todo  el  nivel  para  obtener  3  puntos",
             () =>
             {
                 return Controllers.dash.down;
@@ -387,7 +387,7 @@ public static class Quests
         new Quests.Mission(
             6,
             "Singular",
-            "Utiliza solo un poder durante todo el nivel para obtener 10 puntos",
+            "Utiliza  solo  un  poder  durante  todo  el  nivel  para  obtener  10  puntos",
             () =>
             {
                 return GameManager.player.lastPower != null && GameManager.player.lastPower != GameManager.player.power[0];
@@ -417,7 +417,7 @@ public static class Quests
         new Quests.Mission(
             6,
             "Estratega",
-            "Encanta la daga solo 2 veces durante todo el nivel para obtener 10 puntos",
+            "Encanta  la  daga  solo  2  veces  durante  todo  el  nivel  para  obtener  10  puntos",
             () =>
             {
                 if (Controllers.active.down)
@@ -433,7 +433,7 @@ public static class Quests
         new Quests.Mission(
             6,
             "Genocida",
-            "Asesina a todos los enemigos antes de pasarte el nivel para obtener 5 puntos",
+            "Asesina  a  todos  los  enemigos  antes  de  pasarte  el  nivel  para  obtener  5  puntos",
             () =>
             {
                 return GameManager.enemys.Count > 1;
