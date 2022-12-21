@@ -130,15 +130,9 @@ MonoBehaviour:
     - {fileID: 4796155192279286098, guid: cc1373fd61803d049a78f794f84a7c64, type: 3}
     - {fileID: 1945262805003162363, guid: e53bcbf533e75a140be62024c80496c2, type: 3}
     pool: []
-  - classType: Teleport
-    poolNumber: 5
-    prefabReference:
-    - {fileID: 2885703347959441886, guid: e64e3cf1afbdcf24bbcf1e1e327a22c0, type: 3}
-    pool: []
   - classType: Stun
     poolNumber: 5
     prefabReference:
-    - {fileID: 4381182819131234993, guid: 04baba220feacd143856f7d3ef60ce75, type: 3}
     - {fileID: 3427085302238275697, guid: 4f7fe396c0b695b408ad8a923e708270, type: 3}
     - {fileID: 835208027304863499, guid: cae08ef592865c74fa13e425da63bce1, type: 3}
     pool: []

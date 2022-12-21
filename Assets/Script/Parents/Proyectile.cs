@@ -175,7 +175,6 @@ public struct Damage
             objectSpawner = new Vector2Int[chr.ObjectSpawnOnDamage.Count];
             chr.ObjectSpawnOnDamage.CopyTo(objectSpawner);
         }
-            
 
         chr.ObjectSpawnOnDamage.Clear();
         chr.ActionOnDamage.Clear();

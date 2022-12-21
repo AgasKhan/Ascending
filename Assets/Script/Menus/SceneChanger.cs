@@ -17,7 +17,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ReloadSc()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadSc(SceneManager.GetActiveScene().name));
     }
 
     public void Load(string scn)
@@ -52,18 +52,38 @@ public class SceneChanger : MonoBehaviour
     IEnumerator LoadSc(string sceneName)
     {
         //loadscene = true;
+        Time.timeScale = 1;
 
-        transition.SetTrigger("Start");
+        //var myNameScene = SceneManager.GetActiveScene().name;
 
-        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        //transition.SetTrigger("Start");
+        
+        yield return null;
+
+        Time.timeScale = 1;
+
+        /*AsyncOperation async = */SceneManager.LoadScene(sceneName);
+        /*
         while (!async.isDone)
         {
-            Debug.Log("cargando: " + async.progress);
+            Debug.Log("Load: " + async.progress);
+
             yield return null;
         }
 
         Time.timeScale = 1;
 
+        yield return null;
+
+        async = SceneManager.UnloadSceneAsync(myNameScene);
+
+        while (!async.isDone)
+        {
+            Debug.Log("Unload: " + async.progress);
+
+            yield return null;
+        }
+        */
         //Debug.Log("Carga finalizada");
     }
 
