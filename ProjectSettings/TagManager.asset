@@ -21,7 +21,7 @@ TagManager:
   - ObjectsAndCharacterNoCollision
   - Objects
   - Character
-  - EnemyProyectiles
+  - Proyectiles
   - Aether
   - Glow
   - 

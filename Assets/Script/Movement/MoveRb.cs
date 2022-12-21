@@ -201,8 +201,9 @@ public class MoveRb : FatherMoves, IOnProyectileEnter
 
         Move(dir, aux);
 
-        //if(layerDash!=null && layerDash != "")
-        gameObject.layer = LayerMask.NameToLayer(layerDash);
+        if(layerDash!=null && layerDash != "")
+            gameObject.layer = LayerMask.NameToLayer(layerDash);
+        
         dash = true;
 
         return aux;
@@ -217,8 +218,8 @@ public class MoveRb : FatherMoves, IOnProyectileEnter
     {
         MoveLocal(dir, _dashImpulse*multiply);
 
-        //if (layerDash != null && layerDash != "")
-        gameObject.layer = LayerMask.NameToLayer(layerDash);
+        if (layerDash != null && layerDash != "")
+            gameObject.layer = LayerMask.NameToLayer(layerDash);
 
         dash = true;
     }
@@ -256,8 +257,11 @@ public class MoveRb : FatherMoves, IOnProyectileEnter
             if (velocity2D.sqrMagnitude < Mathf.Pow(maxSpeed * 0.7f, 2))
             {
                 gameObject.layer = _normalLayer;
-                dash = false;
             }
+        }
+        else if(gameObject.layer == _normalLayer && dash)
+        {
+            dash = false;
         }
 
     }
