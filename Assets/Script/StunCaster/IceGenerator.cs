@@ -23,18 +23,28 @@ public class IceGenerator : PowerSpawner
 
         ice.transform.parent = item.transform;
 
-        var monosScript = item.GetComponentsInChildren<MonoBehaviour>();
+        List<MonoBehaviour> monosScript = new List<MonoBehaviour>();
+
+        monosScript.AddRange(item.GetComponentsInChildren<MonoBehaviour>());
 
         TimersManager.Create(3,
             () =>
             {                
                 item.kinematic = true;
 
-                foreach (var subitem in monosScript)
+                for (int i = monosScript.Count - 1; i >= 0 ; i--)
                 {
-                    monos.Add(subitem);
+                    if (!monosScript[i].CompareTag("Dagger"))
+                    {
+                        monos.Add(monosScript[i]);
 
-                    subitem.enabled = false;
+                        monosScript[i].enabled = false;
+                    }
+                    else
+                    {
+                        monosScript.RemoveAt(i);
+                    }
+                        
                 }
             });
 
@@ -47,7 +57,7 @@ public class IceGenerator : PowerSpawner
                     subitem.parent = null;
                 }
 
-                for (int i = 0; i < monosScript.Length; i++)
+                for (int i = 0; i < monosScript.Count; i++)
                 {
                     monosScript[i].enabled = monos[i];
                 }
