@@ -328,7 +328,7 @@ public class MainHud : MonoBehaviour
         DaggerText(0, 0);
         dagger.textManager.timeInScreen.Stop();
         ReticulaFill(0);
-        ReticulaAlpha(CSVReader.LoadFromPictionary<float>("AlphaReticula", 0.15f));
+        ReticulaAlpha(CSVReader.LoadFromPictionary<float>("AlphaReticula", 0.75f));
     }
 
     IEnumerator posStart()
