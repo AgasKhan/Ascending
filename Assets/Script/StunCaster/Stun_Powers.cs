@@ -82,5 +82,28 @@ public class Stun_Powers : Powers_FatherPwDbff
         }
     }
 
+    void MyUpdatePlayer(Character me)
+    {
+
+        if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
+        {
+            MainHud.ReticulaPlay("Power");
+        }
+        else
+        {
+            MainHud.ReticulaPlay("Default");
+        }
+    }
+    void MyUpdate(Character me)
+    {
+        if (me.CompareTag("Player"))
+            MyUpdatePlayer(me);
+    }
+
+    private void Start()
+    {
+        on_Update = MyUpdate;
+    }
+
 
 }
