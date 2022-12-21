@@ -15,35 +15,46 @@ abstract public class Proyectile : MonoBehaviour
     {
         if (damage.debuffList != null)
         {
-            if (damage.debuffList.Count != 0)
+            foreach (var item in damage.debuffList)
             {
-                foreach (var item in damage.debuffList)
-                {
-                    Debuff_FatherPwDbff.SchDebuff(item).Add(ch);
-                }
-            }
+                Debuff_FatherPwDbff.SchDebuff(item).Add(ch);
+            } 
         }
+
+        damage.debuffList=null;
     }
-    
+   
     protected void CasterObject()
     {
-        if (owner != null)
+        print("entre al caster");
+        if (damage.objectSpawner != null)
         {
-            if (owner.powerObjectSpawn.Count != 0)
+            foreach (var item in damage.objectSpawner)
             {
-                foreach (var item in owner.powerObjectSpawn)
-                {
-                    PoolObjects.SpawnPoolObject(item, transform.position, Quaternion.identity);
-                }
-
-                owner.powerObjectSpawn.Clear();
+                PoolObjects.SpawnPoolObject(item, transform.position, Quaternion.identity);
             }
         }
+        damage.objectSpawner = null;
+    }
+
+    protected void AplicateAction(Collider other)
+    {
+        print("entre a las acciones");
+        if (damage.actions != null)
+        {
+            foreach (var item in damage.actions)
+            {
+                item(other);
+            }
+        }
+        damage.actions = null;
     }
 
     protected virtual void OnEnter(Collider other)
     {
         var aux = other.GetComponents<IOnProyectileEnter>();
+
+        AplicateAction(other);
 
         if (aux!=null && aux.Length>0)
         {
@@ -106,7 +117,6 @@ abstract public class Proyectile : MonoBehaviour
         MoveRb.Dash(dir, multiply);
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(tag) && !other.CompareTag(owner.tag))
@@ -137,6 +147,38 @@ public interface IOnProyectileExit
 public struct Damage
 {
     public float amount;
-    public List<System.Type> debuffList;
+    public System.Type[] debuffList;
+    public System.Action<Collider>[] actions;
+    public Vector2Int[] objectSpawner;
     public Vector3 velocity;
+
+    public void SetWithCharacter(Character chr)
+    {
+        amount = chr.damage;
+        debuffList = new System.Type[0];
+
+
+        if (chr.debuffToAplicate != null)
+        {
+            debuffList = new System.Type[chr.debuffToAplicate.Count];
+            chr.debuffToAplicate.CopyTo(debuffList);
+        }
+
+        if (chr.ActionOnDamage != null)
+        {
+            actions = new System.Action<Collider>[chr.ActionOnDamage.Count];
+            chr.ActionOnDamage.CopyTo(actions);
+        }
+
+        if (chr.ObjectSpawnOnDamage != null)
+        {
+            objectSpawner = new Vector2Int[chr.ObjectSpawnOnDamage.Count];
+            chr.ObjectSpawnOnDamage.CopyTo(objectSpawner);
+        }
+            
+
+        chr.ObjectSpawnOnDamage.Clear();
+        chr.ActionOnDamage.Clear();
+    }
+
 }

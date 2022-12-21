@@ -4,22 +4,20 @@ using UnityEngine;
 
 public abstract class PowerSpawner : MonoBehaviour
 {
+    public float radiusChck = 0.1f;
+
     private void OnEnable()
     {
-
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radiusChck);
 
         foreach (var item in colliders)
         {
-            if (!item.gameObject.CompareTag("Dagger") && item.gameObject.CompareTags(Tag.rb))
+            if (!item.gameObject.CompareTag("Dagger") && item.gameObject.TryGetComponent(out MoveRb moveRb))
             {
-                
-                Detect(item.GetComponent<MoveRb>());
+                Detect(moveRb);
 
                 break;
             }
-
         }
 
         gameObject.SetActive(false);

@@ -18,7 +18,7 @@ public class MisionHUD : MonoBehaviour
 
         missions.AddRange(Quests.SrchIncomplete(BaseData.currentLevel));
 
-        print("nivel: " +BaseData.currentLevel);
+        
 
         UpdateMisions();
     }
@@ -26,7 +26,7 @@ public class MisionHUD : MonoBehaviour
     public static void UpdateMisions()
     {
 
-        print("se actualizo la lista de misiones");
+        
 
         for (int i = 0; i < instance.mini.Length; i++)
         {

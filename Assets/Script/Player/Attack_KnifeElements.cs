@@ -73,9 +73,7 @@ public class Attack_KnifeElements : KnifeElements
 
         Damage dmg = new Damage();
 
-        dmg.amount = character.damage;
-
-        dmg.debuffList = character.debuffToAplicate;
+        dmg.SetWithCharacter(character);
 
         dmg.velocity = dir*200;
 

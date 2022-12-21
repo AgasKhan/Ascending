@@ -91,12 +91,10 @@ public class CSVReader : MonoBehaviour
         {
             Quests.incomplete = LoadFromPictionary<List<Quests.Mission>>("QuestsIncomplete");
             Quests.complete = LoadFromPictionary<List<Quests.Mission>>("QuestsComplete", new List<Quests.Mission>());
-            print("LoadFrom");
 
             if (Quests.incomplete == null)
             {
                 Quests.CreateQuests();
-                print("CreateQuest");
             }
                 
         }
