@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PruebaAnims
+  m_Name: NewTpEnemy
   m_Controller: {fileID: 9100000, guid: b3639ae5a4cae774aaa1788928e2bb6a, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: -203655887218126122, guid: df114d3b67228d7478cb5231b81c5815, type: 3}
