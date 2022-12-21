@@ -6505,6 +6505,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: gameObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: components.Array.data[0]
       value: 
       objectReference: {fileID: 106116879}
@@ -6571,10 +6575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bb3ac4d27a7ad42868598d1b3b149b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setInts:
-  - mono: {fileID: 106116879}
-    newValue: 1
-    oldValue: 0
+  setInts: []
 --- !u!114 &287148931 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}

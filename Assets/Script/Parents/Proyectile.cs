@@ -68,10 +68,12 @@ abstract public class Proyectile : MonoBehaviour
     }
     protected virtual void OnExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out IOnProyectileExit aux))
-        {
-            aux.ProyectileExit();
-        }
+        var aux = other.gameObject.GetComponents<IOnProyectileExit>();
+
+        if(aux!=null)
+            foreach (var item in aux)
+                item.ProyectileExit();
+            
     }
 
     /// <summary>
