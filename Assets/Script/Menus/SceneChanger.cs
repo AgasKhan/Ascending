@@ -62,8 +62,8 @@ public class SceneChanger : MonoBehaviour
 
         Time.timeScale = 1;
 
-        /*AsyncOperation async = */SceneManager.LoadScene(sceneName);
-        /*
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        
         while (!async.isDone)
         {
             Debug.Log("Load: " + async.progress);
@@ -71,7 +71,7 @@ public class SceneChanger : MonoBehaviour
             yield return null;
         }
 
-        Time.timeScale = 1;
+        /*
 
         yield return null;
 
