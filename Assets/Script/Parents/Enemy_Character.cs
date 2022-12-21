@@ -57,7 +57,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     /// <summary>
     /// angulo de vision a partir del forward
     /// </summary>
-    [Range(0, 180)]
+    [Range(0, 360)]
     public float coneOfVision;
 
     /// <summary>

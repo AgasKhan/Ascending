@@ -134,18 +134,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDisable: 0
-  maxSpeed: 10
+  maxSpeed: 5
   desAceleration: 10
   layerDash: ObjectsAndCharacterNoCollision
   eneableDrag: 1
-  _dashImpulse: 120
+  _dashImpulse: 60
   _dragFactor: 0
-  desAcelerationAxis: 5
+  desAcelerationAxis: 20
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
   isOnFloor: 0
-  _volumeCheckFloor: 0
+  _volumeCheckFloor: 0.1
   _layerMask:
     serializedVersion: 2
     m_Bits: 769
@@ -180,7 +180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controlers:
   - {fileID: 8420427134909396574}
-  - {fileID: 0}
   - {fileID: 8420427134909396571}
 --- !u!114 &8420427134909396574
 MonoBehaviour:
@@ -205,7 +204,7 @@ MonoBehaviour:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
-  powerObjectSpawn: []
+  ObjectSpawnOnDamage: []
   damage: 10
   power:
   - {fileID: 0}
@@ -230,22 +229,22 @@ MonoBehaviour:
       _totalTime: 0
       _currentTime: 0
   playerDetF: 0
-  detectedRadio: 20.4
-  coneOfVision: 81.4
+  detectedRadio: 20
+  coneOfVision: 120
   layerMask:
     serializedVersion: 2
-    m_Bits: 4033
-  waitMetalGear: 6.41
+    m_Bits: 769
+  waitMetalGear: 7
   deleySearch:
     _totalTime: 0
     _currentTime: 0
-  attackCooldown: 2
+  attackCooldown: 1.5
   attackDelay:
     _totalTime: 0
     _currentTime: 0
-  minimalDistancePlayer: 4
-  _minimalDistance: 2
-  _angleOfDashAim: 15
+  minimalDistancePlayer: 1
+  _minimalDistance: 1
+  _angleOfDashAim: 20
 --- !u!195 &8420427134909396575
 NavMeshAgent:
   m_ObjectHideFlags: 0

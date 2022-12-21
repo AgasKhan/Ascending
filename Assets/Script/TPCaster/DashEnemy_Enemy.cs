@@ -6,13 +6,15 @@ public class DashEnemy_Enemy : Enemy_Character
 {
     [SerializeField] float _angleOfDashAim=15;
 
+    System.Action OtherUpdates;
+
     protected override void Config()
     {
         base.Config();
 
         MyAwakes += MyAwake;
-        
-        MyUpdates += MyUpdate;
+        OtherUpdates = MyUpdates;
+        MyUpdates = MyUpdate;
 
     }
 
@@ -20,9 +22,11 @@ public class DashEnemy_Enemy : Enemy_Character
     {
         if (Utilitys.DeltaAngleY(scopedPoint - transform.position, out float angle, transform.rotation) < _angleOfDashAim)
         {
-            animator.transform.forward = scopedPoint - transform.position;
+            animator.transform.forward = scoped.transform.position - transform.position;
         }
+
         base.Dash();
+
     }
 
     public override void AttackSound()
@@ -68,14 +72,17 @@ public class DashEnemy_Enemy : Enemy_Character
     void MyUpdate()
     {
 
-        //Physics.Raycast(new Ray(transform.position, transform.forward),  out RaycastHit rayCastHit, layerMask);
-
-        if ((attackDelay.Chck && playerDetF || Raycast(new Ray(transform.position, transform.forward)) && scoped.CompareTag("Traspasable")) && (scopedPoint - transform.position).sqrMagnitude < 25)
+        if ((attackDelay.Chck && (playerDetF || (Raycast(new Ray(transform.position, transform.forward)) && scoped.CompareTag("Traspasable")))) && (scopedPoint - transform.position).sqrMagnitude < 25)
         {
             attackDelay.Reset();
 
             animator.Dash(true);
         }
-        
+
+        if (!movement.dash)
+            OtherUpdates();
+
+        if((scopedPoint - transform.position).sqrMagnitude < 4)
+            transform.forward = scoped.transform.position - transform.position;
     }
 }

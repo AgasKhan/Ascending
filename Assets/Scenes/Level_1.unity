@@ -5870,10 +5870,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.013849703
       objectReference: {fileID: 0}
-    - target: {fileID: 4575891472660276516, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-      propertyPath: power.Array.data[0]
-      value: 
-      objectReference: {fileID: 1661194357}
     - target: {fileID: 4575891472660276518, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -158
