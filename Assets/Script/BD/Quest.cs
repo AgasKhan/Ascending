@@ -153,6 +153,7 @@ public static class Quests
             }
         );
 
+        /*
         new Quests.Mission(
             2,
             "Singular",
@@ -165,7 +166,27 @@ public static class Quests
             {
                 LobbyManager.AddPoints(10);
             }
+        );*/
+
+        int enemyCount3 = 0;
+        new Quests.Mission(
+            2,
+            "Asesinato  veloz",
+            "Mata  a  un  enemigo  al  iniciar  el  nivel  en  menos  de  30  segundos  para  obtener  8  puntos",
+            () =>
+            {
+                if (enemyCount3 == 0)
+                    enemyCount3 = GameManager.enemys.Count;
+
+                return (GameManager.CurrentTime() > 30) && (GameManager.enemys.Count == enemyCount3);
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(8);
+            }
         );
+
+
 
         new Quests.Mission(
             2,
@@ -181,6 +202,7 @@ public static class Quests
             }
         );
 
+        /*
         new Quests.Mission(
             2,
             "Pies  en  la  tierra",
@@ -193,7 +215,7 @@ public static class Quests
             {
                 LobbyManager.AddPoints(3);
             }
-        );
+        );*/
 
         new Quests.Mission(
             2,
@@ -215,6 +237,19 @@ public static class Quests
         , false);
 
 
+        new Quests.Mission(
+            2,
+            "Genocida",
+            "Asesina  a  todos  los  enemigos  antes  de  pasarte  el  nivel  para  obtener  5  puntos",
+            () =>
+            {
+                return GameManager.enemys.Count > 1;
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(5);
+            }
+            , false);
 
         #endregion
 
@@ -412,6 +447,20 @@ public static class Quests
                 LobbyManager.AddPoints(3);
             }
         );*/
+
+        new Quests.Mission(
+            6,
+            "Solo  una  daga",
+            "No  atraigas  mas  de  una  daga  durante  todo  el  nivel  para  obtener  3  puntos",
+            () =>
+            {
+                return GameManager.player.totalDaggers > 1;
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(3);
+            }
+        );
 
         int activesCount = 0;
         new Quests.Mission(
