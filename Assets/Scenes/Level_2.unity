@@ -14624,7 +14624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: LevelToUnlock
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1506238274063953249, guid: 226a200c6e6f3754ea2044d57e364be4, type: 3}
       propertyPath: refMenuInGame
@@ -24384,6 +24384,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4811719111077074184, guid: 39140fcc9bcd0dd4cbc95bb6ca550129, type: 3}
   m_PrefabInstance: {fileID: 1643048824}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1644589865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1431243750628530604, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+  m_PrefabInstance: {fileID: 671663150}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a029030971af154ca1ac8c4a30572e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1653693061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5337532824744762284, guid: 5903843e8356e294da87eff558668db4, type: 3}
@@ -25731,6 +25742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo Tp  (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8420427134909396574, guid: cb61615dc8dabfc41a9013813977aa84, type: 3}
+      propertyPath: power.Array.data[0]
+      value: 
+      objectReference: {fileID: 1644589865}
     - target: {fileID: 8420427136176114741, guid: cb61615dc8dabfc41a9013813977aa84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.059
