@@ -287,6 +287,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &45232204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5209663062418563767, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+  m_PrefabInstance: {fileID: 915266781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95909d65c6b7e53428743e486948bacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &47430084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6846,6 +6857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 232696319}
     m_Modifications:
+    - target: {fileID: 4480580260090588772, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
+      propertyPath: power.Array.data[0]
+      value: 
+      objectReference: {fileID: 45232204}
     - target: {fileID: 4480580260090588772, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
       propertyPath: patrol.patrol.Array.size
       value: 4
