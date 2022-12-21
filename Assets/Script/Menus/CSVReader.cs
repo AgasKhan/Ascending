@@ -65,29 +65,30 @@ public class CSVReader : MonoBehaviour
 
         ReadCSV(textAssetData);
 
+        /*
         SaveInPictionary("Scene_1_Dialogue_1", "TestNumberOne");
         SaveInPictionary("Scene_1_Dialogue_2", "TestNumberTwo");
         SaveInPictionary("Scene_1_Dialogue_3", "TestNumberThree");
         SaveInPictionary("Scene_1_Dialogue_4", "TestNumberFour");
-
+        */
         WriteCSV(textAssetData, baseData);
 
+        
 
         for (int i = 0; i < maximumGames; i++)
         {
             PlayerPrefs.SetString("GameSlot_" + i.ToString() , "");
         }
 
-        print(LoadProgress(0));
+        SaveProgress(0, baseData);
+
+        print(LoadProgress(0));        
 
         DontDestroyOnLoad(this);
 
         LobbyManager.playerPoints = LoadFromPictionary<int>("PlayerPoints", 100);
         BaseData.currentLevel = LoadFromPictionary<int>("CurrentLevel", 1);
         BaseData.lastLevelUnlocked = LoadFromPictionary<int>("LastUnlockedLevel", 1);
-
-        SaveProgress(0, baseData);
-
 
         if (Abilities.Abilitieslist==null)
             Abilities.Abilitieslist = LoadClassFromPictionary("Abilities", new Pictionarys<Type, Abilities.Ability>());
