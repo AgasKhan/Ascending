@@ -75,6 +75,23 @@ public static class Quests
             }
         );
 
+        int activesCount2 = 0;
+        new Quests.Mission(
+            1,
+            "Estratega",
+            "Encanta la daga solo una vez durante todo el nivel para obtener 8 puntos",
+            () =>
+            {
+                if (Controllers.active.down)
+                    activesCount2++;
+                return activesCount2 > 1;
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(8);
+            }
+        );
+
 
         new Quests.Mission(
             1,
@@ -269,6 +286,22 @@ public static class Quests
             }
         );
 
+        new Quests.Mission(
+            3,
+            "Solo una daga",
+            "No atraigas mas de una daga durante todo el nivel para obtener 3 puntos",
+            () =>
+            {
+                return GameManager.player.totalDaggers > 1;
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(3);
+            }
+        );
+
+
+
         /*
         int chargesCount = 0;
         new Quests.Mission(
@@ -351,6 +384,20 @@ public static class Quests
             }
         );
 
+        new Quests.Mission(
+            4,
+            "Singular",
+            "Utiliza solo un poder durante todo el nivel para obtener 10 puntos",
+            () =>
+            {
+                return GameManager.player.lastPower != null && GameManager.player.lastPower != GameManager.player.power[0];
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(10);
+            }
+        );
+
         /*
         new Quests.Mission(
             4,
@@ -382,6 +429,21 @@ public static class Quests
                 LobbyManager.AddPoints(10);
             }
         );
+
+        new Quests.Mission(
+            4,
+            "Genocida",
+            "Asesina a todos los enemigos antes de pasarte el nivel para obtener 5 puntos",
+            () =>
+            {
+                return GameManager.enemys.Count > 1;
+            },
+            () =>
+            {
+                LobbyManager.AddPoints(5);
+            }
+            , false);
+
         #endregion
 
 
