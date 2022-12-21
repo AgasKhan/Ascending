@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5817068280351633983}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ToxineParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 365491002160576289}
   - component: {fileID: 2269582420901722478}
   - component: {fileID: 5725861839741729252}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

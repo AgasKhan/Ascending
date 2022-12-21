@@ -74,7 +74,6 @@ public class LobbyManager : MonoBehaviour
     private void Start()
     {
         DebugPrint.Log(Abilities.Abilitieslist.ToString());
-        print("me ejecute");
         RefreshPoints();
 
     }

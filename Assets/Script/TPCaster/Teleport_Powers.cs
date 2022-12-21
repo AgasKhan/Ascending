@@ -43,7 +43,7 @@ public class Teleport_Powers : Powers_FatherPwDbff
         if (col.gameObject.TryGetComponent(out MoveRb moveRb))
         {
             Player_Character player = GameManager.player;
-            Vector3 pos = col.transform.position;
+            
 
             LensDistortion lens = ScriptableObject.CreateInstance<LensDistortion>();
             lens.enabled.Override(true);
@@ -61,16 +61,21 @@ public class Teleport_Powers : Powers_FatherPwDbff
             TimersManager.Create(0.5f,
             () =>
             {
+                Vector3 pos = col.transform.position+Vector3.up*0.5f;
                 col.transform.position = player.transform.position;
                 player.transform.position = pos;
 
                 Utilitys.LerpInTime(lens.intensity.value, () => player.attackElements.lens.intensity.value, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
                 Utilitys.LerpInTime(lens.scale.value, 1, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
 
+                moveRb.kinematic = true;
+
                 TimersManager.Create(0.5f,
                 () =>
                 {
                     RuntimeUtilities.DestroyVolume(volume, true, true);
+
+                    moveRb.kinematic = false;
                 });
 
             });

@@ -142,14 +142,16 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         Controllers.eneable = false;
-
+        
         var listPlayer = gameObject.FindWithTags("Player");
         if (listPlayer.Length > 0)
             player = listPlayer[0].GetComponent<Player_Character>();
 
         TimeController.Awake();
 
-        fixedUpdate = new Timer(1/60f);        
+        fixedUpdate = new Timer(1/60f);
+
+        Quests.ChargeQuests(BaseData.currentLevel);
     }
 
 
@@ -171,7 +173,8 @@ public class GameManager : MonoBehaviour
                 DebugPrint.Log(Abilities.Abilitieslist.ToString());
             });
 
-        Quests.ChargeQuests(BaseData.currentLevel);
+        
+        MisionHUD.UpdateMisions();
     }
 
     private void OnDestroy()

@@ -18,16 +18,11 @@ public class MisionHUD : MonoBehaviour
 
         missions.AddRange(Quests.SrchIncomplete(BaseData.currentLevel));
 
-        
-
         UpdateMisions();
     }
 
     public static void UpdateMisions()
     {
-
-        
-
         for (int i = 0; i < instance.mini.Length; i++)
         {
             instance.mini[i].gameObject.SetActive(false);
