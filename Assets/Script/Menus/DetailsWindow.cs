@@ -95,7 +95,7 @@ public class DetailsWindow : MonoBehaviour
         instance.myButton.onClick.AddListener(() =>
         {
             myAction();
-            //ChangeLevelsColor();
+            MenuManager.instance.ClickAccept();
         }
         );
 

@@ -1085,9 +1085,7 @@ MonoBehaviour:
   allCosts: 0c000000
   information:
     superior: Teleport
-    inferior: 'Allows you to start the level with the Teleport Power
-
-'
+    inferior: Allows   you   to   start   the   level   with   the   Teleport   Power
   buttons:
   - superior: 
     inferior: Unlock
@@ -1512,8 +1510,8 @@ MonoBehaviour:
   myCanvasGroup: {fileID: 0}
   allCosts: 10000000
   information:
-    superior: "Initial  Daggers   III\r"
-    inferior: You start the level with two  extra dagger
+    superior: Initial    Daggers   III
+    inferior: You   start   the   level   with   two    extra   dagger
   buttons:
   - superior: 
     inferior: Unlock
@@ -2097,12 +2095,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In the skill tree you will be able to unlock skills and level them up
-    using the points you can earn while playing.
+  m_text: 'In   the   skill   tree   you   will   be   able   to   unlock   skills  
+    and   level   them   up   using   the   points   you   can   earn   while   playing.
 
 
-    These skills will help you
-    to pass the levels faster or more efficiently.
+    These  
+    skills   will   help   you   to   pass   the   levels   faster   or   more  
+    efficiently.
 
 
 '
@@ -3649,7 +3648,7 @@ MonoBehaviour:
   allCosts: 0a000000
   information:
     superior: 'Call   All   Daggers '
-    inferior: 'You start the level with two  extra dagger
+    inferior: 'You   start   the   level   with   two    extra   dagger
 
 '
   buttons:
@@ -5896,7 +5895,8 @@ MonoBehaviour:
   allCosts: 0400000006000000080000000c000000
   information:
     superior: 'Time   To   Interact '
-    inferior: 'Reduces the time you spend interacting with objects or calling daggers
+    inferior: 'Reduces   the   time   you   spend   interacting   with   objects  
+      or   calling   daggers
 
 '
   buttons:
@@ -6478,12 +6478,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congratulations
-
-    You have passed the level
+  m_text: 'Welcome   to   the   Lobby
 
 
-'
+    Here   you   can   check   the   skill  
+    tree   set   opcions   and   read   the   quests   that   you   haven''t   complete  
+    yet   while   selecting   a   level'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
@@ -7706,8 +7706,9 @@ MonoBehaviour:
   myCanvasGroup: {fileID: 0}
   allCosts: 0a000000
   information:
-    superior: 'Initial  Daggers   I '
-    inferior: You start the level with one extra dagger and reduces the damage
+    superior: 'Initial    Daggers   I '
+    inferior: You   start   the   level   with   one   extra   dagger   but   reduces  
+      the   damage
   buttons:
   - superior: 10 pts
     inferior: Unlock
@@ -8787,7 +8788,7 @@ MonoBehaviour:
   allCosts: 08000000
   information:
     superior: 'Hit   Scan '
-    inferior: 'The dagger hits immediately
+    inferior: 'The   dagger   hits   immediately
 
 '
   buttons:
@@ -9645,7 +9646,8 @@ MonoBehaviour:
   allCosts: 01000000020000000300000005000000
   information:
     superior: Armor
-    inferior: "You  receive  less  damage  from  all  enemy  attacks  and  powers\r"
+    inferior: "You    receive    less    damage    from    all    enemy    attacks   
+      and    powers\r"
   buttons:
   - superior: 1 pt
     inferior: +1
@@ -10294,7 +10296,7 @@ MonoBehaviour:
   allCosts: 0200000004000000060000000a000000
   information:
     superior: 'Time   To   Arrive '
-    inferior: 'Reduces the time it takes for the daggers to arrive
+    inferior: 'Reduces   the   time   it   takes   for   the   daggers   to   arrive
 
 '
   buttons:
@@ -11266,9 +11268,9 @@ MonoBehaviour:
   myCanvasGroup: {fileID: 0}
   allCosts: 0a000000
   information:
-    superior: "Initial  Daggers   I\rI"
-    inferior: "You start the level with one extra dagger\r and reduces the cone of
-      vision"
+    superior: Initial    Daggers   I I
+    inferior: You   start   the   level   with   one   extra   dagger   but   reduces  
+      the   cone   of   vision
   buttons:
   - superior: 
     inferior: Unlock
@@ -11523,7 +11525,7 @@ MonoBehaviour:
   allCosts: 0c000000
   information:
     superior: Toxic
-    inferior: 'Allows you to start the level with the Toxic Power
+    inferior: 'Allows   you   to   start   the   level   with   the   Toxic   Power
 
 '
   buttons:
@@ -12882,7 +12884,7 @@ MonoBehaviour:
   allCosts: 0200000004000000060000000a000000
   information:
     superior: 'Health    Points '
-    inferior: "Increase your maximum health points\r"
+    inferior: "Increase   your   maximum   health   points\r"
   buttons:
   - superior: 2 pts
     inferior: + 5
@@ -13180,7 +13182,7 @@ MonoBehaviour:
   allCosts: 0200000004000000060000000a000000
   information:
     superior: Speed
-    inferior: 'Increase your maximum speed permanently
+    inferior: 'Increase   your   maximum   speed   permanently
 
 '
   buttons:
@@ -13838,7 +13840,7 @@ MonoBehaviour:
   allCosts: 0c000000
   information:
     superior: Stun
-    inferior: 'Allows you to start the level with the Stun Power
+    inferior: 'Allows   you   to   start   the   level   with   the   Stun   Power
 
 '
   buttons:
@@ -14373,7 +14375,7 @@ MonoBehaviour:
   allCosts: 0c000000
   information:
     superior: Vortex
-    inferior: 'Allows you to start the level with the Vortex Power
+    inferior: 'Allows   you   to   start   the   level   with   the   Vortex   Power
 
 '
   buttons:
@@ -14533,7 +14535,8 @@ MonoBehaviour:
   allCosts: 02000000040000000600000008000000
   information:
     superior: Charge
-    inferior: 'Reduces  the charging  time  and  increases  the   dagger  speed
+    inferior: 'Reduces    the   charging    time    and    increases    the     dagger   
+      speed
 
 '
   buttons:
@@ -15049,7 +15052,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -15057,7 +15060,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.60784316, g: 0.60784316, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15113,7 +15116,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1401889700559746324
@@ -15429,7 +15432,7 @@ MonoBehaviour:
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 76658eda050bbc5449ab12231d32813e, type: 3}
-        volume: 0.2
+        volume: 1
         pitch: 1
         spatialBlend: 0
         maxDistance: 100
@@ -15441,7 +15444,7 @@ MonoBehaviour:
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 4c19cf7662572154eaee446aeb4654ca, type: 3}
-        volume: 0.2
+        volume: 0.5
         pitch: 1
         spatialBlend: 0
         maxDistance: 100
@@ -15590,7 +15593,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -15598,7 +15601,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.60784316, g: 0.60784316, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15654,7 +15657,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2275075501642000793
@@ -16429,7 +16432,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Test Room
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16437,7 +16440,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.60784316, g: 0.60784316, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16493,7 +16496,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &4479389846292194792
@@ -16964,7 +16967,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16972,7 +16975,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.60784316, g: 0.60784316, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17028,7 +17031,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!224 &4965406259702894833
@@ -17442,7 +17445,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -17450,7 +17453,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.60784316, g: 0.60784316, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17506,7 +17509,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5647378737851519547
@@ -18901,7 +18904,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -18909,7 +18912,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.60784316, g: 0.60784316, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18965,7 +18968,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8157872844655239403
@@ -19573,12 +19576,12 @@ MonoBehaviour:
   - texts:
       superior: nivel 3
       inferior: 
-    previewImage: {fileID: 21300000, guid: 1d4ba2cd29a66bd4797bf6fcf555df27, type: 3}
+    previewImage: {fileID: 21300000, guid: 736e71b63a5a4ed4a802558da8fad1ca, type: 3}
     numberScene: 5
   - texts:
       superior: nivel 4
       inferior: 
-    previewImage: {fileID: 21300000, guid: 1d4ba2cd29a66bd4797bf6fcf555df27, type: 3}
+    previewImage: {fileID: 21300000, guid: e547886563887604dba7e5e85e7e4d19, type: 3}
     numberScene: 6
   menus:
   - {fileID: 1325390268}

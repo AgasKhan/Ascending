@@ -86,6 +86,8 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
         DetailsWindow.GenerateButtons(buttons);
 
         DetailsWindow.SetMyButton(Upgrade, buttons.Length > currentLevel, "Upgrade");
+
+        MenuManager.instance.ClickSound();
     }
 
 
