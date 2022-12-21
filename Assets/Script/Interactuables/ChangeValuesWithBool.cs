@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ChangeValuesWithBool : LogicActive
 {
-    public bool invert;
     public SetInts[] setInts;
 
     // Start is called before the first frame update
@@ -13,7 +12,7 @@ public class ChangeValuesWithBool : LogicActive
         for (int i = 0; i < setInts.Length; i++)
         {
             setInts[i].inter = setInts[i].mono.GetComponent<ISetInt>();
-            setInts[i].inter.SetInt(setInts[i].oldValue);
+            //setInts[i].inter.SetInt(setInts[i].oldValue);
         }
     }
 
@@ -21,7 +20,7 @@ public class ChangeValuesWithBool : LogicActive
     {
         foreach (var item in setInts)
         {
-            item.inter.SetInt(bul[0] ? item.newValue : item.oldValue);
+            item.inter.SetInt(((bul[0]) ? item.newValue : item.oldValue));
         }
     }
 

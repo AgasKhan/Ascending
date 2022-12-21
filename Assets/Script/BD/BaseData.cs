@@ -4,8 +4,8 @@ using UnityEngine;
 
 public static class BaseData 
 {
-    public static int currentLevel;
-    public static int lastLevelUnlocked;
+    public static int currentLevel = 1;
+    public static int lastLevelUnlocked = 1;
     
 
 

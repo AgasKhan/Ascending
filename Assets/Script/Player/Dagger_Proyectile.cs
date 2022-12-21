@@ -53,7 +53,11 @@ public class Dagger_Proyectile : Proyectile
 
     public void MoveLerpToParent(System.Func<Vector3> vec, float time, Transform parent)
     {
-        //enabled = true;
+        foreach (var item in Physics.OverlapSphere(transform.position, 1))
+        {
+            OnExit(item);
+        } 
+       
         MoveRb.kinematic = true;
         MoveRb.eneableDrag = true;
         MoveRb.Stop();
