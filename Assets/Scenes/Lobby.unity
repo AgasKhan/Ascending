@@ -6423,12 +6423,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome   to   the   Lobby
+  m_text: '
 
-
-    Here   you   can   check   the   skill  
-    tree   set   opcions   and   read   the   quests   that   you   haven''t   complete  
-    yet   while   selecting   a   level'
+    Here   you   can   check   the   skill   tree   set   opcions  
+    and   read   the   quests   that   you   haven''t   complete   yet   while  
+    selecting   a   level'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
@@ -13855,7 +13854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Complete
+  m_text: Lobby
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
   m_sharedMaterial: {fileID: -8284573656973948544, guid: 5a63151de5352ee40b21058d39cb02ae, type: 2}
