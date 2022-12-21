@@ -19,9 +19,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
     public DoubleString[] buttons;
 
     public Transform originalParent;
-    public int currentLevel = 0;
-
-    
+    public int currentLevel = 0;   
 
     protected override void Config()
     {
@@ -85,33 +83,32 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
 
         DetailsWindow.GenerateButtons(buttons);
 
-        DetailsWindow.SetMyButton(Upgrade, buttons.Length > currentLevel, "Upgrade");
+        DetailsWindow.SetMyButton(ActionButtonUpgrade, buttons.Length > currentLevel, "Upgrade");
 
         MenuManager.instance.ClickSound();
     }
 
 
-    public virtual void Upgrade()
+    public virtual void ActionButtonUpgrade()
     {
-        if(currentLevel < buttons.Length-1)
-        {
-            NormalUpgrade();
-        }
-        else
+        Upgrade();
+
+        if (currentLevel >= buttons.Length-1)
         {
             if ((originalParent.parent.childCount - 1) > originalParent.GetSiblingIndex())
                 UnlockNextButton();
-            NormalUpgrade();
             DetailsWindow.DeactiveLevelButton();
         }
     }
 
-    public void NormalUpgrade()
+    public void Upgrade()
     {
-        CheckPoints(allCosts[currentLevel]);
-        currentLevel++;
-        ChangeColor(currentLevel, buttons.Length);
-        myAbility.level = currentLevel;
+        if(CheckPoints(allCosts[currentLevel]))
+        {
+            currentLevel++;
+            ChangeColor(currentLevel, buttons.Length);
+            myAbility.level = currentLevel;
+        }
     }
 
     public void UnlockAbility(int level)
@@ -129,19 +126,28 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
         nextButton.UnlockAbility(0);
     }
 
-    public void CheckPoints(int cost)
+    public bool CheckPoints(int cost)
     {
+        bool restult;
+
         if (LobbyManager.playerPoints >= cost)
         {
             LobbyManager.playerPoints -= cost;
 
-
             LobbyManager.instance.RefreshPoints();
+
+            restult = true;
         }
         else
+        {
             print("No tienes puntos suficientes");
+            restult = false;
+        }
+            
 
         CSVReader.SaveInPictionary<int>("PlayerPoints", LobbyManager.playerPoints);
+
+        return restult;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
