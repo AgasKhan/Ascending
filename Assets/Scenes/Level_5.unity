@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 535847992}
+  m_LightingDataAsset: {fileID: 112000000, guid: b718ebdf9fdabd14687bd7c86e801446, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 0d4da7d5f878b4f499a005cac578bcc3, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10831,67 +10831,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8032850580953977196, guid: 801a859505a130848980291ee63c9f6f, type: 3}
   m_PrefabInstance: {fileID: 534686584}
   m_PrefabAsset: {fileID: 0}
---- !u!850595691 &535847992
-LightingSettings:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 3
-  m_GIWorkflowMode: 1
-  m_EnableBakedLightmaps: 1
-  m_EnableRealtimeLightmaps: 0
-  m_RealtimeEnvironmentLighting: 1
-  m_BounceScale: 1
-  m_AlbedoBoost: 1
-  m_IndirectOutputScale: 1
-  m_UsingShadowmask: 1
-  m_BakeBackend: 1
-  m_LightmapMaxSize: 1024
-  m_BakeResolution: 40
-  m_Padding: 2
-  m_TextureCompression: 1
-  m_AO: 0
-  m_AOMaxDistance: 1
-  m_CompAOExponent: 1
-  m_CompAOExponentDirect: 0
-  m_ExtractAO: 0
-  m_MixedBakeMode: 2
-  m_LightmapsBakeMode: 1
-  m_FilterMode: 1
-  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
-  m_ExportTrainingData: 0
-  m_TrainingDataDestination: TrainingData
-  m_RealtimeResolution: 2
-  m_ForceWhiteAlbedo: 0
-  m_ForceUpdates: 0
-  m_FinalGather: 0
-  m_FinalGatherRayCount: 256
-  m_FinalGatherFiltering: 1
-  m_PVRCulling: 1
-  m_PVRSampling: 1
-  m_PVRDirectSampleCount: 32
-  m_PVRSampleCount: 512
-  m_PVREnvironmentSampleCount: 256
-  m_PVREnvironmentReferencePointCount: 2048
-  m_LightProbeSampleCountMultiplier: 4
-  m_PVRBounces: 2
-  m_PVRMinBounces: 1
-  m_PVREnvironmentMIS: 1
-  m_PVRFilteringMode: 1
-  m_PVRDenoiserTypeDirect: 1
-  m_PVRDenoiserTypeIndirect: 1
-  m_PVRDenoiserTypeAO: 1
-  m_PVRFilterTypeDirect: 0
-  m_PVRFilterTypeIndirect: 0
-  m_PVRFilterTypeAO: 0
-  m_PVRFilteringGaussRadiusDirect: 1
-  m_PVRFilteringGaussRadiusIndirect: 5
-  m_PVRFilteringGaussRadiusAO: 2
-  m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-  m_PVRFilteringAtrousPositionSigmaIndirect: 2
-  m_PVRFilteringAtrousPositionSigmaAO: 1
 --- !u!1001 &536177294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17847,6 +17786,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8957355627732407540, guid: bbef6caca7aedcb4abdda12665d3a3d1, type: 3}
   m_PrefabInstance: {fileID: 849518997}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &852777589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3746685850999191182, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+  m_PrefabInstance: {fileID: 1103247897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb0b59b82d692a4789a97c2337c5072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &853412004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23374,6 +23324,10 @@ PrefabInstance:
     - target: {fileID: 2850459977402003236, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: waitMetalGear
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044831686107019839, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3048438701030696611, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_IsActive
@@ -39556,6 +39510,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
+      propertyPath: power.Array.data[0]
+      value: 
+      objectReference: {fileID: 852777589}
     - target: {fileID: 7510303409702474219, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_Name
       value: Enemigo Toxico (1)
