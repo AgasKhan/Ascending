@@ -28,10 +28,10 @@ public class SceneChanger : MonoBehaviour
         //Controllers.MouseLock();
         Cursor.lockState = CursorLockMode.Locked;
 
-        var index = scn.IndexOf('_');
+        int index = scn.IndexOf('_');
         if(index > -1)
         {
-            var numberLevel = System.Convert.ToInt32(scn.Substring(index+1));
+            int numberLevel = System.Convert.ToInt32(scn.Substring(index+1));
             CSVReader.SaveInPictionary<int>("CurrentLevel", numberLevel);
             BaseData.currentLevel = numberLevel;
 

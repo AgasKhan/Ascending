@@ -78,8 +78,6 @@ public class CSVReader : MonoBehaviour
             PlayerPrefs.SetString("GameSlot_" + i.ToString() , "");
         }
 
-        SaveProgress(0, baseData);
-
         print(LoadProgress(0));
 
         DontDestroyOnLoad(this);
@@ -87,6 +85,8 @@ public class CSVReader : MonoBehaviour
         LobbyManager.playerPoints = LoadFromPictionary<int>("PlayerPoints", 100);
         BaseData.currentLevel = LoadFromPictionary<int>("CurrentLevel", 1);
         BaseData.lastLevelUnlocked = LoadFromPictionary<int>("LastUnlockedLevel", 1);
+
+        SaveProgress(0, baseData);
 
 
         if (Abilities.Abilitieslist==null)

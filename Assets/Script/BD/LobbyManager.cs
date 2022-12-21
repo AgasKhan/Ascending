@@ -94,7 +94,7 @@ public class LobbyManager : MonoBehaviour
         // int aux = CSVReader.LoadFromPictionary<int>("CurrentLevel");
         // aux +1
 
-        int aux = CSVReader.LoadFromPictionary<int>("LastUnlockedLevel");
+        int aux = BaseData.lastLevelUnlocked;
         MenuManager.instance.refSceneChanger.Load("Level_" + aux.ToString());
 
         Quests.ChargeQuests(aux);

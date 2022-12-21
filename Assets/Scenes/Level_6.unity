@@ -31016,6 +31016,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8032850580953977196, guid: 801a859505a130848980291ee63c9f6f, type: 3}
   m_PrefabInstance: {fileID: 1393142548}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1394384427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+  m_PrefabInstance: {fileID: 5085847066206617400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92514237e736c384d9530488bc876b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1395252710
 GameObject:
   m_ObjectHideFlags: 0
@@ -48084,6 +48095,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: patrol._waitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: patrol.patrol.Array.data[0]
       value: 
       objectReference: {fileID: 1695668583}
@@ -48091,9 +48114,25 @@ PrefabInstance:
       propertyPath: patrol.patrol.Array.data[1]
       value: 
       objectReference: {fileID: 487265147}
+    - target: {fileID: 990293500422318258, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 990293500422318258, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: components.Array.data[0]
+      value: 
+      objectReference: {fileID: 1394384427}
+    - target: {fileID: 990293500422318259, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 990293500422318259, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: pressedTime
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 990293500422318259, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: remote.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2101915148916498314, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: m_RootOrder

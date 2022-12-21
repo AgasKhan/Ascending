@@ -23,8 +23,8 @@ public class VictoryLevelSelector : MonoBehaviour
                 item.active = false;
         }
 
-        if(LevelToUnlock > CSVReader.LoadFromPictionary<int>("LastUnlockedLevel"))
-            CSVReader.SaveInPictionary<int>("LastUnlockedLevel", LevelToUnlock);
+        if (LevelToUnlock > BaseData.lastLevelUnlocked)
+            BaseData.lastLevelUnlocked = LevelToUnlock; //CSVReader.SaveInPictionary<int>("LastUnlockedLevel", LevelToUnlock);
 
         _refMenuManager.refSceneChanger.Load("Lobby");
     }
