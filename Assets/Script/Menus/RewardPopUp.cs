@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class RewardPopUp : MonoBehaviour
 {
-    public GameObject particle;
+    public GameObject[] particle;
+    public int cantParticles;
 
     List<DoubleString> messages = new List<DoubleString>();
 
@@ -30,7 +31,16 @@ public class RewardPopUp : MonoBehaviour
 
         text.text = aux;
 
-        //Instantiate(particle, transform);
+        for (int i = 0; i < cantParticles; i++)
+        {
+            float x = Random.Range(20, 81) * (Random.Range(0, 2) == 0 ? 1 : -1);
+            float y = Random.Range(10, 41) * (Random.Range(0, 2) == 0 ? 1 : -1);
+
+
+            Instantiate(particle[Random.Range(0,particle.Length)], new Vector3(x, y, 98), Quaternion.identity);
+        }
+
+        
     }
 
 
