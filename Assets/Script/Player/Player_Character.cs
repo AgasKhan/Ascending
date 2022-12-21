@@ -40,7 +40,7 @@ public class Player_Character : Character
 
     public void AttackDist()
     {
-        Debug.Log("EL JUGADOR HA ATACADO");
+        
         if(attackElements.Attack())
         {
             //_actualDaggers--;
@@ -64,10 +64,12 @@ public class Player_Character : Character
 
         dagger.MoveRb.kinematic = false;
 
+        /*
         if (dagger.transform.parent != null && dagger.transform.parent != floatElements.transform)
         {
             print(dagger.gameObject.transform.parent.name);
         }
+        */
 
         dagger.transform.parent = floatElements.transform;
 

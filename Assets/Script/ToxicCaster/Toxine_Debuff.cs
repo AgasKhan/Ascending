@@ -19,7 +19,7 @@ public class Toxine_Debuff : Debuff_FatherPwDbff
 
     void MyUpdate(Character a)
     {
-        print(a.name + " tiene toxina");
+        
 
         if (a.MyCooldowns[_cdString].Chck)
         {

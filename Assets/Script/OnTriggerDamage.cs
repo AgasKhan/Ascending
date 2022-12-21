@@ -16,7 +16,6 @@ public class OnTriggerDamage : MonoBehaviour
 
         damage = new Damage();
         damage.amount = damageAmount;
-        damage.debuffList = new List<System.Type>();
         damage.velocity = Vector3.zero;
     }
 

@@ -71,7 +71,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// Objeto que se casteara al golpear (con la daga o con en el ataque del enemigo)
     /// se guarda el indice del pool
     /// </summary>
-    public List<Vector2Int> powerObjectSpawn = new List<Vector2Int>();
+    public List<Vector2Int> ObjectSpawnOnDamage = new List<Vector2Int>();
+
+    /// <summary>
+    /// Accion que se realizara al realizar danio
+    /// </summary>
+    public List<System.Action<Collider>> ActionOnDamage = new List<System.Action<Collider>>();
 
 
     [Header("Poderes")]
@@ -244,8 +249,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <param name="go">referencia del objeto a spawnear</param>
     public void AddPowerObjectSpawn(Vector2Int go)
     {
-        if (!powerObjectSpawn.Contains(go))
-            powerObjectSpawn.Add(go);
+        if (!ObjectSpawnOnDamage.Contains(go))
+            ObjectSpawnOnDamage.Add(go);
 
     }
 

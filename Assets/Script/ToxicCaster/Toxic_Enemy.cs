@@ -55,7 +55,7 @@ public class Toxic_Enemy : Enemy_Character
 
             //Shoot();
         }
-        else if (powerObjectSpawn.Count == 0 && !animator.CheckAnimations("power"))
+        else if (ObjectSpawnOnDamage.Count == 0 && !animator.CheckAnimations("power"))
             animator.Power();
 
         
