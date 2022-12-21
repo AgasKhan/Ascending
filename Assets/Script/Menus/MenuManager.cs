@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     {
         public DoubleString texts;
         public Sprite previewImage;
-        public string numberScene;
+        public int numberScene;
     }
 
 
@@ -263,7 +263,7 @@ public class MenuManager : MonoBehaviour
 
         DetailsWindow.PreviewImage(true, preview[index].previewImage);
 
-        DetailsWindow.SetMyButton(() => { SelectLevel(preview[index].numberScene); }, true, "Play: " + preview[index].texts.superior);
+        DetailsWindow.SetMyButton(() => { SelectLevel(preview[index].numberScene.ToString()); }, true, "Play: " + preview[index].texts.superior);
 
         DetailsWindow.ActiveButtons(false);
 
@@ -271,14 +271,14 @@ public class MenuManager : MonoBehaviour
 
         aux.inferior += "\n" + "Misiones incompletas:".RichText("color","red")+"\n";
 
-        foreach (var item in Quests.SrchIncomplete(index + 1))
+        foreach (var item in Quests.SrchIncomplete(preview[index].numberScene))
         {
             aux.inferior += ("\n" + item.Description.superior.RichText("size", "16") + "\n"+ item.Description.inferior.RichText("size", "12") + "\n");
         }
 
         aux.inferior += "\n" + "Misiones completas:".RichText("color", "green")+"\n";
 
-        foreach (var item in Quests.SrchComplete(index + 1))
+        foreach (var item in Quests.SrchComplete(preview[index].numberScene))
         {
             aux.inferior += ("\n" + item.Description.superior.RichText("size", "16") + "\n" + item.Description.inferior.RichText("size", "12") + "\n");
         }
