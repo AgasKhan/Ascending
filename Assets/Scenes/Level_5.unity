@@ -6481,6 +6481,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: components.Array.data[0]
+      value: 
+      objectReference: {fileID: 287148928}
     - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: active.Array.data[0]
       value: 
@@ -6488,7 +6496,7 @@ PrefabInstance:
     - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: deactive.Array.data[0]
       value: 
-      objectReference: {fileID: 287148928}
+      objectReference: {fileID: 0}
     - target: {fileID: 130739732486910057, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: m_Name
       value: Diana ejemplo
