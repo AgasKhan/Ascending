@@ -64,10 +64,10 @@ public static class Quests
         new Quests.Mission(
             1,
             "Contra  Reloj",
-            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
+            "Completa  el  nivel  en  menos  de  1  minutos  para  obtener  10  puntos",
             () =>
             {
-                return GameManager.CurrentTime() > 120;
+                return GameManager.CurrentTime() > 60;
             },
             () =>
             {
@@ -142,10 +142,10 @@ public static class Quests
         new Quests.Mission(
             2,
             "Contra  Reloj",
-            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
+            "Completa  el  nivel  en  menos  de  1  minutos  para  obtener  10  puntos",
             () =>
             {
-                return GameManager.CurrentTime() > 120;
+                return GameManager.CurrentTime() > 60;
             },
             () =>
             {
@@ -223,10 +223,10 @@ public static class Quests
         new Quests.Mission(
             5,
             "Contra  Reloj",
-            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
+            "Completa  el  nivel  en  menos  de  1  minutos  para  obtener  10  puntos",
             () =>
             {
-                return GameManager.CurrentTime() > 120;
+                return GameManager.CurrentTime() > 60;
             },
             () =>
             {
@@ -358,10 +358,10 @@ public static class Quests
         new Quests.Mission(
             6,
             "Contra  Reloj",
-            "Completa  el  nivel  en  menos  de  2  minutos  para  obtener  10  puntos",
+            "Completa  el  nivel  en  menos  de  1  minutos  para  obtener  10  puntos",
             () =>
             {
-                return GameManager.CurrentTime() > 120;
+                return GameManager.CurrentTime() > 60;
             },
             () =>
             {
