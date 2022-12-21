@@ -8,6 +8,8 @@ public class SkillTreeManager : MonoBehaviour
 {
     static public SkillTreeManager instance;
 
+    public Canvas canvas;
+
     public DoubleString presentation;
 
     public RectTransform gridActives;
@@ -32,16 +34,22 @@ public class SkillTreeManager : MonoBehaviour
         DetailsWindow.ModifyTexts(presentation);
         DetailsWindow.HideMyButton(true);
         DetailsWindow.ActiveButtons(false);
+
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 
     private void OnDisable()
     {
         DetailsWindow.ChangeAlpha(0, 0.2f);
+
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
     }
 
     private void Awake()
     {
         instance = this;
+
+        canvas = GetComponentInParent<Canvas>();
     }
 
     private void Start()
