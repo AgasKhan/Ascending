@@ -26,7 +26,7 @@ public class VictoryLevelSelector : MonoBehaviour
         if (LevelToUnlock > BaseData.lastLevelUnlocked)
             BaseData.lastLevelUnlocked = LevelToUnlock; //CSVReader.SaveInPictionary<int>("LastUnlockedLevel", LevelToUnlock);
 
-        _refMenuManager.refSceneChanger.Load("Lobby");
+        _refMenuManager.refSceneChanger.Load("Lobby",true);
     }
 
 }

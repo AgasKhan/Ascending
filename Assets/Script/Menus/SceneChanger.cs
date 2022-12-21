@@ -20,7 +20,7 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(LoadSc(SceneManager.GetActiveScene().name));
     }
 
-    public void Load(string scn)
+    public void Load(string scn, bool charge)
     {
         if (isCharging)
             return;
@@ -40,16 +40,30 @@ public class SceneChanger : MonoBehaviour
                 item.active = true;
             } 
         }
+        else if (!charge)
+        {
+            foreach (var item in Quests.incomplete)
+            {
+                item.active = false;
+            }
+        }
 
         print("mandaste a cargar");
 
         isCharging = true;
+
         StartCoroutine(LoadSc(scn));
+    }
+
+    public void Load(string scn)
+    {
+        Load(scn, false);
     }
 
 
 
-    IEnumerator LoadSc(string sceneName)
+
+        IEnumerator LoadSc(string sceneName)
     {
         //loadscene = true;
         Time.timeScale = 1;

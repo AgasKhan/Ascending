@@ -9,7 +9,7 @@ public class CSVReader : MonoBehaviour
     /// <summary>
     /// El archivo CSV que se manejara
     /// </summary>
-    public TextAsset textAssetData;
+    //public TextAsset textAssetData;
     
     public Pictionarys<string, string> baseData = new Pictionarys<string, string>();
 
@@ -63,7 +63,7 @@ public class CSVReader : MonoBehaviour
 
         instance = this;
 
-        ReadCSV(textAssetData);
+        //ReadCSV(textAssetData);
 
         /*
         SaveInPictionary("Scene_1_Dialogue_1", "TestNumberOne");
@@ -71,7 +71,7 @@ public class CSVReader : MonoBehaviour
         SaveInPictionary("Scene_1_Dialogue_3", "TestNumberThree");
         SaveInPictionary("Scene_1_Dialogue_4", "TestNumberFour");
         */
-        WriteCSV(textAssetData, baseData);
+        //WriteCSV(textAssetData, baseData);
 
         
 

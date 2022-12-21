@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
 
     private int _currentMemuPrincipal = 0;
     private int _currentMemu = 0;
-    private int _currentPreview = 0;
+    //private int _currentPreview = 0;
     
     //private string  _currentSubMemu= "GeneralOptionsButton";
     private bool _inGame = true;
