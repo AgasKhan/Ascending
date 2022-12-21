@@ -84,7 +84,7 @@ public class CSVReader : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-        LobbyManager.playerPoints = LoadFromPictionary<int>("PlayerPoints", 213);
+        LobbyManager.playerPoints = LoadFromPictionary<int>("PlayerPoints", 100);
         BaseData.currentLevel = LoadFromPictionary<int>("CurrentLevel", 1);
         BaseData.lastLevelUnlocked = LoadFromPictionary<int>("LastUnlockedLevel", 1);
 
