@@ -286,6 +286,17 @@ public class MenuManager : MonoBehaviour
         DetailsWindow.ModifyTexts(aux);       
     }
 
+    public void BackToLobby()
+    {
+        foreach (var item in Quests.SrchIncomplete(BaseData.currentLevel))
+        {
+            item.active = false;
+        }
+
+        refSceneChanger.Load("Lobby");
+    }
+
+
     public void ClickSound()
     {
         audioM.Play("Click");

@@ -16515,6 +16515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreviewDetails
       objectReference: {fileID: 0}
+    - target: {fileID: 4498465310268369265, guid: 3214de4d240c6214d998f484a223b920, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4498465310268369268, guid: 3214de4d240c6214d998f484a223b920, type: 3}
       propertyPath: pointsCounter
       value: 
@@ -19557,17 +19561,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preview:
   - texts:
-      superior: nivel 0
+      superior: nivel 1
       inferior: 
     previewImage: {fileID: 21300000, guid: 47ea9eeafb0f0aa498d9ddd2afa93245, type: 3}
     numberScene: 1
   - texts:
-      superior: nivel 1
-      inferior: 'algo
-
-        y algo mas'
+      superior: nivel 2
+      inferior: 
     previewImage: {fileID: 21300000, guid: 1d4ba2cd29a66bd4797bf6fcf555df27, type: 3}
     numberScene: 2
+  - texts:
+      superior: nivel 3
+      inferior: 
+    previewImage: {fileID: 21300000, guid: 1d4ba2cd29a66bd4797bf6fcf555df27, type: 3}
+    numberScene: 5
+  - texts:
+      superior: nivel 4
+      inferior: 
+    previewImage: {fileID: 21300000, guid: 1d4ba2cd29a66bd4797bf6fcf555df27, type: 3}
+    numberScene: 6
   menus:
   - {fileID: 1325390268}
   - {fileID: 8401664099373478991}

@@ -36,7 +36,7 @@ public class SkillTreeManager : MonoBehaviour
 
     private void OnDisable()
     {
-        DetailsWindow.ChangeAlpha(0, 0.5f);
+        DetailsWindow.ChangeAlpha(0, 0.2f);
     }
 
     private void Awake()

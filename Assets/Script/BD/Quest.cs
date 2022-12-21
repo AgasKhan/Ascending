@@ -221,7 +221,7 @@ public static class Quests
         #region Level 3
 
         new Quests.Mission(
-            3,
+            5,
             "Contra Reloj",
             "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
             () =>
@@ -236,7 +236,7 @@ public static class Quests
 
         int dashCount = 0;
         new Quests.Mission(
-            3,
+            5,
             "Adicto al dash",
             "Utiliza el dash por lo menos 1 vez cada 15 segundos para obtener 5 puntos",
             () =>
@@ -256,7 +256,7 @@ public static class Quests
 
         int enemyCount = 0;
         new Quests.Mission(
-            3,
+            5,
             "Asesinato veloz",
             "Mata a un enemigo al iniciar el nivel en menos de 30 segundos para obtener 8 puntos",
             () =>
@@ -273,7 +273,7 @@ public static class Quests
         );
 
         new Quests.Mission(
-            3,
+            5,
             "Nunca muestres lo que tienes",
             "Termina el nivel sin activar un solo poder para obtener 8 puntos",
             () =>
@@ -287,7 +287,7 @@ public static class Quests
         );
 
         new Quests.Mission(
-            3,
+            5,
             "Solo una daga",
             "No atraigas mas de una daga durante todo el nivel para obtener 3 puntos",
             () =>
@@ -356,7 +356,7 @@ public static class Quests
         );*/
 
         new Quests.Mission(
-            4,
+            6,
             "Contra Reloj",
             "Completa el nivel en menos de 2 minutos para obtener 10 puntos",
             () =>
@@ -371,7 +371,7 @@ public static class Quests
 
 
         new Quests.Mission(
-            4,
+            6,
             "Sin Dash",
             "No utilices el Dash durante todo el nivel para obtener 3 puntos",
             () =>
@@ -385,7 +385,7 @@ public static class Quests
         );
 
         new Quests.Mission(
-            4,
+            6,
             "Singular",
             "Utiliza solo un poder durante todo el nivel para obtener 10 puntos",
             () =>
@@ -400,7 +400,7 @@ public static class Quests
 
         /*
         new Quests.Mission(
-            4,
+            6,
             "Coleccionista",
             "Encuentra y atrae todas las dagas del nivel para obtener 3 puntos",
             () =>
@@ -415,7 +415,7 @@ public static class Quests
 
         int activesCount = 0;
         new Quests.Mission(
-            4,
+            6,
             "Estratega",
             "Encanta la daga solo 2 veces durante todo el nivel para obtener 10 puntos",
             () =>
@@ -431,7 +431,7 @@ public static class Quests
         );
 
         new Quests.Mission(
-            4,
+            6,
             "Genocida",
             "Asesina a todos los enemigos antes de pasarte el nivel para obtener 5 puntos",
             () =>
