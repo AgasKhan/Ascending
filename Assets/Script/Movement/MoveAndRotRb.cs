@@ -23,8 +23,8 @@ public class MoveAndRotRb : MoveRb
         float angleY;
         float angleX;
 
-        Utilitys.DeltaAngle(dir, out angleY, Vector3.forward, Vector3.up, transform.rotation);
-        Utilitys.DeltaAngle(dir, out angleX, Vector3.up, transform.right, transform.rotation);
+        Utilitys.DeltaAngle(dir,  Vector3.forward, out angleY, Vector3.up, transform.rotation);
+        Utilitys.DeltaAngle(dir,  Vector3.up, out angleX, transform.right, transform.rotation);
 
         Rotate(new Vector3(angleX + offset.x - 90, angleY + offset.y, offset.z));
     }

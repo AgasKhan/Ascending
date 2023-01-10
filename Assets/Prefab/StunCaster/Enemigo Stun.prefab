@@ -193,7 +193,7 @@ MonoBehaviour:
   _volumeCheckFloor: 0
   _layerMask:
     serializedVersion: 2
-    m_Bits: 769
+    m_Bits: 257
 --- !u!114 &459650339154766949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
     pictionaries: []
   MyObjReferences:
     pictionaries: []
-  powerObjectSpawn: []
+  ObjectSpawnOnDamage: []
   damage: 10
   power:
   - {fileID: 0}

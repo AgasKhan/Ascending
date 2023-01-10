@@ -19835,6 +19835,10 @@ PrefabInstance:
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 309213274}
+    - target: {fileID: 8202150891239359147, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 769
+      objectReference: {fileID: 0}
     - target: {fileID: 8202150891239359148, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: m_RootOrder
       value: 9

@@ -20,9 +20,13 @@ public class DashEnemy_Enemy : Enemy_Character
 
     public override void Dash()
     {
-        if (Utilitys.DeltaAngleY(scopedPoint - transform.position, out float angle, transform.rotation) < _angleOfDashAim)
+        Vector3 aux = scopedPoint - transform.position;
+
+        if (Utilitys.DeltaAngleY(aux, out float angle, transform.rotation) < _angleOfDashAim)
         {
-            animator.transform.forward = scoped.transform.position - transform.position;
+            aux.y = 0;
+
+            animator.transform.forward = aux;
         }
 
         base.Dash();

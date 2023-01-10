@@ -65,7 +65,10 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
     {
         get
         {
-            return pictionaries[SearchIndex(k)].value;
+            var index = SearchIndex(k);
+            if (index < 0)
+                Debug.Log("se busco " + k.ToString() +" y no se encontro");
+            return pictionaries[index].value;
         }
         set
         {

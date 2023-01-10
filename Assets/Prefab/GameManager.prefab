@@ -308,6 +308,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5392585505252732386}
     m_Modifications:
+    - target: {fileID: 1455773878891612480, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1455773878891612492, guid: 850720e48f7322b4ebb08f3ecda42223, type: 3}
       propertyPath: power.Array.data[0]
       value: 

@@ -38,7 +38,7 @@ public static class Utilitys
     /// <param name="axis"></param>
     /// <param name="MyRot"></param>
     /// <returns>retorna la diferencia absoluta entre el angulo y la rotacion del objeto</returns>
-    static public float DeltaAngle(Vector3 dir, out float angle, Vector3 from, Vector3 axis, Quaternion MyRot)
+    static public float DeltaAngle(Vector3 dir, Vector3 from, out float angle, Vector3 axis, Quaternion MyRot)
     {
 
         angle = AngleOffAroundAxis(from, dir, axis);
@@ -64,7 +64,7 @@ public static class Utilitys
     /// <returns>retorna la diferencia absoluta entre el angulo y rotacion del objeto (sirve para calcular el cono)</returns>
     static public float DeltaAngleY(Vector3 dir, out float angle, Quaternion MyRot)
     {
-        return DeltaAngle(dir, out angle, Vector3.forward, Vector3.up, MyRot);
+        return DeltaAngle(dir, Vector3.forward, out angle,  Vector3.up, MyRot);
     }
 
 

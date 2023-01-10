@@ -148,7 +148,7 @@ MonoBehaviour:
   _volumeCheckFloor: 0.1
   _layerMask:
     serializedVersion: 2
-    m_Bits: 769
+    m_Bits: 257
 --- !u!114 &8420427134909396572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
   coneOfVision: 120
   layerMask:
     serializedVersion: 2
-    m_Bits: 769
+    m_Bits: 961
   waitMetalGear: 7
   deleySearch:
     _totalTime: 0
