@@ -189,8 +189,8 @@ public class MainHud : MonoBehaviour
 
         for (int i = 0; i < GameManager.player.power.Count; i++)
         {
-            instance.power[i].ChangeFront(GameManager.player.power[i].ui.GeneralIcon);
-            instance.power[i].textManager.ShowText(true, GameManager.player.power[i].ui.generalText);
+            instance.power[i].ChangeFront(Power_UI.uis[GameManager.player.power[i].GetType().Name].GeneralIcon);
+            instance.power[i].textManager.ShowText(true, Power_UI.uis[GameManager.player.power[i].GetType().Name].generalText);
         }
     }
 
@@ -214,16 +214,18 @@ public class MainHud : MonoBehaviour
 
     static public int AddBuffSIcon()
     {
+        var auxUI = Power_UI.uis;
+
         foreach (var item in instance.buff)
         {
-            if (item.front.sprite == GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon)
+            if (item.front.sprite == auxUI[GameManager.player.power[GameManager.player.actualPower].GetType().Name].ActiveIcon)
             {
                 return -1;
             }
         }
 
-        instance.buff[instance.iBuff].textManager.ShowText(false, GameManager.player.power[GameManager.player.actualPower].ui.activeText);
-        instance.buff[instance.iBuff].ChangeFront(GameManager.player.power[GameManager.player.actualPower].ui.ActiveIcon);
+        instance.buff[instance.iBuff].textManager.ShowText(false, auxUI[GameManager.player.power[GameManager.player.actualPower].GetType().Name].activeText);
+        instance.buff[instance.iBuff].ChangeFront(auxUI[GameManager.player.power[GameManager.player.actualPower].GetType().Name].ActiveIcon);
 
         instance.buff[instance.iBuff].LerpFadeColor(Color.white, 0.3f, true, false);
         //instance.buff[instance.iBuff].LerpFadeAlpha(1, 0.3f, false);

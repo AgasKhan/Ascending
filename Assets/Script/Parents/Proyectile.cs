@@ -13,12 +13,12 @@ abstract public class Proyectile : MonoBehaviour
 
     protected void AplicateDebuff(Character ch)
     {
-        if (damage.debuffList != null)
+        if (damage.debuffList == null)
+            return;
+
+        foreach (var debuff in damage.debuffList)
         {
-            foreach (var item in damage.debuffList)
-            {
-                Debuff_FatherPwDbff.SchDebuff(item).Add(ch);
-            } 
+            ch.AddDebuff(debuff);
         }
 
         damage.debuffList=null;
@@ -26,7 +26,6 @@ abstract public class Proyectile : MonoBehaviour
    
     protected void CasterObject()
     {
-        print("entre al caster");
         if (damage.objectSpawner != null)
         {
             foreach (var item in damage.objectSpawner)
@@ -39,14 +38,7 @@ abstract public class Proyectile : MonoBehaviour
 
     protected void AplicateAction(Collider other)
     {
-        print("entre a las acciones");
-        if (damage.actions != null)
-        {
-            foreach (var item in damage.actions)
-            {
-                item(other);
-            }
-        }
+        damage.actions?.Invoke(other);
         damage.actions = null;
     }
 
@@ -150,7 +142,7 @@ public struct Damage
 {
     public float amount;
     public System.Type[] debuffList;
-    public System.Action<Collider>[] actions;
+    public System.Action<Collider> actions;
     public Vector2Int[] objectSpawner;
     public Vector3 velocity;
 
@@ -168,8 +160,7 @@ public struct Damage
 
         if (chr.ActionOnDamage != null)
         {
-            actions = new System.Action<Collider>[chr.ActionOnDamage.Count];
-            chr.ActionOnDamage.CopyTo(actions);
+            actions = chr.ActionOnDamage;
         }
 
         if (chr.ObjectSpawnOnDamage != null)
@@ -179,7 +170,7 @@ public struct Damage
         }
 
         chr.ObjectSpawnOnDamage.Clear();
-        chr.ActionOnDamage.Clear();
+        chr.ActionOnDamage = null;
     }
 
 }

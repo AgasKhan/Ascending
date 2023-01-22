@@ -5,30 +5,23 @@ using UnityEngine;
 public class Vortex_Powers : Powers_FatherPwDbff
 {
 
-    Pictionarys<Character, float> originalSpeed = new Pictionarys<Character, float>();
+    float originalSpeed;
 
-    public override void Activate(Character me)
+    public override void Activate()
     {
         me.AddPowerObjectSpawn(SchPowerObject("Vortex"));
     }
 
-    public override void On(Character me)
+    public override void On()
     {
-
-        if (!originalSpeed.ContainsKey(me))
-        {
-            originalSpeed.Add(me, me.maxSpeed);
-            me.maxSpeed *= 1.5f;
-        }
-            
+        originalSpeed = me.maxSpeed;
+        me.maxSpeed *= 1.5f;
         me.AddDebuffToAplicate<Vortex_Debuff>();
-        
     }
 
-    public override void Off(Character me)
+    public override void Off()
     {
-        me.maxSpeed = originalSpeed[me];
-        originalSpeed.Remove(me);
+        me.maxSpeed = originalSpeed;
         me.RemoveDebuffToAplicate<Vortex_Debuff>();
     }
 }

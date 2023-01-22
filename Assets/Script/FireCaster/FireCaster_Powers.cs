@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class FireCaster_Powers : Powers_FatherPwDbff
 {
+
+    public override void Activate()
+    {
+        me.RemovePower<FireCaster_Powers>();
+    }
+
+    public override void On()
+    {
+
+    }
+
+    public override void Off()
+    {
+
+    }
+
+    /*
+
     Vector2Int caster;
 
     float moreHP=-10;
@@ -38,4 +56,5 @@ public class FireCaster_Powers : Powers_FatherPwDbff
         Debuff_FatherPwDbff.SchDebuff<Toxine_Debuff>().Add(me); 
     }
 
+    */
 }

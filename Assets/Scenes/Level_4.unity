@@ -287,17 +287,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &45232204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5209663062418563767, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-  m_PrefabInstance: {fileID: 915266781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95909d65c6b7e53428743e486948bacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &47430084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3988,7 +3977,7 @@ PrefabInstance:
     - target: {fileID: 8420427134909396574, guid: cb61615dc8dabfc41a9013813977aa84, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 1417262208}
+      objectReference: {fileID: 0}
     - target: {fileID: 8420427134909396574, guid: cb61615dc8dabfc41a9013813977aa84, type: 3}
       propertyPath: patrol.patrol.Array.size
       value: 4
@@ -5362,18 +5351,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -37.059998
       objectReference: {fileID: 0}
-    - target: {fileID: 3470499774974574185, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-      propertyPath: powerObjects.Array.data[5].prefabReference.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470499774974574185, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-      propertyPath: powerObjects.Array.data[5].prefabReference.Array.data[0]
-      value: 
-      objectReference: {fileID: 3084482091828597660, guid: ba9f0c11ab7c21a45b5ea43fd9e855e6, type: 3}
-    - target: {fileID: 3470499774974574185, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-      propertyPath: powerObjects.Array.data[5].prefabReference.Array.data[1]
-      value: 
-      objectReference: {fileID: 591225757626922568, guid: 82518b43b2609db4093be6f185261ffe, type: 3}
     - target: {fileID: 3808997158721104317, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -7224,7 +7201,7 @@ PrefabInstance:
     - target: {fileID: 4480580260090588772, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 45232204}
+      objectReference: {fileID: 0}
     - target: {fileID: 4480580260090588772, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
       propertyPath: patrol.patrol.Array.size
       value: 4
@@ -8380,17 +8357,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3808997158721104317, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
   m_PrefabInstance: {fileID: 915266781}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1417262208 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1431243750628530604, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-  m_PrefabInstance: {fileID: 915266781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a029030971af154ca1ac8c4a30572e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1449041434
 Mesh:
   m_ObjectHideFlags: 0

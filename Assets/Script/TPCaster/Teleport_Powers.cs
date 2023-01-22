@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
+[System.Serializable]
 public class Teleport_Powers : Powers_FatherPwDbff
 {
     string layerDash;
@@ -11,81 +12,85 @@ public class Teleport_Powers : Powers_FatherPwDbff
 
     public string LayerName;
 
-    public override void Activate(Character me)
-    {
-        //me.AddPowerObjectSpawn(SchPowerObject("Teleport"));
+    Timer tim;
 
-        me.ActionOnDamage.Add(TP);
+    public override void Activate()
+    {
+        me.ActionOnDamage += TP;
     }
 
-    public override void Off(Character me)
+    public override void Off()
     {
-        base.Off(me);
-
         me.movement.layerDash = layerDash;
         MainHud.ReticulaPlay("Default");
     }
 
-    public override void On(Character me)
-    {    
+    public override void On()
+    {
+        on_Update = MyUpdate;
+
+        if (me.CompareTag("Player"))
+            on_Update += MyUpdatePlayer;
+
+
         layerDash = me.movement.layerDash;
         if (LayerName == null || LayerName == "")
         {
-            LayerName = "ObjectsAndEnemyNoCollision";
+            LayerName = "ObjectsAndCharacterNoCollision";
         }
         me.movement.layerDash = LayerName;
 
-        me.AddCooldown("dashDamageCooldown",1);
+        tim = TimersManager.Create(1);
+
+
     }
 
     void TP(Collider col)
     {
-        if (col.gameObject.TryGetComponent(out MoveRb moveRb))
+        if (!col.gameObject.TryGetComponent(out MoveRb moveRb))
         {
-            Player_Character player = GameManager.player;
-            
+            return;
+        }
 
-            LensDistortion lens = ScriptableObject.CreateInstance<LensDistortion>();
-            lens.enabled.Override(true);
-            lens.intensity.Override(0);
-            lens.centerX.Override(0);
-            lens.centerY.Override(0);
+        Player_Character player = GameManager.player;
 
-            PostProcessVolume volume = PostProcessManager.instance.QuickVolume(12, 100f, lens);
+        LensDistortion lens = ScriptableObject.CreateInstance<LensDistortion>();
+        lens.enabled.Override(true);
+        lens.intensity.Override(0);
+        lens.centerX.Override(0);
+        lens.centerY.Override(0);
 
-            Utilitys.LerpInTime(lens.intensity.value, 75, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
-            Utilitys.LerpInTime(lens.scale.value, 0.01f, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
+        PostProcessVolume volume = PostProcessManager.instance.QuickVolume(12, 100f, lens);
 
-            
+        Utilitys.LerpInTime(lens.intensity.value, 75, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
+        Utilitys.LerpInTime(lens.scale.value, 0.01f, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
+
+        TimersManager.Create(0.5f,
+        () =>
+        {
+            Vector3 pos = col.transform.position + Vector3.up * 0.5f;
+            col.transform.position = player.transform.position;
+            player.transform.position = pos;
+
+            Utilitys.LerpInTime(lens.intensity.value, () => player.attackElements.lens.intensity.value, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
+            Utilitys.LerpInTime(lens.scale.value, 1, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
+
+            moveRb.kinematic = true;
 
             TimersManager.Create(0.5f,
             () =>
             {
-                Vector3 pos = col.transform.position+Vector3.up*0.5f;
-                col.transform.position = player.transform.position;
-                player.transform.position = pos;
+                RuntimeUtilities.DestroyVolume(volume, true, true);
 
-                Utilitys.LerpInTime(lens.intensity.value, () => player.attackElements.lens.intensity.value, 0.5f, Mathf.Lerp, (saveData) => { lens.intensity.Override(saveData); });
-                Utilitys.LerpInTime(lens.scale.value, 1, 0.5f, Mathf.Lerp, (saveData) => { lens.scale.Override(saveData); });
-
-                moveRb.kinematic = true;
-
-                TimersManager.Create(0.5f,
-                () =>
-                {
-                    RuntimeUtilities.DestroyVolume(volume, true, true);
-
-                    moveRb.kinematic = false;
-                });
-
+                moveRb.kinematic = false;
             });
-        }
+
+        });
 
     }
 
-    void MyUpdatePlayer(Character me)
+    void MyUpdatePlayer()
     {       
-
         if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
         {
             MainHud.ReticulaPlay("Power");
@@ -96,7 +101,7 @@ public class Teleport_Powers : Powers_FatherPwDbff
         }
     }
 
-    void MyUpdate(Character me)
+    void MyUpdate()
     {
         if(me.movement.dash)
         {
@@ -107,21 +112,14 @@ public class Teleport_Powers : Powers_FatherPwDbff
                 if (me.name != item.name)
                 {
                     Health health = item.GetComponent<Health>();
-                    if (me.MyCooldowns["dashDamageCooldown"].Chck && health != null)
+                    if (tim.Chck && health != null)
                     {
                         health.Substract(me.damage);
-                        me.MyCooldowns["dashDamageCooldown"].Reset();
+                        tim.Reset();
                     }
                 }
             }
         }
-
-        if (me.CompareTag("Player"))
-            MyUpdatePlayer(me);
     }
 
-    private void Start()
-    {
-        on_Update = MyUpdate;
-    }
 }

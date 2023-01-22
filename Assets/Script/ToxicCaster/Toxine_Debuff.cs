@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class Toxine_Debuff : Debuff_FatherPwDbff
 {
-
-    [SerializeField] 
     float _toxineDameg;
 
-    string _cdString = "toxineDmg";
+    Timer toDamage;
 
-    protected override void Aplicate(Character a)
+    public override void On()
     {
         on_Update = MyUpdate;
-
-        AddCooldown(_cdString, 1 , a);
+        _toxineDameg = 2;
+        toDamage = TimersManager.Create(0.5f);
     }
 
-    void MyUpdate(Character a)
+    public override void Off()
     {
-        
+       
+    }
 
-        if (a.MyCooldowns[_cdString].Chck)
+    void MyUpdate()
+    {
+        if (toDamage.Chck)
         {
-            a.health.Substract(_toxineDameg);
-            a.MyCooldowns[_cdString].Reset();
-        }
-
-        if (a.MyCooldowns[dbffTimerName].Chck)
-        {
-            Remove(a);
+            me.health.Substract(_toxineDameg);
+            toDamage.Reset();
         }
     }
+
+
 }

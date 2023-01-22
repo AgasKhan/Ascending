@@ -162,7 +162,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
                     print(debuffToAplicate[0].FullName);
 
-                    Debuff_FatherPwDbff.SchDebuff(debuffToAplicate[0]).Add(chr);
+                    chr.AddDebuff(debuffToAplicate[0]);
                 }
             }
         }
@@ -340,19 +340,6 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         deleySearch = TimersManager.Create(0);
 
         _rotation = transform.rotation.eulerAngles.y;
-
-        //inicializo los poderes del enemigo
-        foreach (Powers_FatherPwDbff item in power)
-        {
-            if (item == null)
-            {
-                Debug.LogWarning("Tiene el poder vacio el enemigo: " + name);
-                break;
-            }
-
-            item.chrAffected.Add(this);
-            item.On(this);
-        }
     }
 
     #endregion

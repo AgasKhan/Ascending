@@ -11,6 +11,8 @@ public class Toxic_Enemy : Enemy_Character
         MyAwakes += MyAwake;
         
         MyUpdates += MyUpdate;
+
+        MyStarts += () => { ReplaceFirstPower<Toxine_Powers>(); };
         
     }
 

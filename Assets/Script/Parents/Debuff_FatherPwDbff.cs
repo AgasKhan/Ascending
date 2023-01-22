@@ -3,6 +3,32 @@ using UnityEngine;
 
 abstract public class Debuff_FatherPwDbff : FatherPwDbff
 {
+    /// <summary>
+    /// Referencia para del indice del objeto que contenga las particulas (prefab)
+    /// </summary>
+    public Vector2Int particles;
+
+    /// <summary>
+    /// referencia del timer interno del debuff
+    /// </summary>
+    public Timer timer;
+
+    //public Debuff_FatherPwDbff(float dbffTimer, Character me, GameObject particlesName=null)
+
+    /// <summary>
+    /// debe ser llamada luego de crear la clase
+    /// </summary>
+    /// <param name="me"></param>
+    public virtual void Instance(Character me)
+    {
+        timer = TimersManager.Create(6);
+
+        Create(me);
+    }
+}
+
+/*
+
     public static List<Debuff_FatherPwDbff> instances;
 
     [SerializeField]
@@ -88,6 +114,7 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
         });
     }
 
+
     /// <summary>
     /// Remueve un efecto de estado al personaje
     /// </summary>
@@ -165,6 +192,5 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
         else
             particles.x = -1;
     }
-
-}
+*/
 

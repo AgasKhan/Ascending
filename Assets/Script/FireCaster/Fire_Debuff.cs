@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Fire_Debuff : Debuff_FatherPwDbff
 {
+
+    public override void Off()
+    {
+
+    }
+
+    public override void On()
+    {
+
+    }
+    /*
     protected override void Aplicate(Character a)
     {
         on_Update = InTimePropio;
@@ -29,5 +40,6 @@ public class Fire_Debuff : Debuff_FatherPwDbff
         }
     }
 
-    
+    */
+
 }

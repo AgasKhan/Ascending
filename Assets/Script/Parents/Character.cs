@@ -55,19 +55,6 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     [Header("Referencias internas")]
 
     /// <summary>
-    /// Referencia de todos los timers asociados al character
-    /// </summary>
-    [SerializeField]
-    public Pictionarys<string, Timer> MyCooldowns = new Pictionarys<string, Timer>();
-
-    /// <summary>
-    /// Diccionario que contiene todas las referencias de los objetos spawneados del personaje
-    /// </summary>
-    [SerializeField]
-    public Pictionarys<string, GameObject> MyObjReferences = new Pictionarys<string, GameObject>();
-
-
-    /// <summary>
     /// Objeto que se casteara al golpear (con la daga o con en el ataque del enemigo)
     /// se guarda el indice del pool
     /// </summary>
@@ -76,7 +63,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <summary>
     /// Accion que se realizara al realizar danio
     /// </summary>
-    public List<System.Action<Collider>> ActionOnDamage = new List<System.Action<Collider>>();
+    public System.Action<Collider> ActionOnDamage;
 
 
     [Header("Poderes")]
@@ -89,9 +76,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <summary>
     /// Lista de poderes que posee el character
     /// </summary>
-    [SerializeField]
+    [SerializeReference]
     public List<Powers_FatherPwDbff> power = new List<Powers_FatherPwDbff>();
 
+    /// <summary>
+    /// ultimo poder
+    /// </summary>
     public Powers_FatherPwDbff lastPower;
 
     /// <summary>
@@ -105,6 +95,10 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     [SerializeField]
     public List<System.Type> debuffToAplicate = new List<System.Type>();
 
+    /// <summary>
+    /// debufs que posee el character
+    /// </summary>
+    public List<Debuff_FatherPwDbff> debuffList = new List<Debuff_FatherPwDbff>();
 
     [Header("Movimiento")]
 
@@ -274,7 +268,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <typeparam name="T">tipo del debufo que se agregara</typeparam>
     public void AddDebuffToAplicate<T>() where T : Debuff_FatherPwDbff
     {
-        AddDebuffToAplicate(Debuff_FatherPwDbff.SchDebuff<T>().GetType());
+        AddDebuffToAplicate(typeof(T));
     }
 
     /// <summary>
@@ -295,91 +289,10 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <typeparam name="T">tipo del debufo que se removera</typeparam>
     public void RemoveDebuffToAplicate<T>() where T : Debuff_FatherPwDbff
     {
-        RemoveDebuffToAplicate(Debuff_FatherPwDbff.SchDebuff<T>().GetType());
+        RemoveDebuffToAplicate(typeof(T));
     }
 
 
-
-    #endregion
-
-    #region objects references
-
-    bool ChckObjRef(string n)
-    {
-        if (MyObjReferences.count == 0 || !MyObjReferences.ContainsKey(n))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public void AddObjRef(string n, GameObject g)
-    {
-        if (MyObjReferences.ContainsKey(n))
-            return;
-
-        MyObjReferences.Add(n, g);
-    }
-
-    public void OnObjRef(string n)
-    {
-        if (!ChckObjRef(n))
-        {
-            Debug.LogWarning("Se intento prender el gameObject " + n + " en el character " + name + " y no existe");
-            return;
-        }
-            
-
-        if (MyObjReferences[n] != null)
-            MyObjReferences[n].SetActive(true);
-    }
-
-    public void OffObjRef(string n)
-    {
-        if (!ChckObjRef(n))
-        {
-            Debug.LogWarning("Se intento apagar el gameObject " + n + " en el character " + name + " y no existe");
-            return;
-        }
-
-        if (MyObjReferences[n] != null)
-            MyObjReferences[n].SetActive(false);
-    }
-
-    public void RemoveObjRef(string n)
-    {
-        OffObjRef(n);
-
-        MyObjReferences.Remove(n);
-    }
-
-    #endregion
-
-    #region timers references
-
-    public void AddCooldown(string n, float t)
-    {
-        if (MyCooldowns.ContainsKey(n))
-            return;
-
-        MyCooldowns.Add(n, TimersManager.Create(t));
-    }
-
-    public void RemoveCooldown(string n)
-    {
-        if (!MyCooldowns.ContainsKey(n))
-        {
-            Debug.LogError("Se intento destruir el timer " + n + " en el character " + name + " y no existe");
-
-            return;
-        }
-
-        TimersManager.Destroy(MyCooldowns[n]);
-
-        MyCooldowns.Remove(n);
-
-    }
 
     #endregion
 
@@ -393,7 +306,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         if (power.Count > 0)
         {
             PowerSound();
-            power[actualPower].Activate(this);
+            power[actualPower].Activate();
         }
     }
 
@@ -415,52 +328,35 @@ abstract public class Character : MyScripts, IOnProyectileEnter
             actualPower--;
     }
 
-
     /// <summary>
     /// version privada, contiene todo el algoritmo que se ejecuta cuando se agrega un poder
     /// </summary>
     /// <param name="powerStatic"></param>
     void AddPower(Powers_FatherPwDbff powerStatic, int i =0)
     {
-        powerStatic.chrAffected.Add(this);
-        powerStatic.On(this);
-        
+        powerStatic.Create(this);
+
         power.Insert(i, powerStatic);
 
         MainHud.RefreshPowersUI();
     }
 
     /// <summary>
-    /// Agregua un poder al character
+    /// Agrega un poder al character
     /// </summary>
     /// <param name="type">Tipo del poder a agregar</param>
     public void AddPower(System.Type type, int i = 0)
     {
-        if (type != null)
-        {
-            foreach (Powers_FatherPwDbff powerStatic in Powers_FatherPwDbff.powers)
-            {
-                if (powerStatic.GetType() == type)
-                {
-                    AddPower(powerStatic, i);
-                }
-            }
-        }
+        AddPower((Powers_FatherPwDbff)System.Activator.CreateInstance(type), i);
     }
 
     /// <summary>
     /// Agregua un poder al character
     /// </summary>
     /// <typeparam name="T">Nombre del sript que es un poder</typeparam>
-    public void AddPower<T>(int i = 0) where T : Powers_FatherPwDbff
+    public void AddPower<T>(int i = 0) where T : Powers_FatherPwDbff, new()
     {
-        foreach (Powers_FatherPwDbff powerStatic in Powers_FatherPwDbff.powers)
-        {
-            if (powerStatic is T)
-            {
-                AddPower(powerStatic,i);
-            }
-        }
+        AddPower(new T(), i);
     }
 
     /// <summary>
@@ -475,12 +371,11 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         AddPower(type,0);
     }
 
- 
     /// <summary>
     /// Remplaza el poder actual
     /// </summary>
     /// <typeparam name="T">El poder que se va a agregar</typeparam>
-    public void ReplaceFirstPower<T>() where T : Powers_FatherPwDbff
+    public void ReplaceFirstPower<T>() where T : Powers_FatherPwDbff, new()
     {
         RemovePower(0);
         AddPower<T>(0);
@@ -494,9 +389,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     {
         if (i >= 0 && i < power.Count && power.Count > 0)
         {
-            power[i].Off(this);
-            power[i].chrAffected.Remove(this);
-            power.RemoveAt(i);
+            power.RemoveOff(i);
         }
 
         if (actualPower >= power.Count)
@@ -538,7 +431,20 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         }
     }
     #endregion
-    
+
+    #region debuff
+
+    public void AddDebuff(System.Type type)
+    {
+        var aux = (Debuff_FatherPwDbff)System.Activator.CreateInstance(type);
+
+        aux.Instance(this);
+
+        debuffList.Add(aux);
+    }
+
+    #endregion
+
     #region Sonido
     public abstract void AttackSound();
 
@@ -615,6 +521,17 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     void MyUpdate()
     {
         RefreshAnims();
+
+        for (int i = debuffList.Count-1; i >= 0 ; i--)
+        {
+            debuffList[i].on_Update?.Invoke();
+
+            if (debuffList[i].timer.Chck)
+            {
+                debuffList.RemoveOff(i);
+            }
+                
+        }
     }
 
     void MyFixedUpdate()

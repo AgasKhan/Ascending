@@ -2299,7 +2299,7 @@ Transform:
   - {fileID: 1110822538}
   - {fileID: 1209036420}
   m_Father: {fileID: 1018336191}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &257612511
 PrefabInstance:
@@ -5624,10 +5624,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4575891472660276516, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-      propertyPath: power.Array.data[0]
-      value: 
-      objectReference: {fileID: 1943189116}
     - target: {fileID: 4575891472660276518, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -149
@@ -9362,13 +9358,13 @@ Transform:
   m_Children:
   - {fileID: 1226432070}
   - {fileID: 401863623619658455}
-  - {fileID: 1031420607}
-  - {fileID: 1014332461}
-  - {fileID: 1021986472}
   - {fileID: 1674991510}
   - {fileID: 2138101379}
   - {fileID: 257607439}
   - {fileID: 1509847706}
+  - {fileID: 1031420607}
+  - {fileID: 1014332461}
+  - {fileID: 1021986472}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14424,7 +14420,7 @@ Transform:
   - {fileID: 1122161903}
   - {fileID: 2101843427}
   m_Father: {fileID: 1018336191}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1520081608
 PrefabInstance:
@@ -15365,17 +15361,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1be1c15e1fcf36f48954ab6260a301b3, type: 3}
---- !u!114 &1644589865 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1431243750628530604, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-  m_PrefabInstance: {fileID: 671663150}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a029030971af154ca1ac8c4a30572e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1654826255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15713,7 +15698,7 @@ Transform:
   - {fileID: 1867460767}
   - {fileID: 1940348474}
   m_Father: {fileID: 1018336191}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1692520730
 PrefabInstance:
@@ -15794,7 +15779,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7510303409702474212, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474212, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15839,7 +15824,7 @@ PrefabInstance:
     - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 1943189116}
+      objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474219, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_Name
       value: Enemigo Toxico (1)
@@ -16081,7 +16066,7 @@ PrefabInstance:
     - target: {fileID: 8420427134909396574, guid: cb61615dc8dabfc41a9013813977aa84, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 1644589865}
+      objectReference: {fileID: 0}
     - target: {fileID: 8420427136176114741, guid: cb61615dc8dabfc41a9013813977aa84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.059
@@ -17583,17 +17568,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3746685850999191181, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
   m_PrefabInstance: {fileID: 671663150}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1943189116 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3746685850999191182, guid: fe5a7384391f09e458977afc075f85cf, type: 3}
-  m_PrefabInstance: {fileID: 671663150}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb0b59b82d692a4789a97c2337c5072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1948764482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18428,7 +18402,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7510303409702474212, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474212, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18473,7 +18447,7 @@ PrefabInstance:
     - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 1943189116}
+      objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474219, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_Name
       value: Enemigo Toxico (2)
@@ -18887,7 +18861,7 @@ Transform:
   m_Children:
   - {fileID: 1388450751}
   m_Father: {fileID: 1018336191}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &401863623167006539
 GameObject:

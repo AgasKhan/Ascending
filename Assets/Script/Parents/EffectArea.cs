@@ -12,33 +12,31 @@ public abstract class EffectArea : MyScripts
         public Character affected;
         public Rigidbody absordedRB;
         public Health health;
-        string strTimer;
+        Timer tim;
 
         public void ChckandSubsHealth(float damage)
         {
-            if (affected.MyCooldowns[strTimer].Chck && !go.CompareTags("Death"))
+            if (tim.Chck && !go.CompareTags("Death"))
             {
                 health.Substract(damage);
-                affected.MyCooldowns[strTimer].Reset();
+                tim.Reset();
             }
         }
 
         ~Affected()
         {
-            this.affected.RemoveCooldown(strTimer);
+            TimersManager.Destroy(tim);
         }
 
-        public Affected(GameObject affected, string s,float time=0)
+        public Affected(GameObject affected, float time=0)
         {
-
-            strTimer = s;
-
             go = affected;
             absordedRB = affected.GetComponent<Rigidbody>();
 
+            tim = TimersManager.Create(time);
+
             if(affected.TryGetComponent(out this.affected))
             {
-                this.affected.AddCooldown(strTimer, time);
                 health = this.affected.health;
             }
         }
@@ -92,7 +90,7 @@ public abstract class EffectArea : MyScripts
 
     protected void AddAffected(GameObject g, float n=0)
     {
-        affected.Add(new Affected(g, strTimer, n));
+        affected.Add(new Affected(g, n));
     }
 
 

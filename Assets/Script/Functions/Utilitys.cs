@@ -149,5 +149,23 @@ public static class Utilitys
     }
 
     #endregion
+
+    /// <summary>
+    /// remueve de una lista de FatherPwDbff y ejecuta el off correspondiente
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="pwDbffs"></param>
+    /// <param name="index">indice a eliminar</param>
+    public static void RemoveOff<T>(this List<T> pwDbffs, int index) where T : FatherPwDbff
+    {
+        if (pwDbffs.Count <= index)
+            return;
+
+        var aux = pwDbffs[index];
+
+        pwDbffs.RemoveAt(index);
+
+        aux?.Off();
+    }
 }
 

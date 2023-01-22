@@ -268,14 +268,9 @@ MonoBehaviour:
   scoped: {fileID: 0}
   scopedPoint: {x: 0, y: 0, z: 0}
   interactuable: {fileID: 0}
-  MyCooldowns:
-    pictionaries: []
-  MyObjReferences:
-    pictionaries: []
   ObjectSpawnOnDamage: []
   damage: 10
   power: []
-  lastPower: {fileID: 0}
   actualPower: 0
   input: {x: 0, y: 0, z: 0}
   jumpStrength: 75
@@ -290,6 +285,8 @@ MonoBehaviour:
   dagger: {fileID: 0}
   timeInteractMultiply: 1
   UnlockAtrackt: 0
+  references:
+    version: 1
 --- !u!136 &4064437578242952654
 CapsuleCollider:
   m_ObjectHideFlags: 0

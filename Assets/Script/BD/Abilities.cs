@@ -90,14 +90,12 @@ public static class Abilities
 
 
 
-    public class PowerInit<T> : Ability where T : Powers_FatherPwDbff
+    public class PowerInit<T> : Ability where T : Powers_FatherPwDbff, new()
     {
-
         public override void OnStart()
         {
             GameManager.player.ReplaceFirstPower<T>();
         }
-
     
     }
 

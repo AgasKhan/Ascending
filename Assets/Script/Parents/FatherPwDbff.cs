@@ -1,13 +1,94 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Clase abastracta padre de los poderes y debuffos
 /// </summary>
-abstract public class FatherPwDbff : MonoBehaviour
+[System.Serializable]
+abstract public class FatherPwDbff
 {
     /// <summary>
+    /// Funcion que es llamada cada frame del poder/buffo
+    /// </summary>
+    /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
+    public Action on_Update;
+
+    /// <summary>
+    /// Referencia del character
+    /// </summary>
+    protected Character me;
+
+    int _indexSpawnPool = -1;
+
+    /// <summary>
+    /// Funcion que es llamada cuando se gana el poder/buffo
+    /// </summary>
+    /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
+    public abstract void On();
+
+    /// <summary>
+    /// Funcion que es llamada cuando se pierde el poder/buffo
+    /// </summary>
+    /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
+    public abstract void Off();
+
+
+
+    public void Create(Character me)
+    {
+        this.me = me;
+        On();
+    }
+
+    public FatherPwDbff()
+    {
+        NameClassToIndexCategory();
+    }
+
+    int NameClassToIndexCategory()
+    {
+        if (_indexSpawnPool > 0)
+        {
+            return _indexSpawnPool;
+        }
+
+        string nameClass = GetType().FullName;
+
+        nameClass = nameClass.Substring(0, nameClass.IndexOf('_'));
+
+        _indexSpawnPool = PoolObjects.SrchInCategory(nameClass);
+
+        return _indexSpawnPool;
+    }
+
+    protected Vector2Int SchPowerObject(string name)
+    {
+        return PoolObjects.SrchInCategory(NameClassToIndexCategory(), name);
+    }
+
+    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Vector3 angle)
+    {
+        return PoolObjects.SpawnPoolObject(axis, pos, Quaternion.Euler(angle));
+    }
+
+    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos)
+    {
+        return PoolObjects.SpawnPoolObject(axis, pos, Quaternion.identity);
+    }
+
+    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Quaternion angle, Transform parent=null)
+    {
+        return PoolObjects.SpawnPoolObject(axis, pos, angle, parent);
+    }
+}
+
+
+
+
+/*
+     /// <summary>
     /// Funcion prototipo para crear otras funciones
     /// </summary>
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
@@ -85,57 +166,7 @@ abstract public class FatherPwDbff : MonoBehaviour
         AddKey(id);
     }
 
-    protected Vector2Int SchPowerObject(string name)
-    {
-        return PoolObjects.SrchInCategory(NameClassToIndexCategory(), name);
-    }
 
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos)
-    {
-        return PoolObjects.SpawnPoolObject(axis, pos, Quaternion.identity);
-    }
-
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Vector3 angle)
-    {
-        return PoolObjects.SpawnPoolObject(axis, pos, Quaternion.Euler(angle));
-    }
-
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Quaternion angle)
-    {
-        return PoolObjects.SpawnPoolObject(axis, pos, angle);
-    }
-
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Quaternion angle, Transform parent)
-    {
-        return PoolObjects.SpawnPoolObject(axis, pos, angle, parent);
-    }
-
-    protected GameObject SpawnPowerObject(string name, Vector3 pos)
-    {
-        return PoolObjects.SpawnPoolObject(NameClassToIndexCategory(), name, pos, Quaternion.identity);
-    }
-
-    protected GameObject SpawnPowerObject(string name, Vector3 pos, Vector3 angles)
-    {
-        return PoolObjects.SpawnPoolObject(NameClassToIndexCategory(), name, pos, Quaternion.Euler(angles));
-    }
-
-    protected GameObject SpawnPowerObject(string name, Vector3 pos, Quaternion angles)
-    {
-        return PoolObjects.SpawnPoolObject(NameClassToIndexCategory(), name, pos, angles);
-    }
-
-    protected void SpawnObjRef(Character c ,Vector2Int indexs, Vector3 pos, Vector3 angles)
-    {
-        GameObject g = SpawnPowerObject(indexs, pos, angles);
-
-        AddObjRef(g.name, g, c);
-    }
-
-    protected void SpawnObjRef(Character c,string name, Vector3 pos, Vector3 angles)
-    {
-        AddObjRef(name, SpawnPowerObject(name, pos, angles), c);
-    }
 
 
     private void Update()
@@ -152,3 +183,5 @@ abstract public class FatherPwDbff : MonoBehaviour
         keys.Clear();
     }
 }
+
+ */

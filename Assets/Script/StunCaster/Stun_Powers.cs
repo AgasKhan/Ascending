@@ -6,83 +6,86 @@ public class Stun_Powers : Powers_FatherPwDbff
 {
     [SerializeField]
     Vector2Int Ice;
-    public override void On(Character me)
+    public override void On()
     {
         Ice = SchPowerObject("Ice");
 
         me.AddDebuffToAplicate<Stun_Debuff>();
+
+        on_Update = MyUpdate;
     }
 
-    public override void Off(Character me)
+    public override void Off()
     {
-        base.Off(me);
+        
 
         me.RemoveDebuffToAplicate<Stun_Debuff>();
     }
 
-    public override void Activate(Character me)
+    public override void Activate()
     {
-        me.ActionOnDamage.Add(IceGemerator);
+        me.ActionOnDamage += IceGemerator;
     }
 
     void IceGemerator(Collider item)
     {
-        if (item.gameObject.TryGetComponent(out MoveRb moveRb))
+        if (!item.gameObject.TryGetComponent(out MoveRb moveRb))
         {
+            return;            
+        }
 
-            List<bool> monos = new List<bool>();
+        List<bool> monos = new List<bool>();
 
-            var ice = PoolObjects.SpawnPoolObject(Ice, item.transform.position, Quaternion.identity);
+        var ice = PoolObjects.SpawnPoolObject(Ice, item.transform.position, Quaternion.identity);
 
-            List<Behaviour> monosScript = new List<Behaviour>();
+        List<Behaviour> monosScript = new List<Behaviour>();
 
-            monosScript.AddRange(item.GetComponentsInChildren<Behaviour>());
+        monosScript.AddRange(item.GetComponentsInChildren<Behaviour>());
 
-            for (int i = monosScript.Count - 1; i >= 0; i--)
+        for (int i = monosScript.Count - 1; i >= 0; i--)
+        {
+            if (!monosScript[i].CompareTag("Dagger"))
             {
-                if (!monosScript[i].CompareTag("Dagger"))
-                {
-                    monos.Add(monosScript[i]);
+                monos.Add(monosScript[i]);
 
-                    monosScript[i].enabled = false;
-                }
-                else
-                {
-                    monosScript.RemoveAt(i);
-                }
-
+                monosScript[i].enabled = false;
+            }
+            else
+            {
+                monosScript.RemoveAt(i);
             }
 
-            TimersManager.Create(2,
-                () =>
+        }
+
+        TimersManager.Create(2,
+            () =>
+            {
+                moveRb.kinematic = true;
+            });
+
+
+        TimersManager.Create(12,
+            () =>
+            {
+                foreach (Transform subitem in ice.transform)
                 {
-                    moveRb.kinematic = true;
-                });
+                    subitem.SetParent(null);
+                }
 
-
-            TimersManager.Create(12,
-                () =>
+                for (int i = 0; i < monosScript.Count; i++)
                 {
-                    foreach (Transform subitem in ice.transform)
-                    {
-                        subitem.SetParent(null);
-                    }
+                    monosScript[i].enabled = monos[i];
+                }
 
-                    for (int i = 0; i < monosScript.Count; i++)
-                    {
-                        monosScript[i].enabled = monos[i];
-                    }
-
-                    moveRb.kinematic = false;
+                moveRb.kinematic = false;
 
                 ice.gameObject.SetActive(false);
             });
 
-            ice.transform.parent = item.transform;
-        }
+        ice.transform.parent = item.transform;
     }
 
-    void MyUpdatePlayer(Character me)
+    void MyUpdatePlayer()
     {
 
         if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
@@ -94,16 +97,9 @@ public class Stun_Powers : Powers_FatherPwDbff
             MainHud.ReticulaPlay("Default");
         }
     }
-    void MyUpdate(Character me)
+    void MyUpdate()
     {
         if (me.CompareTag("Player"))
-            MyUpdatePlayer(me);
+            MyUpdatePlayer();
     }
-
-    private void Start()
-    {
-        on_Update = MyUpdate;
-    }
-
-
 }

@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7354820876959816208}
-  - component: {fileID: 7354820876959816210}
-  - component: {fileID: 7354820876959816211}
   - component: {fileID: 8640046072266232227}
   m_Layer: 0
   m_Name: ToxicManager
@@ -34,49 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7354820876959816210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7354820876959816209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa48bfd611f656469a05bf92d8963b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chrAffected: []
-  _indexSpawnPool: -1
-  dbffTimer: 6
-  dbffTimerName: toxicTimer
-  particlesName: {fileID: 4796155192279286098, guid: cc1373fd61803d049a78f794f84a7c64, type: 3}
-  particles: {x: 0, y: 0}
-  _toxineDameg: 2
---- !u!114 &7354820876959816211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7354820876959816209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb0b59b82d692a4789a97c2337c5072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chrAffected: []
-  _indexSpawnPool: -1
-  ui:
-    GeneralIcon: {fileID: 21300000, guid: d4ce7013376fa824f8251cb7aaa6b544, type: 3}
-    ActiveIcon: {fileID: 21300000, guid: 2e3b2a50ac31bf543a32d4afc5d3b880, type: 3}
-    generalText: 'Active: Toxic smoke
-
-      Buff: More Jump Strenght
-
-      Debuff:
-      Toxic damage'
-    activeText: 'Next attack: Create <color=green> Toxic Smoke </color>'
 --- !u!114 &8640046072266232227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,9 +98,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
+      propertyPath: power.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 7354820876959816211}
+      objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474219, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: m_Name
       value: Enemigo Toxico

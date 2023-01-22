@@ -7,32 +7,14 @@ public class Stun_Debuff : Debuff_FatherPwDbff
     [SerializeField] 
     float _stunDamage;
 
-    protected override void Aplicate(Character a)
+    public override void On()
     {
-        on_Update = MyUpdate;
-
-        DeAplicate = MyDeaplicate;
-
-        a.health.Substract(_stunDamage);
-
-        print(a.name + " ha sido stuneado");
-        a.movement.isDisable = true;
+        me.health.Substract(_stunDamage);
+        me.movement.isDisable = true;
     }
 
-
-    void MyUpdate(Character a)
+    public override void Off()
     {
-        if (a.MyCooldowns[dbffTimerName].Chck)
-        {
-            Remove(a);
-        }
+        me.movement.isDisable = false;
     }
-
-    void MyDeaplicate (Character b)
-    {
-        b.movement.isDisable = false;
-        print("El enemigo ha dejado de ser stuneado");
-    }
-
-
 }

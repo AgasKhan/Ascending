@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8520502754086293963}
-  - component: {fileID: 8520502754086293961}
-  - component: {fileID: 8520502754086293960}
   - component: {fileID: 1597261450050165942}
   m_Layer: 0
   m_Name: VortexManager
@@ -34,43 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8520502754086293961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520502754086293962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef712c3ddb4d35541b4b910df2eb5aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chrAffected: []
-  _indexSpawnPool: -1
-  dbffTimer: 5
-  dbffTimerName: vortexTimer
-  particlesName: {fileID: 3084482091828597660, guid: ba9f0c11ab7c21a45b5ea43fd9e855e6, type: 3}
-  particles: {x: 0, y: 0}
---- !u!114 &8520502754086293960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520502754086293962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95909d65c6b7e53428743e486948bacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chrAffected: []
-  _indexSpawnPool: -1
-  ui:
-    GeneralIcon: {fileID: 21300000, guid: f29690972386f5d4ea01a94d7459af7e, type: 3}
-    ActiveIcon: {fileID: 21300000, guid: 21638c72125abae488f9cef260970b28, type: 3}
-    generalText: "Buff:\nDebuff: \nActive: Vortex"
-    activeText: 'Next Atack: Create a <color=purple> vortex </color>'
 --- !u!114 &1597261450050165942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +56,7 @@ PrefabInstance:
     - target: {fileID: 4480580260090588772, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
       propertyPath: power.Array.data[0]
       value: 
-      objectReference: {fileID: 8520502754086293960}
+      objectReference: {fileID: 0}
     - target: {fileID: 4480580260090588776, guid: bc0935878b1fd5b40bab5fd46e32d422, type: 3}
       propertyPath: m_Name
       value: Enemigo Vortex
