@@ -338,7 +338,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
         power.Insert(i, powerStatic);
 
-        MainHud.RefreshPowersUI();
+        if(CompareTag("Player"))
+            MainHud.RefreshPowersUI();
     }
 
     /// <summary>
@@ -530,7 +531,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
             {
                 debuffList.RemoveOff(i);
             }
-                
+        }
+
+
+        for (int i = power.Count - 1; i >= 0; i--)
+        {
+            power[i].on_Update?.Invoke();
         }
     }
 

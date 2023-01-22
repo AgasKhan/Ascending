@@ -34,8 +34,6 @@ abstract public class FatherPwDbff
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
     public abstract void Off();
 
-
-
     public void Create(Character me)
     {
         this.me = me;

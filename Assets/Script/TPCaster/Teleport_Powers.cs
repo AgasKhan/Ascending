@@ -30,19 +30,21 @@ public class Teleport_Powers : Powers_FatherPwDbff
         on_Update = MyUpdate;
 
         if (me.CompareTag("Player"))
-            on_Update += MyUpdatePlayer;
-
+        {
+            on_Update += MyPlayer;
+        }
+            
 
         layerDash = me.movement.layerDash;
+
         if (LayerName == null || LayerName == "")
         {
             LayerName = "ObjectsAndCharacterNoCollision";
         }
+
         me.movement.layerDash = LayerName;
 
         tim = TimersManager.Create(1);
-
-
     }
 
     void TP(Collider col)
@@ -89,7 +91,7 @@ public class Teleport_Powers : Powers_FatherPwDbff
 
     }
 
-    void MyUpdatePlayer()
+    void MyPlayer()
     {       
         if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
         {
