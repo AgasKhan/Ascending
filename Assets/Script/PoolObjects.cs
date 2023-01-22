@@ -5,27 +5,33 @@ using UnityEngine;
 public class PoolObjects : MonoBehaviour
 {
     [System.Serializable]
-    public class ObjectSpawn
+    public class ObjectPools
     {
         [System.Serializable]
         public class Pool
         {
+            [Header("Configuracion")]
+
+            public GameObject prefabReference;
+
+            public MonoBehaviour script;
+
+            public int poolNumber;
+
+            [Header("Parte interna")]
+
             public int index;
 
             [SerializeField]
-            public GameObject[] arrayObjects;
+            public Object[] arrayObjects;
 
             public Pool(int i)
             {
-                arrayObjects = new GameObject[i];
+                arrayObjects = new Object[i];
             }
         }
 
         public string classType;
-
-        public int poolNumber;
-
-        public GameObject[] prefabReference;
 
         public Pool[] pool;
         
@@ -36,9 +42,9 @@ public class PoolObjects : MonoBehaviour
     public bool eneabled = true;
 
     [SerializeField]
-    ObjectSpawn[] powerObjects;
+    ObjectPools[] powerObjects;
 
-    static public ObjectSpawn[] pwObj
+    static public ObjectPools[] pwObj
     {
         get
         {
@@ -93,9 +99,9 @@ public class PoolObjects : MonoBehaviour
     {
         Vector2Int indexsFind = new Vector2Int(index, -1);
 
-        for (int ii = 0; ii < instance.powerObjects[index].prefabReference.Length; ii++)
+        for (int ii = 0; ii < instance.powerObjects[index].pool.Length; ii++)
         {
-            if (instance.powerObjects[index].prefabReference[ii].name == powerObject)
+            if (instance.powerObjects[index].pool[ii].prefabReference.name == powerObject)
             {
                 indexsFind.y = ii;
                 return indexsFind;
@@ -110,21 +116,21 @@ public class PoolObjects : MonoBehaviour
 
     #region "Spawn" pool objects
 
-    static public GameObject SpawnPoolObject(int categoryIndex, string powerObject, Vector3 pos, Quaternion angles)
+    static public Object SpawnPoolObject(int categoryIndex, string powerObject, Vector3 pos, Quaternion angles)
     {
         Vector2Int indexs = SrchInCategory(categoryIndex, powerObject);
 
         return SpawnPoolObject(indexs, pos, angles);
     }
 
-    static public GameObject SpawnPoolObject(string type, string powerObject, Vector3 pos, Quaternion angles)
+    static public Object SpawnPoolObject(string type, string powerObject, Vector3 pos, Quaternion angles)
     {
         Vector2Int indexs = SrchInCategory(type, powerObject);
 
         return SpawnPoolObject(indexs, pos, angles);
     }
 
-    static public GameObject SpawnPoolObject(Vector2Int indexs, Vector3 pos, Quaternion angles, Transform padre = null)
+    static public Object SpawnPoolObject(Vector2Int indexs, Vector3 pos, Quaternion angles, Transform padre = null)
     {
 
         if (indexs.x < 0)
@@ -138,21 +144,32 @@ public class PoolObjects : MonoBehaviour
             return null;
         }
 
-        ObjectSpawn.Pool pool = pwObj[indexs.x].pool[indexs.y];
+        ObjectPools.Pool pool = pwObj[indexs.x].pool[indexs.y];
 
         pool.index++;
 
         if (pool.index >= pool.arrayObjects.Length)
             pool.index = 0;
 
-        GameObject poolObject = pool.arrayObjects[pool.index];
+        Transform transformObject;
 
-        poolObject.transform.parent = padre;
-        poolObject.transform.localPosition = pos;
-        poolObject.transform.localRotation = angles;
-        poolObject.SetActive(true);
+        if (pool.script != null)
+        {
+            MonoBehaviour poolObject = (MonoBehaviour)pool.arrayObjects[pool.index];
+            transformObject = poolObject.transform;
+        }
+        else
+        {
+            GameObject poolObject = (GameObject)pool.arrayObjects[pool.index];
+            transformObject = poolObject.transform;
+        }
 
-        return poolObject;
+        transformObject.parent = padre;
+        transformObject.localPosition = pos;
+        transformObject.localRotation = angles;
+        transformObject.gameObject.SetActive(true);
+
+        return pool.arrayObjects[pool.index];
     }
 
     #endregion
@@ -164,28 +181,38 @@ public class PoolObjects : MonoBehaviour
         //recorro mi array de categorias de objetos
         for (int i = 0; i < powerObjects.Length; i++)
         {
-            //en cada uno creo un array de pools igual a la cantidad de prefabs que estos contienen
-            powerObjects[i].pool = new ObjectSpawn.Pool[powerObjects[i].prefabReference.Length];
-
             //guardo la referencia del array de pool para trabajar mas comodo
-            ObjectSpawn.Pool[] pul = powerObjects[i].pool;
+            ObjectPools.Pool[] pul = powerObjects[i].pool;
 
             //recorro pool
             for (int j = 0; j < pul.Length; j++)
             {
                 //creo un object pool en cada uno, en la constructora defino cuantos elementos va a contener el pool
-                pul[j] = new ObjectSpawn.Pool(powerObjects[i].poolNumber);
+                pul[j].arrayObjects = new Object[pul[j].poolNumber];
 
                 //lo recorro para instanciarlos y los apago inmediatamente
                 for (int k = 0; k < pul[j].arrayObjects.Length; k++)
                 {
-                    pul[j].arrayObjects[k] = Instantiate(powerObjects[i].prefabReference[j]);
+                    if(pul[j].script!=null)
+                    {
+                        pul[j].arrayObjects[k] = (MonoBehaviour)Instantiate(pul[j].prefabReference).GetComponent(pul[j].script.GetType());
 
-                    pul[j].arrayObjects[k].name = powerObjects[i].prefabReference[j].name;
+                        pul[j].arrayObjects[k].name = pul[j].prefabReference.name;
 
-                    pul[j].arrayObjects[k].SetActive(false);
+                        ((MonoBehaviour)pul[j].arrayObjects[k]).gameObject.SetActive(false);
 
-                    GameManager.AddTimeController(pul[j].arrayObjects[k].transform);
+                        GameManager.AddTimeController(((MonoBehaviour)pul[j].arrayObjects[k]).transform);
+                    }
+                    else
+                    {
+                        pul[j].arrayObjects[k] = Instantiate(pul[j].prefabReference);
+
+                        pul[j].arrayObjects[k].name = pul[j].prefabReference.name;
+
+                        ((GameObject)pul[j].arrayObjects[k]).SetActive(false);
+
+                        GameManager.AddTimeController(((GameObject)pul[j].arrayObjects[k]).transform);
+                    }
                 }
             }
         }

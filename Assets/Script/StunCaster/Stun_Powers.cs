@@ -36,7 +36,7 @@ public class Stun_Powers : Powers_FatherPwDbff
 
         List<bool> monos = new List<bool>();
 
-        var ice = PoolObjects.SpawnPoolObject(Ice, item.transform.position, Quaternion.identity);
+        var ice = (GameObject)PoolObjects.SpawnPoolObject(Ice, item.transform.position, Quaternion.identity);
 
         List<Behaviour> monosScript = new List<Behaviour>();
 

@@ -6,7 +6,12 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
     /// <summary>
     /// Referencia para del indice del objeto que contenga las particulas (prefab)
     /// </summary>
-    public Vector2Int particles;
+    public GameObject particles;
+
+    /// <summary>
+    /// Referencia para del indice del objeto que contenga las particulas (prefab)
+    /// </summary>
+    public string particlesString;
 
     /// <summary>
     /// referencia del timer interno del debuff
@@ -24,7 +29,15 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
         timer = TimersManager.Create(6);
 
         Create(me);
+
+        if(particlesString!=null && particlesString!="")
+        {
+            particles = (GameObject)SpawnPowerObject(particlesString, Vector3.zero, Quaternion.identity, me.transform);
+        }
+            
     }
+
+
 }
 
 /*
@@ -93,8 +106,6 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
             chrAffected.Add(p);
 
             Aplicate(p);
-
- 
         }
         else
         {

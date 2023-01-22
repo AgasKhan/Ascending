@@ -125,9 +125,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     {
         //Proyectile proyScript = Instantiate(proyectile, transform.position + transform.forward, transform.rotation);
 
-        GameObject aux = PoolObjects.SpawnPoolObject(0, proyectile.name, transform.position + transform.forward, Quaternion.identity);
-
-        Proyectile proyScript = aux.GetComponent<Proyectile>();
+        Proyectile proyScript = (Proyectile)PoolObjects.SpawnPoolObject(0, proyectile.name, transform.position + transform.forward, Quaternion.identity);
 
         proyScript.damage.SetWithCharacter(this);
 
@@ -135,14 +133,13 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
         proyScript.MoveRb.Move((player.transform.position - transform.position));
 
-        GameManager.DeActivateRetarded(aux, 3);
+        GameManager.DeActivateRetarded(proyScript.gameObject, 3);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + transform.forward, 0.5f);
-
     }
 
     protected void AttackMelee()

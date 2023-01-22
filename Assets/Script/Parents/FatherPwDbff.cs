@@ -66,17 +66,22 @@ abstract public class FatherPwDbff
         return PoolObjects.SrchInCategory(NameClassToIndexCategory(), name);
     }
 
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Vector3 angle)
+    protected UnityEngine.Object SpawnPowerObject(string name, Vector3 pos, Quaternion angle, Transform parent = null)
+    {
+        return PoolObjects.SpawnPoolObject(PoolObjects.SrchInCategory(NameClassToIndexCategory(), name), pos, angle, parent);
+    }
+
+    protected UnityEngine.Object SpawnPowerObject(Vector2Int axis, Vector3 pos, Vector3 angle)
     {
         return PoolObjects.SpawnPoolObject(axis, pos, Quaternion.Euler(angle));
     }
 
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos)
+    protected UnityEngine.Object SpawnPowerObject(Vector2Int axis, Vector3 pos)
     {
         return PoolObjects.SpawnPoolObject(axis, pos, Quaternion.identity);
     }
 
-    protected GameObject SpawnPowerObject(Vector2Int axis, Vector3 pos, Quaternion angle, Transform parent=null)
+    protected UnityEngine.Object SpawnPowerObject(Vector2Int axis, Vector3 pos, Quaternion angle, Transform parent=null)
     {
         return PoolObjects.SpawnPoolObject(axis, pos, angle, parent);
     }
