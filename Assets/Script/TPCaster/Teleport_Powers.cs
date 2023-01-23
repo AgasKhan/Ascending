@@ -24,17 +24,12 @@ public class Teleport_Powers : Powers_FatherPwDbff
     {
         on_Update = MyUpdate;
 
-        stateButton.on =
-            (number) =>
-            {
-                me.ActionOnDamage += TP;
-            };
+        stateButton.on = (number) => me.ActionOnDamage += TP;
 
         if (me.CompareTag("Player"))
         {
             on_Update += MyPlayer;
         }
-            
 
         layerDash = me.movement.layerDash;
 
