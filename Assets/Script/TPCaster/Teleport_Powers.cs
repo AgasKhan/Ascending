@@ -14,20 +14,21 @@ public class Teleport_Powers : Powers_FatherPwDbff
 
     Timer tim;
 
-    public override void Activate()
-    {
-        me.ActionOnDamage += TP;
-    }
-
-    public override void Off()
+    public override void Off(Character me)
     {
         me.movement.layerDash = layerDash;
         MainHud.ReticulaPlay("Default");
     }
 
-    public override void On()
+    public override void On(Character me)
     {
         on_Update = MyUpdate;
+
+        stateButton.on =
+            (number) =>
+            {
+                me.ActionOnDamage += TP;
+            };
 
         if (me.CompareTag("Player"))
         {
@@ -91,7 +92,7 @@ public class Teleport_Powers : Powers_FatherPwDbff
 
     }
 
-    void MyPlayer()
+    void MyPlayer(Character me)
     {       
         if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
         {
@@ -103,7 +104,7 @@ public class Teleport_Powers : Powers_FatherPwDbff
         }
     }
 
-    void MyUpdate()
+    void MyUpdate(Character me)
     {
         if(me.movement.dash)
         {

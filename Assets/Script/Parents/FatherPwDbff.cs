@@ -7,18 +7,13 @@ using System;
 /// Clase abastracta padre de los poderes y debuffos
 /// </summary>
 [System.Serializable]
-abstract public class FatherPwDbff
+abstract public class FatherPwDbff : IState<Character>
 {
     /// <summary>
     /// Funcion que es llamada cada frame del poder/buffo
     /// </summary>
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
-    public Action on_Update;
-
-    /// <summary>
-    /// Referencia del character
-    /// </summary>
-    protected Character me;
+    public Action<Character> on_Update;
 
     int _indexSpawnPool = -1;
 
@@ -26,18 +21,21 @@ abstract public class FatherPwDbff
     /// Funcion que es llamada cuando se gana el poder/buffo
     /// </summary>
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
-    public abstract void On();
+    public abstract void On(Character me);
 
     /// <summary>
     /// Funcion que es llamada cuando se pierde el poder/buffo
     /// </summary>
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
-    public abstract void Off();
+    public abstract void Off(Character me);
 
-    public void Create(Character me)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="param"></param>
+    public void Update(Character me)
     {
-        this.me = me;
-        On();
+        on_Update?.Invoke(me);
     }
 
     public FatherPwDbff()
@@ -84,7 +82,7 @@ abstract public class FatherPwDbff
     protected UnityEngine.Object SpawnPowerObject(Vector2Int axis, Vector3 pos, Quaternion angle, Transform parent=null)
     {
         return PoolObjects.SpawnPoolObject(axis, pos, angle, parent);
-    }
+    }    
 }
 
 

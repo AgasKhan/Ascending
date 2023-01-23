@@ -12,5 +12,7 @@ abstract public class Powers_FatherPwDbff : FatherPwDbff
     /// Funcion que sera llamada cuando se lance la habilidad
     /// </summary>
     /// <param name="me">character duenio de la habilidad</param>
-    abstract public void Activate();
+    public State<float> stateButton;
 }
+
+

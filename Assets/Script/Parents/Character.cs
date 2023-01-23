@@ -298,16 +298,31 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
     #region Powers
 
-    /// <summary>
-    /// Activa el poder con el indice actual
-    /// </summary>
-    public void ActivePower()
+    void ActivePower(System.Action<float> action, float f)
     {
         if (power.Count > 0)
         {
             PowerSound();
-            power[actualPower].Activate();
+            action?.Invoke(f);
         }
+    }
+
+    /// <summary>
+    /// Activa el poder con el indice actual
+    /// </summary>
+    public void ActivePowerDown()
+    {
+        ActivePower(power[actualPower].stateButton.on,0);
+    }
+
+    public void ActivePowerPress(float f)
+    {
+        ActivePower(power[actualPower].stateButton.update, 0);
+    }
+
+    public void ActivePowerUp(float f)
+    {
+        ActivePower(power[actualPower].stateButton.off, 0);
     }
 
     /// <summary>
@@ -334,7 +349,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <param name="powerStatic"></param>
     void AddPower(Powers_FatherPwDbff powerStatic, int i =0)
     {
-        powerStatic.Create(this);
+        powerStatic.On(this);
 
         power.Insert(i, powerStatic);
 
@@ -390,7 +405,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     {
         if (i >= 0 && i < power.Count && power.Count > 0)
         {
-            power.RemoveOff(i);
+            power.RemoveOff(i, this);
         }
 
         if (actualPower >= power.Count)
@@ -525,18 +540,18 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
         for (int i = debuffList.Count-1; i >= 0 ; i--)
         {
-            debuffList[i].on_Update?.Invoke();
+            debuffList[i].Update(this);
 
             if (debuffList[i].timer.Chck)
             {
-                debuffList.RemoveOff(i);
+                debuffList.RemoveOff(i, this);
             }
         }
 
 
         for (int i = power.Count - 1; i >= 0; i--)
         {
-            power[i].on_Update?.Invoke();
+            power[i].Update(this);
         }
     }
 

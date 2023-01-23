@@ -6,25 +6,21 @@ public class Stun_Powers : Powers_FatherPwDbff
 {
     [SerializeField]
     Vector2Int Ice;
-    public override void On()
+    public override void On(Character me)
     {
         Ice = SchPowerObject("Ice");
 
+        stateButton.on = (number)=> me.ActionOnDamage += IceGemerator;
+           
         me.AddDebuffToAplicate<Stun_Debuff>();
 
-        on_Update = MyUpdate;
+        if(me.CompareTag("Player"))
+            on_Update = MyUpdatePlayer;
     }
 
-    public override void Off()
+    public override void Off(Character me)
     {
-        
-
         me.RemoveDebuffToAplicate<Stun_Debuff>();
-    }
-
-    public override void Activate()
-    {
-        me.ActionOnDamage += IceGemerator;
     }
 
     void IceGemerator(Collider item)
@@ -85,7 +81,7 @@ public class Stun_Powers : Powers_FatherPwDbff
         ice.transform.parent = item.transform;
     }
 
-    void MyUpdatePlayer()
+    void MyUpdatePlayer(Character me)
     {
 
         if (me.scoped != null && me.scoped.gameObject.CompareTags("rb"))
@@ -96,10 +92,5 @@ public class Stun_Powers : Powers_FatherPwDbff
         {
             MainHud.ReticulaPlay("Default");
         }
-    }
-    void MyUpdate()
-    {
-        if (me.CompareTag("Player"))
-            MyUpdatePlayer();
     }
 }

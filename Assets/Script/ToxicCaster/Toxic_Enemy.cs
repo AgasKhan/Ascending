@@ -37,7 +37,7 @@ public class Toxic_Enemy : Enemy_Character
         (
            new Pictionarys<string, AnimatorController.PrototypeFunc>
            {
-               {"power", ActivePower},
+               {"power", ActivePowerDown},
                {"shoot", Shoot},
                { "offMesh", OffMesh}
 

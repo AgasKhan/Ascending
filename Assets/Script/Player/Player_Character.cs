@@ -116,7 +116,7 @@ public class Player_Character : Character
            {
                { "attack",AttackDist },
                { "take",flag },
-               { "power",ActivePower },
+               { "power",ActivePowerDown },
                { "interact", flag },
                { "offMesh", OffMesh },
                { "land", LandSound },

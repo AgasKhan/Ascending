@@ -156,7 +156,7 @@ public static class Utilitys
     /// <typeparam name="T"></typeparam>
     /// <param name="pwDbffs"></param>
     /// <param name="index">indice a eliminar</param>
-    public static void RemoveOff<T>(this List<T> pwDbffs, int index) where T : FatherPwDbff
+    public static void RemoveOff<T>(this List<T> pwDbffs, int index, Character me) where T : FatherPwDbff
     {
         if (pwDbffs.Count <= index)
             return;
@@ -165,7 +165,7 @@ public static class Utilitys
 
         pwDbffs.RemoveAt(index);
 
-        aux?.Off();
+        aux?.Off(me);
     }
 }
 
