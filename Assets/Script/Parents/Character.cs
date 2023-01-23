@@ -330,8 +330,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// </summary>
     public void NextPower()
     {
+        power[actualPower].Off(this);
+
         if (power.Count - 1 > actualPower)
             actualPower++;
+
+        power[actualPower].On(this);
     }
 
     /// <summary>
@@ -339,8 +343,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// </summary>
     public void PreviosPower()
     {
+        power[actualPower].Off(this);
+
         if (actualPower > 0 && power.Count > 0)
             actualPower--;
+
+        power[actualPower].On(this);
     }
 
     /// <summary>
@@ -349,12 +357,14 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <param name="powerStatic"></param>
     void AddPower(Powers_FatherPwDbff powerStatic, int i =0)
     {
-        powerStatic.On(this);
+        power[actualPower].Off(this);
 
         power.Insert(i, powerStatic);
 
         if(CompareTag("Player"))
             MainHud.RefreshPowersUI();
+
+        power[actualPower].On(this);
     }
 
     /// <summary>
@@ -417,6 +427,9 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         {
             actualPower++;
         }
+
+        if(power[actualPower]!=null)
+            power[actualPower].On(this);
     }
 
     /// <summary>
@@ -549,10 +562,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         }
 
 
-        for (int i = power.Count - 1; i >= 0; i--)
-        {
-            power[i].Update(this);
-        }
+        power[actualPower].Update(this);
     }
 
     void MyFixedUpdate()
