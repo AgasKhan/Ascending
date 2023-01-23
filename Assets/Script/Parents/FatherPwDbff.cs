@@ -35,7 +35,7 @@ abstract public class FatherPwDbff : IState<Character>
     /// <param name="param"></param>
     public void Update(Character me)
     {
-        on_Update?.Invoke(me);
+        on_Update(me);
     }
 
     public FatherPwDbff()

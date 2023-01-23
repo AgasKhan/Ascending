@@ -116,7 +116,7 @@ public static class Utilitys
             save(final());
         };
 
-        tim = TimersManager.Create(seconds, null, update, end, true, true);
+        tim = TimersManager.Create(seconds, update, end, true, true);
 
         return (CompleteRoutine)tim;
     }
@@ -143,7 +143,7 @@ public static class Utilitys
 
         };
 
-        tim = TimersManager.Create(1, null, update, end, true, true);
+        tim = TimersManager.Create(1, update, end, true, true);
 
         return (CompleteRoutine)tim;
     }
@@ -166,6 +166,18 @@ public static class Utilitys
         pwDbffs.RemoveAt(index);
 
         aux?.Off(me);
+    }
+
+
+    public static void AddSingleAction(ref System.Action thisAction, System.Action action)
+    {
+        foreach (var item in thisAction.GetInvocationList())
+        {
+            if (item.Method.Name == action.Method.Name)
+                return;
+        }
+
+        thisAction += action;
     }
 }
 

@@ -85,6 +85,11 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     public Powers_FatherPwDbff lastPower;
 
     /// <summary>
+    /// diccionario de updates
+    /// </summary>
+    public Pictionarys<System.Type, System.Action<Character>> handlerUpdates = new Pictionarys<System.Type, System.Action<Character>>();
+
+    /// <summary>
     /// indice del poder actual
     /// </summary>
     public int actualPower;
@@ -317,12 +322,53 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
     public void ActivePowerPress(float f)
     {
-        ActivePower(power[actualPower].stateButton.update, 0);
+        ActivePower(power[actualPower].stateButton.update, f);
     }
 
     public void ActivePowerUp(float f)
     {
-        ActivePower(power[actualPower].stateButton.off, 0);
+        ActivePower(power[actualPower].stateButton.off, f);
+    }
+
+    public void SwitchPower(int i = 0)
+    {
+        if (power.Count == 0)
+            return;
+
+        if(lastPower!=null)
+        {
+            lastPower.Off(this);
+            if (lastPower.on_Update!=null)
+            {
+                handlerUpdates.Remove(lastPower.GetType());
+                if (handlerUpdates.count <= 0)
+                    MyUpdates -= HandlerUpdates;
+            }
+                
+        }
+
+        actualPower = i;
+
+        if (actualPower >= power.Count)
+        {
+            actualPower = power.Count - 1;
+        }
+
+        if (actualPower < 0)
+        {
+            actualPower=0;
+        }
+
+        power[actualPower].On(this);
+        if(power[actualPower].on_Update!=null)
+        { 
+            handlerUpdates.Add(power[actualPower].GetType(), power[actualPower].on_Update);
+            Utilitys.AddSingleAction(ref MyUpdates, HandlerUpdates);
+        }
+            
+
+
+        lastPower = power[actualPower];
     }
 
     /// <summary>
@@ -330,12 +376,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// </summary>
     public void NextPower()
     {
-        power[actualPower].Off(this);
-
         if (power.Count - 1 > actualPower)
-            actualPower++;
-
-        power[actualPower].On(this);
+            SwitchPower(actualPower + 1);
     }
 
     /// <summary>
@@ -343,12 +385,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// </summary>
     public void PreviosPower()
     {
-        power[actualPower].Off(this);
-
         if (actualPower > 0 && power.Count > 0)
-            actualPower--;
-
-        power[actualPower].On(this);
+            SwitchPower(actualPower-1);
     }
 
     /// <summary>
@@ -357,14 +395,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <param name="powerStatic"></param>
     void AddPower(Powers_FatherPwDbff powerStatic, int i =0)
     {
-        power[actualPower].Off(this);
-
         power.Insert(i, powerStatic);
 
         if(CompareTag("Player"))
             MainHud.RefreshPowersUI();
 
-        power[actualPower].On(this);
+        SwitchPower();
     }
 
     /// <summary>
@@ -418,18 +454,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
             power.RemoveOff(i, this);
         }
 
-        if (actualPower >= power.Count)
-        {
-            actualPower = power.Count - 1;
-        }
-
-        if (actualPower < 0)
-        {
-            actualPower++;
-        }
-
-        if(power[actualPower]!=null)
-            power[actualPower].On(this);
+        SwitchPower();
     }
 
     /// <summary>
@@ -470,6 +495,13 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         aux.Instance(this);
 
         debuffList.Add(aux);
+
+        if (aux.on_Update != null)
+            handlerUpdates.Add(aux.GetType(), aux.on_Update);
+
+        Utilitys.AddSingleAction(ref MyUpdates, HandlerUpdates);
+        Utilitys.AddSingleAction(ref MyUpdates, DebuffUpdates);
+        
     }
 
     #endregion
@@ -547,22 +579,37 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         
     }
 
+    void HandlerUpdates()
+    {
+        foreach (var item in handlerUpdates)
+        {
+            item.value(this);
+        }
+    }
+
+    void DebuffUpdates()
+    {
+        for (int i = debuffList.Count - 1; i >= 0; i--)
+        {
+            if (debuffList[i].timer.Chck)
+            {
+                if (debuffList[i].on_Update != null)
+                    handlerUpdates.Remove(debuffList[i].GetType());
+
+                debuffList.RemoveOff(i, this);
+
+                if (debuffList.Count == 0)
+                    MyUpdates -= DebuffUpdates;
+
+                if (handlerUpdates.count <= 0)
+                    MyUpdates -= HandlerUpdates;
+            }
+        }
+    }
+
     void MyUpdate()
     {
         RefreshAnims();
-
-        for (int i = debuffList.Count-1; i >= 0 ; i--)
-        {
-            debuffList[i].Update(this);
-
-            if (debuffList[i].timer.Chck)
-            {
-                debuffList.RemoveOff(i, this);
-            }
-        }
-
-
-        power[actualPower].Update(this);
     }
 
     void MyFixedUpdate()

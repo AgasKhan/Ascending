@@ -47,9 +47,9 @@ public class TimersManager : MonoBehaviour
     /// <param name="destroy"></param>
     /// <param name="unscaled"></param>
     /// <returns></returns>
-    public static CompleteRoutine Create(float totTime, Action start, Action update, Action end, bool destroy = true, bool unscaled = false)
+    public static CompleteRoutine Create(float totTime, Action update, Action end, bool destroy = true, bool unscaled = false)
     {
-        CompleteRoutine newTimer = new CompleteRoutine(totTime, start, update, end, destroy, unscaled);
+        CompleteRoutine newTimer = new CompleteRoutine(totTime, update, end, destroy, unscaled);
         instance.timersList.Add(newTimer);
         return newTimer;
     }
@@ -293,15 +293,9 @@ public class Routine : Timer
 [System.Serializable]
 public class CompleteRoutine : Routine
 {
-    Action start;
+
     Action update;
     public bool pauseRoutine;
-
-    public override void Reset()
-    {
-        base.Reset();
-        start?.Invoke();
-    }
 
     /// <summary>
     /// funcion que ejecutara de forma automatica cada frame
@@ -325,11 +319,9 @@ public class CompleteRoutine : Routine
     /// <param name="update"></param>
     /// <param name="end"></param>
     /// <param name="destroy"></param>
-    public CompleteRoutine(float timer, Action start, Action update, Action end, bool destroy = true, bool unscaled = false) : base(timer, end, destroy)
+    public CompleteRoutine(float timer, Action update, Action end, bool destroy = true, bool unscaled = false) : base(timer, end, destroy)
     {
-        this.start = start;
         this.update = update;
-        start?.Invoke();
         _unscaled = unscaled;
     }
 }
