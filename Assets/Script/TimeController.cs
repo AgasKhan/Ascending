@@ -38,6 +38,8 @@ public class TimeController
         Utilitys.LerpInTime(volume.weight, 0f, 1, Mathf.Lerp, (weight) => { volume.weight = weight; });
         MainHud.RestoreOriginalColorWithFade(1, "Effect");
         HealthUI_HealthCh.instance.RefreshHealth(GameManager.player.health.Percentage());
+
+        GameManager.player.fsmAiming.SwitchState(GameManager.player.fsmAiming.noAiming);
     }
 
     public static void Awake()
