@@ -116,11 +116,13 @@ MonoBehaviour:
   - name: Utilitys
     basePools:
     - prefab: {fileID: 3919127826687303864, guid: c0704024b8a360f48b34232b40316964, type: 3}
-      utilityRefence: []
+      utilityRefence:
+      - {fileID: 5980640367385784785, guid: c0704024b8a360f48b34232b40316964, type: 3}
       amount: 5
       pool: []
     - prefab: {fileID: 4415753222827290869, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
-      utilityRefence: []
+      utilityRefence:
+      - {fileID: 4979721168871178402, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
       amount: 10
       pool: []
   - name: Toxine
