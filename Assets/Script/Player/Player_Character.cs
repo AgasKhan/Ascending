@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Player_Character : Character
+public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
 {
     [Space]
     [Header("Player propertys")]
@@ -11,36 +11,31 @@ public class Player_Character : Character
     public Float_KnifeElements floatElements;
     public Attack_KnifeElements attackElements;
     public CameraParent cameraScript;
-
     public Dagger_Proyectile dagger;
 
     public float timeInteractMultiply=1;
 
     public bool UnlockAtrackt;
 
-    float timePressed;
-
+    public int actualDaggers;
     public int totalDaggers
     {
         get;
         private set;
     }
 
-    int _actualDaggers;
-    bool _previusOnFloor;
-    bool _sprint;
+    public FSMAimingPlayer fsmAiming;
 
     Action inter;
 
     public void MainHUDDaggers(int n)
     {
-        _actualDaggers = n;
-        MainHud.DaggerText(_actualDaggers, totalDaggers);
+        actualDaggers = n;
+        MainHud.DaggerText(actualDaggers, totalDaggers);
     }
 
     public void AttackDist()
-    {
-        
+    { 
         if(attackElements.Attack())
         {
             //_actualDaggers--;
@@ -51,7 +46,7 @@ public class Player_Character : Character
         MainHud.ReticulaFill(0);
     }
 
-    public void Flip()
+    public void Flip(float f)
     {
         cameraScript.Flip();
         attackElements.distance = new Vector3(attackElements.distance.x * -1, attackElements.distance.y, attackElements.distance.z);
@@ -88,8 +83,15 @@ public class Player_Character : Character
         TakeSound();
         //MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
+    public void Sprint(float n)
+    {
+        movement.maxSpeed = maxSpeed;
+    }
 
-   
+    public void Walk(float n)
+    {
+        movement.maxSpeed = maxSpeed / 2;
+    }
 
     public void Interact()
     {
@@ -108,22 +110,106 @@ public class Player_Character : Character
 
     void flag() { }
 
-
-    void MyStart()
+   
+    public void Jump(float number)
     {
-        animator.functions.AddRange(
-           new Pictionarys<string, AnimatorController.PrototypeFunc>
-           {
-               { "attack",AttackDist },
-               { "take",flag },
-               { "power",ActivePowerDown },
-               { "interact", flag },
-               { "offMesh", OffMesh },
-               { "land", LandSound },
-           });
+        if (fsmAiming.ReturnState() != fsmAiming.noAiming)
+            return;
 
-        maxSpeed = movement.maxSpeed;
+        if (!coyoteTime.Chck || _extraJumps >= 0)
+        { 
+            _extraJumps--;
+            animator.Jump();
+        }
+    }
+    
+    public void Dash(float number)
+    {
+        if (number < 0.3f)
+            animator.Dash(true);
+    }
 
+    private void Active_eventDown(float obj)
+    {
+        Controllers.active.OnExitState();
+    }
+
+    private void Active_eventUp(float obj)
+    {
+        animator.Cancel();
+    }
+
+    void Action(float pressed)
+    {
+        if (interactuable == null)
+            return;
+
+        float timePressed = interactuable.pressedTime * 1 / timeInteractMultiply;
+
+        interactuable.RefreshUi(cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), (pressed / timePressed));
+
+        if (pressed > 0 && pressed < timePressed)
+        {
+            if (!animator.CheckAnimations(1, "Take_dagger", "Interact"))
+            {
+                inter = Interact;
+
+                if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
+                {
+                    animator.Take(timePressed);
+                    inter += Take;
+                }
+                else
+                {
+                    animator.Interact(timePressed);
+                }
+
+            }
+        }
+        else if (pressed >= timePressed)
+        {
+            inter();
+        }
+        else
+        {
+            animator.Cancel();
+        }
+    }
+
+    private void Ground_onExit(FSMEntorno obj)
+    {
+        Controllers.dash.eventDown -= Sprint;
+        Controllers.dash.eventUp -= Walk;
+
+        movement.maxSpeed = maxSpeed / 10;
+
+        animator.ResetOnFloor();
+    }
+
+    private void Ground_onEnter(FSMEntorno obj)
+    {
+        Controllers.dash.eventDown += Sprint;
+        Controllers.dash.eventUp += Walk;
+
+        _extraJumps = extraJumps;
+
+        animator.OnFloor();
+        Walk(0);
+    }
+
+    private void Ground_onStay(FSMEntorno obj)
+    {
+        coyoteTime.Reset();
+    }
+
+    public void SwitchState(IState<FSMAimingPlayer> state)
+    {
+        fsmAiming.SwitchState(state);
+    }
+
+    public IState<FSMAimingPlayer> ReturnState()
+    {
+        return fsmAiming.ReturnState();
     }
 
     #region unity Functions
@@ -141,38 +227,49 @@ public class Player_Character : Character
     void MyAwake()
     {
         GameManager.player = this;
+
+        Controllers.active.eventDown += Active_eventDown;
+        Controllers.active.eventPress += Action;
+        Controllers.active.eventUp += Active_eventUp;
+
+        Controllers.flip.eventDown += Flip;
+
+        Controllers.jump.eventDown += Jump;
+
+        Walk(0);
+    }
+
+    void MyStart()
+    {
+        animator.functions.AddRange(
+           new Pictionarys<string, AnimatorController.PrototypeFunc>
+           {
+               { "attack",AttackDist },
+               { "take",flag },
+               { "power",ActivePowerDown },
+               { "interact", flag },
+               { "offMesh", OffMesh },
+               { "land", LandSound },
+           });
+
+        fsmAiming = new FSMAimingPlayer(this);
+
+        movement.entorno.ground.onEnter += Ground_onEnter;
+        movement.entorno.ground.onExit += Ground_onExit;
+        movement.entorno.ground.onStay += Ground_onStay;
     }
 
     
-    
+
     void MyUpdate()
     {
         Vector2 mouse = new Vector2();
-        float pressed = 0;
 
         input.x = Controllers.horizontal.pressed;
         input.z = Controllers.vertical.pressed;
 
         mouse.x = Controllers.horizontalMouse.pressed;
-        mouse.y = Controllers.verticalMouse.pressed;
-
-        if (movement.isOnFloor)
-        {
-            coyoteTime.Reset();
-            if (!_previusOnFloor)
-            {
-                _previusOnFloor = true;
-                animator.OnFloor();
-            }
-            else
-            {
-                animator.ResetOnFloor();
-            }
-        }
-        
-        _previusOnFloor = movement.isOnFloor;
-
-        
+        mouse.y = Controllers.verticalMouse.pressed;       
 
         if (mouse.sqrMagnitude > 0)
         {
@@ -181,160 +278,28 @@ public class Player_Character : Character
 
         if (interactuable != null && !interactuable.diseable)
         {
-
-            timePressed = interactuable.pressedTime * 1/timeInteractMultiply;
-
-            if ((pressed = Controllers.active.TimePressed())>0 && pressed< timePressed)
-            {
-                if (!animator.CheckAnimations(1,"Take_dagger", "Interact"))
-                {
-                    inter = Interact;
-
-                    if (interactuable.transform.parent != null && interactuable.transform.parent.CompareTag("Dagger"))
-                    {
-                        animator.Take(timePressed);
-                        inter += Take;
-                        
-                    }
-                    else
-                    {
-                        animator.Interact(timePressed);
-                    }
-                        
-                }
-            }
-            else if (pressed > timePressed)
-            {
-                inter();
-            }
-            
-            
-            interactuable.RefreshUi(cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), (pressed / timePressed));
-
-
-            if(pressed==0)
-                animator.Cancel();
+            interactuable.RefreshUi(cameraScript.cam.WorldToScreenPoint(interactuable.transform.position), 0);
         }
-
         else
         {
             InteractiveObj.instance.CloseInfo();
-            animator.Cancel();
+            Controllers.active.OnExitState();
         }
 
-        if (interactuable == null || Controllers.active.TimePressed() > timePressed)
-        {
-            Controllers.active.TimePressed(false);
-        }
-        
-        if(!Controllers.aim.pressed)
-        {
-            if (Controllers.jump.down && animator.CheckAnimations("Movement", "standing idle"))
-            {
-
-                animator.Jump();
-            }
-            else if (!_sprint && Controllers.dash.up && animator.CheckAnimations("Movement", "standing idle", "Jump", "Jumping Up", "Asending"))
-            {
-
-                //animator.Jump();
-                animator.Dash(true);
-            }
-        }
-
-        if (Controllers.dash.TimePressed(true) > 0.3)
-            _sprint = true;
-        else
-            _sprint = false;
-
-        if (Controllers.attack.up && Controllers.aim.pressed && _actualDaggers > 0)
-            animator.Attack();
-
-
-        if(Controllers.attack.pressed)
-        {
-            if (Controllers.aim.pressed)
-                MainHud.ReticulaFill(attackElements.ChargeAttack());
-                
-
-            //poder de atraer las dagas
-            else if(UnlockAtrackt && _actualDaggers < totalDaggers)
-            {
-                if(Controllers.attack.TimePressed() > totalDaggers)
-                {
-                    foreach (var item in gameObject.FindWithTags("Dagger"))
-                    {
-
-                        dagger = item.GetComponent<Dagger_Proyectile>();
-
-                        if (dagger.owner != null)
-                        {
-                            Take();
-                        }
-                    }
-
-                    Controllers.attack.TimePressed(false);
-                }
-                else
-                {
-                    MainHud.DaggerPower(Controllers.attack.TimePressed() / totalDaggers);
-                }
-                
-            }
-        }
-        else if (UnlockAtrackt)
-        {
-            MainHud.DaggerPower(0);
-        }
-
-        if (Controllers.aim.up)
-        {
-            attackElements.CancelAttack();
-            cameraScript.ZoomOut();
-            animator.Aim(false);
-            MainHud.ReticulaFill(0);
-        }
-
-        if (Controllers.aim.down)
-        {
-            attackElements.PreAttack();
-            cameraScript.ZoomIn(new Vector3(-cameraScript.offSet.x/2, 0, 2));
-            animator.Aim(true);
-        }
-
-        if (Controllers.power.down && power.Count>0)
+        if (Controllers.power.down && power.Count > 0)
         {
             animator.Power();
 
             MainHud.AddBuff();
         }
-            
 
-        if (Controllers.flip.down)
-        {
-            Flip();
-        }
-
-        //
+        fsmAiming.UpdateState();
     }
-
-    
     void MyFixedUpdate()
     {
-       
         if (input.sqrMagnitude > 0)
-        {
-            if (_sprint && movement.isOnFloor)
-            {
-                movement.maxSpeed = maxSpeed;
-            }
-            else if(movement.isOnFloor)
-            {
-                movement.maxSpeed = maxSpeed / 2;
-            }
-
+        { 
             movement.MoveLocal(input);
-
             movement.RotateY(cameraScript.transform.GetChild(0).rotation.eulerAngles.y);
         }
     }
@@ -343,55 +308,140 @@ public class Player_Character : Character
     {
         if(!focus)
         {
-            attackElements.CancelAttack();
-            cameraScript.ZoomOut();
-            animator.Aim(false);
+            fsmAiming.SwitchState(fsmAiming.noAiming);
         }
     }
     #endregion
+}
 
-    #region Sounds
-
-    public override void AttackSound()
+public class FSMAimingPlayer : FSM<FSMAimingPlayer, Player_Character>
+{
+    public IState<FSMAimingPlayer> aiming = new Aiming();
+    public IState<FSMAimingPlayer> noAiming = new NoAiming();
+    public FSMAimingPlayer(Player_Character player) : base(player)
     {
-        audioM.Play("Attack");
-    }
-    public override void AuxiliarSound()
-    {
-        audioM.Play("Attack");
-    }
-    public override void DeathSound()
-    {
-        audioM.Play("Defeat");
-    }
-    public override void PowerSound()
-    {
-        audioM.Play("PoweredDagger");
-    }
-    public override void DashSound()
-    {
-        audioM.Play("Dash");
-        
-    }
-    public void TakeSound()
-    {
-        audioM.Play("CallDagger");
-    }
-    public void ShieldSound()
-    {
-        audioM.Play("Shield");
-    }
-    public void LandSound()
-    {
-        audioM.Play("Land");
-    }
-    public void ChargeSound()
-    {
-        audioM.Play("ChargeDagger");
+        Init(noAiming);
     }
 
-    
+    #region public event functions
+
+    #region Attack button
+    public void Attack_eventPress(float obj)
+    {
+        if (context.actualDaggers > 0)
+        {
+            MainHud.ReticulaFill(context.attackElements.ChargeAttack());
+        }
+    }
+    public void Attack_eventUp(float number)
+    {
+        if (context.actualDaggers > 0)
+        {
+            context.animator.Attack();
+        }
+    }
+
+
+    public void Attack_eventPressNO(float number)
+    {
+        if (context.UnlockAtrackt && context.actualDaggers < context.totalDaggers)
+        {
+            if (number > context.totalDaggers)
+            {
+                foreach (var item in context.gameObject.FindWithTags("Dagger"))
+                {
+
+                    context.dagger = item.GetComponent<Dagger_Proyectile>();
+
+                    if (context.dagger.owner != null)
+                    {
+                        context.Take();
+                    }
+                }
+            }
+            else
+            {
+                MainHud.DaggerPower(number / context.totalDaggers);
+            }
+        }
+    }
+
+    public void Attack_eventUpNO(float obj)
+    {
+        MainHud.DaggerPower(0);
+    }
     #endregion
 
 
+    public void Aim_eventUp(float obj)
+    {
+        SwitchState(noAiming);
+    }  
+    public void Aim_eventDownNO(float obj)
+    {
+        SwitchState(aiming);
+    }
+
+    #endregion
 }
+
+public class Aiming : IState<FSMAimingPlayer>
+{
+    public void OnEnterState(FSMAimingPlayer param)
+    {
+        param.context.attackElements.PreAttack();
+        param.context.cameraScript.ZoomIn(new Vector3(-GameManager.player.cameraScript.offSet.x / 2, 0, 2));
+        param.context.animator.Aim(true);
+
+        Controllers.attack.eventUp += param.Attack_eventUp;
+        Controllers.attack.eventPress += param.Attack_eventPress;
+
+        Controllers.aim.eventUp += param.Aim_eventUp;
+    }
+
+    public void OnExitState(FSMAimingPlayer param)
+    {
+        param.context.attackElements.CancelAttack();
+        param.context.cameraScript.ZoomOut();
+        param.context.animator.Aim(false);
+
+        Controllers.attack.eventUp -= param.Attack_eventUp;
+        Controllers.attack.eventPress -= param.Attack_eventPress;
+
+        Controllers.aim.eventUp -= param.Aim_eventUp;
+    }
+
+    public void OnStayState(FSMAimingPlayer param)
+    {
+    }
+}
+
+public class NoAiming : IState<FSMAimingPlayer>
+{
+    public void OnEnterState(FSMAimingPlayer param)
+    {
+        Controllers.aim.eventDown += param.Aim_eventDownNO;
+
+        //Controllers.jump.eventDown += Jump;
+        Controllers.dash.eventUp += param.context.Dash;
+        Controllers.attack.eventPress += param.Attack_eventPressNO;
+        Controllers.attack.eventUp += param.Attack_eventUpNO;
+    }
+
+    public void OnExitState(FSMAimingPlayer param)
+    {
+        Controllers.aim.eventDown -= param.Aim_eventDownNO;
+
+        //Controllers.jump.eventDown -= Jump;
+        Controllers.dash.eventUp -= param.context.Dash;
+        Controllers.attack.eventPress -= param.Attack_eventPressNO;
+        Controllers.attack.eventUp -= param.Attack_eventUpNO;
+
+        param.Attack_eventUpNO(0);
+    }
+
+    public void OnStayState(FSMAimingPlayer param)
+    {
+    }
+}
+

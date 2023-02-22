@@ -7,7 +7,7 @@ public class Toxine_Debuff : Debuff_FatherPwDbff
     float _toxineDameg;
 
     Timer toDamage;
-    public override void On(Character me)
+    public override void OnEnterState(Character me)
     {
         on_Update = MyUpdate;
         _toxineDameg = 2;
@@ -16,7 +16,7 @@ public class Toxine_Debuff : Debuff_FatherPwDbff
         particlesString = "ToxineParticle";
     }
 
-    public override void Off(Character me)
+    public override void OnExitState(Character me)
     {
         TimersManager.Destroy(toDamage);
     }

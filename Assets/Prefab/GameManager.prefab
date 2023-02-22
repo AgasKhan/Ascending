@@ -111,60 +111,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9115a5e9638412e488d1e0b41e0b2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eneabled: 0
-  powerObjects:
-  - classType: Utilitys
-    pool:
-    - prefabReference: {fileID: 4415753222827290869, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
-      script: {fileID: 4979721168871178402, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
-      poolNumber: 10
-      index: 0
-      arrayObjects: []
-    - prefabReference: {fileID: 3919127826687303864, guid: c0704024b8a360f48b34232b40316964, type: 3}
-      script: {fileID: 5980640367385784785, guid: c0704024b8a360f48b34232b40316964, type: 3}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-  - classType: Fire
-    pool: []
-  - classType: Toxine
-    pool:
-    - prefabReference: {fileID: 1945262805003162363, guid: e53bcbf533e75a140be62024c80496c2, type: 3}
-      script: {fileID: 528892068294491089, guid: e53bcbf533e75a140be62024c80496c2, type: 3}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-    - prefabReference: {fileID: 4796155192279286098, guid: cc1373fd61803d049a78f794f84a7c64, type: 3}
-      script: {fileID: 0}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-  - classType: Stun
-    pool:
-    - prefabReference: {fileID: 3427085302238275697, guid: 4f7fe396c0b695b408ad8a923e708270, type: 3}
-      script: {fileID: 0}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-    - prefabReference: {fileID: 835208027304863499, guid: cae08ef592865c74fa13e425da63bce1, type: 3}
-      script: {fileID: 0}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-  - classType: Vortex
-    pool:
-    - prefabReference: {fileID: 3084482091828597660, guid: ba9f0c11ab7c21a45b5ea43fd9e855e6, type: 3}
-      script: {fileID: 0}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-    - prefabReference: {fileID: 591225757626922568, guid: 82518b43b2609db4093be6f185261ffe, type: 3}
-      script: {fileID: 591225757626922569, guid: 82518b43b2609db4093be6f185261ffe, type: 3}
-      poolNumber: 5
-      index: 0
-      arrayObjects: []
-  - classType: Teleport
-    pool: []
+  eneabled: 1
+  categoriesOfPool:
+  - name: Utilitys
+    basePools:
+    - prefab: {fileID: 3919127826687303864, guid: c0704024b8a360f48b34232b40316964, type: 3}
+      utilityRefence: []
+      amount: 5
+      pool: []
+    - prefab: {fileID: 4415753222827290869, guid: 40f0544c16b274547b7baee5b43c73fa, type: 3}
+      utilityRefence: []
+      amount: 10
+      pool: []
+  - name: Toxine
+    basePools:
+    - prefab: {fileID: 1945262805003162363, guid: e53bcbf533e75a140be62024c80496c2, type: 3}
+      utilityRefence: []
+      amount: 5
+      pool: []
+    - prefab: {fileID: 4796155192279286098, guid: cc1373fd61803d049a78f794f84a7c64, type: 3}
+      utilityRefence: []
+      amount: 10
+      pool: []
+  - name: Stun
+    basePools:
+    - prefab: {fileID: 835208027304863499, guid: cae08ef592865c74fa13e425da63bce1, type: 3}
+      utilityRefence: []
+      amount: 0
+      pool: []
+    - prefab: {fileID: 3427085302238275697, guid: 4f7fe396c0b695b408ad8a923e708270, type: 3}
+      utilityRefence: []
+      amount: 0
+      pool: []
+  - name: Vortex
+    basePools:
+    - prefab: {fileID: 3084482091828597660, guid: ba9f0c11ab7c21a45b5ea43fd9e855e6, type: 3}
+      utilityRefence: []
+      amount: 5
+      pool: []
+    - prefab: {fileID: 591225757626922568, guid: 82518b43b2609db4093be6f185261ffe, type: 3}
+      utilityRefence: []
+      amount: 0
+      pool: []
+  - name: Teleport
+    basePools: []
+  references:
+    version: 1
 --- !u!114 &-387250342658785765
 MonoBehaviour:
   m_ObjectHideFlags: 0

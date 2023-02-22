@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Stun_Enemy : Enemy_Character
 {
-    
     protected override void Config()
     {
         base.Config();
@@ -14,22 +13,6 @@ public class Stun_Enemy : Enemy_Character
         MyUpdates += MyUpdate;
 
     }
-
-    public override void AttackSound()
-    {
-
-    }
-
-    public override void AuxiliarSound()
-    {
-   
-    }
-
-    public override void DeathSound()
-    {
-        audioM.Play("Death");
-    }
-
 
     void MyAwake()
     {
@@ -61,20 +44,4 @@ public class Stun_Enemy : Enemy_Character
             //ActivePower();
         }
     }
-
-    public override void PowerSound()
-    {
-        audioM.Play("Attack");
-    }
-
-    public override void DashSound()
-    {
-      
-    }
-
-    public override void OffMesh()
-    {
-        DeathSound();
-    }
-
 }

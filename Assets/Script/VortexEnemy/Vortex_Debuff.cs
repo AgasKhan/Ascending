@@ -7,14 +7,14 @@ public class Vortex_Debuff : Debuff_FatherPwDbff
 
     float originalSpeed;
 
-    public override void On(Character me)
+    public override void OnEnterState(Character me)
     {
         originalSpeed = me.maxSpeed;
 
         me.maxSpeed *= 0.5f;
     }
 
-    public override void Off(Character me)
+    public override void OnExitState(Character me)
     {
         me.maxSpeed = originalSpeed;
     }

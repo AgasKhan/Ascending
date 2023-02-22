@@ -5,57 +5,102 @@ using UnityEngine;
 public class PoolObjects : MonoBehaviour
 {
     [System.Serializable]
-    public class ObjectPools
+    public class Category
     {
-        [System.Serializable]
-        public class Pool
+        [Header("Nombre de la clase")]
+        public string name;
+
+        [SerializeField]
+        public BasePool[] basePools;
+    }
+
+    [System.Serializable]
+    public class BasePool
+    {
+        [Header("configuracion")]
+
+        public GameObject prefab;
+        public Object[] utilityRefence;
+        public int amount;
+
+        [Header("Interna")]
+        int _index = 0;
+
+        [SerializeReference]
+        PoolObj[] pool;
+
+        public int index
         {
-            [Header("Configuracion")]
-
-            public GameObject prefabReference;
-
-            public MonoBehaviour script;
-
-            public int poolNumber;
-
-            [Header("Parte interna")]
-
-            public int index;
-
-            [SerializeField]
-            public Object[] arrayObjects;
-
-            public Pool(int i)
+            get
             {
-                arrayObjects = new Object[i];
+                int aux = _index;
+                _index++;
+                if (_index >= pool.Length)
+                    _index = 0;
+
+                return aux;
             }
         }
 
-        public string classType;
+        public T SpawnPoolObj<T>(out Transform go) where T : Object
+        {
+            var aux = pool[index];
+            go = aux.Obj.transform;
 
-        public Pool[] pool;
-        
+            foreach (var item in aux.auxiliarReference)
+            {
+                if (item is T)
+                    return (T)item;
+            }
+            return default;
+        }
+
+        public Transform SpawnPoolObj()
+        {
+            return pool[index].Obj.transform;
+        }
+
+        public void Init()
+        {
+            pool = new PoolObj[amount];
+
+            for (int i = 0; i < pool.Length; i++)
+            {
+                pool[i] = new PoolObj(prefab, utilityRefence);
+            }
+        }
     }
 
-    static public PoolObjects instance;
+    [System.Serializable]
+    public class PoolObj
+    {
+        public GameObject Obj;
+        public Object[] auxiliarReference;
 
-    public bool eneabled = true;
+        public PoolObj(GameObject prefab, Object[] utilityRefence)
+        {
+            Obj = Instantiate(prefab);
+
+            auxiliarReference = new Object[utilityRefence.Length];
+
+            for (int i = 0; i < utilityRefence.Length; i++)
+            {
+                auxiliarReference[i] = Obj.GetComponent(utilityRefence[i].GetType());
+            }
+
+            Obj.SetActive(false);
+        }
+    }
+
+    [Header("Activar generacion")]
+    public bool eneabled;
 
     [SerializeField]
-    ObjectPools[] powerObjects;
+    Category[] categoriesOfPool;
 
-    static public ObjectPools[] pwObj
-    {
-        get
-        {
-            return instance.powerObjects;
-        }
 
-        set
-        {
-            instance.powerObjects=value;
-        }
-    }
+    static PoolObjects instance;
+ 
 
 
     #region busqueda por categoria
@@ -78,9 +123,9 @@ public class PoolObjects : MonoBehaviour
     /// <returns></returns>
     static public int SrchInCategory(string word)
     {
-        for (int i = 0; i < instance.powerObjects.Length; i++)
+        for (int i = 0; i < instance.categoriesOfPool.Length; i++)
         {
-            if (instance.powerObjects[i].classType == word)
+            if (instance.categoriesOfPool[i].name == word)
             {
                 return i;
             }
@@ -99,9 +144,9 @@ public class PoolObjects : MonoBehaviour
     {
         Vector2Int indexsFind = new Vector2Int(index, -1);
 
-        for (int ii = 0; ii < instance.powerObjects[index].pool.Length; ii++)
+        for (int ii = 0; ii < instance.categoriesOfPool[index].basePools.Length; ii++)
         {
-            if (instance.powerObjects[index].pool[ii].prefabReference.name == powerObject)
+            if (instance.categoriesOfPool[index].basePools[ii].prefab.name == powerObject)
             {
                 indexsFind.y = ii;
                 return indexsFind;
@@ -116,21 +161,28 @@ public class PoolObjects : MonoBehaviour
 
     #region "Spawn" pool objects
 
-    static public Object SpawnPoolObject(int categoryIndex, string powerObject, Vector3 pos, Quaternion angles)
+    static public T SpawnPoolObject<T>(int categoryIndex, string powerObject, Vector3 pos, Quaternion angles) where T : Object
+    {
+        Vector2Int indexs = SrchInCategory(categoryIndex, powerObject);
+
+        return SpawnPoolObject<T>(indexs, pos, angles);
+    }
+
+    static public GameObject SpawnPoolObject(int categoryIndex, string powerObject, Vector3 pos, Quaternion angles)
     {
         Vector2Int indexs = SrchInCategory(categoryIndex, powerObject);
 
         return SpawnPoolObject(indexs, pos, angles);
     }
 
-    static public Object SpawnPoolObject(string type, string powerObject, Vector3 pos, Quaternion angles)
+    static public GameObject SpawnPoolObject(string type, string powerObject, Vector3 pos, Quaternion angles)
     {
         Vector2Int indexs = SrchInCategory(type, powerObject);
 
         return SpawnPoolObject(indexs, pos, angles);
     }
 
-    static public Object SpawnPoolObject(Vector2Int indexs, Vector3 pos, Quaternion angles, Transform padre = null)
+    static public GameObject SpawnPoolObject(Vector2Int indexs, Vector3 pos, Quaternion angles, Transform padre = null)
     {
 
         if (indexs.x < 0)
@@ -144,80 +196,61 @@ public class PoolObjects : MonoBehaviour
             return null;
         }
 
-        ObjectPools.Pool pool = pwObj[indexs.x].pool[indexs.y];
+        var pool = instance.categoriesOfPool[indexs.x].basePools[indexs.y];
 
-        pool.index++;
-
-        if (pool.index >= pool.arrayObjects.Length)
-            pool.index = 0;
-
-        Transform transformObject;
-
-        if (pool.script != null)
-        {
-            MonoBehaviour poolObject = (MonoBehaviour)pool.arrayObjects[pool.index];
-            transformObject = poolObject.transform;
-        }
-        else
-        {
-            GameObject poolObject = (GameObject)pool.arrayObjects[pool.index];
-            transformObject = poolObject.transform;
-        }
+        Transform transformObject = pool.SpawnPoolObj();
 
         transformObject.parent = padre;
         transformObject.localPosition = pos;
         transformObject.localRotation = angles;
         transformObject.gameObject.SetActive(true);
 
-        return pool.arrayObjects[pool.index];
+        return transformObject.gameObject;
     }
 
+    static public T SpawnPoolObject<T>(Vector2Int indexs, Vector3 pos, Quaternion angles, Transform padre = null) where T : Object
+    {
+
+        if (indexs.x < 0)
+        {
+            Debug.LogWarning("categoria no encontrada");
+            return default;
+        }
+        else if (indexs.y < 0)
+        {
+            Debug.LogWarning("Objeto no encontrado");
+            return default;
+        }
+
+        var pool = instance.categoriesOfPool[indexs.x].basePools[indexs.y];
+
+        T obj = pool.SpawnPoolObj<T>(out Transform transform);
+
+        transform.parent = padre;
+        transform.localPosition = pos;
+        transform.localRotation = angles;
+        transform.gameObject.SetActive(true);
+
+        return obj;
+    }
     #endregion
 
-    private void Start()
+    void Start()
     {
         instance = this;
 
-        //recorro mi array de categorias de objetos
-        for (int i = 0; i < powerObjects.Length; i++)
+        if (!eneabled)
+            return;
+
+        foreach (var item in categoriesOfPool)
         {
-            //guardo la referencia del array de pool para trabajar mas comodo
-            ObjectPools.Pool[] pul = powerObjects[i].pool;
-
-            //recorro pool
-            for (int j = 0; j < pul.Length; j++)
+            foreach (var subitem in item.basePools)
             {
-                //creo un object pool en cada uno, en la constructora defino cuantos elementos va a contener el pool
-                pul[j].arrayObjects = new Object[pul[j].poolNumber];
-
-                //lo recorro para instanciarlos y los apago inmediatamente
-                for (int k = 0; k < pul[j].arrayObjects.Length; k++)
-                {
-                    if(pul[j].script!=null)
-                    {
-                        pul[j].arrayObjects[k] = (MonoBehaviour)Instantiate(pul[j].prefabReference).GetComponent(pul[j].script.GetType());
-
-                        pul[j].arrayObjects[k].name = pul[j].prefabReference.name;
-
-                        ((MonoBehaviour)pul[j].arrayObjects[k]).gameObject.SetActive(false);
-
-                        GameManager.AddTimeController(((MonoBehaviour)pul[j].arrayObjects[k]).transform);
-                    }
-                    else
-                    {
-                        pul[j].arrayObjects[k] = Instantiate(pul[j].prefabReference);
-
-                        pul[j].arrayObjects[k].name = pul[j].prefabReference.name;
-
-                        ((GameObject)pul[j].arrayObjects[k]).SetActive(false);
-
-                        GameManager.AddTimeController(((GameObject)pul[j].arrayObjects[k]).transform);
-                    }
-                }
+                subitem.Init();
             }
         }
-    
     }
+
 }
 
 /*

@@ -76,7 +76,12 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         }
     }
 
+    public static Pictionarys<K,V> operator + (Pictionarys<K, V> original, Pictionarys<K, V> sumado)
+    {
+        original.AddRange(sumado);
 
+        return original;
+    }
     public override string ToString()
     {
         return ToString("=");
@@ -130,6 +135,20 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
     public void Sort(IComparer<Pictionary<K,V>> comparer)
     {
         pictionaries.Sort(comparer);
+    }
+
+    public bool ContainsKey(K key, out int index)
+    {
+        for (int i = 0; i < pictionaries.Count; i++)
+        {
+            if (pictionaries[i].key.Equals(key))
+            {
+                index = i;
+                return true;
+            }
+        }
+        index = -1;
+        return false;
     }
 
     public bool ContainsKey(K key)

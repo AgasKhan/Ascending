@@ -14,17 +14,15 @@ public class Teleport_Powers : Powers_FatherPwDbff
 
     Timer tim;
 
-    public override void Off(Character me)
+    public override void OnExitState(Character me)
     {
         me.movement.layerDash = layerDash;
         MainHud.ReticulaPlay("Default");
     }
 
-    public override void On(Character me)
+    public override void OnEnterState(Character me)
     {
         on_Update = MyUpdate;
-
-        stateButton.on = (number) => me.ActionOnDamage += TP;
 
         if (me.CompareTag("Player"))
         {
@@ -43,6 +41,10 @@ public class Teleport_Powers : Powers_FatherPwDbff
         tim = TimersManager.Create(1);
     }
 
+    public override void ButtonEvent(Character me, float timePressed)
+    {
+        me.ActionOnDamage += TP;
+    }
     void TP(Collider col)
     {
         if (!col.gameObject.TryGetComponent(out MoveRb moveRb))
@@ -119,5 +121,6 @@ public class Teleport_Powers : Powers_FatherPwDbff
             }
         }
     }
+
 
 }

@@ -125,7 +125,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     {
         //Proyectile proyScript = Instantiate(proyectile, transform.position + transform.forward, transform.rotation);
 
-        Proyectile proyScript = (Proyectile)PoolObjects.SpawnPoolObject(0, proyectile.name, transform.position + transform.forward, Quaternion.identity);
+        Proyectile proyScript = PoolObjects.SpawnPoolObject<Proyectile>(0, proyectile.name, transform.position + transform.forward, Quaternion.identity);
 
         proyScript.damage.SetWithCharacter(this);
 
@@ -169,6 +169,16 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     protected void EndAttackMelee()
     {
         //attackCollider.SetActive(false);
+    }
+
+    public override void OffMesh()
+    {
+        DeathSound();
+    }
+
+    public override void PowerSound()
+    {
+        audioM.Play("Power");
     }
 
     /// <summary>

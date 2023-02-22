@@ -97,12 +97,13 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// <summary>
     /// Debuff que se aplicara al atacar
     /// </summary>
-    [SerializeField]
+    [SerializeReference]
     public List<System.Type> debuffToAplicate = new List<System.Type>();
 
     /// <summary>
     /// debufs que posee el character
     /// </summary>
+    [SerializeReference]
     public List<Debuff_FatherPwDbff> debuffList = new List<Debuff_FatherPwDbff>();
 
     [Header("Movimiento")]
@@ -136,12 +137,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// El tiempo que espera antes de anular el salto
     /// </summary>
     [SerializeField]
-    protected Timer coyoteTime;
+    public Timer coyoteTime;
 
     /// <summary>
     /// Variable que cuenta los saltos en el aire
     /// </summary>
-    int _extraJumps;
+    protected int _extraJumps;
 
     /// <summary>
     /// Apaga los graficos del character en un determinado tiempo
@@ -179,24 +180,20 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
     #region mobility
 
+    
+
     /// <summary>
     /// Funcion que ejecuta un salto
     /// </summary>
     public virtual void Jump()
     {
-        if (!coyoteTime.Chck)
-        {
-            _extraJumps = extraJumps;
-            coyoteTime.Substract(10);
+        movement.CancelGravity();
+        movement.MoveLocal(transform.up, jumpStrength + Physics.gravity.y * -1, false);
+    }
 
-        }
-        if (_extraJumps >= 0)
-        {
-            movement.CancelGravity();
-            movement.MoveLocal(transform.up, jumpStrength + Physics.gravity.y * -1, false);
-            _extraJumps--;
-        }
-        JumpEnd();
+    public void JumpEnd()
+    {
+        animator.ResetJump();
     }
 
     /// <summary>
@@ -232,11 +229,6 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         JumpEnd();
     }
 
-
-    void JumpEnd()
-    {
-        animator.ResetJump();
-    }
 
     #endregion
 
@@ -303,12 +295,12 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
     #region Powers
 
-    void ActivePower(System.Action<float> action, float f)
+    void ActivePower(System.Action<Character, float> action, float f)
     {
         if (power.Count > 0)
         {
             PowerSound();
-            action?.Invoke(f);
+            action?.Invoke(this,f);
         }
     }
 
@@ -317,19 +309,20 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     /// </summary>
     public void ActivePowerDown()
     {
-        ActivePower(power[actualPower].stateButton.on,0);
+        ActivePower(power[actualPower].ButtonEvent,0);
     }
 
+    /*
     public void ActivePowerPress(float f)
     {
-        ActivePower(power[actualPower].stateButton.update, f);
+        ActivePower(power[actualPower].ButtonEvent, f);
     }
 
     public void ActivePowerUp(float f)
     {
-        ActivePower(power[actualPower].stateButton.off, f);
+        ActivePower(power[actualPower].ButtonEvent, f);
     }
-
+    */
     public void SwitchPower(int i = 0)
     {
         if (power.Count == 0)
@@ -337,7 +330,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
 
         if(lastPower!=null)
         {
-            lastPower.Off(this);
+            lastPower.OnExitState(this);
             if (lastPower.on_Update!=null)
             {
                 handlerUpdates.Remove(lastPower.GetType());
@@ -359,7 +352,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
             actualPower=0;
         }
 
-        power[actualPower].On(this);
+        power[actualPower].OnEnterState(this);
         if(power[actualPower].on_Update!=null)
         { 
             handlerUpdates.Add(power[actualPower].GetType(), power[actualPower].on_Update);
@@ -507,15 +500,44 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     #endregion
 
     #region Sonido
-    public abstract void AttackSound();
+    public virtual void AttackSound()
+    {
+        audioM.Play("Attack");
+    }
+    public virtual void AuxiliarSound()
+    {
+        audioM.Play("Attack");
+    }
+    public virtual void DeathSound()
+    {
+        audioM.Play("Defeat");
+    }
+    public virtual void PowerSound()
+    {
+        audioM.Play("PoweredDagger");
+    }
+    public virtual void DashSound()
+    {
+        audioM.Play("Dash");
 
-    public abstract void AuxiliarSound();
+    }
+    public virtual void TakeSound()
+    {
+        audioM.Play("CallDagger");
+    }
+    public virtual void ShieldSound()
+    {
+        audioM.Play("Shield");
+    }
+    public virtual void LandSound()
+    {
+        audioM.Play("Land");
+    }
+    public virtual void ChargeSound()
+    {
+        audioM.Play("ChargeDagger");
+    }
 
-    public abstract void DeathSound();
-
-    public abstract void PowerSound();
-
-    public abstract void DashSound();
 
     public virtual void WoRSoundLeft()
     {
@@ -560,7 +582,7 @@ abstract public class Character : MyScripts, IOnProyectileEnter
     {
         gameObject.AddTags(Tag.character);
 
-        coyoteTime = TimersManager.Create(0.3f);
+        coyoteTime = TimersManager.Create(0.1f);
 
 
         animator.functions.AddRange(new Pictionarys<string, AnimatorController.PrototypeFunc>
@@ -625,12 +647,14 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         else
             animator.Ascending(false);
 
+        /*
         if (animator.CheckAnimations("Jump"))
             movement.Move(animator.transform.forward);
+        
 
         if (animator.CheckAnimations("Falling"))
             movement.Move(animator.transform.forward, movement.maxSpeed * 0.25f);
-
+        */
 
         previousTransformY = transform.position.y;
     }

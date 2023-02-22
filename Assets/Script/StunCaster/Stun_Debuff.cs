@@ -7,13 +7,13 @@ public class Stun_Debuff : Debuff_FatherPwDbff
     [SerializeField] 
     float _stunDamage;
 
-    public override void On(Character me)
+    public override void OnEnterState(Character me)
     {
         me.health.Substract(_stunDamage);
         me.movement.isDisable = true;
     }
 
-    public override void Off(Character me)
+    public override void OnExitState(Character me)
     {
         me.movement.isDisable = false;
     }

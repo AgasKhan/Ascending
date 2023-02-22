@@ -79,16 +79,6 @@ public class Attack_KnifeElements : KnifeElements
 
         elements.Remove(knife);
 
-        knife.reference.parent = null;
-
-        knife.movement.kinematic = false;
-
-        knife.movement.useGravity = false;
-
-        knife.daggerScript.active = true;
-
-
-
         //print(character.cameraScript.hitPoint - knife.reference.position);
 
         //knife.movement.Move(character.scoped.point-knife.reference.position, knife.movement.maxSpeed * 10);
@@ -148,7 +138,6 @@ public class Attack_KnifeElements : KnifeElements
         {
             knife = elements[0];
             knife.reference.parent = transform;
-            knife.daggerScript.pause = true;
         }
     }
 

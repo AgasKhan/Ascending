@@ -16,21 +16,7 @@ public class Toxic_Enemy : Enemy_Character
         
     }
 
-    public override void AttackSound()
-    {
-       
-    }
-
-    public override void AuxiliarSound()
-    {
-     
-    }
-
-    public override void DeathSound()
-    {
-        audioM.Play("Death");
-    }
-
+  
     void MyAwake()
     {
         animator.functions.AddRange
@@ -63,19 +49,5 @@ public class Toxic_Enemy : Enemy_Character
         
      }
 
-    public override void PowerSound()
-    {
-        audioM.Play("Power");
-    }
 
-    public override void DashSound()
-    {
-        
-    }
-
-
-    public override void OffMesh()
-    {
-        DeathSound();
-    }
 }

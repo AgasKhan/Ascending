@@ -36,6 +36,6 @@ public class MoveRotAndGlueRb : MoveAndRotRb
 
         glue = new GameObject("Glue " + name);
 
-        GameManager.AddTimeController(glue.transform);
+        GameManager.AddTimeControllerSolo(glue.transform);
     }
 }

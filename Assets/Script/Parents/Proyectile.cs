@@ -58,9 +58,9 @@ abstract public class Proyectile : MonoBehaviour
         else
             FailDamage();
     }
-    protected virtual void OnExit(Collider other)
+    protected virtual void OnExit(GameObject go)
     {
-        var aux = other.gameObject.GetComponents<IOnProyectileExit>();
+        var aux = go.GetComponents<IOnProyectileExit>();
 
         if(aux!=null)
             foreach (var item in aux)
@@ -105,7 +105,7 @@ abstract public class Proyectile : MonoBehaviour
 
     }
 
-    public void Throw(Damage dmg, Vector3 dir, float multiply)
+    public virtual void Throw(Damage dmg, Vector3 dir, float multiply)
     {
         damage = dmg;
         MoveRb.Dash(dir, multiply);
@@ -123,7 +123,7 @@ abstract public class Proyectile : MonoBehaviour
     {
         if (!other.CompareTag(tag) && !other.CompareTag(owner.tag))
         {
-            OnExit(other);
+            OnExit(other.gameObject);
         }
     }
 }

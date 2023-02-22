@@ -165,7 +165,7 @@ public static class Utilitys
 
         pwDbffs.RemoveAt(index);
 
-        aux?.Off(me);
+        aux?.OnExitState(me);
     }
 
 

@@ -21,19 +21,19 @@ abstract public class FatherPwDbff : IState<Character>
     /// Funcion que es llamada cuando se gana el poder/buffo
     /// </summary>
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
-    public abstract void On(Character me);
+    public abstract void OnEnterState(Character me);
 
     /// <summary>
     /// Funcion que es llamada cuando se pierde el poder/buffo
     /// </summary>
     /// <param name="a">Parametro que recibe de forma automatica que te da al afectado</param>
-    public abstract void Off(Character me);
+    public abstract void OnExitState(Character me);
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="param"></param>
-    public void Update(Character me)
+    public void OnStayState(Character me)
     {
         on_Update(me);
     }

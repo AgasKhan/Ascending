@@ -376,10 +376,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 3919127825588026070}
   pressedTime: 1
-  DisplayText: Dagger
+  DisplayText: 
   diseable: 0
   distanceDetection: 50
-  me: {fileID: 0}
+  me: {fileID: 5980640367385784785}
 --- !u!1 &3919127826687303864
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +462,14 @@ MonoBehaviour:
   owner: {fileID: 0}
   MoveRb: {fileID: 210393525682972558}
   daggerEffect: {fileID: 4136943718571885878}
-  audioM: {fileID: 0}
+  audioM: {fileID: -1875851172777224119}
+  interact: {fileID: 3669662326337994550}
+  colliders:
+  - {fileID: 3919127826687303846}
+  - {fileID: 3919127825588026070}
+  finishTimer:
+    _totalTime: 1
+    _currentTime: 1
 --- !u!114 &210393525682972558
 MonoBehaviour:
   m_ObjectHideFlags: 0

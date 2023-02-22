@@ -22,8 +22,8 @@ public class TimeController
             item.StartReverseItem();
         }
 
-        Utilitys.LerpInTime(volume.weight, 1f, 1, Mathf.Lerp, (weight)=> { volume.weight = weight; });
-        MainHud.ChangeAlphaWithFade(0.1f,1, "Effect");
+        Utilitys.LerpInTime(volume.weight, 1f, 1, Mathf.Lerp, (weight) => { volume.weight = weight; });
+        MainHud.ChangeAlphaWithFade(0.1f, 1, "Effect");
     }
 
     static public void FinishReverse()
@@ -106,190 +106,47 @@ public class TimeController
         else
         {
             GameManager.CurrentTime(Time.unscaledDeltaTime);
-           
+
         }
 
     }
 
-
-
-
-
-
-    [System.Serializable]
-    struct PosAndRot
-    {
-        public Vector3 pos;
-        public Vector3 scale;
-        public Quaternion rot;
-        public bool active;
-
-        public PosAndRot(PosAndRot par)
-        {
-            pos = par.pos;
-            rot = par.rot;
-            active = par.active;
-            scale = par.scale;
-        }
-
-        public PosAndRot(Vector3 p, Quaternion r, Vector3 sc,  bool a)
-        {
-            pos = p;
-            rot = r;
-            active = a;
-            scale = sc;
-        }
-
-        public PosAndRot(Transform t)
-        {
-            pos = t.position;
-            rot = t.rotation;
-            scale = t.localScale;
-            active = t.gameObject.activeSelf;
-        }
-    }
-
-    public int count=0;
+    public int count = 0;
 
     public Transform t;
 
-    public Animator a;
-
-    MonoBehaviour[] m;
-
-    Collider c;
-
-    Patrol p;
-
-    Rigidbody rb;    
-
-    Health h;
-
-    Enemy_Character e;
-
-    Interactuable_LogicActive l;
-
-    /// <summary>
-    /// auxiliar array bools monobehabior
-    /// </summary>
-    bool[] mono;
-
-    Stack<PosAndRot> posAndRots = new Stack<PosAndRot>();
-
-    Stack<Transform> parents = new Stack<Transform>();
-
-    Stack<Vector3> velocitys = new Stack<Vector3>();
-
-    Stack<Vector3> healths = new Stack<Vector3>();
-
-    Stack<bool> logicActiveInteractuable = new Stack<bool>();
-
-    Stack<int> patrolIndex = new Stack<int>();
-
-    Stack<bool> colActive = new Stack<bool>();
-
-    Stack<bool[]> monoActive = new Stack<bool[]>();
-
-    Stack<bool> kinematic = new Stack<bool>();
-
-    Stack<bool> gravity = new Stack<bool>();
+    List<MementoBase> mementos = new List<MementoBase>();
 
     public void FinishReverseItem()
     {
-        if (m.Length > 0)
-        { 
-            for (int ii = 0; ii < m.Length; ii++)
-            {
-                m[ii].enabled = mono[ii];
-            }
-        }
-
-        //activo el animator
-        if (a != null)
+        foreach (var item in mementos)
         {
-            a.enabled = true;
-            a.Play("standing idle");
+            item.OnExitState();
         }
-            
-
-
     }
 
     public void StartReverseItem()
     {
-        for (int ii = 0; ii < m.Length; ii++)
+        foreach (var item in mementos)
         {
-            m[ii].enabled = false;
+            item.OnEnterState();
         }
-
-        //desactivo el animator
-        if (a != null)
-            a.enabled = false;
-
-        if (t.TryGetComponent(out Dagger_Proyectile dagger))
-            dagger.CancelLerps();
     }
 
     public void ReverseItem(int jump = 1)
     {
-        if (posAndRots.Count <= 1 || t == null)
+        if (((Tr)mementos[0]).count <= 1 || t == null)
             return;
 
-        PosAndRot aux;
-        //List<PosAndRot> par = new List<PosAndRot>();
-
         for (int i = 0; i < jump && count > 0; i++)
-        {
-            //copio todos los datos
-            aux = new PosAndRot(posAndRots.Pop());
-
+        {           
             count--;
 
-            t.position = aux.pos;
-            t.rotation = aux.rot;
-            t.localScale = aux.scale;
-            t.gameObject.SetActive(aux.active);
-            t.parent = parents.Pop();
-
-            if(m.Length>0)
+            foreach (var item in mementos)
             {
-                mono = monoActive.Pop();
+                item.OnStayState();
             }
-
-            if (rb != null)
-            {
-                rb.velocity = velocitys.Pop();
-                rb.isKinematic = kinematic.Pop();
-                rb.useGravity = gravity.Pop();
-            }
-                
-
-            if (h != null)
-                h.SetAll(healths.Pop());
-
-            if (p != null)
-                p.iPatrulla = patrolIndex.Pop();
-
-            if (e != null)
-                e.deleySearch.Substract(100);
-
-            if (c != null)
-                c.enabled = colActive.Pop();
-
-            if (l != null)
-                l.diseable = logicActiveInteractuable.Pop();
-            
-            //par = childs.Pop();
         }
-        /*
-        foreach (var item in par)
-        {
-            if (item.transform != null)
-            {
-                item.transform.position = item.pos;
-                item.transform.rotation = item.rot;
-            }
-        }*/
     }
 
     public void UpdateItem()
@@ -299,46 +156,13 @@ public class TimeController
 
         count++;
 
-        if (rb != null)
+        foreach (var item in mementos)
         {
-            velocitys.Push(rb.velocity);
-            kinematic.Push(rb.isKinematic);
-            gravity.Push(rb.useGravity);
-        }
-            
-
-        if (h != null)
-            healths.Push(h.GetAll());
-
-        if (p != null)
-            patrolIndex.Push(p.iPatrulla);
-
-        if (c != null)
-            colActive.Push(c.enabled);
-
-        if (l != null)
-            logicActiveInteractuable.Push(l.diseable);
-            
-        if (m.Length>0)
-        {
-            mono = new bool[m.Length];
-            for (int i = 0; i < m.Length; i++)
-            {
-                mono[i] = m[i].enabled;
-            }
-
-            monoActive.Push(mono);
-        }
-
-        posAndRots.Push(new PosAndRot(t.position, t.rotation, t.localScale, t.gameObject.activeSelf));
-
-        parents.Push(t.parent);
-
-        //childs.Push(ChildTranform(t));
-
+            item.OnUpdate();
+        }            
     }
 
-    public static List<TimeController> ChildTranform(Transform c, bool monoActive=true)
+    public static List<TimeController> ChildTranform(Transform c, bool monoActive = true)
     {
         List<TimeController> d = new List<TimeController>();
 
@@ -348,7 +172,7 @@ public class TimeController
             {
                 d.Add(new TimeController(c.GetChild(i), monoActive));
                 if (c.GetChild(i).childCount > 0)
-                    d.AddRange(ChildTranform(c.GetChild(i),monoActive));
+                    d.AddRange(ChildTranform(c.GetChild(i), monoActive));
             }
         }
 
@@ -356,46 +180,379 @@ public class TimeController
 
     }
 
-
-
     public TimeController(Transform t, bool monoActive=true)
     {
-        this.t = t;
-        rb = t.GetComponent<Rigidbody>();
-        a = t.GetComponentInChildren<Animator>();
-        h = t.GetComponent<Health>();
-        e = t.GetComponent<Enemy_Character>();
-        c = t.GetComponent<Collider>();
-        l = t.GetComponent<Interactuable_LogicActive>();
-            
-        if(t.TryGetComponent(out IPatrolReturn aux))
-            p = aux.PatrolReturn();
+        var tr = new Tr();
+
+        tr.Init(t);
+
+        mementos.Add(tr);
+
+        if (MementoBase.SaveComponent(t.GetComponent<Rigidbody>(), out RB component))
+            mementos.Add(component);
+
+        if (MementoBase.SaveComponent(t.GetComponent<Animator>(), out Anim anim))
+            mementos.Add(anim);
+
+        if (MementoBase.SaveComponent(t.GetComponent<Collider>(), out Coll col))
+            mementos.Add(col);
+
+        if (MementoBase.SaveComponent(t.GetComponent<Health>(), out Heal hel))
+            mementos.Add(hel);
+
+        if (MementoBase.SaveComponent(t.GetComponent<Interactuable_LogicActive>(), out Log log))
+            mementos.Add(log);
+
+        if (MementoBase.SaveComponent(t.GetComponent<Enemy_Character>(), out Ene ene))
+            mementos.Add(ene);
+
+
+        if (t.TryGetComponent(out Dagger_Proyectile dag))
+        {
+            Dag aux = new Dag();
+
+            dag.Init();
+
+            aux.Init(dag);
+
+            mementos.Add(aux);
+        }
+
+
+        if (t.TryGetComponent(out IPatrolReturn patrol))
+        {
+            Pat aux = new Pat();
+
+            aux.Init(patrol.PatrolReturn());
+
+            mementos.Add(aux);
+        }
+
 
         if (monoActive)
-            m = t.GetComponents<MonoBehaviour>();
-        else
-            m = new MonoBehaviour[0];
+            foreach (var item in t.GetComponents<MonoBehaviour>())
+            {
+                Mono mono = new Mono();
+                mono.Init(item);
+                mementos.Add(mono);
+            }
+
+        this.t = t;
     }
-}
 
-
-
-/*
-List<PosAndRot> ChildTranform(Transform c)
-{
-    List<PosAndRot> d = new List<PosAndRot>();
-
-    if (c.childCount > 0)
+    public abstract class MementoBase : IState
     {
-        for (int i = 0; i < c.childCount; i++)
+        public static bool SaveComponent<T, R>(T t, out R component) where R : Memento<T>, new() where T : Component
         {
-            d.Add(new PosAndRot(c.GetChild(i)));
-            if (c.GetChild(i).childCount > 0)
-                d.AddRange(ChildTranform(c.GetChild(i)));
+            if (t == null)
+            {
+                component = null;
+                return false;
+            }
+
+            component = new R();
+
+            component.Init(t);
+
+            return true;
+        }
+
+        #region reverse
+        public abstract void OnEnterState();
+        public abstract void OnStayState();
+        public abstract void OnExitState();
+        #endregion
+        public abstract void OnUpdate();
+    }
+
+    public abstract class Memento<R> : MementoBase
+    {
+        protected R reference;
+
+        public void Init(R reference)
+        {
+            this.reference = reference;
         }
     }
 
-    return d;
+    public class RB : Memento<Rigidbody>
+    {
+        Stack<Vector3> velocitys = new Stack<Vector3>();
+        Stack<bool> kinematic = new Stack<bool>();
+        Stack<bool> gravity = new Stack<bool>();
 
+        public override void OnEnterState()
+        {
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.velocity = velocitys.Pop();
+            reference.isKinematic = kinematic.Pop();
+            reference.useGravity = gravity.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            velocitys.Push(reference.velocity);
+            kinematic.Push(reference.isKinematic);
+            gravity.Push(reference.useGravity);
+        }
+    }
+
+    public class Anim : Memento<Animator>
+    {
+        public override void OnEnterState()
+        {
+            reference.enabled = false;
+        }
+
+        public override void OnExitState()
+        {
+            reference.enabled = true;
+            reference.Play("standing idle");
+        }
+
+        public override void OnStayState()
+        {
+        }
+
+        public override void OnUpdate()
+        {
+        }
+    }
+
+    public class Coll : Memento<Collider>
+    {
+        Stack<bool> colActive = new Stack<bool>();
+
+        public override void OnEnterState()
+        {
+
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.enabled = colActive.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            colActive.Push(reference.enabled);
+        }
+    }
+
+    public class Heal : Memento<Health>
+    {
+        Stack<Vector3> healths = new Stack<Vector3>();
+
+        public override void OnEnterState()
+        {
+
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.SetAll(healths.Pop());
+        }
+
+        public override void OnUpdate()
+        {
+            healths.Push(reference.GetAll());
+        }
+    }
+
+    public class Pat : Memento<Patrol>
+    {
+        Stack<int> patrolIndex = new Stack<int>();
+
+        public override void OnEnterState()
+        {
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.iPatrulla = patrolIndex.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            patrolIndex.Push(reference.iPatrulla);
+        }
+    }
+
+    public class Tr : Memento<Transform>
+    {
+        [System.Serializable]
+        struct PosAndRot
+        {
+            public Vector3 pos;
+            public Vector3 scale;
+            public Quaternion rot;
+            public bool active;
+            public Transform parent;
+
+            public PosAndRot(PosAndRot par)
+            {
+                pos = par.pos;
+                rot = par.rot;
+                active = par.active;
+                scale = par.scale;
+                parent = par.parent;
+            }
+
+            public PosAndRot(Transform t)
+            {
+                pos = t.position;
+                rot = t.rotation;
+                scale = t.localScale;
+                active = t.gameObject.activeSelf;
+                parent = t.parent;
+            }
+        }
+
+        public int count => posAndRot.Count;
+
+        Stack<PosAndRot> posAndRot = new Stack<PosAndRot>();
+
+        public override void OnEnterState()
+        {
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            PosAndRot aux = new PosAndRot(posAndRot.Pop());
+
+            reference.position = aux.pos;
+            reference.rotation = aux.rot;
+            reference.localScale = aux.scale;
+            reference.gameObject.SetActive(aux.active);
+            reference.parent = aux.parent;
+        }
+
+        public override void OnUpdate()
+        {
+            posAndRot.Push(new PosAndRot(reference));
+        }
+    }
+
+    public class Mono : Memento<MonoBehaviour>
+    {
+        /// <summary>
+        /// auxiliar array bools monobehabior
+        /// </summary>
+        bool mono;
+
+        Stack<bool> monoActive = new Stack<bool>();
+
+        public override void OnEnterState()
+        {
+            reference.enabled = false;
+        }
+
+        public override void OnExitState()
+        {
+            reference.enabled = mono;
+        }
+
+        public override void OnStayState()
+        {
+            mono = monoActive.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            monoActive.Push(reference.enabled);
+        }
+    }
+
+    public class Ene : Memento<Enemy_Character>
+    {
+        public override void OnEnterState()
+        {
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.deleySearch.Substract(100);
+        }
+
+        public override void OnUpdate()
+        {
+        }
+    }
+
+    public class Log : Memento<Interactuable_LogicActive>
+    {
+        Stack<bool> logicActiveInteractuable = new Stack<bool>();
+
+        public override void OnEnterState()
+        {
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.diseable = logicActiveInteractuable.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            logicActiveInteractuable.Push(reference.diseable);
+        }
+    }
+
+    public class Dag : Memento<Dagger_Proyectile>
+    {
+        Stack<IState<FSMDagger>> states = new Stack<IState<FSMDagger>>();
+
+        IState<FSMDagger> currentReverse;
+
+        public override void OnEnterState()
+        {
+            
+        }
+
+        public override void OnExitState()
+        {
+            reference.SwitchState(currentReverse);
+        }
+
+        public override void OnStayState()
+        {
+            currentReverse = states.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            states.Push(reference.ReturnState());
+        }
+    }
 }
-*/

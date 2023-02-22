@@ -6,21 +6,24 @@ public class Stun_Powers : Powers_FatherPwDbff
 {
     [SerializeField]
     Vector2Int Ice;
-    public override void On(Character me)
+    public override void OnEnterState(Character me)
     {
         Ice = SchPowerObject("Ice");
 
-        stateButton.on = (number)=> me.ActionOnDamage += IceGemerator;
-           
         me.AddDebuffToAplicate<Stun_Debuff>();
 
         if(me.CompareTag("Player"))
             on_Update = MyUpdatePlayer;
     }
 
-    public override void Off(Character me)
+    public override void OnExitState(Character me)
     {
         me.RemoveDebuffToAplicate<Stun_Debuff>();
+    }
+
+    public override void ButtonEvent(Character me, float timePressed)
+    {
+        me.ActionOnDamage += IceGemerator;
     }
 
     void IceGemerator(Collider item)

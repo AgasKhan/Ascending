@@ -160,7 +160,7 @@ public static class Abilities
 
             for (int i = 1; i <= aux; i++)
             {
-                player.dagger = (Dagger_Proyectile)PoolObjects.SpawnPoolObject(0, "Daguita", player.transform.position + Quaternion.Euler(0, i * angle, 0) * player.transform.forward, Quaternion.identity);
+                player.dagger = PoolObjects.SpawnPoolObject<Dagger_Proyectile>(0, "Daguita", player.transform.position + Quaternion.Euler(0, i * angle, 0) * player.transform.forward, Quaternion.identity);
                 player.Take();
             }
         }

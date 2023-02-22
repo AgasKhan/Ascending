@@ -51,14 +51,21 @@ public class GameManager : MonoBehaviour
 
     public static void AddTimeController(Transform t, bool monoActive=true)
     {
+        if(AddTimeControllerSolo(t, monoActive))
+            TimeController.entitys.AddRange(TimeController.ChildTranform(t, monoActive));
+    }
+
+    public static bool AddTimeControllerSolo(Transform t, bool monoActive = true)
+    {
         foreach (var item in TimeController.entitys)
         {
             if (item.t == t)
-                return;
+                return false;
         }
 
         TimeController.entitys.Add(new TimeController(t, monoActive));
-        TimeController.entitys.AddRange(TimeController.ChildTranform(t, monoActive));
+
+        return true;
     }
 
     public static void AddEnemy(Character enemy)
@@ -199,7 +206,7 @@ public class GameManager : MonoBehaviour
         TimeController.Update();
 
         fixedUpdate.Substract(Time.unscaledDeltaTime);
-        if (fixedUpdate.Chck && saveTime)
+        if (fixedUpdate.Chck)
         {
             TimeController.FixedUpdate();
             fixedUpdate.Reset();

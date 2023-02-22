@@ -200,7 +200,7 @@ public class AnimatorController : MonoBehaviour
         return false;
     }
 
-    void Start()
+    void Awake()
     {
         animator = GetComponentInChildren<Animator>();
     }

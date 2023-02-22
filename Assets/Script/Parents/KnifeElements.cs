@@ -43,7 +43,6 @@ public class KnifeElements : MonoBehaviour
             movement.eneableDrag = false;
 
             daggerScript = r.GetComponent<Dagger_Proyectile>();
-            daggerScript.pause = true;
             daggerScript.owner = character;
 
             //daggerScript.transform.GetChild(0).GetComponent<Interactuable_LogicActive>().diseable = false;

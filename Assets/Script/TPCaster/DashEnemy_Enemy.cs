@@ -32,34 +32,9 @@ public class DashEnemy_Enemy : Enemy_Character
         base.Dash();
 
     }
-
-    public override void AttackSound()
-    {
-
-    }
-
-    public override void AuxiliarSound()
-    {
-
-    }
-
-    public override void DeathSound()
-    {
-        audioM.Play("Death");
-    }
-
-    public override void PowerSound()
-    {
-
-    }
-
     public override void DashSound()
     {
         audioM.Play("EnemyDash");
-    }
-    public override void OffMesh()
-    {
-        DeathSound();
     }
 
     void MyAwake()

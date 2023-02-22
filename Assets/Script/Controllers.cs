@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Controllers : MonoBehaviour
 {
@@ -126,15 +127,18 @@ public class Controllers : MonoBehaviour
 
     }
 
-    public class Button 
+    public class Button : IState<float>
     {
         #region atributes
 
-        Key<KeyCode, bool> key;
-        
-        public float _timePressed;
-        bool _startTimePressed = false;
+        public event System.Action<float> eventDown;
+        public event System.Action<float> eventPress;
+        public event System.Action<float> eventUp;
+        public float timePressed;
 
+        Key<KeyCode, bool> key;
+
+        public KeyCode principal => key.principal;
         public bool up => key.up;
         public bool down => key.down;
         public bool pressed => key.pressed;
@@ -149,40 +153,50 @@ public class Controllers : MonoBehaviour
             {
                 key.enable = value;
             }
-
         }
-        public KeyCode principal => key.principal;
 
         #endregion
 
         #region general functions
         public void MyUpdate()
         {
-            if (_startTimePressed)
+            if(down)
             {
-                if (key.pressed)
-                    _timePressed += Time.deltaTime;
-                else
-                    _timePressed = 0;
+                OnEnterState();
             }
-        }
 
-        /// <summary>
-        /// setea si se comenzara a contar el tiempo presionado
-        /// </summary>
-        /// <param name="startTime">si comienza o termina</param>
-        /// <returns>Devuelve el tiempo contado</returns>
-        public float TimePressed(bool startTime = true)
-        {
-            _startTimePressed = startTime;
-            if (!startTime)
-                _timePressed = 0;
-            return _timePressed;
+            if(pressed)
+            {
+                timePressed += Time.deltaTime;
+                OnStayState(timePressed);
+            }
+
+            if (up)
+            {
+                OnExitState(timePressed);
+                timePressed = 0;
+            }
+
         }
 
         public override string ToString()
         {
             return key.principal.ToString();
+        }
+
+        public void OnEnterState(float param=0)
+        {
+            eventDown?.Invoke(param);
+        }
+
+        public void OnStayState(float param=0)
+        {
+            eventPress?.Invoke(param);
+        }
+
+        public void OnExitState(float param=0)
+        {
+            eventUp?.Invoke(param);
         }
 
 

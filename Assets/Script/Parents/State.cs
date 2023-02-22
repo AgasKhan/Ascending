@@ -2,21 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State<T>
-{
-    public System.Action<T> on;
-    public System.Action<T> update;
-    public System.Action<T> off;
-}
-
 public interface IState<T>
 {
-    void On(T param);
+    void OnEnterState(T param);
 
-    void Update(T param);
+    void OnStayState(T param);
 
-    void Off(T param);
+    void OnExitState(T param);
 }
 
+public interface IState
+{
+    void OnEnterState();
 
+    void OnStayState();
+
+    void OnExitState();
+}
+
+public interface ISwitchState<T>
+{
+    void SwitchState(IState<T> state);
+
+    IState<T> ReturnState();
+}
 

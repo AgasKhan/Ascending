@@ -28,7 +28,7 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
     {
         timer = TimersManager.Create(6);
 
-        On(me);
+        OnEnterState(me);
 
         if(particlesString!=null && particlesString!="")
         {
