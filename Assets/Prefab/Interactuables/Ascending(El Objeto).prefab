@@ -157,6 +157,10 @@ PrefabInstance:
       propertyPath: setInts.Array.data[0].newValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5416339709722350377, guid: 91b8b87ac1a0bc246941fc5a83b6521c, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5416339709722350380, guid: 91b8b87ac1a0bc246941fc5a83b6521c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -240,7 +244,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 316993356957281825, guid: 56e0f300f1ef423489609b81780959d5, type: 3}
       propertyPath: m_Name
-      value: MobilePlatform To Specific patrol
+      value: Ascending(El Objeto)
       objectReference: {fileID: 0}
     - target: {fileID: 316993356957281825, guid: 56e0f300f1ef423489609b81780959d5, type: 3}
       propertyPath: m_IsActive

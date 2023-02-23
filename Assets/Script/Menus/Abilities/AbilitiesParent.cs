@@ -21,6 +21,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
     public Transform originalParent;
     public int currentLevel = 0;   
 
+
     protected override void Config()
     {
         base.Config();
@@ -93,7 +94,7 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
     {
         Upgrade();
 
-        if (currentLevel >= buttons.Length-1)
+        if (currentLevel > buttons.Length-1)
         {
             if ((originalParent.parent.childCount - 1) > originalParent.GetSiblingIndex())
                 UnlockNextButton();

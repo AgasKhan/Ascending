@@ -3178,11 +3178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4990311562488603054, guid: 56e0f300f1ef423489609b81780959d5, type: 3}
       propertyPath: desAceleration
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4990311562488603054, guid: 56e0f300f1ef423489609b81780959d5, type: 3}
       propertyPath: patrol._waitTime
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4990311562488603054, guid: 56e0f300f1ef423489609b81780959d5, type: 3}
       propertyPath: patrol.patrol.Array.size
@@ -6502,28 +6502,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: components.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: gameObjects.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: components.Array.data[0]
       value: 
-      objectReference: {fileID: 106116879}
+      objectReference: {fileID: 287148928}
+    - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: components.Array.data[1]
+      value: 
+      objectReference: {fileID: 287148928}
+    - target: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: gameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 316716060}
     - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: exit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: enter
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: active.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: deactive.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: active.Array.data[0]
       value: 
       objectReference: {fileID: 287148931}
     - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: active.Array.data[1]
+      value: 
+      objectReference: {fileID: 287148928}
+    - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: deactive.Array.data[0]
       value: 
       objectReference: {fileID: 287148931}
+    - target: {fileID: 130739732486910055, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+      propertyPath: deactive.Array.data[1]
+      value: 
+      objectReference: {fileID: 287148928}
     - target: {fileID: 130739732486910057, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
       propertyPath: m_Name
       value: Diana ejemplo
@@ -6575,7 +6603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bb3ac4d27a7ad42868598d1b3b149b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setInts: []
+  setInts:
+  - mono: {fileID: 106116879}
+    newValue: 1
+    oldValue: 0
 --- !u!114 &287148931 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 130739732486910054, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
@@ -7219,6 +7250,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &316716060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1164234583260485742, guid: 230b790dacb48c54e8382a1e4740e884, type: 3}
+  m_PrefabInstance: {fileID: 287148926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &316881586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24205,6 +24241,10 @@ PrefabInstance:
     - target: {fileID: 4480050413866198315, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: patrol._waitTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: patrol.patrol.Array.size

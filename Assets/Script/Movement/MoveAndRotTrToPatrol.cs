@@ -34,13 +34,12 @@ public class MoveAndRotTrToPatrol : MoveAndRotTr, IPatrolReturn
         base.Config();
 
         MyAwakes += MyAwake;
-      
+
         MyUpdates += MyUpdate;
     }
 
     void MyAwake()
     {
-
         patrol.Start(this);
 
         desactivateDesaceleration = true;
@@ -48,35 +47,40 @@ public class MoveAndRotTrToPatrol : MoveAndRotTr, IPatrolReturn
         actualDist = patrol.Distance();
 
         nextDist = actualDist;
+
+        patrol.fsmPatrol.OnMove += ()=> patrol.MinimalChck(_distance);
+
+        patrol.fsmPatrol.OnWait += MyUpdateWait;
+
+        patrol.fsmPatrol.OnStartWait += OnStartWait;
+
+        MyUpdates += patrol.fsmPatrol.UpdateState;
     }
 
     void MyUpdate()
     {
+        actualDist = patrol.Distance();
+        MoveTo(actualDist);
+    }
 
-        if (patrol.MinimalChck(_distance, false))
-        { 
-            nextDist = patrol.Distance(patrol.NextPoint(out bool b));
-        }
+    void OnStartWait()
+    {
+        bool aux = patrol.reverse;
+        nextDist = patrol.Distance(patrol.NextPoint(ref aux));
+    }
 
+    void MyUpdateWait()
+    {
         float angle = Utilitys.AngleOffAroundAxis(nextDist, Vector3.forward, Vector3.up, false);
-
-        //print("angulo1: " + angle);
 
         float angle2 = Utilitys.AngleOffAroundAxis(nextDist, transform.forward, Vector3.up);
 
-        //print("angulo 2: " + Mathf.Abs(angle2) + " < " + minAngleRot);
-
-        if (Mathf.Abs(angle2) < minAngleRot)
+        if (Mathf.Abs(angle2) >= minAngleRot)
         {
-            
-            patrol.MinimalChck(_distance, true);
-        }
-        else
             RotationY(angle);
-
-        actualDist = patrol.Distance();
-
-        MoveTo(actualDist);
-
+            ((Wait)patrol.fsmPatrol.wait).timer.Reset();
+        }
     }
+
+   
 }

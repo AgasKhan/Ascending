@@ -61,6 +61,9 @@ public class MoveTr : FatherMoves
         if (relation > 1)
             relation = 1;
 
+        if (relation < 0)
+            relation = 0;
+
         Move(dist, maxSpeed * (relation));
     }
 

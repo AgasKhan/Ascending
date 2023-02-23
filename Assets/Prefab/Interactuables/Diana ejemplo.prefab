@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 130739732486910054}
   - component: {fileID: 4425430575653850864}
   - component: {fileID: 5753604629107125373}
-  - component: {fileID: 6272528354523819867}
-  - component: {fileID: 1342649953144523273}
   m_Layer: 0
   m_Name: Diana ejemplo
   m_TagString: Untagged
@@ -98,39 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.15}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6272528354523819867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130739732486910057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b525230627e3ae4abe359a2557ed0ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  components: []
-  gameObjects:
-  - {fileID: 1164234583260485742}
---- !u!114 &1342649953144523273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130739732486910057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e71da214fb93b0b4b9a43ed73d160732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active:
-  - {fileID: 6272528354523819867}
-  deactive:
-  - {fileID: 6272528354523819867}
-  enter: 1
-  exit: 0
 --- !u!1001 &1630030937798648902
 PrefabInstance:
   m_ObjectHideFlags: 0

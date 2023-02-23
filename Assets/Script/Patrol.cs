@@ -21,16 +21,6 @@ public class Patrol
     /// </summary>
     public List<Transform> patrol;
 
-
-    /// <summary>
-    /// variable para chequear si es la primera vez que que entra en el timer
-    /// </summary>
-    public bool firstTime
-    {
-        get;
-        private set;
-    }
-
     /// <summary>
     /// vector de distancia que falta para llegar al objetivo
     /// </summary>
@@ -38,14 +28,9 @@ public class Patrol
     Vector3 _distance;
 
     /// <summary>
-    /// privada que se encarga de chequear si tiene q avanzar en la lista o no
-    /// </summary>
-    bool _reverseEffect;
-
-    /// <summary>
     /// Cuanto se desea esperar en cada punto
     /// </summary>
-    [SerializeField]
+    public
     float _waitTime;
 
     /// <summary>
@@ -53,12 +38,7 @@ public class Patrol
     /// </summary>
     MonoBehaviour _mono;
 
-    /// <summary>
-    /// Timer que espera una vez alcanzado el destino, para setear el siguiente
-    /// </summary>
-    [SerializeField]
-    Timer _wait;
-
+    public FSMPatrol fsmPatrol;
 
     /// <summary>
     /// calcula la distancia hasta el numero (pero no lo guarda) punto de patrullaje
@@ -84,11 +64,9 @@ public class Patrol
     /// </summary>
     /// <param name="reverseEffect">devuelve si retrocede o no</param>
     /// <returns>indice del patrullaje</returns>
-    public int NextPoint(out bool reverseEffect)
+    public int NextPoint(ref bool reverseEffect)
     {
         int i = iPatrulla;
-
-        reverseEffect = _reverseEffect;
 
         if (!reverseEffect)
             i++;
@@ -115,35 +93,18 @@ public class Patrol
         return i;
     }
 
-
-
     /// <summary>
     /// chequea si se llego a la distancia minima, y esperara a un timer para ir setear el siguiente punto de patrullaje
     /// </summary>
     /// <param name="minimal"></param>
     /// <returns>En caso de llegar a la distancia minima devolvera un true, por lo contrario un false</returns>
-    public bool MinimalChck(float minimal, bool automatic=true)
+    public bool MinimalChck(float minimal, bool automatic = true)
     {
         if (_distance.sqrMagnitude < minimal * minimal)
         {
-            if (_wait.Chck && !firstTime)
-            {
-                if (automatic)
-                {
-                    iPatrulla = NextPoint(out _reverseEffect);
-                }
-            }
-            else if (_wait.Chck && firstTime)
-            {
-                _wait.Reset();
-                firstTime = false;
-            }
-
-            Distance();
+            fsmPatrol.SwitchState(fsmPatrol.wait);
             return true;
         }
-        if(_wait.Chck)
-            firstTime = true;
         return false;
     }
 
@@ -151,8 +112,7 @@ public class Patrol
     public void Start(MonoBehaviour m)
     {
         _mono = m;
-
-        _wait = TimersManager.Create(_waitTime);
+        fsmPatrol = new FSMPatrol(this);
 
         if (patrol.Count <= 0)
         {
@@ -162,9 +122,88 @@ public class Patrol
         }
     }
 }
-
-
 public interface IPatrolReturn
 {
     Patrol PatrolReturn();
+}
+
+public class FSMPatrol : FSM<FSMPatrol, Patrol>
+{
+    public IState<FSMPatrol> move = new Move();
+
+    public IState<FSMPatrol> wait;
+
+    public System.Action OnMove;
+
+    public System.Action OnStartMove;
+
+    public System.Action OnStartWait;
+
+    public System.Action OnWait;
+
+    public FSMPatrol(Patrol reference) : base(reference)
+    {
+        wait = new Wait(reference._waitTime);
+        Init(move);
+    }
+}
+
+public class Move : IState<FSMPatrol>
+{
+
+    public void OnEnterState(FSMPatrol param)
+    {
+        param.OnStartMove?.Invoke();
+    }
+
+    public void OnExitState(FSMPatrol param)
+    {
+    }
+
+    public void OnStayState(FSMPatrol param)
+    {
+        param.context.Distance();
+        param.OnMove?.Invoke();
+    }
+}
+
+public class Wait : IState<FSMPatrol>
+{
+    /// <summary>
+    /// Timer que espera una vez alcanzado el destino, para setear el siguiente
+    /// </summary>
+    public
+    Timer timer;
+
+    /// <summary>
+    /// privada que se encarga de chequear si tiene q avanzar en la lista o no
+    /// </summary>
+    bool _reverseEffect;
+
+    public Wait(float _waitTime)
+    {
+        timer = TimersManager.Create(_waitTime);
+    }
+
+    public void OnEnterState(FSMPatrol param)
+    {
+        timer.Reset();
+        param.OnStartWait?.Invoke();
+    }
+
+    public void OnExitState(FSMPatrol param)
+    {
+        param.context.iPatrulla = param.context.NextPoint(ref _reverseEffect);
+    }
+
+    public void OnStayState(FSMPatrol param)
+    {
+        if (timer.Chck)
+        {
+            param.SwitchState(param.move);
+            timer.Reset();
+        }
+
+        param.OnWait?.Invoke();
+    }
 }

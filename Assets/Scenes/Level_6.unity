@@ -2863,9 +2863,6 @@ MonoBehaviour:
     - {fileID: 0}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!1 &151950476
 GameObject:
@@ -13774,8 +13771,20 @@ PrefabInstance:
       value: 7.3199997
       objectReference: {fileID: 0}
     - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: desAceleration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: patrol.reverse
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: patrol._waitTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: patrol.patrol.Array.size
@@ -27242,9 +27251,6 @@ MonoBehaviour:
     - {fileID: 0}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!1001 &1238492160
 PrefabInstance:
@@ -30929,7 +30935,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 5085847066206617400}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92514237e736c384d9530488bc876b3e, type: 3}
   m_Name: 
@@ -43583,6 +43589,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1959001149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2017790794070309733, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+  m_PrefabInstance: {fileID: 5085847066206617400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57bb3ac4d27a7ad42868598d1b3b149b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1960255385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47812,9 +47829,6 @@ MonoBehaviour:
     - {fileID: 0}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!1001 &3009561182533302587
 PrefabInstance:
@@ -48001,9 +48015,6 @@ MonoBehaviour:
     - {fileID: 0}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 10
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!1001 &5085847066206617400
 PrefabInstance:
@@ -48018,11 +48029,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: patrol._waitTime
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 276315075738322979, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: patrol.patrol.Array.data[0]
@@ -48052,6 +48063,10 @@ PrefabInstance:
       propertyPath: remote.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 990293500422318259, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
+      propertyPath: remote.Array.data[0]
+      value: 
+      objectReference: {fileID: 1959001149}
     - target: {fileID: 2101915148916498314, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -48100,7 +48115,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobilePlatform To Specific patrol
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 990293500422318258, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d169e5205b10b7408c36c5d3ca6c555, type: 3}
 --- !u!1001 &5482123390020470945
 PrefabInstance:

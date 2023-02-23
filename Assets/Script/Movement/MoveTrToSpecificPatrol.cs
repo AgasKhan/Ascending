@@ -31,14 +31,12 @@ public class MoveTrToSpecificPatrol : MoveTrToPatrol, ISetInt
     {
         base.Config();
 
-        MyUpdates += MyUpdate;
-        //MyAwakes += () => { enabled = false; };
+        MyAwakes+= () =>patrol.fsmPatrol.OnStartMove += OnStartMove;
     }
 
-    void MyUpdate()
+    void OnStartMove()
     {
-        if (patrol.MinimalChck(_distance))
-            enabled = false;
+        enabled = false;
     }
 
     

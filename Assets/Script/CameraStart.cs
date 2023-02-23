@@ -26,9 +26,7 @@ public class CameraStart : MoveAndRotTrToPatrol
 
         MyStarts += MyStart;
 
-        auxUpdate = MyUpdates + MyUpdate;
-
-        MyUpdates = null;
+        MyUpdates += MyUpdate;
     }
 
     void MyAwake()
@@ -40,11 +38,11 @@ public class CameraStart : MoveAndRotTrToPatrol
         transform.position = patrol.patrol[0].position;
         transform.rotation = patrol.patrol[0].rotation;
 
-        StartCoroutine(Wait());
-
         saveTimeCopy = GameManager.saveTime;
 
         GameManager.saveTime = false;
+
+        StartCoroutine(Wait());
     }
 
     void MyStart()
@@ -55,13 +53,9 @@ public class CameraStart : MoveAndRotTrToPatrol
 
     void MyUpdate()
     {
-        if(myTimer==null)
-        {
-            TextCanvas.SrchMessages("Lucas").ShowText(false, "Presiona " + (" "+ Controllers.jump.ToString() + " ").RichText("b").RichText("color", "green") + "para saltear");
+        TextCanvas.SrchMessages("Lucas").ShowText(false, "Presiona " + (" " + Controllers.jump.ToString() + " ").RichText("b").RichText("color", "green") + "para saltear");
 
-        }
-
-        if(Input.GetKeyDown(Controllers.jump.principal))
+        if (Input.GetKeyDown(Controllers.jump.principal))
         {
             StartCoroutine(CameraPan());
         }
@@ -70,6 +64,10 @@ public class CameraStart : MoveAndRotTrToPatrol
 
     IEnumerator Wait()
     {
+        auxUpdate = MyUpdates + MyUpdate;
+
+        MyUpdates = null;
+
         myTimer = TimersManager.Create(2);
 
         while (!myTimer.Chck)

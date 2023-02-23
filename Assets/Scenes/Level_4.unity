@@ -1509,9 +1509,6 @@ MonoBehaviour:
     - {fileID: 72196825}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!43 &166287393
 Mesh:
@@ -12952,9 +12949,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!1001 &3883969462811367115
 PrefabInstance:
@@ -14181,6 +14175,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: minAngleRot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
+      propertyPath: patrol._waitTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388997645217955437, guid: a5f4e6a704e91c14cb47e7c54f1f0cdc, type: 3}
       propertyPath: patrol.patrol.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -14262,6 +14264,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4769484064490599264, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
+      propertyPath: patrol._waitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769484064490599264, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
+      propertyPath: patrol.patrol.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769484064490599264, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
       propertyPath: patrol.patrol.Array.data[0]
       value: 
       objectReference: {fileID: 1301805316}
@@ -14283,7 +14293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8668934731599095650, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8668934731599095675, guid: 068a3088e1287244eb1b6690dfa8e608, type: 3}
       propertyPath: m_RootOrder
