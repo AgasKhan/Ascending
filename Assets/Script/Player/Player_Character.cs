@@ -57,31 +57,12 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
         if (dagger == null)
             return;
 
-        dagger.MoveRb.kinematic = false;
-
-        /*
-        if (dagger.transform.parent != null && dagger.transform.parent != floatElements.transform)
-        {
-            print(dagger.gameObject.transform.parent.name);
-        }
-        */
-
         dagger.transform.parent = floatElements.transform;
 
         if (dagger.owner == null)
             totalDaggers++;
 
-        if(interactuable)
-            interactuable.diseable = true;
-
-        /*
-        _actualDaggers++;
-        if (_actualDaggers > _totalDaggers)
-            _actualDaggers = _totalDaggers;
-        */
-
         TakeSound();
-        //MainHud.DaggerText(_actualDaggers, _totalDaggers);
     }
     public void Sprint(float n)
     {
@@ -169,10 +150,12 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
         else if (pressed >= timePressed)
         {
             inter();
+            Controllers.active.timePressed = 0;
         }
         else
         {
             animator.Cancel();
+            Controllers.active.timePressed = 0;
         }
     }
 
@@ -248,8 +231,7 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
                { "take",flag },
                { "power",ActivePowerDown },
                { "interact", flag },
-               { "offMesh", OffMesh },
-               { "land", LandSound },
+               { "offMesh", OffMesh }
            });
 
         fsmAiming = new FSMAimingPlayer(this);

@@ -213,11 +213,10 @@ MonoBehaviour:
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
-  isOnFloor: 0
   _volumeCheckFloor: 0.45
   _layerMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 769
 --- !u!114 &8202150891239359144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,11 +270,13 @@ MonoBehaviour:
   ObjectSpawnOnDamage: []
   damage: 10
   power: []
+  handlerUpdates:
+    pictionaries: []
   actualPower: 0
   input: {x: 0, y: 0, z: 0}
   jumpStrength: 75
   extraJumps: 0
-  maxSpeed: 0
+  maxSpeed: 10
   coyoteTime:
     _totalTime: 0.3
     _currentTime: -0.0067698695
@@ -285,6 +286,7 @@ MonoBehaviour:
   dagger: {fileID: 0}
   timeInteractMultiply: 1
   UnlockAtrackt: 0
+  actualDaggers: 0
   references:
     version: 1
 --- !u!136 &4064437578242952654

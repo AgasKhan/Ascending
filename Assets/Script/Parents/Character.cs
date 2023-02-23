@@ -575,7 +575,9 @@ abstract public class Character : MyScripts, IOnProyectileEnter
         movement = GetComponent<Movement>();
         health = GetComponent<Health>();
         animator = GetComponentInChildren<AnimatorController>();
-        audioM = GetComponent<AudioManager>();   
+        audioM = GetComponent<AudioManager>();
+
+        maxSpeed = movement.maxSpeed;
     }
 
     void MyStart()
@@ -595,7 +597,8 @@ abstract public class Character : MyScripts, IOnProyectileEnter
                {"AttackSound", AttackSound},
                {"AuxiliarSound", AuxiliarSound},
                {"DeathSound", DeathSound},
-               {"dashSound", DashSound}
+               {"dashSound", DashSound},
+               { "land", LandSound }
 
            });
         

@@ -144,7 +144,6 @@ MonoBehaviour:
   glue: {fileID: 0}
   mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   lastFloorDistance: 0
-  isOnFloor: 0
   _volumeCheckFloor: 0
   _layerMask:
     serializedVersion: 2
@@ -200,15 +199,12 @@ MonoBehaviour:
   scoped: {fileID: 0}
   scopedPoint: {x: 0, y: 0, z: 0}
   interactuable: {fileID: 0}
-  MyCooldowns:
-    pictionaries: []
-  MyObjReferences:
-    pictionaries: []
   ObjectSpawnOnDamage: []
   damage: 10
   power:
-  - {fileID: 0}
-  lastPower: {fileID: 0}
+  - id: 0
+  handlerUpdates:
+    pictionaries: []
   actualPower: 0
   input: {x: 0, y: 0, z: 0}
   jumpStrength: 0
@@ -244,6 +240,10 @@ MonoBehaviour:
     _currentTime: 0
   minimalDistancePlayer: 9.8
   _minimalDistance: 2
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!195 &4480580260090588773
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -293,6 +293,18 @@ MonoBehaviour:
         onAwake: 0
         source: {fileID: 0}
     - key: Death
+      value:
+        mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
+        clip: {fileID: 8300000, guid: 56a3fc200e67efd4984968bf8fb2491f, type: 3}
+        volume: 0.4
+        pitch: 1
+        spatialBlend: 1
+        maxDistance: 3
+        minDistance: 1
+        loop: 0
+        onAwake: 0
+        source: {fileID: 0}
+    - key: Land
       value:
         mixer: {fileID: 687805830587485732, guid: a69bb787683c9b645a5b0420cd0ccacb, type: 2}
         clip: {fileID: 8300000, guid: 56a3fc200e67efd4984968bf8fb2491f, type: 3}

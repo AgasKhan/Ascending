@@ -12,6 +12,8 @@ public class Stun_Enemy : Enemy_Character
 
         MyUpdates += MyUpdate;
 
+        MyStarts += () => { ReplaceFirstPower<Stun_Powers>(); };
+
     }
 
     void MyAwake()

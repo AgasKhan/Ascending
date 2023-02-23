@@ -16,6 +16,8 @@ public class DashEnemy_Enemy : Enemy_Character
         OtherUpdates = MyUpdates;
         MyUpdates = MyUpdate;
 
+        MyStarts += () => { ReplaceFirstPower<Teleport_Powers>(); };
+
     }
 
     public override void Dash()

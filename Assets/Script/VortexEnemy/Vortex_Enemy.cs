@@ -11,6 +11,8 @@ public class Vortex_Enemy : Enemy_Character
         MyAwakes += MyAwake;
 
         MyUpdates += MyUpdate;
+
+        MyStarts += () => { ReplaceFirstPower<Vortex_Powers>(); };
     }
     void MyAwake()
     {

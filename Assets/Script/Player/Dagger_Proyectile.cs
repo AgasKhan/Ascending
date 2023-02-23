@@ -239,8 +239,7 @@ public class Travel : IState<FSMDagger>
     }
 
     public void OnExitState(FSMDagger param)
-    {
-
+    { 
     }
 
     public void OnStayState(FSMDagger param)
@@ -258,7 +257,6 @@ public class Orbit : IState<FSMDagger>
 {
     public void OnEnterState(FSMDagger param)
     {
-
     }
 
     public void OnExitState(FSMDagger param)
@@ -270,6 +268,5 @@ public class Orbit : IState<FSMDagger>
 
     public void OnStayState(FSMDagger param)
     {
-
     }
 }
