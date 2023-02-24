@@ -9,19 +9,20 @@ public abstract class FSM<T, Context> : ISwitchState<T> where T : FSM<T,Context>
 
     IState<T> currentState;
 
+    public IState<T> CurrentState 
+    {   
+        get => currentState; 
+        set => SwitchState(value); 
+    }
+
     T FSMConvertToChild()
     {
         return (T)this;
     }
 
-    public IState<T> ReturnState()
+    void SwitchState(IState<T> state)
     {
-        return currentState;
-    }
-
-    public void SwitchState(IState<T> state)
-    {
-        if (state == currentState || state== null)
+        if (state == currentState || state == null)
             return;
 
         currentState.OnExitState(FSMConvertToChild());
@@ -38,8 +39,6 @@ public abstract class FSM<T, Context> : ISwitchState<T> where T : FSM<T,Context>
         currentState = first;
         currentState.OnEnterState(FSMConvertToChild());
     }
-
-
 
     protected FSM(Context reference)
     {

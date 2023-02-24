@@ -39,7 +39,7 @@ public class TimeController
         MainHud.RestoreOriginalColorWithFade(1, "Effect");
         HealthUI_HealthCh.instance.RefreshHealth(GameManager.player.health.Percentage());
 
-        GameManager.player.fsmAiming.SwitchState(GameManager.player.fsmAiming.noAiming);
+        GameManager.player.fsmAiming.CurrentState=GameManager.player.fsmAiming.noAiming;
     }
 
     public static void Awake()
@@ -544,7 +544,7 @@ public class TimeController
 
         public override void OnExitState()
         {
-            reference.SwitchState(currentReverse);
+            reference.CurrentState=currentReverse;
         }
 
         public override void OnStayState()
@@ -554,7 +554,7 @@ public class TimeController
 
         public override void OnUpdate()
         {
-            states.Push(reference.ReturnState());
+            states.Push(reference.CurrentState);
         }
     }
 }

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor;
 using Internal;
 
 
 /*
  Implementar sort
  */
-[System.Serializable]
+[Serializable]
 public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
 {
     [SerializeField]
@@ -82,6 +81,25 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
 
         return original;
     }
+
+    public static Pictionarys<K, V> operator +(Pictionarys<K, V> original,  Dictionary<K, V> sumado)
+    {
+        foreach (var item in sumado)
+        {
+            original.Add(item.Key, item.Value);
+        }
+        return original;
+    }
+
+    public static Dictionary<K, V> operator +(Dictionary<K, V> original, Pictionarys<K, V> sumado)
+    {
+        foreach (var item in sumado)
+        {
+            original.Add(item.key,item.value);
+        }
+        return original;
+    }
+
     public override string ToString()
     {
         return ToString("=");
@@ -96,12 +114,6 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
             salida += item.key + s + item.value + "\n";
         }
         return salida;
-    }
-
-
-    public IEnumerator<Pictionary<K, V>> GetEnumerator()
-    {
-        return pictionaries.GetEnumerator();
     }
 
 
@@ -139,27 +151,17 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
 
     public bool ContainsKey(K key, out int index)
     {
-        for (int i = 0; i < pictionaries.Count; i++)
+        if ((index = SearchIndex(key)) > -1)
         {
-            if (pictionaries[i].key.Equals(key))
-            {
-                index = i;
-                return true;
-            }
+            return true;
         }
-        index = -1;
         return false;
     }
 
     public bool ContainsKey(K key)
     {
-        for (int i = 0; i < pictionaries.Count; i++)
-        {
-            if (pictionaries[i].key.Equals(key))
-            {
-                return true;
-            }
-        }
+        if (SearchIndex(key) > -1)
+            return true;
         return false;
     }
 
@@ -203,6 +205,11 @@ public class Pictionarys<K, V> : IEnumerable<Pictionary<K, V>>
         return GetEnumerator();
     }
 
+    public IEnumerator<Pictionary<K, V>> GetEnumerator()
+    {
+        return pictionaries.GetEnumerator();
+    }
+
     int SearchIndex(K key)
     {
         for (int i = 0; i < pictionaries.Count; i++)
@@ -238,26 +245,10 @@ namespace Internal
         {
             return String.Compare(this.key.ToString(), other.key.ToString());
         }
-
-        public Pictionary() { }
         public Pictionary(K k, V v)
         {
             key = k;
             value = v;
         }
-
-
     }
-
-    /*
-
-    [CustomPropertyDrawer(typeof(Pictionary<string, GameObject>))]
-    [CustomPropertyDrawer(typeof(Pictionary<string, AudioLink>))]
-    public class Editor : PropertyDrawer
-    {
-
-    }
-
-    */
-
 }

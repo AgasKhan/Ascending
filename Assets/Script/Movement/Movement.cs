@@ -63,7 +63,7 @@ public class Movement : MoveRotAndGlueRb
         if (transform.parent == null || glue.transform.parent == null || (glue.transform.parent != null && other.name != glue.transform.parent.name))
             AddGlue(other.transform);
 
-        entorno.SwitchState(entorno.ground);
+        entorno.CurrentState=entorno.ground;
 
         lastFloorDistance = 0;
 
@@ -179,7 +179,7 @@ public class Movement : MoveRotAndGlueRb
 
     private void OnTriggerExit(Collider other)
     {
-        entorno.SwitchState(entorno.air);
+        entorno.CurrentState=entorno.air;
     }
 
     private void OnDrawGizmos()

@@ -22,8 +22,6 @@ public interface IState
 
 public interface ISwitchState<T>
 {
-    void SwitchState(IState<T> state);
-
-    IState<T> ReturnState();
+    IState<T> CurrentState { get; set; }
 }
 

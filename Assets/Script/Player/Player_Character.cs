@@ -23,6 +23,11 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
         get;
         private set;
     }
+    public IState<FSMAimingPlayer> CurrentState 
+    { 
+        get => fsmAiming.CurrentState; 
+        set => fsmAiming.CurrentState=value; 
+    }
 
     public FSMAimingPlayer fsmAiming;
 
@@ -94,7 +99,7 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
    
     public void Jump(float number)
     {
-        if (fsmAiming.ReturnState() != fsmAiming.noAiming)
+        if (fsmAiming.CurrentState != fsmAiming.noAiming)
             return;
 
         if (!coyoteTime.Chck || _extraJumps >= 0)
@@ -185,16 +190,6 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
         coyoteTime.Reset();
     }
 
-    public void SwitchState(IState<FSMAimingPlayer> state)
-    {
-        fsmAiming.SwitchState(state);
-    }
-
-    public IState<FSMAimingPlayer> ReturnState()
-    {
-        return fsmAiming.ReturnState();
-    }
-
     #region unity Functions
 
     protected override void Config()
@@ -240,8 +235,6 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
         movement.entorno.ground.onExit += Ground_onExit;
         movement.entorno.ground.onStay += Ground_onStay;
     }
-
-    
 
     void MyUpdate()
     {
@@ -290,7 +283,7 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
     {
         if(!focus)
         {
-            fsmAiming.SwitchState(fsmAiming.noAiming);
+            fsmAiming.CurrentState=fsmAiming.noAiming;
         }
     }
     #endregion
@@ -357,11 +350,11 @@ public class FSMAimingPlayer : FSM<FSMAimingPlayer, Player_Character>
 
     public void Aim_eventUp(float obj)
     {
-        SwitchState(noAiming);
+        CurrentState=noAiming;
     }  
     public void Aim_eventDownNO(float obj)
     {
-        SwitchState(aiming);
+        CurrentState = aiming;
     }
 
     #endregion

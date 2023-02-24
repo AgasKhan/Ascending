@@ -1624,9 +1624,56 @@ MonoBehaviour:
     - {fileID: 72196825}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
+    fsmPatrol:
+      context:
+        reverse: 0
+        iPatrulla: 0
+        patrol: []
+        _distance: {x: 0, y: 0, z: 0}
+        _waitTime: 0
+        fsmPatrol:
+          context:
+            reverse: 0
+            iPatrulla: 0
+            patrol: []
+            _distance: {x: 0, y: 0, z: 0}
+            _waitTime: 0
+            fsmPatrol:
+              context:
+                reverse: 0
+                iPatrulla: 0
+                patrol: []
+                _distance: {x: 0, y: 0, z: 0}
+                _waitTime: 0
+                fsmPatrol:
+                  context:
+                    reverse: 0
+                    iPatrulla: 0
+                    patrol: []
+                    _distance: {x: 0, y: 0, z: 0}
+                    _waitTime: 0
+                    fsmPatrol:
+                      context:
+                        reverse: 0
+                        iPatrulla: 0
+                        _distance: {x: 0, y: 0, z: 0}
+                        _waitTime: 0
+                  wait:
+                    timer:
+                      _totalTime: 0
+                      _currentTime: 0
+              wait:
+                timer:
+                  _totalTime: 0
+                  _currentTime: 0
+          wait:
+            timer:
+              _totalTime: 0
+              _currentTime: 0
+      wait:
+        timer:
+          _totalTime: 0
+          _currentTime: 0
   _distance: 1
 --- !u!1 &151950476
 GameObject:
@@ -9264,7 +9311,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh623318
+  m_Name: pb_Mesh903464
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16750,6 +16797,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
+      propertyPath: patrol._waitTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510303409702474214, guid: 1da85e339d0c72a4da6738d9e9017281, type: 3}
       propertyPath: power.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -17192,9 +17243,56 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
+    fsmPatrol:
+      context:
+        reverse: 0
+        iPatrulla: 0
+        patrol: []
+        _distance: {x: 0, y: 0, z: 0}
+        _waitTime: 0
+        fsmPatrol:
+          context:
+            reverse: 0
+            iPatrulla: 0
+            patrol: []
+            _distance: {x: 0, y: 0, z: 0}
+            _waitTime: 0
+            fsmPatrol:
+              context:
+                reverse: 0
+                iPatrulla: 0
+                patrol: []
+                _distance: {x: 0, y: 0, z: 0}
+                _waitTime: 0
+                fsmPatrol:
+                  context:
+                    reverse: 0
+                    iPatrulla: 0
+                    patrol: []
+                    _distance: {x: 0, y: 0, z: 0}
+                    _waitTime: 0
+                    fsmPatrol:
+                      context:
+                        reverse: 0
+                        iPatrulla: 0
+                        _distance: {x: 0, y: 0, z: 0}
+                        _waitTime: 0
+                  wait:
+                    timer:
+                      _totalTime: 0
+                      _currentTime: 0
+              wait:
+                timer:
+                  _totalTime: 0
+                  _currentTime: 0
+          wait:
+            timer:
+              _totalTime: 0
+              _currentTime: 0
+      wait:
+        timer:
+          _totalTime: 0
+          _currentTime: 0
   _distance: 1
 --- !u!1 &1228695835
 GameObject:
@@ -20795,7 +20893,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh622258
+  m_Name: pb_Mesh826672
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22381,7 +22479,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2367980
+  m_Name: pb_Mesh-413324
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23038,7 +23136,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2361858
+  m_Name: pb_Mesh-407206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27969,9 +28067,56 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
+    fsmPatrol:
+      context:
+        reverse: 0
+        iPatrulla: 0
+        patrol: []
+        _distance: {x: 0, y: 0, z: 0}
+        _waitTime: 0
+        fsmPatrol:
+          context:
+            reverse: 0
+            iPatrulla: 0
+            patrol: []
+            _distance: {x: 0, y: 0, z: 0}
+            _waitTime: 0
+            fsmPatrol:
+              context:
+                reverse: 0
+                iPatrulla: 0
+                patrol: []
+                _distance: {x: 0, y: 0, z: 0}
+                _waitTime: 0
+                fsmPatrol:
+                  context:
+                    reverse: 0
+                    iPatrulla: 0
+                    patrol: []
+                    _distance: {x: 0, y: 0, z: 0}
+                    _waitTime: 0
+                    fsmPatrol:
+                      context:
+                        reverse: 0
+                        iPatrulla: 0
+                        _distance: {x: 0, y: 0, z: 0}
+                        _waitTime: 0
+                  wait:
+                    timer:
+                      _totalTime: 0
+                      _currentTime: 0
+              wait:
+                timer:
+                  _totalTime: 0
+                  _currentTime: 0
+          wait:
+            timer:
+              _totalTime: 0
+              _currentTime: 0
+      wait:
+        timer:
+          _totalTime: 0
+          _currentTime: 0
   _distance: 1
 --- !u!1001 &3009561182533302587
 PrefabInstance:
@@ -28154,9 +28299,56 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 10
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
+    fsmPatrol:
+      context:
+        reverse: 0
+        iPatrulla: 0
+        patrol: []
+        _distance: {x: 0, y: 0, z: 0}
+        _waitTime: 0
+        fsmPatrol:
+          context:
+            reverse: 0
+            iPatrulla: 0
+            patrol: []
+            _distance: {x: 0, y: 0, z: 0}
+            _waitTime: 0
+            fsmPatrol:
+              context:
+                reverse: 0
+                iPatrulla: 0
+                patrol: []
+                _distance: {x: 0, y: 0, z: 0}
+                _waitTime: 0
+                fsmPatrol:
+                  context:
+                    reverse: 0
+                    iPatrulla: 0
+                    patrol: []
+                    _distance: {x: 0, y: 0, z: 0}
+                    _waitTime: 0
+                    fsmPatrol:
+                      context:
+                        reverse: 0
+                        iPatrulla: 0
+                        _distance: {x: 0, y: 0, z: 0}
+                        _waitTime: 0
+                  wait:
+                    timer:
+                      _totalTime: 0
+                      _currentTime: 0
+              wait:
+                timer:
+                  _totalTime: 0
+                  _currentTime: 0
+          wait:
+            timer:
+              _totalTime: 0
+              _currentTime: 0
+      wait:
+        timer:
+          _totalTime: 0
+          _currentTime: 0
   _distance: 1
 --- !u!1001 &5482123390020470945
 PrefabInstance:

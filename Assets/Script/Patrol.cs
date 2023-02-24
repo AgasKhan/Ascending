@@ -102,7 +102,7 @@ public class Patrol
     {
         if (_distance.sqrMagnitude < minimal * minimal)
         {
-            fsmPatrol.SwitchState(fsmPatrol.wait);
+            fsmPatrol.CurrentState = fsmPatrol.wait;
             return true;
         }
         return false;
@@ -127,11 +127,12 @@ public interface IPatrolReturn
     Patrol PatrolReturn();
 }
 
+[System.Serializable]
 public class FSMPatrol : FSM<FSMPatrol, Patrol>
 {
     public IState<FSMPatrol> move = new Move();
 
-    public IState<FSMPatrol> wait;
+    public Wait wait;
 
     public System.Action OnMove;
 
@@ -167,6 +168,7 @@ public class Move : IState<FSMPatrol>
     }
 }
 
+[System.Serializable]
 public class Wait : IState<FSMPatrol>
 {
     /// <summary>
@@ -194,14 +196,14 @@ public class Wait : IState<FSMPatrol>
     public void OnExitState(FSMPatrol param)
     {
         param.context.iPatrulla = param.context.NextPoint(ref _reverseEffect);
+        param.context.Distance();
     }
 
     public void OnStayState(FSMPatrol param)
     {
         if (timer.Chck)
         {
-            param.SwitchState(param.move);
-            timer.Reset();
+            param.CurrentState=param.move;
         }
 
         param.OnWait?.Invoke();

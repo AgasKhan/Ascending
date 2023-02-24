@@ -44,6 +44,12 @@ public class Dagger_Proyectile : Proyectile, ISwitchState<FSMDagger>
         }
     }
 
+    public IState<FSMDagger> CurrentState 
+    { 
+        get => fsmDagger.CurrentState; 
+        set => fsmDagger.CurrentState=value; 
+    }
+
     public void SetLine(Vector3 p1, Vector3 p2)
     {
         daggerEffect.SetLine(p1, p2);
@@ -56,7 +62,7 @@ public class Dagger_Proyectile : Proyectile, ISwitchState<FSMDagger>
         if (aux.glue.transform.parent != null)
             OnExit(aux.glue.transform.parent.gameObject);
 
-        fsmDagger.SwitchState(fsmDagger.travel);
+        fsmDagger.CurrentState=fsmDagger.travel;
         
         localAtrackt = Utilitys.LerpInTime(transform.position, vec, time, Vector3.Lerp, (saveData) => {transform.position = saveData; });
 
@@ -66,7 +72,7 @@ public class Dagger_Proyectile : Proyectile, ISwitchState<FSMDagger>
             () =>
             {
                 transform.parent = parent;
-                fsmDagger.SwitchState(fsmDagger.orbit);
+                fsmDagger.CurrentState=fsmDagger.orbit;
                 //enabled = false;
             });
     }
@@ -84,13 +90,13 @@ public class Dagger_Proyectile : Proyectile, ISwitchState<FSMDagger>
 
     public override void Throw(Damage dmg, Vector3 dir, float multiply)
     {
-        fsmDagger.SwitchState(fsmDagger.shoot);
+        fsmDagger.CurrentState=fsmDagger.shoot;
         base.Throw(dmg, dir, multiply);
     }
 
     protected override void OnEnter(Collider other)
     {
-        fsmDagger.SwitchState(fsmDagger.ground);
+        fsmDagger.CurrentState=fsmDagger.ground;
 
         base.OnEnter(other);
         ((MoveRotAndGlueRb)MoveRb).AddGlue(other.transform);
@@ -154,16 +160,6 @@ public class Dagger_Proyectile : Proyectile, ISwitchState<FSMDagger>
     private void FixedUpdate()
     {
         fsmDagger?.UpdateState();
-    }
-
-    public void SwitchState(IState<FSMDagger> state)
-    {
-        fsmDagger.SwitchState(state);
-    }
-
-    public IState<FSMDagger> ReturnState()
-    {
-        return fsmDagger.ReturnState();
     }
 
     IEnumerator PosAwake()
@@ -247,8 +243,8 @@ public class Travel : IState<FSMDagger>
         if ((param.context.transform.parent == null || ((MoveRotAndGlueRb)param.context.MoveRb).glue.transform.parent==null) && param.context.finishTimer.Chck)
         {
             param.context.MoveRb.useGravity = true;
-            param.SwitchState(param.orbit);
-            param.SwitchState(param.shoot);
+            param.CurrentState=param.orbit;
+            param.CurrentState=param.shoot;
         }
     }
 }

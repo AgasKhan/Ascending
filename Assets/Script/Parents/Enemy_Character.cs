@@ -252,13 +252,14 @@ abstract public class Enemy_Character : Character, IPatrolReturn
     protected bool MinimalChck()
     {
         if (!playerDetF)
-            return patrol.MinimalChck(_minimalDistance);
+            return patrol.MinimalChck(_minimalDistancePatrol);
 
-        if (_direction.sqrMagnitude < _minimalDistance * _minimalDistance)
+        else if (_direction.sqrMagnitude < _minimalDistance * _minimalDistance)
         {
             return true;
         }
-        return false;
+        else
+            return false;
     }
 
     #endregion
@@ -270,8 +271,7 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         base.Config();
 
         MyStarts += MyStart;
-        MyUpdates += MyUpdate;
-        MyFixedUpdates += MyFixedUpdate;
+
     }
 
     void MyStart()
@@ -288,6 +288,8 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         nav.acceleration = movement.desAceleration;
         */
 
+        MyUpdates += patrol.fsmPatrol.UpdateState;
+
         animator.AddFunction("offMesh", OffMesh);
 
         GameManager.AddEnemy(this);
@@ -295,28 +297,27 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
     void MyUpdate()
     {
-        if (player == null)
-            return;
-
         scoped = null;
         scopedPoint = Vector3.zero;
+
+        var minimalChack=MinimalChck();
 
         if (deleySearch.Chck)
             _direction = patrol.Distance();
         else
             _direction = _lastPosition - transform.position;
 
-        _direction = PlayerDetect(out playerDetF, out _minimalDistance);
+        _direction=PlayerDetect(out playerDetF, out _minimalDistance);
 
         _angle = movement.RotateToDirY(_direction);
 
-        if (_angle < coneOfVision/2 && !MinimalChck())
+        if (_angle < coneOfVision/2 && !minimalChack)
             input = (Vector3.forward);
 
-        else if (MinimalChck() && !deleySearch.Chck)
+        else if (minimalChack && !deleySearch.Chck)
             input = (Vector3.right * -1);
 
-        else if (MinimalChck())
+        else if (minimalChack)
         {
             input = Vector3.zero;
             movement.RotateY(_rotation);
@@ -331,9 +332,6 @@ abstract public class Enemy_Character : Character, IPatrolReturn
 
     void MyFixedUpdate()
     {
-        if (player == null)
-            return;
-
         movement.MoveLocal(input);
     }
 
@@ -347,6 +345,9 @@ abstract public class Enemy_Character : Character, IPatrolReturn
         deleySearch = TimersManager.Create(0);
 
         _rotation = transform.rotation.eulerAngles.y;
+
+        MyUpdates += MyUpdate;
+        MyFixedUpdates += MyFixedUpdate;
     }
 
     #endregion
