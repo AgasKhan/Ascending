@@ -139,11 +139,11 @@ MonoBehaviour:
     basePools:
     - prefab: {fileID: 835208027304863499, guid: cae08ef592865c74fa13e425da63bce1, type: 3}
       utilityRefence: []
-      amount: 0
+      amount: 5
       pool: []
     - prefab: {fileID: 3427085302238275697, guid: 4f7fe396c0b695b408ad8a923e708270, type: 3}
       utilityRefence: []
-      amount: 0
+      amount: 5
       pool: []
   - name: Vortex
     basePools:
@@ -275,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 7939842618333871688, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
       propertyPath: m_Name
       value: StunManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939842618333871688, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7939842618333871691, guid: ffa7bea379cf3504385b658cb49b8f5f, type: 3}
       propertyPath: m_RootOrder
