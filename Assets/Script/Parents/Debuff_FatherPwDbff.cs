@@ -32,7 +32,17 @@ abstract public class Debuff_FatherPwDbff : FatherPwDbff
 
         if(particlesString!=null && particlesString!="")
         {
-            particles = (GameObject)SpawnPowerObject(particlesString, Vector3.zero, Quaternion.identity, me.transform);
+            particles = SpawnPowerObject(particlesString, Vector3.zero, Quaternion.identity, me.transform);
+            var noMainaux = particles.GetComponentInChildren<ParticleSystem>();
+
+            noMainaux.Stop();
+
+            var aux = noMainaux.main;
+
+            aux.duration = (6 - aux.startLifetime.constant / aux.simulationSpeed) * aux.simulationSpeed;
+
+            noMainaux.Play();
+
         }
             
     }
