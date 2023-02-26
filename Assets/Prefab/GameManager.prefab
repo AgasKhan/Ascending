@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayStart: 1
-  multiplyReverseCamera: 4
+  multiplyReverseCamera: 2
   maxLevelTimer: 120
   saveTimeP: 1
   currentTime: 0

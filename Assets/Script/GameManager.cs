@@ -91,8 +91,9 @@ public class GameManager : MonoBehaviour
             CurrentTime(-Time.unscaledDeltaTime);
             foreach (var item in TimeController.entitys)
             {
-                item.ReverseItem(instance.multiplyReverseCamera);
+                item.ReverseItem((Input.GetKey(KeyCode.R) ? 10 : 1) * instance.multiplyReverseCamera);
             }
+
             yield return null;
         }
 

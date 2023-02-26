@@ -28,18 +28,18 @@ public class TimeController
 
     static public void FinishReverse()
     {
-        Controllers.eneable = true;
-        Time.timeScale = 1;
         foreach (var item in entitys)
         {
             item.FinishReverseItem();
         }
 
+        Controllers.eneable = true;
+        Time.timeScale = 1;
         Utilitys.LerpInTime(volume.weight, 0f, 1, Mathf.Lerp, (weight) => { volume.weight = weight; });
         MainHud.RestoreOriginalColorWithFade(1, "Effect");
         HealthUI_HealthCh.instance.RefreshHealth(GameManager.player.health.Percentage());
 
-        GameManager.player.fsmAiming.CurrentState=GameManager.player.fsmAiming.noAiming;
+        GameManager.player.fsmAiming.CurrentState = GameManager.player.fsmAiming.noAiming;
     }
 
     public static void Awake()
@@ -108,9 +108,7 @@ public class TimeController
         else
         {
             GameManager.CurrentTime(Time.unscaledDeltaTime);
-
         }
-
     }
 
     public int count = 0;

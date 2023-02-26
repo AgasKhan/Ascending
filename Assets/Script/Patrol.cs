@@ -127,12 +127,12 @@ public interface IPatrolReturn
     Patrol PatrolReturn();
 }
 
-[System.Serializable]
+
 public class FSMPatrol : FSM<FSMPatrol, Patrol>
 {
     public IState<FSMPatrol> move = new Move();
 
-    public Wait wait;
+    public IState<FSMPatrol> wait;
 
     public System.Action OnMove;
 
@@ -168,7 +168,7 @@ public class Move : IState<FSMPatrol>
     }
 }
 
-[System.Serializable]
+
 public class Wait : IState<FSMPatrol>
 {
     /// <summary>

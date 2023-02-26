@@ -59,7 +59,7 @@ public class SkillTreeManager : MonoBehaviour
         SkillSlot[] activeAbilities = gridActives.GetComponentsInChildren<SkillSlot>();
         int index = 0;
 
-        print(allAbilities.Length);
+        //print(allAbilities.Length);
         
         foreach (var item in allAbilities)
         {

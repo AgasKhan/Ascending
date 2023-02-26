@@ -552,7 +552,7 @@ Transform:
   m_GameObject: {fileID: 38304621}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -53, y: 0, z: -23}
-  m_LocalScale: {x: 25, y: 10, z: 1}
+  m_LocalScale: {x: 25, y: 18.76, z: 1}
   m_Children:
   - {fileID: 1326957742}
   m_Father: {fileID: 1127293209}
@@ -905,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 53719330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -73, y: 0, z: 26}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 12, y: 23.57, z: 1}
   m_Children:
   - {fileID: 514571234}
   m_Father: {fileID: 1127293209}
@@ -1624,56 +1624,6 @@ MonoBehaviour:
     - {fileID: 72196825}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    fsmPatrol:
-      context:
-        reverse: 0
-        iPatrulla: 0
-        patrol: []
-        _distance: {x: 0, y: 0, z: 0}
-        _waitTime: 0
-        fsmPatrol:
-          context:
-            reverse: 0
-            iPatrulla: 0
-            patrol: []
-            _distance: {x: 0, y: 0, z: 0}
-            _waitTime: 0
-            fsmPatrol:
-              context:
-                reverse: 0
-                iPatrulla: 0
-                patrol: []
-                _distance: {x: 0, y: 0, z: 0}
-                _waitTime: 0
-                fsmPatrol:
-                  context:
-                    reverse: 0
-                    iPatrulla: 0
-                    patrol: []
-                    _distance: {x: 0, y: 0, z: 0}
-                    _waitTime: 0
-                    fsmPatrol:
-                      context:
-                        reverse: 0
-                        iPatrulla: 0
-                        _distance: {x: 0, y: 0, z: 0}
-                        _waitTime: 0
-                  wait:
-                    timer:
-                      _totalTime: 0
-                      _currentTime: 0
-              wait:
-                timer:
-                  _totalTime: 0
-                  _currentTime: 0
-          wait:
-            timer:
-              _totalTime: 0
-              _currentTime: 0
-      wait:
-        timer:
-          _totalTime: 0
-          _currentTime: 0
   _distance: 1
 --- !u!1 &151950476
 GameObject:
@@ -3015,7 +2965,7 @@ Transform:
   m_GameObject: {fileID: 261105763}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
   m_LocalPosition: {x: -28, y: 0, z: 67.75}
-  m_LocalScale: {x: 26.019999, y: 10, z: 1}
+  m_LocalScale: {x: 26.019999, y: 22.66, z: 1}
   m_Children:
   - {fileID: 2004322693}
   m_Father: {fileID: 1127293209}
@@ -3409,14 +3359,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314226470}
-  m_LocalRotation: {x: 0.0000030080494, y: -0.0000029206271, z: -1, w: 8.405721e-12}
-  m_LocalPosition: {x: -21, y: 11, z: 10}
-  m_LocalScale: {x: 9, y: 11, z: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -21, y: -3.2, z: 10.999733}
+  m_LocalScale: {x: 9, y: 24.99, z: 1}
   m_Children:
   - {fileID: 1196817760}
   m_Father: {fileID: 1127293209}
   m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: -180, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!114 &318927484 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4990311562488603054, guid: 56e0f300f1ef423489609b81780959d5, type: 3}
@@ -4326,7 +4276,7 @@ Transform:
   m_GameObject: {fileID: 387980675}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
   m_LocalPosition: {x: -53, y: 0, z: 19}
-  m_LocalScale: {x: 8, y: 15, z: 1}
+  m_LocalScale: {x: 8, y: 28.3, z: 1}
   m_Children:
   - {fileID: 1241509698}
   m_Father: {fileID: 1127293209}
@@ -4392,7 +4342,7 @@ Transform:
   m_GameObject: {fileID: 401459238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -54, y: 0, z: 10}
-  m_LocalScale: {x: 18, y: 11, z: 1}
+  m_LocalScale: {x: 18, y: 20.68, z: 1}
   m_Children:
   - {fileID: 439259698}
   m_Father: {fileID: 1127293209}
@@ -7714,7 +7664,7 @@ Transform:
   m_GameObject: {fileID: 499672963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21, y: 0, z: 26}
-  m_LocalScale: {x: 10.423674, y: 10, z: 1}
+  m_LocalScale: {x: 10.423674, y: 25, z: 1}
   m_Children:
   - {fileID: 1784893968}
   m_Father: {fileID: 1127293209}
@@ -8988,7 +8938,7 @@ Transform:
   m_GameObject: {fileID: 620266351}
   m_LocalRotation: {x: 0.70710987, y: -0.7071037, z: -0.0000020652037, w: -0.000002065186}
   m_LocalPosition: {x: -53, y: 15.000001, z: 44}
-  m_LocalScale: {x: 15, y: 21.173601, z: 1}
+  m_LocalScale: {x: 15, y: 41.9, z: 1}
   m_Children:
   - {fileID: 449275755}
   m_Father: {fileID: 1127293209}
@@ -9311,7 +9261,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh903464
+  m_Name: pb_Mesh41644
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13786,7 +13736,7 @@ Transform:
   m_GameObject: {fileID: 793224939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13, y: 0, z: 27}
-  m_LocalScale: {x: 1, y: 10, z: 25}
+  m_LocalScale: {x: 1, y: 25, z: 25}
   m_Children:
   - {fileID: 1549832802}
   m_Father: {fileID: 1127293209}
@@ -14926,7 +14876,7 @@ Transform:
   m_GameObject: {fileID: 941477447}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029206271}
   m_LocalPosition: {x: -53, y: 0, z: 67}
-  m_LocalScale: {x: 1, y: 15, z: 24}
+  m_LocalScale: {x: 1, y: 33.02, z: 24}
   m_Children:
   - {fileID: 51655432}
   m_Father: {fileID: 1127293209}
@@ -17016,7 +16966,7 @@ Transform:
   m_GameObject: {fileID: 1204500714}
   m_LocalRotation: {x: -0.0000029164887, y: -0.0000029206271, z: -0.0000027605577, w: 1}
   m_LocalPosition: {x: -62, y: 5, z: 35}
-  m_LocalScale: {x: 1, y: 5, z: 8}
+  m_LocalScale: {x: 1, y: 28.77, z: 8}
   m_Children:
   - {fileID: 345427968}
   m_Father: {fileID: 1127293209}
@@ -17243,56 +17193,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    fsmPatrol:
-      context:
-        reverse: 0
-        iPatrulla: 0
-        patrol: []
-        _distance: {x: 0, y: 0, z: 0}
-        _waitTime: 0
-        fsmPatrol:
-          context:
-            reverse: 0
-            iPatrulla: 0
-            patrol: []
-            _distance: {x: 0, y: 0, z: 0}
-            _waitTime: 0
-            fsmPatrol:
-              context:
-                reverse: 0
-                iPatrulla: 0
-                patrol: []
-                _distance: {x: 0, y: 0, z: 0}
-                _waitTime: 0
-                fsmPatrol:
-                  context:
-                    reverse: 0
-                    iPatrulla: 0
-                    patrol: []
-                    _distance: {x: 0, y: 0, z: 0}
-                    _waitTime: 0
-                    fsmPatrol:
-                      context:
-                        reverse: 0
-                        iPatrulla: 0
-                        _distance: {x: 0, y: 0, z: 0}
-                        _waitTime: 0
-                  wait:
-                    timer:
-                      _totalTime: 0
-                      _currentTime: 0
-              wait:
-                timer:
-                  _totalTime: 0
-                  _currentTime: 0
-          wait:
-            timer:
-              _totalTime: 0
-              _currentTime: 0
-      wait:
-        timer:
-          _totalTime: 0
-          _currentTime: 0
   _distance: 1
 --- !u!1 &1228695835
 GameObject:
@@ -20749,6 +20649,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1037151809561240809, guid: 3c473bb13c624de448a123db0227f0e9, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037151809561240809, guid: 3c473bb13c624de448a123db0227f0e9, type: 3}
       propertyPath: DisplayText
       value: Interruptor
       objectReference: {fileID: 0}
@@ -20893,7 +20797,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh826672
+  m_Name: pb_Mesh40584
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21924,7 +21828,7 @@ Transform:
   m_GameObject: {fileID: 1604246629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29, y: 9, z: 51}
-  m_LocalScale: {x: 1, y: 6, z: 17}
+  m_LocalScale: {x: 1, y: 8.36, z: 17}
   m_Children:
   - {fileID: 67036263}
   m_Father: {fileID: 1127293209}
@@ -22479,7 +22383,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-413324
+  m_Name: pb_Mesh-39838
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22662,7 +22566,7 @@ Transform:
   m_GameObject: {fileID: 1688115168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -54, y: 11, z: 10}
-  m_LocalScale: {x: 10, y: 4, z: 1}
+  m_LocalScale: {x: 10, y: 21.2, z: 1}
   m_Children:
   - {fileID: 373094977}
   m_Father: {fileID: 1127293209}
@@ -23027,7 +22931,7 @@ Transform:
   m_GameObject: {fileID: 1729895705}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -29, y: 0, z: -22}
-  m_LocalScale: {x: 1, y: 10, z: 16}
+  m_LocalScale: {x: 1, y: 16.93, z: 16}
   m_Children:
   - {fileID: 6513441}
   m_Father: {fileID: 1127293209}
@@ -23058,7 +22962,7 @@ Transform:
   m_GameObject: {fileID: 1734014831}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029206271}
   m_LocalPosition: {x: -73, y: 5, z: 44}
-  m_LocalScale: {x: 1, y: 10, z: 17}
+  m_LocalScale: {x: 1, y: 29, z: 17}
   m_Children:
   - {fileID: 781249819}
   m_Father: {fileID: 1127293209}
@@ -23136,7 +23040,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-407206
+  m_Name: pb_Mesh-33720
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23355,7 +23259,7 @@ Transform:
   m_GameObject: {fileID: 1763509518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21, y: 0, z: -7}
-  m_LocalScale: {x: 1, y: 10, z: 33.775497}
+  m_LocalScale: {x: 1, y: 25, z: 33.775497}
   m_Children:
   - {fileID: 1984694796}
   m_Father: {fileID: 1127293209}
@@ -23479,7 +23383,7 @@ Transform:
   m_GameObject: {fileID: 1784081038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29, y: 9, z: 51}
-  m_LocalScale: {x: 17, y: 6, z: 1}
+  m_LocalScale: {x: 17, y: 8.9, z: 1}
   m_Children:
   - {fileID: 524836229}
   m_Father: {fileID: 1127293209}
@@ -24406,7 +24310,7 @@ Transform:
   m_GameObject: {fileID: 1842955781}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029206271}
   m_LocalPosition: {x: -61, y: 0, z: 27}
-  m_LocalScale: {x: 1, y: 15, z: 10}
+  m_LocalScale: {x: 1, y: 33.52, z: 10}
   m_Children:
   - {fileID: 1290085037}
   m_Father: {fileID: 1127293209}
@@ -26829,7 +26733,7 @@ Transform:
   m_GameObject: {fileID: 2089736432}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029206271}
   m_LocalPosition: {x: -53, y: 0, z: 2}
-  m_LocalScale: {x: 1.5964, y: 10, z: 25}
+  m_LocalScale: {x: 1.5964, y: 20.1, z: 25}
   m_Children:
   - {fileID: 729180814}
   m_Father: {fileID: 1127293209}
@@ -28067,56 +27971,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    fsmPatrol:
-      context:
-        reverse: 0
-        iPatrulla: 0
-        patrol: []
-        _distance: {x: 0, y: 0, z: 0}
-        _waitTime: 0
-        fsmPatrol:
-          context:
-            reverse: 0
-            iPatrulla: 0
-            patrol: []
-            _distance: {x: 0, y: 0, z: 0}
-            _waitTime: 0
-            fsmPatrol:
-              context:
-                reverse: 0
-                iPatrulla: 0
-                patrol: []
-                _distance: {x: 0, y: 0, z: 0}
-                _waitTime: 0
-                fsmPatrol:
-                  context:
-                    reverse: 0
-                    iPatrulla: 0
-                    patrol: []
-                    _distance: {x: 0, y: 0, z: 0}
-                    _waitTime: 0
-                    fsmPatrol:
-                      context:
-                        reverse: 0
-                        iPatrulla: 0
-                        _distance: {x: 0, y: 0, z: 0}
-                        _waitTime: 0
-                  wait:
-                    timer:
-                      _totalTime: 0
-                      _currentTime: 0
-              wait:
-                timer:
-                  _totalTime: 0
-                  _currentTime: 0
-          wait:
-            timer:
-              _totalTime: 0
-              _currentTime: 0
-      wait:
-        timer:
-          _totalTime: 0
-          _currentTime: 0
   _distance: 1
 --- !u!1001 &3009561182533302587
 PrefabInstance:
@@ -28299,56 +28153,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 10
-    fsmPatrol:
-      context:
-        reverse: 0
-        iPatrulla: 0
-        patrol: []
-        _distance: {x: 0, y: 0, z: 0}
-        _waitTime: 0
-        fsmPatrol:
-          context:
-            reverse: 0
-            iPatrulla: 0
-            patrol: []
-            _distance: {x: 0, y: 0, z: 0}
-            _waitTime: 0
-            fsmPatrol:
-              context:
-                reverse: 0
-                iPatrulla: 0
-                patrol: []
-                _distance: {x: 0, y: 0, z: 0}
-                _waitTime: 0
-                fsmPatrol:
-                  context:
-                    reverse: 0
-                    iPatrulla: 0
-                    patrol: []
-                    _distance: {x: 0, y: 0, z: 0}
-                    _waitTime: 0
-                    fsmPatrol:
-                      context:
-                        reverse: 0
-                        iPatrulla: 0
-                        _distance: {x: 0, y: 0, z: 0}
-                        _waitTime: 0
-                  wait:
-                    timer:
-                      _totalTime: 0
-                      _currentTime: 0
-              wait:
-                timer:
-                  _totalTime: 0
-                  _currentTime: 0
-          wait:
-            timer:
-              _totalTime: 0
-              _currentTime: 0
-      wait:
-        timer:
-          _totalTime: 0
-          _currentTime: 0
   _distance: 1
 --- !u!1001 &5482123390020470945
 PrefabInstance:

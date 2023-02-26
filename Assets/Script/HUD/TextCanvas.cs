@@ -38,6 +38,7 @@ public class TextCanvas : MonoBehaviour
 
     private void Update()
     {
+        /*
 
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -71,6 +72,7 @@ public class TextCanvas : MonoBehaviour
             text[0].Next();
         }
 
+        */
         foreach (var item in instance.text)
         {
             if (item.Load() && item.timeInScreen.Chck)

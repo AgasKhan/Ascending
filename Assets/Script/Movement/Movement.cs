@@ -60,7 +60,7 @@ public class Movement : MoveRotAndGlueRb
         if (other.isTrigger || Time.timeScale == 0)
             return lastFloorDistance;
 
-        if (transform.parent == null || glue.transform.parent == null || (glue.transform.parent != null && other.name != glue.transform.parent.name))
+        if (transform.parent == null || glue.transform.parent == null || (glue.transform.parent != null && other.name != glue.transform.parent.name && !other.CompareTag("Enemy")))
             AddGlue(other.transform);
 
         entorno.CurrentState=entorno.ground;
