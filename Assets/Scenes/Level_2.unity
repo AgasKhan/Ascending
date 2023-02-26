@@ -1330,7 +1330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8202150891239359148, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8202150891239359148, guid: d150a6a858fa8f64e872146ab838826d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1532,9 +1532,6 @@ MonoBehaviour:
     - {fileID: 72196825}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!1001 &150245719
 PrefabInstance:
@@ -11579,9 +11576,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!4 &1226432070 stripped
 Transform:
@@ -20103,9 +20097,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 0
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!114 &4606362868635201449
 MonoBehaviour:
@@ -20137,9 +20128,6 @@ MonoBehaviour:
     - {fileID: 6643867230294591060}
     _distance: {x: 0, y: 0, z: 0}
     _waitTime: 10
-    _wait:
-      _totalTime: 0
-      _currentTime: 0
   _distance: 1
 --- !u!4 &6643867230294591060
 Transform:

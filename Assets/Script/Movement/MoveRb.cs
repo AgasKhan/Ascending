@@ -275,7 +275,7 @@ public class MoveRb : FatherMoves, IOnProyectileEnter
 
         if (eneableDrag)
         {
-            _maxVelocity2D = (velocity2D.normalized * maxSpeed * Time.fixedDeltaTime * desAceleration);
+            _maxVelocity2D = (maxSpeed * Time.fixedDeltaTime * desAceleration * velocity2D.normalized);
 
             relation = velocity2D.sqrMagnitude / (maxSpeed * maxSpeed);
 

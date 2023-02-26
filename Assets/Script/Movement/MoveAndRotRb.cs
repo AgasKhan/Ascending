@@ -5,12 +5,13 @@ using UnityEngine;
 public class MoveAndRotRb : MoveRb
 {
 
-    [SerializeField] 
+    [SerializeField]
     public float desAcelerationAxis;
 
-    Quaternion _quaternion;
+    Quaternion rotation;
 
     bool _rotate = false;
+
 
     /// <summary>
     /// 
@@ -19,14 +20,9 @@ public class MoveAndRotRb : MoveRb
     /// <param name="offset"></param>
     public void RotateToDir(Vector3 dir, Vector3 offset)
     {
+        rotation = Quaternion.FromToRotation(Quaternion.Euler(offset)*Vector3.forward, dir);
 
-        float angleY;
-        float angleX;
-
-        Utilitys.DeltaAngle(dir,  Vector3.forward, out angleY, Vector3.up, transform.rotation);
-        Utilitys.DeltaAngle(dir,  Vector3.up, out angleX, transform.right, transform.rotation);
-
-        Rotate(new Vector3(angleX + offset.x - 90, angleY + offset.y, offset.z));
+        _rotate = true;
     }
 
     /// <summary>
@@ -36,13 +32,15 @@ public class MoveAndRotRb : MoveRb
     /// <returns>Retorna la diferencia absoluta entre el angulo y la rotacion del objeto</returns>
     public float RotateToDirY(Vector3 dir)
     {
-        float angle;
-        float result = Utilitys.DeltaAngleY(dir, out angle, transform.rotation);
+        Quaternion angle = Quaternion.FromToRotation(transform.forward, dir);
 
-        //print(angle);
-        RotateY(angle);
+        dir.y = 0;
 
-        return result;
+        rotation = Quaternion.FromToRotation(Vector3.forward, dir);
+
+        _rotate = true;
+
+        return angle.eulerAngles.y;
     }
 
     /// <summary>
@@ -60,7 +58,8 @@ public class MoveAndRotRb : MoveRb
     /// <param name="angles"></param>
     public void Rotate(Vector3 angles)
     {
-        _quaternion = Quaternion.Euler(angles);
+        rotation = Quaternion.Euler(angles) ;
+
         _rotate = true;
     }
 
@@ -76,16 +75,54 @@ public class MoveAndRotRb : MoveRb
 
     void MyAwake()
     {
-        _quaternion = transform.rotation;
+        rotation = transform.rotation;
     }
 
     void MyUpdate()
     {
         if (_rotate && !isDisable && !dash)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, _quaternion, Time.deltaTime * desAcelerationAxis);
-            if (_quaternion.Equals(transform.rotation))
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * desAcelerationAxis);
+            if(transform.rotation== rotation)
                 _rotate = false;
         }
     }
 }
+
+
+
+/*
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="dir"></param>
+/// <param name="offset"></param>
+public void RotateToDir(Vector3 dir, Vector3 offset)
+{
+
+    float angleY;
+    float angleX;
+
+    Utilitys.DeltaAngle(dir,  Vector3.forward, out angleY, Vector3.up, transform.rotation);
+    Utilitys.DeltaAngle(dir,  Vector3.up, out angleX, transform.right, transform.rotation);
+
+    Rotate(new Vector3(angleX + offset.x - 90, angleY + offset.y, offset.z));
+}
+
+/// <summary>
+/// rota en Y mirando hacia la direccion que se pasa
+/// </summary>
+/// <param name="dir">vector3 que es la direccion a la que se desea observar</param>
+/// <returns>Retorna la diferencia absoluta entre el angulo y la rotacion del objeto</returns>
+public float RotateToDirY(Vector3 dir)
+{
+    float angle;
+    float result = Utilitys.DeltaAngleY(dir, out angle, transform.rotation);
+
+    //print(angle);
+    RotateY(angle);
+
+    return result;
+}
+*/

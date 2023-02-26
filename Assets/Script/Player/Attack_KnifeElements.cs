@@ -183,7 +183,7 @@ public class Attack_KnifeElements : KnifeElements
 
             Vector3 rot = character.scopedPoint - knife.reference.position;
 
-            knife.movement.RotateToDir(rot, new Vector3(90,0,0));
+            knife.movement.RotateToDir(rot, new Vector3(-90,0,0));
 
             //Debug.DrawRay(knife.reference.position, character.scopedPoint - knife.reference.position, Color.white);
             Ray ray = new Ray(knife.reference.position, character.scopedPoint - knife.reference.position);

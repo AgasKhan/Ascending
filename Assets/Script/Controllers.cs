@@ -179,6 +179,13 @@ public class Controllers : MonoBehaviour
 
         }
 
+        public void Destroy()
+        {
+            eventDown = null;
+            eventPress = null;
+            eventUp = null;
+        }
+
         public override string ToString()
         {
             return key.principal.ToString();
@@ -295,6 +302,14 @@ public class Controllers : MonoBehaviour
     {
         _instance = this;
         eneableMove = true;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (Button item in _keys)
+        {
+            item.Destroy();
+        }
     }
 
     void Update()

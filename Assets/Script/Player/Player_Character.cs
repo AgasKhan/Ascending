@@ -182,7 +182,11 @@ public class Player_Character : Character, ISwitchState<FSMAimingPlayer>
         _extraJumps = extraJumps;
 
         animator.OnFloor();
-        Walk(0);
+
+        if (Controllers.dash.pressed)
+            Sprint(0);
+        else
+            Walk(0);
     }
 
     private void Ground_onStay(FSMEntorno obj)
