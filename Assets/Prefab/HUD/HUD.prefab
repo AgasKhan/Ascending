@@ -1509,26 +1509,32 @@ MonoBehaviour:
       value:
         GeneralIcon: {fileID: 21300000, guid: 4ce5419a5e4a29048b24357f86089e8b, type: 3}
         ActiveIcon: {fileID: 21300000, guid: d075c2c47bbd0b24b98f2e8fa24554e1, type: 3}
-        generalText: 
-        activeText: 
+        generalText: 'Dash can damage enemies
+
+          Dash can traspasete enemies'
+        activeText: Teleport to object and object to you
     - key: Toxine_Powers
       value:
         GeneralIcon: {fileID: 21300000, guid: d4ce7013376fa824f8251cb7aaa6b544, type: 3}
         ActiveIcon: {fileID: 21300000, guid: 2e3b2a50ac31bf543a32d4afc5d3b880, type: 3}
-        generalText: 
-        activeText: 
+        generalText: 'More jump strength
+
+          attacks can intoxicate'
+        activeText: Create a toxine smoke
     - key: Stun_Powers
       value:
         GeneralIcon: {fileID: 21300000, guid: 26d599bffdba448418572a9e95a0f1c1, type: 3}
         ActiveIcon: {fileID: 21300000, guid: db50996e0e43ab2489b055841167fd02, type: 3}
-        generalText: 
-        activeText: 
+        generalText: 'attacks can stun
+
+'
+        activeText: Freeze a enemy
     - key: Vortex_Powers
       value:
         GeneralIcon: {fileID: 21300000, guid: f29690972386f5d4ea01a94d7459af7e, type: 3}
         ActiveIcon: {fileID: 21300000, guid: 21638c72125abae488f9cef260970b28, type: 3}
-        generalText: 
-        activeText: 
+        generalText: more velocity
+        activeText: Create a vortex
 --- !u!1 &6376573854344279443
 GameObject:
   m_ObjectHideFlags: 0
