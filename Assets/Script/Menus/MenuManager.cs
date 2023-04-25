@@ -50,7 +50,6 @@ public class MenuManager : MonoBehaviour
     {
         instance = this;
 
-
         if (levelButtons != null)
             for (int i = 0; i < levelButtons.Length; i++)
             {
@@ -253,7 +252,6 @@ public class MenuManager : MonoBehaviour
         menus[0].SetActive(true);
         _currentMemuPrincipal = 0;
     }
-
 
     public void ChangePreviews(int index)
     {

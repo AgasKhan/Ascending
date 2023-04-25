@@ -189,7 +189,6 @@ public abstract class AbilitiesParent : ButtonColorParent, IBeginDragHandler, ID
         myAbility.active = false;
     }
 
-
 }
 
 [System.Serializable]
