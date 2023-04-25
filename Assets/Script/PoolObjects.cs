@@ -100,8 +100,6 @@ public class PoolObjects : MonoBehaviour
 
 
     static PoolObjects instance;
- 
-
 
     #region busqueda por categoria
 
