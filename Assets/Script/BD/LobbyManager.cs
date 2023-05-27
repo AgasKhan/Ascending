@@ -92,7 +92,7 @@ public class LobbyManager : MonoBehaviour
     void NextLevel(GameObject g)
     {
         // int aux = CSVReader.LoadFromPictionary<int>("CurrentLevel");
-        // aux +1
+        // aux += 1
 
         int aux = BaseData.lastLevelUnlocked;
         MenuManager.instance.refSceneChanger.Load("Level_" + aux.ToString());
@@ -114,7 +114,10 @@ public class LobbyManager : MonoBehaviour
     private void Update()
     {
         if (Controllers.jump.down)
+        {
             AddPoints(10);
+            RefreshPoints();
+        }
     }
 
 }

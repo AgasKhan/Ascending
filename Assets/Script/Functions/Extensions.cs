@@ -149,13 +149,14 @@ public static class Extensions
     public static void Event(this Button b)
     {
         var menu = MenuManager.instance;
-        
+
+        var function = menu.eventListVoid[b.name];
 
         b.onClick.RemoveAllListeners();
 
         //UnityEventTools.RemovePersistentListener(b.onClick, 0);
         b.onClick.AddListener(() => {
-            menu.eventListVoid[b.name](b.gameObject);
+            function(b.gameObject);
         });
         //menu.eventListVoid[b.name](b.gameObject);
 
@@ -165,15 +166,16 @@ public static class Extensions
     public static void Event(this Slider s)
     {
         var menu = MenuManager.instance;
-        
+
+        var function = menu.eventListFloat[s.name];
 
         s.onValueChanged.RemoveAllListeners();
 
         //UnityEventTools.RemovePersistentListener(s.onValueChanged, 0);
         s.onValueChanged.AddListener(
             (float f) => 
-            { 
-                menu.eventListFloat[s.name](s.gameObject, f); 
+            {
+                function(s.gameObject, f); 
             }
         );
         //menu.eventListFloat[s.name](s.gameObject, s.value);

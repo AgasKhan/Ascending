@@ -15,7 +15,7 @@ public class SkillSlot : MonoBehaviour,IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             draggableItem = dropped.GetComponent<AbilitiesParent>();
-            
+
             if (transform != draggableItem.originalParent)
                 DeclinedDrop();
             else

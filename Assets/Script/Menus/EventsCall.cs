@@ -19,6 +19,7 @@ public class EventsCall : MonoBehaviour
             b.onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             b.Event();
             menu.eventListVoid[b.name](b.gameObject);
+            menu.eventListVoid.Remove(b.name);
             return;
         }
         else if (g.TryGetComponent(out Slider s))
@@ -26,6 +27,7 @@ public class EventsCall : MonoBehaviour
             s.onValueChanged.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
             s.Event();
             menu.eventListFloat[s.name](s.gameObject, s.value);
+            menu.eventListVoid.Remove(s.name);
             return;
         }
 
