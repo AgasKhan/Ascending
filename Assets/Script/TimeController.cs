@@ -220,6 +220,9 @@ public class TimeController
         if (MementoBase.SaveComponent(t.GetComponent<Interactuable_LogicActive>(), out Log log))
             mementos.Add(log);
 
+        if (MementoBase.SaveComponent(t.GetComponent<RemoteActivate_Interactuable>(), out RemoteLog remLog))
+            mementos.Add(remLog);
+
         if (MementoBase.SaveComponent(t.GetComponent<Enemy_Character>(), out Ene ene))
             mementos.Add(ene);
 
@@ -589,6 +592,34 @@ public class TimeController
         }
     }
 
+    public class RemoteLog : Memento<RemoteActivate_Interactuable>
+    {
+        StackWithDefault<bool> logicActiveInteractuable = new StackWithDefault<bool>();
+
+        public override void OnEnterState()
+        {
+        }
+
+        public override void OnExitState()
+        {
+        }
+
+        public override void OnStayState()
+        {
+            reference.active = logicActiveInteractuable.Pop();
+        }
+
+        public override void OnUpdate()
+        {
+            logicActiveInteractuable.Push(reference.active);
+        }
+
+        public override void OnInit()
+        {
+            logicActiveInteractuable.SetDefault(reference.active);
+        }
+    }
+
     public class Dag : Memento<Dagger_Proyectile>
     {
         StackWithDefault<IState<FSMDagger>> states = new StackWithDefault<IState<FSMDagger>>();
@@ -619,6 +650,7 @@ public class TimeController
             states.SetDefault(reference.CurrentState);
         }
     }
+
 }
 
 /// <summary>

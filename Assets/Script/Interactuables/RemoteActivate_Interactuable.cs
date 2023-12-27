@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class RemoteActivate_Interactuable : Interactuable_LogicActive
 {
-    // Start is called before the first frame update
 
     [SerializeReference]
     LogicActive[] remote;
 
     public bool active = false;
+
+    private void Awake()
+    {
+        GameManager.AddTimeController(transform);
+    }
 
     public override void Activate()
     {
