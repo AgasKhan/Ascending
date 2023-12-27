@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,42 @@ public class TimeController
     static ChromaticAberration chromaticAberration;
     static ColorGrading colorGrading;
     static PostProcessVolume volume;
+
+    
+
+    public static void Awake()
+    {
+        entitys = new List<TimeController>();
+
+        motionBlur = ScriptableObject.CreateInstance<MotionBlur>();
+        chromaticAberration = ScriptableObject.CreateInstance<ChromaticAberration>();
+        colorGrading = ScriptableObject.CreateInstance<ColorGrading>();
+
+
+        motionBlur.enabled.Override(true);
+        motionBlur.shutterAngle.Override(270);
+        motionBlur.sampleCount.Override(10);
+
+        chromaticAberration.enabled.Override(true);
+        chromaticAberration.fastMode.Override(false);
+        chromaticAberration.intensity.Override(0.99f);
+
+        colorGrading.enabled.Override(true);
+        colorGrading.saturation.Override(-100);
+
+
+        volume = PostProcessManager.instance.QuickVolume(12, 2, chromaticAberration, colorGrading, motionBlur);
+        volume.weight = 0;
+
+    }
+
+    static public void StartAllItem()
+    {
+        foreach (var item in entitys)
+        {
+            item.StartItem();
+        }
+    }
 
     static public void StartReverse()
     {
@@ -40,32 +77,6 @@ public class TimeController
         HealthUI_HealthCh.instance.RefreshHealth(GameManager.player.health.Percentage());
 
         GameManager.player.fsmAiming.CurrentState = GameManager.player.fsmAiming.noAiming;
-    }
-
-    public static void Awake()
-    {
-        entitys = new List<TimeController>();
-
-        motionBlur = ScriptableObject.CreateInstance<MotionBlur>();
-        chromaticAberration = ScriptableObject.CreateInstance<ChromaticAberration>();
-        colorGrading = ScriptableObject.CreateInstance<ColorGrading>();
-
-
-        motionBlur.enabled.Override(true);
-        motionBlur.shutterAngle.Override(270);
-        motionBlur.sampleCount.Override(10);
-
-        chromaticAberration.enabled.Override(true);
-        chromaticAberration.fastMode.Override(false);
-        chromaticAberration.intensity.Override(0.99f);
-
-        colorGrading.enabled.Override(true);
-        colorGrading.saturation.Override(-100);
-
-
-        volume = PostProcessManager.instance.QuickVolume(12, 2, chromaticAberration, colorGrading, motionBlur);
-        volume.weight = 0;
-
     }
 
     static public void FixedUpdate()
@@ -111,11 +122,11 @@ public class TimeController
         }
     }
 
-    public int count = 0;
-
     public Transform t;
 
     List<MementoBase> mementos = new List<MementoBase>();
+
+    public int count => ((Tr)mementos[0]).Count;
 
     public void FinishReverseItem()
     {
@@ -135,13 +146,11 @@ public class TimeController
 
     public void ReverseItem(int jump = 1)
     {
-        if (((Tr)mementos[0]).count <= 1 || t == null)
+        if (count <= 1 || t == null)
             return;
 
-        for (int i = 0; i < jump && count > 0; i++)
-        {           
-            count--;
-
+        for (int i = 0; i < jump && count >= 1; i++)
+        {      
             foreach (var item in mementos)
             {
                 item.OnStayState();
@@ -154,12 +163,21 @@ public class TimeController
         if (t == null)
             return;
 
-        count++;
-
         foreach (var item in mementos)
         {
             item.OnUpdate();
         }            
+    }
+
+    public void StartItem()
+    {
+        if (t == null)
+            return;
+
+        foreach (var item in mementos)
+        {
+            item.OnInit();
+        }
     }
 
     public static List<TimeController> ChildTranform(Transform c, bool monoActive = true)
@@ -177,7 +195,6 @@ public class TimeController
         }
 
         return d;
-
     }
 
     public TimeController(Transform t, bool monoActive=true)
@@ -262,7 +279,11 @@ public class TimeController
         public abstract void OnStayState();
         public abstract void OnExitState();
         #endregion
+
+        #region
+        public abstract void OnInit();
         public abstract void OnUpdate();
+        #endregion
     }
 
     public abstract class Memento<R> : MementoBase
@@ -277,9 +298,9 @@ public class TimeController
 
     public class RB : Memento<Rigidbody>
     {
-        Stack<Vector3> velocitys = new Stack<Vector3>();
-        Stack<bool> kinematic = new Stack<bool>();
-        Stack<bool> gravity = new Stack<bool>();
+        StackWithDefault<Vector3> velocitys = new StackWithDefault<Vector3>();
+        StackWithDefault<bool> kinematic = new StackWithDefault<bool>();
+        StackWithDefault<bool> gravity = new StackWithDefault<bool>();
 
         public override void OnEnterState()
         {
@@ -289,6 +310,7 @@ public class TimeController
         {
         }
 
+       
         public override void OnStayState()
         {
             reference.velocity = velocitys.Pop();
@@ -302,6 +324,13 @@ public class TimeController
             kinematic.Push(reference.isKinematic);
             gravity.Push(reference.useGravity);
         }
+        public override void OnInit()
+        {
+            velocitys.SetDefault(reference.velocity);
+            kinematic.SetDefault(reference.isKinematic);
+            gravity.SetDefault(reference.useGravity);
+        }
+
     }
 
     public class Anim : Memento<Animator>
@@ -324,15 +353,18 @@ public class TimeController
         public override void OnUpdate()
         {
         }
+
+        public override void OnInit()
+        {
+        }
     }
 
     public class Coll : Memento<Collider>
     {
-        Stack<bool> colActive = new Stack<bool>();
+        StackWithDefault<bool> colActive = new StackWithDefault<bool>();
 
         public override void OnEnterState()
         {
-
         }
 
         public override void OnExitState()
@@ -348,35 +380,40 @@ public class TimeController
         {
             colActive.Push(reference.enabled);
         }
+
+        public override void OnInit()
+        {
+            colActive.SetDefault(reference.enabled);
+        }
     }
 
     public class Heal : Memento<Health>
     {
-        Stack<Vector3> healths = new Stack<Vector3>();
+        StackWithDefault<Vector3> healths = new StackWithDefault<Vector3>();
 
         public override void OnEnterState()
         {
-
         }
-
         public override void OnExitState()
         {
         }
-
         public override void OnStayState()
         {
             reference.SetAll(healths.Pop());
         }
-
         public override void OnUpdate()
         {
             healths.Push(reference.GetAll());
+        }
+        public override void OnInit()
+        {
+            healths.SetDefault(reference.GetAll());
         }
     }
 
     public class Pat : Memento<Patrol>
     {
-        Stack<int> patrolIndex = new Stack<int>();
+        StackWithDefault<int> patrolIndex = new StackWithDefault<int>();
 
         public override void OnEnterState()
         {
@@ -394,6 +431,11 @@ public class TimeController
         public override void OnUpdate()
         {
             patrolIndex.Push(reference.iPatrulla);
+        }
+
+        public override void OnInit()
+        {
+            patrolIndex.SetDefault(reference.iPatrulla);
         }
     }
 
@@ -427,9 +469,9 @@ public class TimeController
             }
         }
 
-        public int count => posAndRot.Count;
+        public int Count => posAndRot.Count;
 
-        Stack<PosAndRot> posAndRot = new Stack<PosAndRot>();
+        StackWithDefault<PosAndRot> posAndRot = new StackWithDefault<PosAndRot>();
 
         public override void OnEnterState()
         {
@@ -454,6 +496,10 @@ public class TimeController
         {
             posAndRot.Push(new PosAndRot(reference));
         }
+        public override void OnInit()
+        {
+            posAndRot.SetDefault(new PosAndRot(reference));
+        }
     }
 
     public class Mono : Memento<MonoBehaviour>
@@ -463,7 +509,7 @@ public class TimeController
         /// </summary>
         bool mono;
 
-        Stack<bool> monoActive = new Stack<bool>();
+        StackWithDefault<bool> monoActive = new StackWithDefault<bool>();
 
         public override void OnEnterState()
         {
@@ -483,6 +529,11 @@ public class TimeController
         public override void OnUpdate()
         {
             monoActive.Push(reference.enabled);
+        }
+
+        public override void OnInit()
+        {
+            monoActive.SetDefault(reference.enabled);
         }
     }
 
@@ -504,11 +555,15 @@ public class TimeController
         public override void OnUpdate()
         {
         }
+
+        public override void OnInit()
+        {
+        }
     }
 
     public class Log : Memento<Interactuable_LogicActive>
     {
-        Stack<bool> logicActiveInteractuable = new Stack<bool>();
+        StackWithDefault<bool> logicActiveInteractuable = new StackWithDefault<bool>();
 
         public override void OnEnterState()
         {
@@ -527,17 +582,21 @@ public class TimeController
         {
             logicActiveInteractuable.Push(reference.diseable);
         }
+
+        public override void OnInit()
+        {
+            logicActiveInteractuable.SetDefault(reference.diseable);
+        }
     }
 
     public class Dag : Memento<Dagger_Proyectile>
     {
-        Stack<IState<FSMDagger>> states = new Stack<IState<FSMDagger>>();
+        StackWithDefault<IState<FSMDagger>> states = new StackWithDefault<IState<FSMDagger>>();
 
         IState<FSMDagger> currentReverse;
 
         public override void OnEnterState()
         {
-            
         }
 
         public override void OnExitState()
@@ -554,5 +613,57 @@ public class TimeController
         {
             states.Push(reference.CurrentState);
         }
+
+        public override void OnInit()
+        {
+            states.SetDefault(reference.CurrentState);
+        }
+    }
+}
+
+/// <summary>
+/// Caso especifico donde jamas quiero eliminar el ultimo elemento de la lista del stack
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public class StackWithDefault<T> : IEnumerable<T>, IEnumerable, IReadOnlyCollection<T>, ICollection
+{
+    /// <summary>
+    /// valor que devuelve por defecto cuando se queda sin elementos
+    /// </summary>
+    T def;
+
+    Stack<T> stack = new Stack<T>();
+
+    public int Count => stack.Count+1;
+
+    public bool IsSynchronized => ((ICollection)stack).IsSynchronized;
+
+    public object SyncRoot => ((ICollection)stack).SyncRoot;
+
+    public void Clear() => stack.Clear();
+    public bool Contains(T item) => stack.Contains(item);
+
+    public IEnumerator<T> GetEnumerator() => stack.GetEnumerator();
+    public T Peek() => stack.Count > 0 ? stack.Peek() : def;
+    public T Pop() => stack.Count > 0 ? stack.Pop() : def;
+    public void Push(T item) => stack.Push(item);
+    public T[] ToArray() => stack.ToArray();
+    public void TrimExcess() => stack.TrimExcess();
+
+    public void CopyTo(T[] array, int arrayIndex) => stack.CopyTo(array, arrayIndex);
+
+    public void CopyTo(Array array, int index)
+    {
+        ((ICollection)stack).CopyTo(array, index);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable)stack).GetEnumerator();
+    }
+
+    public void SetDefault(T def)
+    {
+        this.def = def;
     }
 }

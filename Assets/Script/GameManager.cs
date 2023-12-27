@@ -185,10 +185,7 @@ public class GameManager : MonoBehaviour
         MisionHUD.UpdateMisions();
     }
 
-    private void OnDestroy()
-    {
-        instance = null;
-    }
+
 
     private void Update()
     {
@@ -199,7 +196,6 @@ public class GameManager : MonoBehaviour
 
         timeImage.CurrValue(1 - currentTime/maxLevelTimer);
         timeImage.color = Color.Lerp(Color.white, Color.red, currentTime / maxLevelTimer);
-
 
         if (!saveTime)
             return;
@@ -215,7 +211,6 @@ public class GameManager : MonoBehaviour
 
         if (maxLevelTimer < currentTime)
             ReverseAllCoroutine();
-
     }
 
     static public IEnumerator DeActivateRetarded(GameObject go, float time)
@@ -224,6 +219,9 @@ public class GameManager : MonoBehaviour
         go.SetActive(false);
     }
 
-   
+    private void OnDestroy()
+    {
+        instance = null;
+    }
 }
 

@@ -109,6 +109,9 @@ public class CameraStart : MoveAndRotTrToPatrol
         Controllers.horizontalMouse.enable = true;
 
         GameManager.instance.currentTime = 0;
+
+        TimeController.StartAllItem();
+
         MainHud.ReticulaPlay("Start");
     }
 }
